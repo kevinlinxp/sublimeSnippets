@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+mvn exec:java -Dexec.mainClass="${1}" -Dexec.args="${2}" -X
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>mvn.exec.java</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.shell</scope>
+</snippet>

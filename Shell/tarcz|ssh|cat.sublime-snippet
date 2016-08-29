@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+tar cz ${1:local.file.or.folder} | ssh ${2:user}@${3:server} "${4:cat > dest.tar.gz}"
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>tar|ssh|cat</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.shell</scope>
+</snippet>

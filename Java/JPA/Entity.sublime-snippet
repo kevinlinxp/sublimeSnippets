@@ -1,0 +1,59 @@
+<snippet>
+    <content><![CDATA[
+package ${1:com.group.artifact.domain};
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "${2:TABLE_NAME}")
+public class ${3:EntityName} {
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
+
+  @Version
+  private Integer version;
+
+  private String name;
+
+  public String getContent() {
+    return content;
+  }
+
+  public void setContent(String content) {
+    this.content = content;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public Integer getVersion() {
+    return version;
+  }
+
+  public void setVersion(Integer version) {
+    this.version = version;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  @Lob
+  private String content;
+}
+    ]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>java.entity.jpa</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.plain, text.xml</scope>
+</snippet>

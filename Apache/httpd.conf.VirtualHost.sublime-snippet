@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[
+<VirtualHost *:80>
+    DocumentRoot "${1:/Users/kelin/Sites/site}"
+    ServerName "${2:site.dev}"
+    ErrorLog "${3:/private/var/log/apache2/127.0.0.1-error_log}"
+    CustomLog "${4:/private/var/log/apache2/127.0.0.1-access_log}" common
+</VirtualHost>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>httpd.conf.vh</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.plain</scope>
+</snippet>

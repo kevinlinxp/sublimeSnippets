@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[
+<Directory "${1:/Users/kelin/Sites}">
+    AllowOverride all
+    Options Indexes MultiViews FollowSymLinks
+    Require all granted
+</Directory>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>httpd.conf.dir</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.plain</scope>
+</snippet>

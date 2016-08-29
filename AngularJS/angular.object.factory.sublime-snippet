@@ -1,0 +1,47 @@
+<snippet>
+    <content><![CDATA[(function () {
+  'use strict';
+
+  angular
+    .module('${1:module}')
+    .factory('${2:Class}', ${2:Class}Factory);
+
+  ${2:Class}Factory.\$inject = ['\$log'];
+
+  /* @ngInject */
+  function ${2:Class}Factory(\$log) {
+
+    /**
+     * Private properties
+     */
+    var privateProp1 = false;
+    var privateProp2 = 'Hello World';
+
+    /**
+     * Constructor, with class name
+     */
+    function ${2:Class}(/*params*/) {
+      // Public properties, assigned to the instance ('this')
+      this.publicProp1 = [];
+      this.publicProp2 = {};
+    };
+
+    /**
+     * Public methods
+     */
+    ${2:Class}.prototype.publicMethod = function (/*params*/) {
+    };
+
+    /**
+     * Private methods
+     */
+    var privateMethod = function (/*params*/) {
+    };
+
+    return ${2:Class};
+  }
+})();
+]]></content>
+    <tabTrigger>ngclass</tabTrigger>
+    <scope>text.plain, source.js</scope>
+</snippet>

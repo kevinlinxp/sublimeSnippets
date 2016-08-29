@@ -1,0 +1,22 @@
+<snippet>
+    <content><![CDATA[
+repositories {
+  mavenLocal()
+  mavenCentral()
+  maven {
+    credentials {
+      username 'deployment'
+      password '********'
+    }
+    url 'http://192.168.178.57:8081/nexus/content/groups/public/'
+    authentication {
+      basic(BasicAuthentication)
+    }
+  }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>gradle.build.repo</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.plain</scope>
+</snippet>

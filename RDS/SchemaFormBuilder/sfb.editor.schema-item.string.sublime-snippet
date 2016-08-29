@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[
+"${1:propertyName}": {
+  "title": "${2:Title}",
+  "type": "string",
+  "required": ${3:false},
+  "description": "${4}"
+},
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>sfb.edtr.si.str</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.plain, source.json</scope>
+</snippet>

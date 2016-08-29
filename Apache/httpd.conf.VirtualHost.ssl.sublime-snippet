@@ -1,0 +1,19 @@
+<snippet>
+    <content><![CDATA[
+<VirtualHost *:443>
+    DocumentRoot "${1:/var/www/site}"
+    ServerName "${2:site.com}"
+    ServerAlias "${3:www.site.com}"
+    SSLEngine on
+    SSLProtocol all
+    SSLCertificateFile "${4:/etc/httpd/ssl/www.site.com.crt}"
+    SSLCertificateKeyFile "${5:/etc/httpd/ssl/www.site.com.key}"
+    SSLCACertificateFile "${6:/etc/httpd/ssl/intermediate.rsa.sha-2.sha-1root.crt}"
+    SSLPassPhraseDialog "${7:exec:/path/to/passphrase-file}"
+</VirtualHost>
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>httpd.conf.vh.443</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.plain</scope>
+</snippet>

@@ -1,0 +1,17 @@
+<snippet>
+    <content><![CDATA[
+@author (classes and interfaces only, required)
+@version (classes and interfaces only, required. See footnote 1)
+@param (methods and constructors only)
+@return (methods only)
+@exception (@throws is a synonym added in Javadoc 1.2)
+@see
+@since
+@serial (or @serialField or @serialData)
+@deprecated (see How and When To Deprecate APIs)
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>doc.tags</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.plain, source.java</scope>
+</snippet>
