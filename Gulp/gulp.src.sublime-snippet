@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[gulp.src('${1:src/images/**/*.{png,jpg,gif\}}')
+]]></content>
+    <tabTrigger>gpsrc</tabTrigger>
+    <scope>text.plain, source.js</scope>
+</snippet>

@@ -1,0 +1,26 @@
+<snippet>
+    <content><![CDATA[
+(function() {
+  'use strict';
+
+  angular
+    .module('${1:module-name}', [
+      'schemaForm',
+      '${2:otherDependencies}'
+    ]).config(['schemaFormProvider', 'schemaFormDecoratorsProvider', 'sfBuilderProvider', 'sfPathProvider',
+    function (schemaFormProvider, schemaFormDecoratorsProvider, sfBuilderProvider, sfPathProvider) {
+      schemaFormDecoratorsProvider.defineAddOn(
+        '${3:bootstrapDecorator}',           // Name of the decorator you want to add to.
+        '${4:form-type}',                    // Form type that should render this add-on
+        '${5:templateName.template.html}',   // Template name in $templateCache
+        sfBuilderProvider.stdBuilders        // List of builder functions to apply. The standards builders are [sfField, ngModel, ngModelOptions, condition]
+      );
+
+    }]);
+})();
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>sfb.add.module</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.plain, source.json</scope>
+</snippet>
