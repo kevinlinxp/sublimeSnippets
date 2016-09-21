@@ -1,9 +1,11 @@
 <snippet>
   <content><![CDATA[
-tar cz ${1:local.file.or.folder} | ssh ${2:user}@${3:server} "${4:tar xz}"
+function(scope, iElem, iAttrs${1:, controller}${2:, transcludeFn}) {
+  ${0}
+}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>tar|ssh|tar</tabTrigger>
+  <tabTrigger>afunnglink</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.shell</scope>
+  <scope>text.plain, source.js</scope>
 </snippet>

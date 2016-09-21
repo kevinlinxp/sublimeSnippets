@@ -1,5 +1,5 @@
 <snippet>
-    <content><![CDATA[
+  <content><![CDATA[
 'use strict';
 
 var gulp = require('gulp'),
@@ -47,6 +47,6 @@ gulp.task('watch', function() {
   gulp.watch('./src/**/*', ['default']);
 });
 ]]></content>
-    <tabTrigger>gpfile</tabTrigger>
-    <scope>text.plain, source.js</scope>
+  <tabTrigger>gpfile</tabTrigger>
+  <scope>text.plain, source.js</scope>
 </snippet>

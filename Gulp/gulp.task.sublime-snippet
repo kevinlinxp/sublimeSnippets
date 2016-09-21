@@ -1,8 +1,8 @@
 <snippet>
-    <content><![CDATA[gulp.task('${1:taskName}', function() {
-    ${2:console.log('Hello World');}
+  <content><![CDATA[gulp.task('${1:taskName}', function() {
+  ${2:console.log('Hello World');}
 });
 ]]></content>
-    <tabTrigger>gptask</tabTrigger>
-    <scope>text.plain, source.js</scope>
+  <tabTrigger>gptask</tabTrigger>
+  <scope>text.plain, source.js</scope>
 </snippet>

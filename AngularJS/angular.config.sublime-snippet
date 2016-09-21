@@ -14,6 +14,6 @@
 
 })();
 ]]></content>
-    <tabTrigger>ngconfig</tabTrigger>
-    <scope>text.plain, source.js</scope>
+  <tabTrigger>ngconfig</tabTrigger>
+  <scope>text.plain, source.js</scope>
 </snippet>

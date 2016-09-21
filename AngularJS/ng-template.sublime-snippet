@@ -1,9 +1,9 @@
 <snippet>
-    <content><![CDATA[
+  <content><![CDATA[
 <script type="text/ng-template" id="${1:templateId}.template.html">
-  ${2} 
+  ${0} 
 </script>
 ]]></content>
-    <tabTrigger>ngtemplate</tabTrigger>
-    <scope>text.plain, text.html</scope>
+  <tabTrigger>ngtemplate</tabTrigger>
+  <scope>text.plain, text.html</scope>
 </snippet>

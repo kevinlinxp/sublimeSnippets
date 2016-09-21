@@ -1,7 +1,7 @@
 <snippet>
-    <content><![CDATA[
+  <content><![CDATA[
 ng-include="'${1:templateId-or-URL}.template.html'"
 ]]></content>
-    <tabTrigger>nginclude</tabTrigger>
-    <scope>text.plain, text.html</scope>
+  <tabTrigger>nginclude</tabTrigger>
+  <scope>text.plain, text.html</scope>
 </snippet>

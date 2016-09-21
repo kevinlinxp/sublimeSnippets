@@ -1,5 +1,5 @@
 <snippet>
-    <content><![CDATA[
+  <content><![CDATA[
 (function () {
   'use strict';
 
@@ -7,13 +7,13 @@
     .module('${1:module-name}')
     .config(config);
 
-  config.$inject = ['schemaFormProvider', 'schemaFormDecoratorsProvider', 'sfBuilderProvider', 'sfPathProvider'];
+  config.\$inject = ['schemaFormProvider', 'schemaFormDecoratorsProvider', 'sfBuilderProvider', 'sfPathProvider'];
 
   function config(schemaFormProvider, schemaFormDecoratorsProvider, sfBuilderProvider, sfPathProvider) {
     schemaFormDecoratorsProvider.defineAddOn(
-      '${2:bootstrapDecorator}',
-      '${3:form-type}',
-      'directives/decorators/bootstrap/${1}/${3}/${3}.template.html',
+      '${3:bootstrap}Decorator',
+      '${2:form-type}',
+      'directives/decorators/${3}/${1}/${2}/${2}.html',
       sfBuilderProvider.stdBuilders
     );
   }
@@ -21,8 +21,8 @@
 })();
 
 ]]></content>
-    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-    <tabTrigger>sfb.addon.config</tabTrigger>
-    <!-- Optional: Set a scope to limit where the snippet will trigger -->
-    <scope>text.plain, source.json</scope>
+<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+<tabTrigger>sfb.addon.config</tabTrigger>
+<!-- Optional: Set a scope to limit where the snippet will trigger -->
+<scope>text.plain, source.js</scope>
 </snippet>

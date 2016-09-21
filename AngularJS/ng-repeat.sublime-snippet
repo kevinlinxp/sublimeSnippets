@@ -1,0 +1,7 @@
+<snippet>
+  <content><![CDATA[
+ng-repeat="${1:val/item} in ${2:items}${3: track by \$index}"
+]]></content>
+  <tabTrigger>ngrepeat</tabTrigger>
+  <scope>text.plain, text.html</scope>
+</snippet>

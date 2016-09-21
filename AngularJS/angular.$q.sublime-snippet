@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+$q(function(resolve, reject) {
+  ${0}
+});
+]]></content>
+  <tabTrigger>ngq</tabTrigger>
+  <scope>text.plain, source.js</scope>
+</snippet>

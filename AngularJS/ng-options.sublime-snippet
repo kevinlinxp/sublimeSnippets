@@ -1,0 +1,7 @@
+<snippet>
+  <content><![CDATA[
+ngoptions="${4:select as }${3:label for }${2:item} in ${1:items}"
+]]></content>
+  <tabTrigger>ngoptions</tabTrigger>
+  <scope>text.plain, text.html</scope>
+</snippet>

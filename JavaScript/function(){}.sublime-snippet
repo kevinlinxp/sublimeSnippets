@@ -1,11 +1,11 @@
 <snippet>
-    <content><![CDATA[
+  <content><![CDATA[
 function() {
-    ${1}
+  ${0}
 }
 ]]></content>
-    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-    <tabTrigger>afun</tabTrigger>
-    <!-- Optional: Set a scope to limit where the snippet will trigger -->
-    <scope>text.plain, source.js</scope>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>afun</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, source.js</scope>
 </snippet>

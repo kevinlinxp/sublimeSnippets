@@ -6,10 +6,10 @@
     .module('${1:module}')
     .factory('${2:Class}', ${2:Class}Factory);
 
-  ${2:Class}Factory.\$inject = ['\$log'];
+  ${2:Class}Factory.\$inject = [${3/(\$(\w+)|\w+)/'$1'/g}];
 
   /* @ngInject */
-  function ${2:Class}Factory(\$log) {
+  function ${2:Class}Factory(${3:dependencies}) {
 
     /**
      * Private properties
@@ -42,6 +42,6 @@
   }
 })();
 ]]></content>
-    <tabTrigger>ngclass</tabTrigger>
-    <scope>text.plain, source.js</scope>
+  <tabTrigger>ngclass</tabTrigger>
+  <scope>text.plain, source.js</scope>
 </snippet>
