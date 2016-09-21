@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-ng-repeat="${1:val/item} in ${2:items}${3: track by \$index}"
+ng-repeat="${2:val/item} in ${1:items}${3/.+/ track by /}${3:\$index}"
 ]]></content>
   <tabTrigger>ngrepeat</tabTrigger>
   <scope>text.plain, text.html</scope>
