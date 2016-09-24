@@ -1,9 +1,15 @@
 <snippet>
   <content><![CDATA[
-The label for this drag-and-drop item. Will not be used when generating the actual form
+{
+  "type": "fieldset",
+  "title": "${1:Title}",
+  "items": [
+    ${0}
+  ]
+}${2:,}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>sfb.editor.desc.dnd.only</tabTrigger>
+  <tabTrigger>asf.form.fieldset</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.plain, source.json</scope>
 </snippet>

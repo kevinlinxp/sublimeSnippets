@@ -8,6 +8,7 @@
       "type": "section",
       "htmlClass": "col-sm-6",
       "items": [
+        ${0}
       ]
     },
     {
@@ -17,10 +18,10 @@
       ]
     }
   ]
-},
+}${1:,}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>sfb.edtr.layout</tabTrigger>
+  <tabTrigger>asf.form.layout</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.plain, source.json</scope>
 </snippet>

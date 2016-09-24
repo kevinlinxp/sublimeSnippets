@@ -1,17 +1,17 @@
 <snippet>
-    <content><![CDATA[
+  <content><![CDATA[
 <snippet>
-    <content><![CDATA[
-${1:My Snippet}
-]]]]><![CDATA[></content>
-    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-    <!-- <tabTrigger>hello</tabTrigger> -->
-    <!-- Optional: Set a scope to limit where the snippet will trigger -->
-    <!-- <scope>source.python</scope> -->
+  <content>${3/^.+$/<![CDATA[/}
+${3:my snippet here}
+${3/^.+$/]/g}${3/^.+$/]>/g}</content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>${1:trigger}</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>${2:text.plain}</scope>
 </snippet>
 ]]></content>
-    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-    <tabTrigger>snippet</tabTrigger>
-    <!-- Optional: Set a scope to limit where the snippet will trigger -->
-    <scope>text.plain</scope>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>subl.snippet</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, text.xml</scope>
 </snippet>

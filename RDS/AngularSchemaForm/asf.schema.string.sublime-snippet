@@ -1,14 +1,13 @@
 <snippet>
   <content><![CDATA[
 "${1:propertyName}": {
-  "title": "${2:Show top navigation bar}",
-  "type": "boolean",
-  "default": ${3:false},
-  "description": "${4}"
+  "type": "string",
+  "required": ${2:false}${3/^.+$/,
+  "default": /}${3:""}
 },
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>sfb.edtr.si.bool</tabTrigger>
+  <tabTrigger>asf.schema.str</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.plain, source.json</scope>
 </snippet>

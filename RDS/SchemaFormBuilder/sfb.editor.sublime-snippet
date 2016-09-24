@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
   {
-    "id": "${1:sfb-editor-xxx}",
+    "id": "sfb-editor-${1:id}",
     "editorSfForm": [
       {
         "key": "key",
