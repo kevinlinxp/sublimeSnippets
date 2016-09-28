@@ -1,5 +1,6 @@
 <snippet>
-  <content><![CDATA[gulp.dest('${1:dist}')
+  <content><![CDATA[
+gulp.dest('${1:dist}')
 ]]></content>
   <tabTrigger>gpdest</tabTrigger>
   <scope>text.plain, source.js</scope>

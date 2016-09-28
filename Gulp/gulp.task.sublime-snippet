@@ -1,5 +1,6 @@
 <snippet>
-  <content><![CDATA[gulp.task('${1:taskName}', function() {
+  <content><![CDATA[
+gulp.task('${1:taskName}', function() {
   ${2:console.log('Hello World');}
 });
 ]]></content>

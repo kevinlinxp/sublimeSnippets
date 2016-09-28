@@ -1,5 +1,6 @@
 <snippet>
-    <content><![CDATA[(function () {
+    <content><![CDATA[
+(function () {
   'use strict';
 
   angular

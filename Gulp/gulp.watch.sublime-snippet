@@ -1,5 +1,6 @@
 <snippet>
-  <content><![CDATA[gulp.watch('${1:images/**/*.png}', ['${2:taskName}']);
+  <content><![CDATA[
+gulp.watch('${1:images/**/*.png}', ['${2:taskName}']);
 ]]></content>
   <tabTrigger>gpwatch</tabTrigger>
   <scope>text.plain, source.js</scope>
