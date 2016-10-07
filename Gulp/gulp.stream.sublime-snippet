@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+stream = streamqueue({objectMode: true});
+stream.queue(
+  gulp.src(['./src/**/*.css', '!./src/bower_components/**'])
+);
+stream.done()
+.pipe(rename('rds-map.css'))
+.pipe(gulp.dest('../build'))
+.pipe(rename({suffix: '.min'}))
+.pipe(cssnano())
+.pipe(sourcemaps.write('.'))
+.pipe(gulp.dest('../build'));
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>gpstream</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, source.js</scope>
+</snippet>
