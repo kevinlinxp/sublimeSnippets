@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+{
+  "directory": "src/bower_components",
+  "registry": {
+    "search": [ 
+      "https://bower.herokuapp.com",
+      "http://sailis-admin-1d:9081/repository/bower-all",
+      "http://ilis-admin-1d.ntlis.nt.gov.au/nexus3/repository/bower-internal" 
+    ]
+  },
+  "resolvers" : [ "bower-nexus3-resolver" ]
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>bowerrc</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain</scope>
+</snippet>

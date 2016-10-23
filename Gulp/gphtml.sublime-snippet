@@ -1,0 +1,33 @@
+<snippet>
+  <content><![CDATA[
+<!doctype html>
+<html>
+<head>
+  <!-- build:css app-vendor.css -->
+  <!-- bower:css -->
+  <!-- endinject -->
+  <!-- endbuild -->
+  
+  <!-- build:css app.css -->
+  <!-- endbuild -->
+</head>
+<body ng-app="app">
+
+<!-- build:js app-vendor.js -->
+<!-- bower:js -->
+<!-- endinject -->
+<!-- endbuild -->
+
+<!-- build:js app.js  -->
+<!-- inject:js -->
+<!-- endinject -->
+<!-- endbuild -->
+
+</body>
+</html>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>gphtml</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, source.xml</scope>
+</snippet>
