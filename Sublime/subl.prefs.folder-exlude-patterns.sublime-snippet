@@ -1,9 +1,9 @@
 <snippet>
   <content><![CDATA[
-"${1:key}": "${2:value}"${3:,}
+"folder_exclude_patterns": [${1:".svn", ".git", ".hg", "CVS", "node_modules"}]
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>kvp</tabTrigger>
+  <tabTrigger>subl.prefs.folder-exclude</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.js, source.json, text.plain</scope>
+  <scope>source.js, text.plain</scope>
 </snippet>

@@ -3,7 +3,8 @@
 \$http({
   method: '${1:GET}',
   url: ${2:URL}
-})]]></content>
+})
+]]></content>
   <tabTrigger>nghttp</tabTrigger>
   <scope>text.plain, source.js</scope>
 </snippet>
