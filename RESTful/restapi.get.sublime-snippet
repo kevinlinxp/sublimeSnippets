@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+HTTP Verb: GET
+
+CRUD: Read
+
+Entire Collection (e.g. /customers): 200 (OK), list of customers. Use pagination, sorting and filtering to navigate big lists.
+
+Specific Item (e.g. /customers/{id}): 200 (OK), single customer. 404 (Not Found), if ID not found or invalid.
+
+Examples:
+GET http://www.example.com/customers/12345
+GET http://www.example.com/customers/12345/orders
+GET http://www.example.com/buckets/sample
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>restget</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain</scope>
+</snippet>

@@ -1,0 +1,47 @@
+<snippet>
+  <content><![CDATA[
+<nav class="navbar navbar-default navbar-static-top sfb-navbar" id="sfb-navbar-menu">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="fbmenu-navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default navbar-btn" ng-click="fdCtrl.loadFormDialog();">Load Form</button>
+            <button type="button" class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="caret"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#" ngf-select="fdCtrl.importDndJson($file)">Load from a JSON file</a></li>
+            </ul>
+          </div>
+          </li>
+        <li>
+          <div class="btn-group" style="margin-left:8px;">
+            <button type="button" class="btn btn-default navbar-btn" data-toggle="modal"
+                    data-target="#saveFormDialogModal">Save Form</button>
+            <button type="button" class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+              <span class="caret"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#" data-toggle="modal" data-target="#saveComponentDialogModal">
+                Save as Custom Component</a></li>
+              <li><a href="#" ng-click="fdCtrl.exportDndJson();">Export JSON</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><button type="button" class="btn btn-default navbar-btn" style="margin-left:8px;" data-toggle="modal"
+                    data-target="#deleteFormOverwriteModal" ng-show="fdCtrl.formDesign.key || fdCtrl.formDesign.id">
+          Delete Form</button></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>bs3.nav.static</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html, text.plain</scope>
+</snippet>

@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+HTTP Verb: PUT
+
+CRUD: Update/Replace
+
+Entire Collection (e.g. /customers): 404 (Not Found), unless you want to update/replace every resource in the entire collection.
+
+Specific Item (e.g. /customers/{id}): 200 (OK) or 204 (No Content). 404 (Not Found), if ID not found or invalid.
+
+Examples:
+PUT http://www.example.com/customers/12345
+PUT http://www.example.com/customers/12345/orders
+PUT http://www.example.com/buckets/sample
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>restput</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain</scope>
+</snippet>

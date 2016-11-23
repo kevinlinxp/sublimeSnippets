@@ -1,12 +1,11 @@
 <snippet>
   <content><![CDATA[
-{
-  "value": "${1:id}",
-  "name": "${2:text}"
-}${3:,}
+new Promise(function(resolve, reject) {
+  ${0}
+})
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>asf.form.nvp</tabTrigger>
+  <tabTrigger>promise</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>text.plain, source.json</scope>
+  <scope>source.js, text.plain</scope>
 </snippet>

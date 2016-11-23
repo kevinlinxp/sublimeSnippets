@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+var pom = document.createElement('a');
+pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(${1:yourJsonObject}, null, 4)));
+pom.setAttribute('download', "${2:download-file-name}");
+
+if (document.createEvent) {
+  var event = document.createEvent('MouseEvents');
+  event.initEvent('click', true, true);
+  pom.dispatchEvent(event);
+} else {
+  pom.click();
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>inbrowserdownloadjson</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

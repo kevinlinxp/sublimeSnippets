@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+HTTP Verb: PATCH
+
+CRUD: Update/Modify
+
+Entire Collection (e.g. /customers): 404 (Not Found), unless you want to modify the collection itself.
+
+Specific Item (e.g. /customers/{id}): 200 (OK) or 204 (No Content). 404 (Not Found), if ID not found or invalid.
+
+Examples:
+PATCH http://www.example.com/customers/12345
+PATCH http://www.example.com/customers/12345/orders/98765
+PATCH http://www.example.com/buckets/secret_stuff
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>restpatch</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain</scope>
+</snippet>

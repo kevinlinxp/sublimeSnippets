@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+var req = new XMLHttpRequest();
+req.open('${1:GET}', ${2:url});
+
+req.onload = function() {
+  if (req.status === 200) {
+    ${3:var responseJson = JSON.parse(req.response);
+    resolve(responseJson)};
+  } else {
+    ${4:reject(Error(req.statusText))};
+  }
+}
+
+req.onerror = function() {
+  ${5:reject(Error("Network Error"));}
+}
+
+req.send();
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>http</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

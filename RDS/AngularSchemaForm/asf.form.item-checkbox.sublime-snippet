@@ -1,13 +1,14 @@
 <snippet>
   <content><![CDATA[
-"${1:propertyName}": {
-  "type": "boolean",
-  "required": ${2:false}${3/^.+$/,
-  "default": /}${3:true}
+{
+  "key": "${1}",
+  "type": "checkbox",
+  "title": "${2:Title}"${3/^.+$/,
+  "description": /}${3:""}
 },
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>asf.schema.bool</tabTrigger>
+  <tabTrigger>asf.form.cb, asf.form.checkbox</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.plain, source.json</scope>
 </snippet>

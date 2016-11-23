@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+HTTP Verb: POST
+
+CRUD: Create
+
+Entire Collection (e.g. /customers): 201 (Created), 'Location' header with link to /customers/{id} containing new ID.
+
+Specific Item (e.g. /customers/{id}): 404 (Not Found), 409 (Conflict) if resource already exists..
+
+Examples:
+POST http://www.example.com/customers
+POST http://www.example.com/customers/12345/orders
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>restpost</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain</scope>
+</snippet>

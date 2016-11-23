@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+HTTP Verb: DELETE
+
+CRUD: Delete
+
+Entire Collection (e.g. /customers): 404 (Not Found), unless you want to delete the whole collection—not often desirable.
+
+Specific Item (e.g. /customers/{id}): 200 (OK). 404 (Not Found), if ID not found or invalid.
+
+Examples:
+DELETE http://www.example.com/customers/12345
+DELETE http://www.example.com/customers/12345/orders
+DELETE http://www.example.com/bucket/sample
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>restdelete</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain</scope>
+</snippet>
