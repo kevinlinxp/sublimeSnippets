@@ -1,0 +1,22 @@
+<snippet>
+  <content><![CDATA[
+for ${1:dir} in ${2:\$HOME/Work/*}
+do
+  test -d "\$dir" || continue
+
+  dir_scripts_basename="\$(echo \$(basename "\$dir") | tr '[:upper:]' '[:lower:]')-scripts"
+  dir_scripts="\$dir/\$dir_scripts_basename"
+
+  test -d "\$dir_scripts" || continue
+
+  dir_scripts_local="\$dir_scripts/local"
+  test -d "\$dir_scripts_local" || continue
+
+  export PATH="\$PATH:$dir_scripts_local"
+done
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>forin</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
