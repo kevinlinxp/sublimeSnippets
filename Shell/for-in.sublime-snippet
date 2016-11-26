@@ -2,17 +2,7 @@
   <content><![CDATA[
 for ${1:dir} in ${2:\$HOME/Work/*}
 do
-  test -d "\$dir" || continue
-
-  dir_scripts_basename="\$(echo \$(basename "\$dir") | tr '[:upper:]' '[:lower:]')-scripts"
-  dir_scripts="\$dir/\$dir_scripts_basename"
-
-  test -d "\$dir_scripts" || continue
-
-  dir_scripts_local="\$dir_scripts/local"
-  test -d "\$dir_scripts_local" || continue
-
-  export PATH="\$PATH:$dir_scripts_local"
+  ${0}
 done
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
