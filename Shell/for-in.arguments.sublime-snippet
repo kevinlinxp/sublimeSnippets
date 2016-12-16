@@ -1,11 +1,12 @@
 <snippet>
   <content><![CDATA[
-var newScope = scope.$new(false);
-var template = \$templateCache.get('${1}');
-var html = \$compile(template)(newScope);
+for ${1:f} in "\$@"
+do
+  ${2:echo "\$${1}"}
+done
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>ngtemplatecache</tabTrigger>
+  <tabTrigger>forarguments</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.js, text.plain</scope>
+  <scope>source.shell, text.plain</scope>
 </snippet>

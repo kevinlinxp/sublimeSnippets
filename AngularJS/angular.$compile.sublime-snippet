@@ -1,8 +1,8 @@
 <snippet>
   <content><![CDATA[
-var newScope = scope.$new(true); // true for isolate scope, false to inherit from parent
+var newScope = scope.\$new(true); // true for isolate scope, false to inherit from parent
 newScope.data = data;
-var html = $compile('<my-directive data="data"></my-directive>')(newScope);
+var html = \$compile('<my-directive data="data"></my-directive>')(newScope);
 return html;
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

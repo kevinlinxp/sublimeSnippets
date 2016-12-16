@@ -1,11 +1,11 @@
 <snippet>
   <content><![CDATA[
-var newScope = scope.$new(false);
-var template = \$templateCache.get('${1}');
-var html = \$compile(template)(newScope);
+if [[ ${1:! -e "\$dir"} ]]; then
+  ${2}
+fi
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>ngtemplatecache</tabTrigger>
+  <tabTrigger>ifthen</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.js, text.plain</scope>
+  <scope>source.shell, text.plain</scope>
 </snippet>
