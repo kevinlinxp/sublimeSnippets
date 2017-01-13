@@ -47,6 +47,6 @@ gulp.task('watch', function() {
   gulp.watch('./src/**/*', ['default']);
 });
 ]]></content>
-  <tabTrigger>gpfile</tabTrigger>
+  <tabTrigger>gpsample-gulp/tasks/default.js</tabTrigger>
   <scope>text.plain, source.js</scope>
 </snippet>
