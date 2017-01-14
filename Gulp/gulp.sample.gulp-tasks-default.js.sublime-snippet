@@ -12,7 +12,7 @@ var gulp = require('gulp'),
   rename = require('gulp-rename');
 
 gulp.task('clean', function () {
-    return del('./dist');
+  return del('./dist');
 });
 
 gulp.task('build', function() {

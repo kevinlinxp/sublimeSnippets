@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+gulp.task('watch', function() {
+  gulp.watch('${1:./src/**/*}', ['default']);
+});
+]]></content>
+  <tabTrigger>gptask-watch</tabTrigger>
+  <scope>source.js, text.plain</scope>
+</snippet>

@@ -1,0 +1,34 @@
+<snippet>
+  <content><![CDATA[
+describe('${1:LocationService}', function() {
+  var \$httpBackend;
+  var ${1:LocationService};
+
+  beforeEach(angular.mock.module('rds-schemaform-common'));
+
+  beforeEach(inject(function(_\$httpBackend_, _${1:LocationService}_) { // The injector unwraps the underscores (_) from around the parameter names when matching
+    \$httpBackend = _\$httpBackend_;
+    ${1:LocationService} = _${1:LocationService}_;
+  }));
+
+  afterEach(function() {
+    \$httpBackend.verifyNoOutstandingExpectation();
+    \$httpBackend.verifyNoOutstandingRequest();
+  });
+
+  describe('${2:method1}', function() {
+    it('${4:can work}', function() {
+    });
+  });
+
+  describe('${3:method2}', function() {
+    it('${5:can work}', function() {
+    });
+  });
+});
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jasmine.sample.spec</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

@@ -1,14 +1,12 @@
 <snippet>
   <content><![CDATA[
-var ${1:dependencies};
-beforeEach(inject(function(
-${1/ *(\$(\w+)|\w+)( *,?)/  _$1_$3\n/g}
-) {
-${1/ *(\$(\w+)|\w+)( *,?)/  $1 = _$1_;\n/g}
-}));
+afterEach(function() {
+  \$httpBackend.verifyNoOutstandingExpectation();
+  \$httpBackend.verifyNoOutstandingRequest();
+});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>beforeEach-inject</tabTrigger>
+  <tabTrigger>jasmine.afterEach.$httpBackend</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
