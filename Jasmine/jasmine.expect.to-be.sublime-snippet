@@ -1,9 +1,9 @@
 <snippet>
   <content><![CDATA[
-beforeEach(angular.mock.module('${1:angular-module-name}'));
+expect(${1}).toBe(${2});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>jasmine.beforeEach.mock-ng-module</tabTrigger>
+  <tabTrigger>jasmine.expect.to-be</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

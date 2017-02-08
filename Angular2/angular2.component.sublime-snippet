@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+import { Component } from '@angular/core';
+
+@Component({
+  selector: '<${1/(([A-Z][a-z]+)|([A-Z])+)/\L$1-/g}></${1/(([A-Z][a-z]+)|([A-Z])+)/\L$1-/g}>',
+  template: '${2:<div></div>}'
+})
+export class ${1}Component {
+  ${0}
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>ngcomponent</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.ts, text.plain</scope>
+</snippet>

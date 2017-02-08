@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+npm install jasmine-jquery
+
+beforeEach(function() {
+  jasmine.getJSONFixtures().fixturesPath = 'base/test/unit/form-design.manager.factory.spec';
+});
+
+...
+  var dndModel = getJSONFixture("single-step-form.long.json");
+...
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jasmine.sample.read-json-file</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

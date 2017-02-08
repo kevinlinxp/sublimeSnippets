@@ -6,7 +6,7 @@ describe('${1:LocationService}', function() {
 
   beforeEach(angular.mock.module('rds-schemaform-common'));
 
-  beforeEach(inject(function(_\$httpBackend_, _${1:LocationService}_) { // The injector unwraps the underscores (_) from around the parameter names when matching
+  beforeEach(inject(function(_\$httpBackend_, _${1:LocationService}_) {
     \$httpBackend = _\$httpBackend_;
     ${1:LocationService} = _${1:LocationService}_;
   }));

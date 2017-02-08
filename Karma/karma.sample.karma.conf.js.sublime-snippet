@@ -1,5 +1,8 @@
 <snippet>
   <content><![CDATA[
+// Karma configuration
+// Generated on Fri Dec 02 2016 16:21:19 GMT+1030 (ACDT)
+
 module.exports = function(config) {
   config.set({
 
@@ -17,13 +20,17 @@ module.exports = function(config) {
       // inject-bower
       // end-inject-bower
       "node_modules/angular-mocks/angular-mocks.js",
+      'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
       // inject-app
       // end-inject-app
+      // inject-json
+      // end-inject-json
     ],
 
 
     // list of files to exclude
     exclude: [
+      '**/gulpfile.js',
     ],
 
 
@@ -58,7 +65,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode

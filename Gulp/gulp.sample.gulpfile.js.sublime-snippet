@@ -6,7 +6,9 @@ var appRoot = path.resolve(__dirname) + '/';
 var settings = {
   appRoot: appRoot,
   src: appRoot + 'src/',
-  dist: appRoot + 'dist/',
+  test: appRoot + 'test/',
+  bowerComponents: 'src/bower_components/',
+  dist: appRoot + 'build/',
   karmaConfig: appRoot + 'karma.conf.js'
 };
 global.settings = settings;

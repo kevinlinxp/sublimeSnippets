@@ -1,18 +1,22 @@
 <snippet>
   <content><![CDATA[
 var gulp = require('gulp'),
-    KarmaServer = require('karma').Server,
-    inject = require('gulp-inject'),
-    bowerFiles = require('main-bower-files'),
-    runSequence = require('run-sequence'),
-    plumber = require('gulp-plumber'),
-    naturalSort = require('gulp-natural-sort'),
-    angularFilesort = require('gulp-angular-filesort'),
-    debug = require('gulp-debug');
+  KarmaServer = require('karma').Server,
+  inject = require('gulp-inject'),
+  bowerFiles = require('main-bower-files'),
+  runSequence = require('run-sequence'),
+  plumber = require('gulp-plumber'),
+  naturalSort = require('gulp-natural-sort'),
+  angularFilesort = require('gulp-angular-filesort'),
+  debug = require('gulp-debug');
 
 
 function filepathForKarma(filepath, file, i, length) {
-  return '"' + filepath + '",';
+  if (filepath.endsWith(".json")) {
+    return "{pattern: \"" + filepath + "\", watched: true, served: true, included: false},";
+  } else {
+    return '"' + filepath + '",';
+  }
 }
 
 gulp.task('inject-test:vendor', function () {
@@ -36,7 +40,7 @@ gulp.task('inject-test:vendor', function () {
   return stream;
 });
 
-gulp.task('inject-test:${1:module-name}', function () {
+gulp.task('inject-test:${1:module-name}:app', function () {
   var injectOpts = {
     relative: true,
     starttag: "// inject-app",
@@ -47,23 +51,46 @@ gulp.task('inject-test:${1:module-name}', function () {
   return gulp.src(settings.karmaConfig)
     .pipe(plumber({errorHandler: handleErrors}))
     .pipe(inject(
-      gulp.src([settings.src + '**/*.js'])
-        .pipe(naturalSort())
+      gulp.src([
+        settings.src + '**/*.js',
+        '!' + settings.bowerComponents + '**/*.js',
+        settings.test + 'unit/**/*.spec.js'
+      ]).pipe(naturalSort())
         .pipe(angularFilesort())
+        .pipe(debug()),
+      injectOpts))
+    .pipe(gulp.dest(settings.appRoot));
+
+});
+
+gulp.task('inject-test:${1:module-name}:json', function() {
+  var injectOpts = {
+    relative: true,
+    starttag: "// inject-json",
+    endtag: "// end-inject-json",
+    transform: filepathForKarma,
+  };
+
+  return gulp.src(settings.karmaConfig)
+    .pipe(plumber({errorHandler: handleErrors}))
+    .pipe(inject(
+      gulp.src([
+        settings.test + 'unit/**/*.json'
+      ]).pipe(naturalSort())
         .pipe(debug()),
       injectOpts))
     .pipe(gulp.dest(settings.appRoot));
 });
 
 gulp.task('inject-test', function() {
-  runSequence('inject-test:vendor', 'inject-test:${1:module-name}');
+  runSequence('inject-test:vendor', 'inject-test:${1:module-name}:app', 'inject-test:${1:module-name}:json');
 });
 
 gulp.task('test', function(done) {
   new KarmaServer({
     configFile: settings.karmaConfig,
     singleRun: true
-  }, done).start()
+  }, done).start();
 });
 ]]></content>
   <tabTrigger>gpsample-gulp/tasks/test.js</tabTrigger>
