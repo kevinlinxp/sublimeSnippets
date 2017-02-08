@@ -3,7 +3,7 @@
 expect(${1}).toBe(${2});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>jasmine.expect.to-be</tabTrigger>
+  <tabTrigger>spec.jasmine.expect.to-be</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

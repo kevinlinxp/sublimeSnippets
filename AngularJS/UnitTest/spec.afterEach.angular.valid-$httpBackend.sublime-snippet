@@ -1,11 +1,12 @@
 <snippet>
   <content><![CDATA[
-it('${1:description}', function() {
-  ${0}
+afterEach(function() {
+  \$httpBackend.verifyNoOutstandingExpectation();
+  \$httpBackend.verifyNoOutstandingRequest();
 });
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>jasmine.it</tabTrigger>
+  <tabTrigger>spec.afterEach.angular.valid-$httpBackend</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

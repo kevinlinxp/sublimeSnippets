@@ -28,7 +28,7 @@ describe('${1:LocationService}', function() {
 });
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>jasmine.sample.spec</tabTrigger>
+  <tabTrigger>spec.jasmine.sample.spec</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

@@ -1,9 +1,14 @@
 <snippet>
   <content><![CDATA[
-expect(${1}).toBeTruthy();
+var ${1:dependencies};
+beforeEach(inject(function(
+${1/ *(\$(\w+)|\w+)( *,?)/  _$1_$3\n/g}
+) {
+${1/ *(\$(\w+)|\w+)( *,?)/  $1 = _$1_;\n/g}
+}));
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>jasmine.expect.to-be-truthy</tabTrigger>
+  <tabTrigger>spec.beforeEach.angular.inject</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

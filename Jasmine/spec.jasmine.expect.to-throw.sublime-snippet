@@ -1,11 +1,11 @@
 <snippet>
   <content><![CDATA[
-beforeEach(function() {
-  ${0}
-});
+expect(function() {
+  ${1}
+}).toThrow(new Error(${2:"error"}));
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>jasmine.beforeEach</tabTrigger>
+  <tabTrigger>spec.jasmine.expect.to-throw</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
