@@ -1,12 +1,9 @@
 <snippet>
   <content><![CDATA[
-for ${1:dir} in ${2:\$HOME/Work/*}
-do
-  ${0}
-done
+<context:property-placeholder location="${1:META-INF/jdbc-test.properties}"/>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>forfilesindir</tabTrigger>
+  <tabTrigger>spring.config-xml.property-placeholder</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.shell, text.plain</scope>
+  <scope>text.xml, text.plain</scope>
 </snippet>

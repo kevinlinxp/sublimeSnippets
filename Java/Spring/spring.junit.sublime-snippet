@@ -1,0 +1,27 @@
+<snippet>
+  <content><![CDATA[
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(
+        locations = ${2:"classpath:META-INF/spring/applicationContext-test.xml"}
+)
+${3:@TransactionConfiguration(transactionManager = "txManager", defaultRollback = true)}
+public class ${1:DataFetcherRepository}Test
+{
+  @Autowired
+  private DataFetcherRepository repository;
+
+  @Test
+  @Transactional
+  public void testFindOne()
+  {
+    Map fetcher = repository.findOne(1L);
+    Assert.assertNotNull(fetcher);
+    Assert.assertTrue(fetcher.get("ID").equals(BigDecimal.valueOf(1)));
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring.junit.sublime-snippet</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

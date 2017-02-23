@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+<jdbc:embedded-database id="${1:dataSource}" type="${2:H2}">
+    <jdbc:script location="classpath:META-INF/test-schema.sql"/>
+    <jdbc:script location="classpath:META-INF/test-data.sql"/>
+</jdbc:embedded-database>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring.config-xml.dataSource-embedded</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>
