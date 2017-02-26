@@ -39,8 +39,8 @@
   session = HibernateUtil.getSessionFactory().getCurrentSession();
   session.beginTransaction();
 
-  Person aPerson = (Person) session.load(Person.class, 1L);
-  Assert.assertEquals("Ke Lin should be from SA", aPerson.getState(), State.SA);
+  ${4:// Do some other work here}
+
   session.getTransaction().commit();
 }
 ]]></content>
