@@ -1,0 +1,273 @@
+<snippet>
+  <content><![CDATA[
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!--
+    For Hibernate's configuration, we can use:
+    1. a simple hibernate.properties file, or
+    2. a more sophisticated hibernate.cfg.xml file, or even
+    3. complete programmatic setup.
+
+    Most users prefer the XML configuration file:
+-->
+<hibernate-configuration>
+
+    <!--
+        You configure Hibernate's SessionFactory. SessionFactory is a global factory responsible for
+        A PARTICULAR database. If you have several databases, for easier startup you should use SEVERAL
+        <session-factory> configurations IN SEVERAL configuration files.
+    -->
+    <session-factory>
+
+        <!--=== Database Connection settings ===-->
+        <!--<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>-->
+        <!--<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate4</property>-->
+        <!--<property name="hibernate.connection.username">root</property>-->
+        <!--<property name="hibernate.connection.password"></property>-->
+
+        <property name="hibernate.connection.driver_class">org.h2.Driver</property>
+        <property name="hibernate.connection.url">jdbc:h2:mem:CLA;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.connection.password"></property>
+
+        <!--
+            hibernate.connection.<propertyName> Pass the JDBC property <propertyName> to
+            DriverManager.getConnection().
+        -->
+        <!--====================================-->
+
+
+        <!--=== Database JNDI settings ===-->
+        <!--
+            For use inside an application server, you should almost always configure Hibernate to obtain
+            connections from an application server javax.sql.Datasource registered in JNDI. You will need
+            to set at least one of the following properties:
+        -->
+        <!-- 1. Hibernate Datasource Properties: -->
+        <!--
+        <property name="hibernate.connection.datasource">java:/comp/env/jdbc/test</property>
+        <property name="hibernate.jndi.url">URL of the JNDI provider (optional)</property>
+        <property name="hibernate.jndi.class">class of the JNDI InitialContextFactory (optional)</property>
+        <property name="hibernate.connection.username">database user (optional)</property>
+        <property name="hibernate.connection.password">database user password (optional)</property>
+        -->
+
+        <!-- 2. Application server provided JNDI datasource: -->
+        <!--
+        <property name="hibernate.connection.datasource">java:/comp/env/jdbc/test</property>
+        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
+        <property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.JBossTransactionManagerLookup</property>
+        -->
+        <!--
+            JDBC connections obtained from a JNDI datasource will automatically participate in the
+            container-managed transactions of the application server.
+        -->
+        <!--==============================-->
+
+
+        <!--=== JDBC connection pool (use the built-in) ===-->
+        <!--
+            You should use a third party pool for best performance and stability. Just REPLACE the
+            hibernate.connection.pool_size property with connection pool specific settings. This will
+            turn off Hibernate's internal pool. For example, you might like to use c3p0.
+        -->
+        <property name="hibernate.connection.pool_size">1</property>
+
+        <!--
+            C3P0 is an open source JDBC connection pool distributed along with Hibernate in the lib
+            directory. Hibernate will use its org.hibernate.connection.C3P0ConnectionProvider for
+            connection pooling if you set hibernate.c3p0.* properties.
+        -->
+        <!--
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.timeout">1800</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+        -->
+        <!--===============================================-->
+
+
+        <!--=== Transaction strategy configuration ===-->
+        <!--
+            The Hibernate Session API is independent of any transaction demarcation system in your
+            architecture.
+
+            If you let Hibernate use JDBC directly through a connection pool, you can begin and end your
+            transactions by calling the JDBC API.
+
+            If you run in a J2EE application server, you might want to use bean-managed transactions and
+            call the JTA API and UserTransaction when needed.
+
+            To keep your code portable between these two (and other) environments we recommend the
+            optional Hibernate Transaction API, which wraps and hides the underlying system. You have to
+            specify a factory class for Transaction instances by setting the Hibernate configuration
+            property hibernate.transaction.factory_class.
+        -->
+        <!--
+        <property name="hibernate.transaction.factory_class">
+            org.hibernate.transaction.JDBCTransactionFactory
+                delegates to database (JDBC) transactions (default)
+            org.hibernate.transaction.JTATransactionFactory
+                delegates to container-managed transactions if an existing transaction is underway in
+                this context (for example, EJB session bean method). Otherwise, a new transaction is
+                started and bean-managed transactions are used.
+            org.hibernate.transaction.CMTTransactionFactory
+                delegates to container-managed JTA transactions
+        </property>
+        -->
+
+        <!--
+            Some features in Hibernate (i.e., the second level cache, Contextual Sessions with JTA, etc.)
+            require access to the JTA TransactionManager in a managed environment. In an application
+            server, since J2EE does not standardize a single mechanism, you have to specify how Hibernate
+            should obtain a reference to the TransactionManager:
+        -->
+        <!--
+        <property name="hibernate.transaction.manager_lookup_class">
+            org.hibernate.transaction.JBossTransactionManagerLookup
+            org.hibernate.transaction.WeblogicTransactionManagerLookup
+            org.hibernate.transaction.WebSphereTransactionManagerLookup
+            org.hibernate.transaction.WebSphereExtendedJTATransactionLookup
+            org.hibernate.transaction.OrionTransactionManagerLookup
+            org.hibernate.transaction.ResinTransactionManagerLookup
+            org.hibernate.transaction.JOTMTransactionManagerLookup
+            org.hibernate.transaction.JOnASTransactionManagerLookup
+            org.hibernate.transaction.JRun4TransactionManagerLookup
+            org.hibernate.transaction.BESTransactionManagerLookup
+            org.hibernate.transaction.JBossTSStandaloneTransactionManagerLookup
+        </property>
+        -->
+        <!--==========================================-->
+
+        <!-- SQL dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Enable Hibernate's automatic session context management -->
+        <!--
+            Hibernate offers three methods of current session tracking. The "thread" based method is not
+            intended for production use; it is merely useful for prototyping and tutorials such as this
+            one.
+        -->
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <!-- Disable the second-level cache  -->
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+
+        <!--
+            Write all SQL statements to console.
+            There is an alternative to setting the log category org.hibernate.SQL to debug.
+        -->
+        <!--<property name="hibernate.show_sql">true</property>-->
+        <!--<property name="hibernate.format_sql">true</property>-->
+
+        <!--
+            If turned on, Hibernate will generate comments inside the SQL, for easier debugging,
+            defaults to false.
+        -->
+        <property name="hibernate.use_sql_comments">true</property>
+
+        <!--
+            If enabled, Hibernate will collect statistics useful for performance
+        -->
+        <property name="hibernate.generate_statistics">true</property>
+
+
+        <!--
+            Sets a maximum "depth" for the outer join fetch tree for SINGLE‐ENDED associations
+            (one‐to‐one, many‐to‐one). A 0 disables default outer join fetching.
+            Recommended values between 0 and 3
+        -->
+        <property name="hibernate.max_fetch_depth">2</property>
+
+        <!--
+            Sets a default size for Hibernate batch fetching of associations.
+            Recommended values 4, 8, 16
+        -->
+        <property name="hibernate.default_batch_fetch_size">4</property>
+
+        <!--
+            The hbm2ddl.auto option turns on automatic generation of database schemas directly into the
+            database. This can also be turned off by removing the configuration option, or redirected to
+            a file with the help of the SchemaExport Ant task.
+
+            Automatically validates or exports schema DDL to the database when the SessionFactory is
+            created.
+
+            Values:
+                create-drop - the database schema will be dropped when the SessionFactory is closed
+                              explicitly.
+                create
+                update
+                validate
+        -->
+        <property name="hibernate.hbm2ddl.auto">create</property>
+
+        <!--
+            Comma‐separated names of the optional files containing SQL DML statements executed during the
+            SessionFactory creation. This is useful for testing or demoing: by adding INSERT statements
+            for example you can populate your database with a minimal set of data when it is deployed.
+
+            File order matters, the statements of a give file are executed before the statements of the
+            following files. These statements are only executed if the schema is created ie if
+            "hibernate.hbm2ddl.auto" is set to create or create-drop.
+        -->
+        <!--<property name="hibernate.hbm2ddl.import_files">./scripts/import1.sql,./scripts/import2.sql</property>-->
+
+
+        <!--
+            Sets the JDBC transaction isolation level. Check java.sql.Connection for meaningful values,
+            but note that most databases do not support all isolation levels and some define additional,
+            non‐standard isolation.
+
+            Values:
+                0 - java.sql.Connection.TRANSACTION_NONE,
+                1 - java.sql.Connection.TRANSACTION_READ_UNCOMMITTED,
+                2 - java.sql.Connection.TRANSACTION_READ_COMMITTED,
+                4 - java.sql.Connection.TRANSACTION_REPEATABLE_READ,
+                8 - java.sql.Connection.TRANSACTION_SERIALIZABLE
+        -->
+        <!--<property name="hibernate.connection.isolation">2</property>-->
+
+
+        <!--
+            Specifies when Hibernate should release JDBC connections.
+              - By default, a JDBC connection is held until the session is explicitly closed or
+                disconnected.
+              - For an application server JTA datasource, use "after_statement" to aggressively release
+                connections after every JDBC call.
+              - For a non-JTA connection, it often makes sense to release the connection at the end of
+                each transaction, by using "after_transaction".
+              - "auto" will choose "after_statement" for the JTA and CMT transaction strategies and
+                "after_transaction" for the JDBC transaction strategy.
+
+            * This setting only affects Sessions returned from SessionFactory.openSession.
+            For Sessions obtained through SessionFactory.getCurrentSession, the CurrentSessionContext
+            implementation configured for use controls the connection release mode for those Sessions
+
+            Values:
+                auto (default) | on_close | after_transaction | after_statement
+        -->
+        <property name="hibernate.connection.release_mode">auto</property>
+
+
+        <!-- Add the mapping file(s) for persistent classes to the configuration. -->
+        <mapping resource="framework/hibernate4/domain/Event.hbm.xml"/>
+        <mapping resource="framework/hibernate4/domain/Person.hbm.xml"/>
+        <!--
+            Create an association between these two entities. Persons can participate in events, and
+            events have participants. The design questions you have to deal with are:
+            1. Directionality,
+            2. Multiplicity, and
+            3. Collection behavior.
+        -->
+    </session-factory>
+
+</hibernate-configuration>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>hibernate.sample.hibernate.cfg.xml</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>
