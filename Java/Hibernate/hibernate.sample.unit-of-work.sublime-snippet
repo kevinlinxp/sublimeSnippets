@@ -1,0 +1,51 @@
+<snippet>
+  <content><![CDATA[
+  Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+  ${1:/* What does sessionFactory.getCurrentSession() do? First, you can call it as many times and
+   * anywhere you like once you get hold of your org.hibernate.SessionFactory. The
+   * getCurrentSession() method always returns the "current" unit of work. Remember that we
+   * switched the configuration option for this mechanism to "thread" in our
+   * src/main/resources/hibernate.cfg.xml? Due to that setting, the context of a current unit
+   * of work is bound to the current Java thread that executes the application.
+   *
+   * A org.hibernate.Session begins when the first call to getCurrentSession() is made for the
+   * current thread. It is then bound by Hibernate to the current thread. When the transaction
+   * ends, either through commit or rollback, Hibernate automatically unbinds the
+   * org.hibernate.Session from the thread and closes it for you. If you call
+   * getCurrentSession() again, you get a new org.hibernate.Session and can start a new unit
+   * of work.
+   * See Also:
+   *   1. The comment for "hibernate.connection.release_mode" property in hibernate.cfg.xml.
+   *   2. http://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html_single/#architecture-current-session
+   *
+   * You should NEVER design your application to use a new Hibernate org.hibernate.Session for
+   * every database operation. Even though it is used in the following examples, consider
+   * session-per-operation an anti-pattern.
+   */
+}
+  Transaction t = session.beginTransaction();
+
+  ${3:// Do some work here}
+
+  session.getTransaction().commit();
+  ${2:/* Session will be closed after committing this transaction! Because our hibernate.connection.release_mode
+   * is "auto".
+   */
+
+  // System.out.println(t == session.getTransaction()); // org.hibernate.SessionException: Session is closed!
+  // session.close(); // org.hibernate.SessionException: Session was already closed
+
+  // Will start a new session:
+  session = HibernateUtil.getSessionFactory().getCurrentSession();
+  session.beginTransaction();
+
+  Person aPerson = (Person) session.load(Person.class, 1L);
+  Assert.assertEquals("Ke Lin should be from SA", aPerson.getState(), State.SA);
+  session.getTransaction().commit();
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>hibernate.sample.unit-of-work</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
