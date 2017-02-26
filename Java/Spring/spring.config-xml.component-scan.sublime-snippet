@@ -1,9 +1,9 @@
 <snippet>
   <content><![CDATA[
-"folder_exclude_patterns": [${1:".svn", ".git", ".hg", "CVS", "node_modules"}]
+<context:component-scan base-package="${1:foo.bar}"/>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>subl.prefs.folder-exclude</tabTrigger>
+  <tabTrigger>spring.config-xml.component-scan</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.js, text.plain</scope>
+  <scope>text.xml, text.plain</scope>
 </snippet>

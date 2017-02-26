@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+private static class ${1:DataFetcher}RowMapper implements RowMapper<${1}>
+{
+  @Override public ${1} mapRow(ResultSet rs, int rowNum) throws SQLException
+  {
+    ${1} result = new ${1}();
+    ${2:result.setId(rs.getBigDecimal("ID").longValue());
+    result.setSql(rs.getString("SQL"));
+    result.setSecurityExpression(rs.getString("SECURITY_EXPRESSION"));}
+    ${0}
+    return result;
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring.data.rowMapper</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

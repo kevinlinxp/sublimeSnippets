@@ -9,6 +9,7 @@ ${3/^.+$/]/g}${3/^.+$/]>/g}</content>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>${2:text.plain}</scope>
 </snippet>
+
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>subl.snippet</tabTrigger>

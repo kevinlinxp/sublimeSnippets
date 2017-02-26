@@ -1,9 +1,9 @@
 <snippet>
   <content><![CDATA[
-<context:property-placeholder location="${1:META-INF/jdbc-test.properties}"/>
+mvn exec:java -Dexec.mainClass="${1}" -Dexec.args="${2}" -X
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring.config-xml.property-placeholder</tabTrigger>
+  <tabTrigger>mvn.exec.java</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>text.xml, text.plain</scope>
+  <scope>text.plain, source.shell</scope>
 </snippet>
