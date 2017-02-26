@@ -1,0 +1,53 @@
+<snippet>
+  <content><![CDATA[
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
+
+public class HibernateUtil {
+
+  private static final SessionFactory sessionFactory = buildSessionFactory();
+
+  private static SessionFactory buildSessionFactory() {
+    try {
+      Configuration configuration = new Configuration();
+      //configuration.addResource("framework/hibernate4/domain/Event.hbm.xml");
+      //configuration.addClass(framework.hibernate4.domain.Event.class);
+      //configuration
+      // .setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLInnoDBDialect")
+      // .setProperty("hibernate.connection.datasource", "java:comp/env/jdbc/test")
+      // .setProperty("hibernate.order_updates", "true");
+      /* Some alternative options for configuring hibernate properties include:
+       * 1. Pass an instance of java.util.Properties to Configuration.setProperties().
+       * 2. Place a file named hibernate.properties in a root directory of the classpath.
+       * 3. Set System properties using java-Dproperty=value.
+       * 4. Include <property> elements in hibernate.cfg.xml. */
+
+      configuration.configure();
+      ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
+          .applySettings(configuration.getProperties())
+          .buildServiceRegistry();
+
+      /* When all mappings have been parsed by the org.hibernate.cfg.Configuration,
+       * the application must obtain a factory for org.hibernate.Session instances.
+       * This factory is intended to be shared by all application threads. */
+      return configuration.buildSessionFactory(serviceRegistry);
+    } catch (Throwable ex) {
+      // Make sure you log the exception, as it might be swallowed
+      System.err.println("Initial SessionFactory creation failed." + ex);
+      throw new ExceptionInInitializerError(ex);
+    }
+  }
+
+  public static SessionFactory getSessionFactory() {
+    return sessionFactory;
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>hibernate.util.HibernateUtil</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
