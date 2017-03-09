@@ -1,0 +1,145 @@
+<snippet>
+  <content><![CDATA[
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="framework.hibernate4.domain">
+    <class name="Person" table="PERSON">
+        <id name="id" column="PERSON_ID">
+            <generator class="native"/>
+        </id>
+        <property name="age"/>
+        <property name="firstname"/>
+        <property name="lastname"/>
+
+        <!-- Equivalent to @Enumerated(EnumType.STRING) -->
+        <property name="state" column="STATE">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">framework.hibernate4.domain.State</param>
+                <!-- If comment out the line below, will be equivalent to @Enumerated(EnumType.ORDINAL) -->
+                <param name="useNamed">true</param>
+            </type>
+        </property>
+
+        <!--
+            For a many‐to‐many association, or n:m entity relationship, an association table is
+            required. Each row in this table represents a link between a person and an event
+            The table name is declared using the "table" attribute of the <set> element.
+        -->
+        <set name="events" table="PERSON_EVENT">
+            <!--
+                The identifier column name in the association, for the person side, is defined
+                with the "column" attribute of the <key> element.
+            -->
+            <key column="PERSON_ID"/>
+
+            <!--
+                The identifier column name in the association, for the event side, is defined
+                with the "column" attribute of the <many-to-many> element.
+
+                You also have to tell Hibernate the class of the objects in your collection
+                (the class on the other side of the collection of references).
+            -->
+            <many-to-many column="EVENT_ID" class="Event"/>
+        </set>
+
+        <!--
+            About "Value Types" in Hibernate:
+
+            There are other classes and types in a typical model, usually "less important".
+            Some you have already seen, like an int or a java.lang.String. We call these
+            classes value types, and their instances depend on a particular entity. Instances
+            of these types do not have their own identity, nor are they shared between
+            entities. Two persons do not reference the same firstname object, even if they have
+            the same first name. Value types cannot only be found in the JDK , but you can also
+            write dependent classes yourself such as an Address or Monetary Amount class. In
+            fact, in a Hibernate application all JDK classes are considered value types.
+
+            You can also design a collection of value types. This is conceptually different
+            from a collection of references to other entities, but looks almost the same in
+            Java.
+        -->
+        <set name="emailAddresses" table="PERSON_EMAIL_ADDR">
+            <key column="PERSON_ID"/>
+            <element type="string" column="EMAIL_ADDR"/>
+            <!--
+                The difference compared with the earlier mapping is the use of the <element>
+                part which tells Hibernate that the collection does not contain references to
+                another entity, but is rather a collection whose elements are values types,
+                here specifically of type string.
+            -->
+        </set>
+    </class>
+</hibernate-mapping>
+
+
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="framework.hibernate4.domain">
+    <class name="Event" table="EVENTS">
+        <id name="id" column="EVENT_ID">
+            <generator class="native"/>
+        </id>
+
+        <!-- By default, no properties of the class are considered persistent -->
+        <!-- So we need the follows: -->
+
+        <!--
+            The "type" attribute above means "Hibernate Mapping Types" - converters which can
+            translate from Java to SQL data types and vice versa.
+
+            Hibernate will try to determine the correct conversion and mapping type itself if the
+            type attribute is not present in the mapping. But in some cases this automatic
+            detection using Reflection on the Java class might not have the default you expect or
+            need. This is the case with the above date property. Hibernate cannot know if the
+            property, which is of java.util.Date, should map to a SQL date, timestamp, or time
+            column.
+
+            Full date and time information is preserved by mapping the property with a "timestamp
+            converter", which identifies an instance of the class
+            org.hibernate.type.TimestampType.
+         -->
+        <property name="date" type="timestamp" column="EVENT_DATE"/>
+
+        <property name="title"/>
+
+        <!--
+            Notice that the column names in key and many-to-many swap in both mapping
+            documents.
+        -->
+        <!--
+            The most important addition here is the inverse="true" attribute in the
+            <set> element of the Event's collection mapping. It means that that Hibernate
+            should take the other side, the Person class, when it needs to find out
+            information about the link between the two. For you, and for Java, a
+            bi‐directional link is simply a matter of setting the references on both sides
+            correctly. Hibernate, however, does not have enough information to correctly
+            arrange SQL INSERT and UPDATE statements (to avoid constraint violations).
+
+            Making one side of the association inverse tells Hibernate to consider it a
+            mirror of the other side. That is all that is necessary for Hibernate to
+            resolve any issues that arise when transforming a directional navigation model
+            to a SQL database schema.
+
+            The rules are straightforward: all bi‐directional associations need one side as
+            inverse. In a one‐to‐many association it has to be the many‐side (whose table has
+            the foreign key column), and in many‐to‐many association you can select either
+            side.
+        -->
+        <set name="participants" table="PERSON_EVENT" inverse="true">
+            <key column="EVENT_ID"/>
+            <many-to-many column="PERSON_ID" class="Person"/>
+        </set>
+    </class>
+</hibernate-mapping>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>hibernate.sample.mapping.hbm.xml</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

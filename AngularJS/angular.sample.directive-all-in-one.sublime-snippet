@@ -1,0 +1,88 @@
+<snippet>
+  <content><![CDATA[
+(function() {
+  'use strict';
+
+  angular
+    .module('${1:module-name}')
+    .run(function(\$templateCache) {
+      \$templateCache.put('${3:template-id}', '${4:<div></div>}');
+    });
+})();
+
+(function() {
+  'use strict';
+
+  angular
+    .module('${1}')
+    .controller('${2:Foo}Controller', ${2}Controller);
+
+  ${2}Controller.\$inject = ['\$log', '\$http', '\$timeout'];
+
+  function ${2}Controller(\$log, \$http, \$timeout) {
+    var vm = this;
+    vm.itemsCount = 0;
+    vm.syncItemsCount = syncItemsCount;
+
+    function syncItemsCount(url, interval) {
+      if (!url || !interval) {
+        \$log.error("${2}Controller#syncItemsCount - invalid parameter:", url, interval);
+        return;
+      }
+      \$log.debug("${2}Controller#syncItemsCount - ", url, interval);
+      \$http({
+        method: 'GET',
+        url: url
+      }).then(function(response) {
+        var count = response.data;
+        if (angular.isNumber(count)) {
+          \$log.debug("${2}Controller#syncItemsCount - get count: ", count);
+          vm.itemsCount = count;
+        }
+        \$timeout(function() {
+          syncItemsCount(url, interval);
+        }, interval);
+      });
+    }
+  }
+})();
+
+
+(function() {
+  'use strict';
+
+  angular
+    .module('${1}')
+    .directive('${2/^(.)(.*)$/\l$1$2/g}', ${2/^(.)(.*)$/\l$1$2/g});
+
+  ${2/^(.)(.*)$/\l$1$2/g}.\$inject = ['\$log'];
+
+  function ${2/^(.)(.*)$/\l$1$2/g}(\$log) {
+
+    var directive = {
+      controller: '${2}Controller',
+      controllerAs: '${2/^(.)(.*)$/\l$1$2/g}Ctrl',
+      templateUrl: '${3}',
+      link: link,
+      restrict: 'E',
+      scope: {
+        cartPageUrl: '@cartPageUrl',
+        itemsCountUrl: '@itemsCountUrl',
+        interval: '@interval'
+      }
+    };
+    return directive;
+
+    function link(scope, element, attrs) {
+      var scCtrl = scope.scCtrl;
+      scCtrl.cartPageUrl = scope.cartPageUrl;
+      scCtrl.syncItemsCount(scope.itemsCountUrl, scope.interval);
+    }
+  }
+})();
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>ngallinone</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
