@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+  <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+  <property name="prefix" value="/WEB-INF/views/"></property>
+  <property name="suffix" value=".jsp"></property>
+</bean>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-mvc.viewresolver</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.xml, text.plain</scope>
+</snippet>
