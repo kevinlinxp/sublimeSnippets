@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
 <script type="text/ng-template" id="${1:templateId}.template.html">
-  ${0} 
+  ${0}
 </script>
 ]]></content>
   <tabTrigger>ngtemplate</tabTrigger>

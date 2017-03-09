@@ -3,7 +3,9 @@
 var reader = new FileReader();
 reader.onload = function(){
   var text = reader.result;
+  ${0}
 };
+
 reader.readAsText(${1:file});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

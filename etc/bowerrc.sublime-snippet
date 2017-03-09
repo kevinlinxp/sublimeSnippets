@@ -3,10 +3,10 @@
 {
   "directory": "src/bower_components",
   "registry": {
-    "search": [ 
+    "search": [
       "https://bower.herokuapp.com",
       "http://sailis-admin-1d:9081/repository/bower-all",
-      "http://ilis-admin-1d.ntlis.nt.gov.au/nexus3/repository/bower-internal" 
+      "http://ilis-admin-1d.ntlis.nt.gov.au/nexus3/repository/bower-internal"
     ]
   },
   "resolvers" : [ "bower-nexus3-resolver" ]
