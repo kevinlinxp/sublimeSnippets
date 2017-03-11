@@ -1,0 +1,50 @@
+<snippet>
+  <content><![CDATA[
+## HOME Variables
+export JAVA_8_HOME="\$(/usr/libexec/java_home -v1.8)"
+export JAVA_7_HOME="\$(/usr/libexec/java_home -v1.7)"
+
+alias java7='export JAVA_HOME=\$JAVA_7_HOME'
+alias java8='export JAVA_HOME=\$JAVA_8_HOME'
+
+#defaults to java7
+export JAVA_HOME=\$JAVA_7_HOME
+export M2_HOME="\$HOME/Work/dev/java_tools/apache-maven-3.0.5"
+export GRADLE_HOME="\$HOME/Work/dev/java_tools/gradle-2.12"
+
+## Executable
+export PATH="\$PATH:/usr/local/mysql/bin"
+export PATH="\$PATH:\$M2_HOME/bin:\$GRADLE_HOME/bin"
+export PATH="\$PATH:\$HOME/.composer/vendor/bin"
+export PATH="\$PATH:\$HOME/Library/Android/sdk/platform-tools"
+# MacPorts
+export PATH="/opt/local/bin:/opt/local/sbin:\$PATH"
+# Brew executable
+export PATH="/usr/local/bin:/usr/local/sbin:\$PATH"
+# My own executable folders
+export PATH="\$PATH:\$HOME/bin"
+
+for dir in \$HOME/Work/*
+do
+  test -d "\$dir" || continue
+
+  dir_scripts_basename="\$(echo \$(basename "\$dir") | tr '[:upper:]' '[:lower:]')-scripts"
+  dir_scripts="\$dir/\$dir_scripts_basename"
+
+  test -d "\$dir_scripts" || continue
+
+  dir_scripts_local="\$dir_scripts/local"
+  test -d "\$dir_scripts_local" || continue
+
+  export PATH="\$PATH:\$dir_scripts_local"
+done
+
+## Aliases
+alias gitdiffhead="git diff HEAD^ HEAD"
+alias cdSublimePackages="cd \$HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages"
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>sample.bash_profile</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain</scope>
+</snippet>

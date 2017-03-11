@@ -49,7 +49,7 @@ jdbc.username=sa
 jdbc.password=}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring.junit.sample-xml.jdbc-ds-tx</tabTrigger>
+  <tabTrigger>spring.junit.sample.config-xml.jdbc-ds-tx</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.xml, text.plain</scope>
 </snippet>

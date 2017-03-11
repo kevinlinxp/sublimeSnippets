@@ -1,12 +1,9 @@
 <snippet>
   <content><![CDATA[
-for ${1:f} in "\$@"
-do
-  ${2:echo "\$${1}"}
-done
+test -d "\$dir"${2: || continue}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>for-in-arguments</tabTrigger>
+  <tabTrigger>test-is-dir</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.shell, text.plain</scope>
 </snippet>

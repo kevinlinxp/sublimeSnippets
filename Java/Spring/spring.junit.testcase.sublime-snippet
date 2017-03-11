@@ -21,7 +21,7 @@ public class ${1:DataFetcherRepository}Test
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring.junit.class.sublime-snippet</tabTrigger>
+  <tabTrigger>spring.junit.testcase.sublime-snippet</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

@@ -1,11 +1,9 @@
 <snippet>
   <content><![CDATA[
-if [[ ${1:! -e "\$dir"} ]]; then
-  ${2}
-fi
+test -e "${1:fileOrDir}"${2: || continue}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>ifthen</tabTrigger>
+  <tabTrigger>test-exists</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.shell, text.plain</scope>
 </snippet>

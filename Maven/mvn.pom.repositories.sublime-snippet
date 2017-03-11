@@ -19,8 +19,19 @@
     <name>java.net Maven 2 Repository</name>
     <url>http://download.java.net/maven/2/</url>
     <layout>default</layout>
-  </repository>}
-</repositories>
+  </repository>}${4/.+/\n  /}${5:<repository>
+    <id>io.spring.repo.maven.release</id>
+    <url>http://repo.spring.io/release/</url>
+    <snapshots><enabled>false</enabled></snapshots>
+  </repository>}${5/.+/\n  /}${6:<repository>
+    <id>io.spring.repo.maven.milestone</id>
+    <url>http://repo.spring.io/milestone/</url>
+    <snapshots><enabled>false</enabled></snapshots>
+  </repository>}${6/.+/\n  /}${7:<repository>
+    <id>io.spring.repo.maven.snapshot</id>
+    <url>http://repo.spring.io/snapshot/</url>
+    <snapshots><enabled>true</enabled></snapshots>
+  </repository>${7/.+/\n/}</repositories>}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>mvn.pom.repositories</tabTrigger>
