@@ -1,0 +1,110 @@
+<snippet>
+  <content><![CDATA[
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.DatabasePopulator;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import javax.sql.DataSource;
+import java.util.Properties;
+
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories("au.com.rds.schemaformbuilder")
+public class TestJpaConfig
+{
+  @Value("${jdbc.driverClassName}")
+  private String driverClassName;
+
+  @Value("${jdbc.url}")
+  private String url;
+
+  @Value("${jdbc.username}")
+  private String username;
+
+  @Value("${jdbc.password}")
+  private String password;
+
+  @Value("${hibernate.dialect}")
+  private String hibernateDialect;
+
+  @Value("${hibernate.show_sql}")
+  private String hibernateShowSql;
+
+  @Value("${hibernate.hbm2ddl.auto}")
+  private String hibernateHbm2ddlAuto;
+
+  @Value("classpath:test.sql")
+  private Resource testSql;
+
+  @Bean
+  public DataSource dataSource()
+  {
+    DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    dataSource.setDriverClassName(driverClassName);
+    dataSource.setUrl(url);
+    dataSource.setUsername(username);
+    dataSource.setPassword(password);
+    return dataSource;
+  }
+
+  @Bean
+  public DataSourceInitializer dataSourceInitializer(final DataSource dataSource) {
+    final DataSourceInitializer initializer = new DataSourceInitializer();
+    initializer.setDataSource(dataSource);
+    initializer.setDatabasePopulator(databasePopulator());
+    return initializer;
+  }
+
+  private DatabasePopulator databasePopulator() {
+    final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+    populator.addScript(testSql);
+    return populator;
+  }
+
+  @Bean
+  public PlatformTransactionManager transactionManager()
+  {
+    JpaTransactionManager tm = new JpaTransactionManager();
+    tm.setEntityManagerFactory(this.entityManagerFactory().getObject());
+    return tm;
+  }
+
+  @Bean
+  public LocalContainerEntityManagerFactoryBean entityManagerFactory()
+  {
+    LocalContainerEntityManagerFactoryBean lcemfb = new LocalContainerEntityManagerFactoryBean();
+    lcemfb.setDataSource(this.dataSource());
+    lcemfb.setPackagesToScan(new String[] { "au.com.rds.schemaformbuilder" });
+    lcemfb.setPersistenceUnitName("H2TestPU");
+    lcemfb.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+    lcemfb.setJpaProperties(getHibernateProperties());
+    lcemfb.afterPropertiesSet();
+    return lcemfb;
+  }
+
+  private Properties getHibernateProperties()
+  {
+    Properties properties = new Properties();
+    properties.put("hibernate.dialect", hibernateDialect);
+    properties.put("hibernate.show_sql", hibernateShowSql);
+    properties.put("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
+    return properties;
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring.junit.sample.config-java.ds-tx-jpa-hibernate</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

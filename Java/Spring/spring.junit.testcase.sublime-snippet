@@ -2,16 +2,15 @@
   <content><![CDATA[
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
-        locations = ${2:"classpath:META-INF/spring/applicationContext-test.xml"}
+${2/.+/  locations = /g}${2:"classpath:META-INF/spring/applicationContext-test.xml"}${2/.+/,\n/g}${3/.+/  classes = /g}${3:TestAppConfig.class}
 )
-${3:@TransactionConfiguration(transactionManager = "txManager", defaultRollback = true)}
+@Rollback
 public class ${1:DataFetcherRepository}Test
 {
   @Autowired
   private DataFetcherRepository repository;
 
   @Test
-  @Transactional
   public void testFindOne()
   {
     Map fetcher = repository.findOne(1L);
