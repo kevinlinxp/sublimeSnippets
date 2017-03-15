@@ -19,25 +19,21 @@ public class TestRestBackendConfig
   public PropertyPlaceholderConfigurer getPropertyPlaceholderConfigurer()
   {
     PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
-    ppc.setLocation(new ClassPathResource("${1:test.properties}"));
+    ppc.setLocation(new ClassPathResource("${1:META-INF/module-name-test-db.properties}"));
     ppc.setIgnoreUnresolvablePlaceholders(true);
     return ppc;
   }
 }
-
 ${2:#${1}
-## JDBC Configuration ##
 jdbc.driverClassName=org.h2.Driver
 jdbc.url=jdbc:h2:mem:CLA;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
 jdbc.username=sa
 jdbc.password=
 
-## Hibernate Configuration ##
 hibernate.dialect=org.hibernate.dialect.H2Dialect
 hibernate.show_sql=true
 hibernate.hbm2ddl.auto=none
 hibernate.generate_statistics=true}
-
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>spring.junit.sample.config-java.import-props</tabTrigger>

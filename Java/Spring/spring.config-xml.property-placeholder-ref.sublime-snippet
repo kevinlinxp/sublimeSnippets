@@ -1,11 +1,14 @@
 <snippet>
   <content><![CDATA[
-<context:property-placeholder${1/\d+/ order="/g}${1:1}${1/\d+/"/g} ${2/.+/ignore-unresolvable="/}${2:true}${2/.+/"/} properties-ref="${3:securityProps}"/>
+<context:property-placeholder properties-ref="${1}" order="${2:1}" ignore-unresolvable="${3:true}" />
 
-<bean id="${3}" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+<bean id="${1:jdbcProps}" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
   <property name="properties">
     <props>
-      <prop key="${4:key}">${5:value}</prop>
+      ${4:<prop key="jdbc.driverClassName">org.h2.Driver</prop>
+      <prop key="jdbc.url">jdbc:h2:mem:CLA;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</prop>
+      <prop key="jdbc.username">sa</prop>
+      <prop key="jdbc.password"></prop>}
     </props>
   </property>
 </bean>

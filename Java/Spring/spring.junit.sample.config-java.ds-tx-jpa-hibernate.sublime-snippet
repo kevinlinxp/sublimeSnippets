@@ -23,25 +23,25 @@ import java.util.Properties;
 @EnableJpaRepositories("au.com.rds.schemaformbuilder")
 public class TestJpaConfig
 {
-  @Value("${jdbc.driverClassName}")
+  @Value("\${jdbc.driverClassName}")
   private String driverClassName;
 
-  @Value("${jdbc.url}")
+  @Value("\${jdbc.url}")
   private String url;
 
-  @Value("${jdbc.username}")
+  @Value("\${jdbc.username}")
   private String username;
 
-  @Value("${jdbc.password}")
+  @Value("\${jdbc.password}")
   private String password;
 
-  @Value("${hibernate.dialect}")
+  @Value("\${hibernate.dialect}")
   private String hibernateDialect;
 
-  @Value("${hibernate.show_sql}")
+  @Value("\${hibernate.show_sql}")
   private String hibernateShowSql;
 
-  @Value("${hibernate.hbm2ddl.auto}")
+  @Value("\${hibernate.hbm2ddl.auto}")
   private String hibernateHbm2ddlAuto;
 
   @Value("classpath:test.sql")

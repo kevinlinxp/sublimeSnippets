@@ -1,6 +1,10 @@
 <snippet>
   <content><![CDATA[
 <context:component-scan base-package="${1:foo.bar}"/>
+
+<context:component-scan base-package="${1}" use-default-filters="false">
+  <context:include-filter type="regex" expression=".*Impl"/>
+</context:component-scan>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>spring.config-xml.component-scan</tabTrigger>
