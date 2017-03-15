@@ -1,0 +1,38 @@
+<snippet>
+  <content><![CDATA[
+<bean id="${2:txManager}" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+  <property name="dataSource" ref="${2:dataSource}"/>
+</bean>
+
+${1:<!--
+  <tx:annotation-driven/>
+    == @org.springframework.transaction.annotation.EnableTransactionManagement
+
+  Indicates that transaction configuration is defined by Java 5 annotations
+  on bean classes, and that proxies are automatically to be created for the
+  relevant annotated beans.
+
+  The default annotations supported are Spring's @Transactional and EJB3's
+  @TransactionAttribute (if available).
+
+  Transaction semantics such as propagation settings, the isolation level,
+  the rollback rules, etc are all defined in the annotation metadata.
+
+  Attribute: transaction-manager:
+
+  The bean name of the PlatformTransactionManager that is to be used to drive
+  transactions.
+
+  This attribute is not required, and only needs to be specified explicitly
+  if the bean name of the desired PlatformTransactionManager is not
+  'transactionManager'.
+-->}
+<tx:annotation-driven transaction-manager="${2}"/>
+
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring.config-xml.transaction</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

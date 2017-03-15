@@ -2,7 +2,7 @@
   <content><![CDATA[
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
-${2/.+/  locations = /g}${2:"classpath:META-INF/spring/applicationContext-test.xml"}${2/.+/,\n/g}${3/.+/  classes = /g}${3:TestAppConfig.class}
+${2/.+/  locations = /g}${2:"classpath:META-INF/spring/modole-name-test-context.xml"}${2/.+/,\n/g}${3/.+/  classes = /g}${3:TestAppConfig.class}
 )
 @${4:org.springframework.transaction.annotation.}Transactional
 public class ${1:DataFetcherRepository}Test

@@ -39,6 +39,9 @@
     </bean>
 
     ${1:<!--
+      <tx:annotation-driven/>
+        == @org.springframework.transaction.annotation.EnableTransactionManagement
+
       Indicates that transaction configuration is defined by Java 5 annotations
       on bean classes, and that proxies are automatically to be created for the
       relevant annotated beans.
@@ -49,7 +52,14 @@
       Transaction semantics such as propagation settings, the isolation level,
       the rollback rules, etc are all defined in the annotation metadata.
 
-      == @org.springframework.transaction.annotation.EnableTransactionManagement
+      Attribute: transaction-manager:
+
+      The bean name of the PlatformTransactionManager that is to be used to drive
+      transactions.
+
+      This attribute is not required, and only needs to be specified explicitly
+      if the bean name of the desired PlatformTransactionManager is not
+      'transactionManager'.
     -->}
     <tx:annotation-driven transaction-manager="${2:txManager}"/>
     <!-- End: Transaction Support -->
