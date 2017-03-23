@@ -4,46 +4,32 @@
   'use strict';
 
   angular
-    .module('${1:module-name}')
-    .run(function(\$templateCache) {
-      \$templateCache.put('${3:template-id}', '${4:<div></div>}');
-    });
+    .module('${1:module-name}', [${2:dependencies}]);
 })();
 
+${6:(function() {
+  'use strict';
+
+  angular
+    .module('${1}')
+    .run(function(\$templateCache) {
+      \$templateCache.put('${4:template-id}', '${5:<div></div>}');
+    \});
+\})();
+}
 (function() {
   'use strict';
 
   angular
     .module('${1}')
-    .controller('${2:Foo}Controller', ${2}Controller);
+    .controller('${3:Foo}Controller', ${3}Controller);
 
-  ${2}Controller.\$inject = ['\$log', '\$http', '\$timeout'];
+  ${3}Controller.\$inject = ['\$log', '\$http', '\$timeout'];
 
-  function ${2}Controller(\$log, \$http, \$timeout) {
+  function ${3}Controller(\$log, \$http, \$timeout) {
     var vm = this;
-    vm.itemsCount = 0;
-    vm.syncItemsCount = syncItemsCount;
 
-    function syncItemsCount(url, interval) {
-      if (!url || !interval) {
-        \$log.error("${2}Controller#syncItemsCount - invalid parameter:", url, interval);
-        return;
-      }
-      \$log.debug("${2}Controller#syncItemsCount - ", url, interval);
-      \$http({
-        method: 'GET',
-        url: url
-      }).then(function(response) {
-        var count = response.data;
-        if (angular.isNumber(count)) {
-          \$log.debug("${2}Controller#syncItemsCount - get count: ", count);
-          vm.itemsCount = count;
-        }
-        \$timeout(function() {
-          syncItemsCount(url, interval);
-        }, interval);
-      });
-    }
+    // TODO...
   }
 })();
 
@@ -53,30 +39,27 @@
 
   angular
     .module('${1}')
-    .directive('${2/^(.)(.*)$/\l$1$2/g}', ${2/^(.)(.*)$/\l$1$2/g});
+    .directive('${3/^(.)(.*)$/\l$1$2/g}', ${3/^(.)(.*)$/\l$1$2/g});
 
-  ${2/^(.)(.*)$/\l$1$2/g}.\$inject = ['\$log'];
+  ${3/^(.)(.*)$/\l$1$2/g}.\$inject = ['\$log'];
 
-  function ${2/^(.)(.*)$/\l$1$2/g}(\$log) {
+  function ${3/^(.)(.*)$/\l$1$2/g}(\$log) {
 
     var directive = {
-      controller: '${2}Controller',
-      controllerAs: '${2/^(.)(.*)$/\l$1$2/g}Ctrl',
-      templateUrl: '${3}',
+      controller: '${3}Controller',
+      controllerAs: '${3/^(.)(.*)$/\l$1$2/g}Ctrl',
+      templateUrl: '${4}',
       link: link,
       restrict: 'E',
       scope: {
-        cartPageUrl: '@cartPageUrl',
-        itemsCountUrl: '@itemsCountUrl',
-        interval: '@interval'
       }
     };
     return directive;
 
     function link(scope, element, attrs) {
-      var scCtrl = scope.scCtrl;
-      scCtrl.cartPageUrl = scope.cartPageUrl;
-      scCtrl.syncItemsCount(scope.itemsCountUrl, scope.interval);
+      var ${3/^(.)(.*)$/\l$1$2/g}Ctrl = scope.${3/^(.)(.*)$/\l$1$2/g}Ctrl;
+
+      // TODO...${0}
     }
   }
 })();
