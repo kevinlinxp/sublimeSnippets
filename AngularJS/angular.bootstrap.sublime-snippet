@@ -1,0 +1,7 @@
+<snippet>
+  <content><![CDATA[
+angular.bootstrap(${1:document}, ['${2:rds-schemaform-service}']);
+]]></content>
+  <tabTrigger>ngbootstrap</tabTrigger>
+  <scope>text.plain, source.js</scope>
+</snippet>
