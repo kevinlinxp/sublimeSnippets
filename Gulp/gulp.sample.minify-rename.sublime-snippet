@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+// In gulpfile.js:
+var
+  // ...
+  uglify = require('gulp-uglify'),
+  rename = require('gulp-rename');
+
+// ...
+  .pipe(...)
+  .pipe(uglify())
+  .pipe(rename({suffix: '.min'}))
+  .pipe(gulp.dest(settings.dist + 'js/'));
+// ...
+
+
+// In package.json:
+  "gulp-rename": "^1.2.2",
+  "gulp-uglify": "^2.0.0",
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>gulp.sample.minify-rename.js</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

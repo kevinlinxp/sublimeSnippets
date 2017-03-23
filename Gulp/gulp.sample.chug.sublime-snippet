@@ -1,10 +1,10 @@
 <snippet>
   <content><![CDATA[
 gulp.src('./rds-asf-*/gulpfile.js')
-    .pipe(chug());
+  .pipe(chug());
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>gpchug</tabTrigger>
+  <tabTrigger>gulp.sample.chug</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
