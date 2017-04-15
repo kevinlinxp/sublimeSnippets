@@ -7,10 +7,10 @@ export JAVA_7_HOME="\$(/usr/libexec/java_home -v1.7)"
 alias java7='export JAVA_HOME=\$JAVA_7_HOME'
 alias java8='export JAVA_HOME=\$JAVA_8_HOME'
 
-#defaults to java7
-export JAVA_HOME=\$JAVA_7_HOME
+#defaults to java8
+export JAVA_HOME=\$JAVA_8_HOME
 export M2_HOME="\$HOME/Work/dev/java_tools/apache-maven-3.0.5"
-export GRADLE_HOME="\$HOME/Work/dev/java_tools/gradle-2.12"
+export GRADLE_HOME="/usr/local/Cellar/gradle/3.4.1"
 
 ## Executable
 export PATH="\$PATH:/usr/local/mysql/bin"
@@ -41,7 +41,7 @@ done
 
 ## Aliases
 alias gitdiffhead="git diff HEAD^ HEAD"
-alias cdSublimePackages="cd \$HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages"
+alias cd-sublime-packages="cd \$HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages"
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>sample.bash_profile</tabTrigger>
