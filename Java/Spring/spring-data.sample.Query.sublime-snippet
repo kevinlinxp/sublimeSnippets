@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[
+@Query("DELETE FROM FormDesign fd WHERE fd.name = :${1:key}")
+FormDesign deleteByKey(@Param("${1}") String key);
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-data.sample.Query</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
