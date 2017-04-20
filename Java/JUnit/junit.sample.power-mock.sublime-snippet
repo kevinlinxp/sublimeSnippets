@@ -1,0 +1,74 @@
+<snippet>
+  <content><![CDATA[
+import au.com.rds.schemaformbuilder.config.TestRestBackendConfig;
+import au.com.rds.schemaformbuilder.util.JsonUtils;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.modules.junit4.PowerMockRunnerDelegate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.transaction.Transactional;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+@RunWith(PowerMockRunner.class)
+@PowerMockRunnerDelegate(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = TestRestBackendConfig.class)
+@Transactional
+@PrepareForTest({ServerSideRemoteValidationHelper.class}) // The class(es) that are the consumer(s) of the mocked class(es)
+public class ServerSideValidationServiceTest {
+
+  @Autowired
+  private ServerSideValidationService service;
+
+  @Test
+  public void testValidateDataByFormDesignJson() throws Exception {
+    JsonNode dataToValidate = JsonUtils.fromJson(getClass().getResourceAsStream("jsonDataForValidation.json"));
+
+    URL mockURL = PowerMockito.mock(URL.class);
+    PowerMockito.whenNew(URL.class).withArguments("http://localhost:9999/data/validate/notTrue/won'tValidate").thenReturn(mockURL);
+
+    HttpURLConnection mockConnection = PowerMockito.mock(HttpURLConnection.class);
+    PowerMockito.when(mockURL.openConnection()).thenReturn(mockConnection);
+
+    PowerMockito.when(mockConnection.getInputStream()).thenReturn(getClass().getResourceAsStream("mockRemoteValidationResponse.json"));
+
+    ArrayNode result = service.validateDataByFormDesignJson(dataToValidate.toString(), JsonUtils.fromJson(getClass().getResourceAsStream("formDesign-SampleValidation.json")).toString());
+
+    Assert.assertNotEquals("Should get some validation errors", result.size(), 0);
+    Assert.assertEquals("Validation result should be the same with the content of expectedValidationResult.json", result, JsonUtils.fromJson(getClass().getResourceAsStream("expectedValidationResult.json")));
+  }
+}
+
+<properties>
+  <powermock.version>1.6.6</powermock.version>
+</properties>
+
+<dependencies>
+  <dependency>
+    <groupId>org.powermock</groupId>
+    <artifactId>powermock-module-junit4</artifactId>
+    <version>${powermock.version}</version>
+    <scope>test</scope>
+  </dependency>
+  <dependency>
+    <groupId>org.powermock</groupId>
+    <artifactId>powermock-api-mockito</artifactId>
+    <version>${powermock.version}</version>
+    <scope>test</scope>
+  </dependency>
+</dependencies>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>junit.sample.power-mock</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
