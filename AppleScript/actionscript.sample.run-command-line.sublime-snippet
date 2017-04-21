@@ -1,0 +1,41 @@
+<snippet>
+  <content><![CDATA[
+tell application "Terminal"
+  activate
+  do script ""
+end tell
+
+newTab("~/Work/RDS/system-builder/system-builder")
+runCommandLine("mvn spring-boot:run -f schemaform-builder-java/schemaform-builder-webdemo/pom.xml")
+
+newTab("~/Work/RDS/system-builder/schemaform-builder-designer")
+runCommandLine("gulp serve")
+
+delay 2
+
+newTab("~/Work/RDS/system-builder/schemaform-builder-runtime")
+runCommandLine("gulp serve")
+
+on newTab(initPath)
+  delay 0.1
+  tell application "System Events"
+    tell process "Terminal" to keystroke "t" using command down
+  end tell
+  delay 0.1
+  tell application "Terminal"
+    do script "cd " & initPath in selected tab of the front window
+  end tell
+end newTab
+
+on runCommandLine(commandLine)
+  delay 0.1
+  tell application "Terminal"
+    do script "" & commandLine in selected tab of the front window
+  end tell
+end runCommandLine
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>actionscript.sample.run-commands</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain</scope>
+</snippet>

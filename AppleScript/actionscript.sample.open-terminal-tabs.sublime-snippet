@@ -1,0 +1,43 @@
+<snippet>
+  <content><![CDATA[
+tell application "Terminal"
+  activate
+  do script ""
+end tell
+
+delay 0.1
+
+newTab("~/Work/RDS/system-builder/angular-schema-form")
+newTab("~/Work/RDS/system-builder/angular-schema-form-bootstrap")
+newTab("~/Work/RDS/system-builder/angular-schema-form-nwp-file-upload")
+newTab("~/Work/RDS/system-builder/rds-asf-plugins")
+newTab("~/Work/RDS/system-builder/schemaform-builder-common")
+newTab("~/Work/RDS/system-builder/schemaform-builder-designer")
+newTab("~/Work/RDS/system-builder/schemaform-builder-runtime")
+newTab("~/Work/RDS/system-builder/system-builder")
+
+on newTab(initPath)
+  tell application "System Events"
+    tell process "Terminal" to keystroke "t" using command down
+  end tell
+
+
+  delay 0.1
+
+
+  tell application "Terminal"
+    do script "cd " & initPath in selected tab of the front window
+
+  end tell
+
+
+  delay 0.1
+
+
+end newTab
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>actionscript.sample.open-terminal-tabs</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain</scope>
+</snippet>
