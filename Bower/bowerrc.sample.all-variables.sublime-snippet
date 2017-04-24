@@ -1,0 +1,42 @@
+<snippet>
+  <content><![CDATA[
+{
+  "cwd": "~/.my-project",
+  "directory": "bower_components",
+  "registry": "https://bower.herokuapp.com",
+  "shorthand-resolver": "git://github.com//.git",
+  "proxy": "http://proxy.local",
+  "https-proxy": "http://proxy.local",
+  "ca": "/var/certificate.pem",
+  "color": true,
+  "timeout": 60000,
+  "save": true,
+  "save-exact": true,
+  "strict-ssl": true,
+  "storage": {
+    "packages" : "~/.bower/packages",
+    "registry" : "~/.bower/registry",
+    "links" : "~/.bower/links"
+  },
+  "interactive": true,
+  "resolvers": [
+    "mercurial-bower-resolver"
+  ],
+  "shallowCloneHosts": [
+    "myGitHost.example.com"
+  ],
+  "scripts": {
+    "preinstall": "",
+    "postinstall": "",
+    "preuninstall": ""
+  },
+  "ignoredDependencies": [
+    "jquery"
+  ]
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>bowerrc.sample.all-variables</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.json, text.plain</scope>
+</snippet>

@@ -13,7 +13,7 @@
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>bowerrc</tabTrigger>
+  <tabTrigger>bowerrc.sample.rds</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>text.plain</scope>
+  <scope>source.json, text.plain</scope>
 </snippet>
