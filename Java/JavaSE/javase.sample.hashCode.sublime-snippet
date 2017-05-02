@@ -1,0 +1,37 @@
+<snippet>
+  <content><![CDATA[
+/* Default */
+@Override
+public int hashCode()
+{
+  int result = getAge();
+  result = 31 * result + (getFirstname() != null ? getFirstname().hashCode() : 0);
+  result = 31 * result + (getLastname() != null ? getLastname().hashCode() : 0);
+  result = 31 * result + (getDateCreated() != null ? getDateCreated().hashCode() : 0);
+  return result;
+}
+
+/* Java 7+ */
+@Override
+public int hashCode()
+{
+  return Objects.hash(getAge(), getFirstname(), getLastname(), getDateCreated());
+}
+
+/* Apache commons-lang */
+@Override
+public int hashCode()
+{
+  return new HashCodeBuilder(17, 37)
+    .append(getAge())
+    .append(getFirstname())
+    .append(getLastname())
+    .append(getDateCreated())
+    .toHashCode();
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>javase.sample.hashCode</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

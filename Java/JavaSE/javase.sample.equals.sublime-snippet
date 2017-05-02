@@ -1,0 +1,67 @@
+<snippet>
+  <content><![CDATA[
+/* Default */
+@Override
+public boolean equals(Object o)
+{
+  if (this == o)
+    return true;
+  if (!(o instanceof Person))
+    return false;
+
+  Person person = (Person) o;
+
+  if (getAge() != person.getAge())
+    return false;
+  if (getFirstname() != null ? !getFirstname().equals(person.getFirstname()) : person.getFirstname() != null)
+    return false;
+  if (getLastname() != null ? !getLastname().equals(person.getLastname()) : person.getLastname() != null)
+    return false;
+  return getDateCreated() != null ? getDateCreated().equals(person.getDateCreated()) : person.getDateCreated() == null;
+}
+
+/* Java 7+ */
+@Override
+public boolean equals(Object o)
+{
+  if (this == o)
+    return true;
+  if (!(o instanceof Person))
+    return false;
+
+  Person person = (Person) o;
+
+  return getAge() == person.getAge() &&
+    Objects.equals(getFirstname(), person.getFirstname()) &&
+    Objects.equals(getLastname(), person.getLastname()) &&
+    Objects.equals(getDateCreated(), person.getDateCreated());
+}
+
+/* Apache commons-lang */
+@Override
+public boolean equals(Object o)
+{
+  if (this == o)
+    return true;
+
+  if (!(o instanceof Person))
+    return false;
+
+  Person person = (Person) o;
+
+  return new EqualsBuilder()
+    .append(getAge(), person.getAge())
+    .append(getFirstname(), person.getFirstname())
+    .append(getLastname(), person.getLastname())
+    .append(getDateCreated(), person.getDateCreated())
+    .isEquals();
+}
+
+
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>javase.sample.equals</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
