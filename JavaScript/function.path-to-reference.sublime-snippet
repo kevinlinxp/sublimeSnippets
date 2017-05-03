@@ -1,9 +1,10 @@
 <snippet>
   <content><![CDATA[
-'${1:a.b.etc}'.split('.').reduce((o,i)=>o[i], ${2:obj})
+function index(obj,i) {return obj[i]}
+'${1:a.b.etc}'.split('.').reduce(index, ${2:obj})
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>path-to-ref-es6</tabTrigger>
+  <tabTrigger>function.path-to-ref</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
