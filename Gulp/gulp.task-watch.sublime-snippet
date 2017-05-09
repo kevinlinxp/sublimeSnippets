@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   gulp.watch('${1:./src/**/*}', ['default']);
 });
 ]]></content>

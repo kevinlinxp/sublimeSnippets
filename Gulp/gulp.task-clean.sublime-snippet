@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+gulp.task('clean', function () {
+  return del([${1:settings.dist}], {dot: true});
+});
+]]></content>
+  <tabTrigger>gptask-clean</tabTrigger>
+  <scope>source.js, text.plain</scope>
+</snippet>

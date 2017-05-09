@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-gulp.task('test', function(done) {
+gulp.task('test', function (done) {
   new KarmaServer({
     configFile: settings.karmaConfig,
     singleRun: true
