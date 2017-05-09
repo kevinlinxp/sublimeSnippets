@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-function(${1:element}${2:, index, array}) {
+function (${1:element}${2:, index, array}) {
   ${0}
 }
 ]]></content>

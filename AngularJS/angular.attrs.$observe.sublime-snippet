@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
-function link(scope, element, attrs) {
-  attrs.$observe('size', function(size) {
+function link (scope, element, attrs) {
+  attrs.$observe('size', function (size) {
     scope.multiColCtrl.size = parseInt(size);
     scope.multiColCtrl.itemsPerColumn = parseInt(size / scope.form.columns);
     scope.multiColCtrl.modulus = size % scope.form.columns;

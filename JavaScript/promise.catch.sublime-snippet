@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-catch(function(response) {
+catch(function (response) {
 
 })
 ]]></content>

@@ -11,7 +11,7 @@ var gulp = require('gulp'),
   debug = require('gulp-debug');
 
 
-function filepathForKarma(filepath, file, i, length) {
+function filepathForKarma (filepath, file, i, length) {
   if (filepath.endsWith(".json")) {
     return "{pattern: \"" + filepath + "\", watched: true, served: true, included: false},";
   } else {
@@ -86,7 +86,7 @@ gulp.task('inject-test', function () {
   runSequence('inject-test:vendor', 'inject-test:${1:module-name}:app', 'inject-test:${1:module-name}:json');
 });
 
-gulp.task('test', function(done) {
+gulp.task('test', function (done) {
   new KarmaServer({
     configFile: settings.karmaConfig,
     singleRun: true

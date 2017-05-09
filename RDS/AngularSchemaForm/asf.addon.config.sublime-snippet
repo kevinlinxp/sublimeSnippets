@@ -9,7 +9,7 @@
 
   config.\$inject = ['schemaFormProvider', 'schemaFormDecoratorsProvider', 'sfBuilderProvider', 'sfPathProvider'];
 
-  function config(schemaFormProvider, schemaFormDecoratorsProvider, sfBuilderProvider, sfPathProvider) {
+  function config (schemaFormProvider, schemaFormDecoratorsProvider, sfBuilderProvider, sfPathProvider) {
     schemaFormDecoratorsProvider.defineAddOn(
       '${3:bootstrap}Decorator',
       '${2:form-type}',

@@ -10,7 +10,7 @@
   ${2:Controller}.\$inject = [${3/(\$(\w+)|\w+)/'$1'/g}];
 
   /* @ngInject */
-  function ${2:Controller}(${3:dependencies}) {
+  function ${2:Controller} (${3:dependencies}) {
     var vm = this;
     vm.title = '${2:Controller}';
 
@@ -18,7 +18,7 @@
 
     ////////////////
 
-    function activate() {
+    function activate () {
     }
   }
 })();

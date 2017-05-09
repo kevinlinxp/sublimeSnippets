@@ -12,7 +12,7 @@ ${6:(function () {
 
   angular
     .module('${1}')
-    .run(function(\$templateCache) {
+    .run(function (\$templateCache) {
       \$templateCache.put('${4:template-id}', '${5:<div></div>}');
     \});
 \})();
@@ -26,7 +26,7 @@ ${6:(function () {
 
   ${3}Controller.\$inject = ['\$log', '\$http', '\$timeout'];
 
-  function ${3}Controller(\$log, \$http, \$timeout) {
+  function ${3}Controller (\$log, \$http, \$timeout) {
     var vm = this;
 
     // TODO...
@@ -43,7 +43,7 @@ ${6:(function () {
 
   ${3/^(.)(.*)$/\l$1$2/g}.\$inject = ['\$log'];
 
-  function ${3/^(.)(.*)$/\l$1$2/g}(\$log) {
+  function ${3/^(.)(.*)$/\l$1$2/g} (\$log) {
 
     var directive = {
       controller: '${3}Controller',
@@ -56,7 +56,7 @@ ${6:(function () {
     };
     return directive;
 
-    function link(scope, element, attrs) {
+    function link (scope, element, attrs) {
       var ${3/^(.)(.*)$/\l$1$2/g}Ctrl = scope.${3/^(.)(.*)$/\l$1$2/g}Ctrl;
 
       // TODO...${0}

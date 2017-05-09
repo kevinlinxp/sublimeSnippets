@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
 /* Basic version */
-function traverse(obj, func) {
+function traverse (obj, func) {
   for (var prop in obj) {
     if (obj.hasOwnProperty(prop)) {
       if (obj[prop] !== null && typeof(obj[prop]) === "object") {
@@ -14,7 +14,7 @@ function traverse(obj, func) {
 }
 
 /* With data path */
-function traverse(obj, func, path) {
+function traverse (obj, func, path) {
   path = path || [];
   for (var prop in obj) {
     if (obj.hasOwnProperty(prop)) {

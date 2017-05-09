@@ -3,9 +3,9 @@
 \$http({
   method: '${1:GET}',
   url: ${2:URL}
-}).then(function(response) {
+}).then(function (response) {
   ${3:return response.data;}
-}).catch(function(response) {
+}).catch(function (response) {
   ${4:return \$q.reject("Internal Error");}
 });
 ]]></content>

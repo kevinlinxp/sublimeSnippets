@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
-then(function(response) {
-  
+then(function (response) {
+
 })
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

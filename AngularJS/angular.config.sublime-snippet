@@ -9,7 +9,7 @@
 
   config.\$inject = [${2/(\$(\w+)|\w+)/'$1'/g}];
 
-  function config(${2:dependencies}) {
+  function config (${2:dependencies}) {
     ${3}
   }
 

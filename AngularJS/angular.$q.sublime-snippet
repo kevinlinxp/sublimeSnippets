@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-\$q(function(resolve, reject) {
+\$q(function (resolve, reject) {
   ${0}
 });
 ]]></content>

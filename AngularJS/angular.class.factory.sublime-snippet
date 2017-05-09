@@ -10,7 +10,7 @@
   ${2:Class}Factory.\$inject = [${3/(\$(\w+)|\w+)/'$1'/g}];
 
   /* @ngInject */
-  function ${2:Class}Factory(${3:dependencies}) {
+  function ${2:Class}Factory (${3:dependencies}) {
 
     /**
      * Private properties
@@ -21,7 +21,7 @@
     /**
      * Constructor, with class name
      */
-    function ${2:Class}(/*params*/) {
+    function ${2:Class} (/*params*/) {
       // Public properties, assigned to the instance ('this')
       this.publicProp1 = [];
       this.publicProp2 = {};

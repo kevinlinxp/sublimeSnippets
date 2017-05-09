@@ -10,7 +10,7 @@
   ${2:directive}.\$inject = [${3/(\$(\w+)|\w+)/'$1'/g}];
 
   /* @ngInject */
-  function ${2:directive}(${3:dependencies}) {
+  function ${2:directive} (${3:dependencies}) {
     // Usage:
     //
     // Creates:
@@ -26,12 +26,12 @@
     };
     return directive;
 
-    function link(scope, element, attrs) {
+    function link (scope, element, attrs) {
     }
   }
 
   /* @ngInject */
-  function ${4:Controller}() {
+  function ${4:Controller} () {
 
   }
 })();

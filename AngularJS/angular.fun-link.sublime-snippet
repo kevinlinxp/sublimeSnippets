@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-function(scope, iElem, iAttrs${1:, controller}${2:, transcludeFn}) {
+function (scope, iElem, iAttrs${1:, controller}${2:, transcludeFn}) {
   ${0}
 }
 ]]></content>

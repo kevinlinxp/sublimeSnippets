@@ -22,7 +22,7 @@ global.handleErrors = function () {
   this.emit('end');
 };
 
-tasks.forEach(function(task) {
+tasks.forEach(function (task) {
   require('./tasks/' + task);
 });
 ]]></content>

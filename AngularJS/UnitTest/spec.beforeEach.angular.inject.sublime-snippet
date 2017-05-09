@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
 var ${1:dependencies};
-beforeEach(inject(function(
+beforeEach(inject(function (
 ${1/ *(\$(\w+)|\w+)( *,?)/  _$1_$3\n/g}
 ) {
 ${1/ *(\$(\w+)|\w+)( *,?)/  $1 = _$1_;\n/g}

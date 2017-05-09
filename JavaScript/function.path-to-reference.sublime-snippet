@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-function index(obj,i) {return obj[i]}
+function index (obj,i) {return obj[i]}
 '${1:a.b.etc}'.split('.').reduce(index, ${2:obj})
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
