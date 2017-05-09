@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
 var reader = new FileReader();
-reader.onload = function(){
+reader.onload = function (){
   var text = reader.result;
   ${0}
 };

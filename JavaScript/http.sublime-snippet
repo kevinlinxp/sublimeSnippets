@@ -3,7 +3,7 @@
 var req = new XMLHttpRequest();
 req.open('${1:GET}', ${2:url});
 
-req.onload = function() {
+req.onload = function () {
   if (req.status === 200) {
     ${3:var responseJson = JSON.parse(req.response);
     resolve(responseJson)};
@@ -12,7 +12,7 @@ req.onload = function() {
   }
 }
 
-req.onerror = function() {
+req.onerror = function () {
   ${5:reject(Error("Network Error"));}
 }
 

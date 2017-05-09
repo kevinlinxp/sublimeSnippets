@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-afterEach(function() {
+afterEach(function () {
   \$httpBackend.verifyNoOutstandingExpectation();
   \$httpBackend.verifyNoOutstandingRequest();
 });

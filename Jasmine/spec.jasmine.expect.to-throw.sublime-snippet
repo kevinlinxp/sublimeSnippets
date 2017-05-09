@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-expect(function() {
+expect(function () {
   ${1}
 }).toThrow(new Error(${2:"error"}));
 ]]></content>

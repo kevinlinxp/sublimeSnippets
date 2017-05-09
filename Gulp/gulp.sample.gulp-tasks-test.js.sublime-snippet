@@ -63,7 +63,7 @@ gulp.task('inject-test:${1:module-name}:app', function () {
 
 });
 
-gulp.task('inject-test:${1:module-name}:json', function() {
+gulp.task('inject-test:${1:module-name}:json', function () {
   var injectOpts = {
     relative: true,
     starttag: "// inject-json",
@@ -82,7 +82,7 @@ gulp.task('inject-test:${1:module-name}:json', function() {
     .pipe(gulp.dest(settings.appRoot));
 });
 
-gulp.task('inject-test', function() {
+gulp.task('inject-test', function () {
   runSequence('inject-test:vendor', 'inject-test:${1:module-name}:app', 'inject-test:${1:module-name}:json');
 });
 

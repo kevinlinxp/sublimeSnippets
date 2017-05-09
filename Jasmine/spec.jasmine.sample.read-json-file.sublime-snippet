@@ -2,7 +2,7 @@
   <content><![CDATA[
 npm install jasmine-jquery
 
-beforeEach(function() {
+beforeEach(function () {
   jasmine.getJSONFixtures().fixturesPath = 'base/test/unit/form-design.manager.factory.spec';
 });
 

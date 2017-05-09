@@ -15,7 +15,7 @@ gulp.task('clean', function () {
   return del('./dist');
 });
 
-gulp.task('build', function() {
+gulp.task('build', function () {
 
   var stream = streamqueue({objectMode: true});
   stream.queue(
@@ -43,7 +43,7 @@ gulp.task('build', function() {
 
 gulp.task('default', ['clean', 'build']);
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   gulp.watch('./src/**/*', ['default']);
 });
 ]]></content>

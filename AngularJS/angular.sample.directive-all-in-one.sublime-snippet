@@ -1,13 +1,13 @@
 <snippet>
   <content><![CDATA[
-(function() {
+(function () {
   'use strict';
 
   angular
     .module('${1:module-name}', [${2:dependencies}]);
 })();
 
-${6:(function() {
+${6:(function () {
   'use strict';
 
   angular
@@ -17,7 +17,7 @@ ${6:(function() {
     \});
 \})();
 }
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -34,7 +34,7 @@ ${6:(function() {
 })();
 
 
-(function() {
+(function () {
   'use strict';
 
   angular

@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-describe('${1:LocationService}', function() {
+describe('${1:LocationService}', function () {
   var \$httpBackend;
   var ${1:LocationService};
 
@@ -11,18 +11,18 @@ describe('${1:LocationService}', function() {
     ${1:LocationService} = _${1:LocationService}_;
   }));
 
-  afterEach(function() {
+  afterEach(function () {
     \$httpBackend.verifyNoOutstandingExpectation();
     \$httpBackend.verifyNoOutstandingRequest();
   });
 
-  describe('${2:method1}', function() {
-    it('${4:can work}', function() {
+  describe('${2:method1}', function () {
+    it('${4:can work}', function () {
     });
   });
 
-  describe('${3:method2}', function() {
-    it('${5:can work}', function() {
+  describe('${3:method2}', function () {
+    it('${5:can work}', function () {
     });
   });
 });
