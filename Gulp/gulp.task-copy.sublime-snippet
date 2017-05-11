@@ -1,0 +1,48 @@
+<snippet>
+  <content><![CDATA[
+gulp.task('copy:json', function () {
+  return es.merge(
+    gulp.src([
+      settings.src + '**/*.json'
+    ]).pipe(plumber({errorHandler: handleErrors}))
+      .pipe(gulp.dest(settings.dist))
+  );
+});
+
+gulp.task('copy:fonts', function () {
+  return es.merge(
+    gulp.src([settings.bowerComponents + 'bootstrap/dist/**/*.{ttf,woff,woff2}'])
+      .pipe(plumber({errorHandler: handleErrors}))
+      .pipe(gulp.dest(settings.dist + 'assets/'))
+  ) && es.merge(
+    gulp.src([settings.bowerComponents + 'angular-ui-grid/*.{ttf,woff,woff2}'])
+      .pipe(plumber({errorHandler: handleErrors}))
+      .pipe(gulp.dest(settings.dist + 'assets/styles'))
+  );
+});
+
+// For copying the "img" folder of the jsoneditor plugin to fix missing icons issue
+gulp.task('copy:style-img', function () {
+  return es.merge(
+    gulp.src([settings.bowerComponents + 'jsoneditor/dist/img/**.{jpg,jpeg,png,gif,svg}'])
+      .pipe(plumber({errorHandler: handleErrors}))
+      .pipe(gulp.dest(settings.dist + 'assets/styles/img'))
+  );
+});
+
+// For copying folders which will be lazy-loaded
+gulp.task('copy:lazy-modules', function () {
+  return es.merge(
+    gulp.src([settings.bowerComponents + 'openlayers/**',
+      settings.bowerComponents + 'angular-ui-grid/**',
+      settings.bowerComponents + 'rds-sfb-plugins/build/**',
+      settings.bowerComponents + 'ui-grid-draggable-rows/**',
+      settings.bowerComponents + 'angular-aria/**'], {base: '.'})
+      .pipe(plumber({errorHandler: handleErrors}))
+      .pipe(gulp.dest(settings.dist))
+  );
+});
+]]></content>
+  <tabTrigger>gptask-copy</tabTrigger>
+  <scope>source.js, text.plain</scope>
+</snippet>

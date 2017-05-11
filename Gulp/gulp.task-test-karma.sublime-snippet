@@ -1,12 +1,12 @@
 <snippet>
   <content><![CDATA[
-gulp.task('test', function (done) {
+gulp.task('test:karma', function (done) {
   new KarmaServer({
-    configFile: settings.karmaConfig,
+    configFile: settings.karmaConfigFile,
     singleRun: true
   }, done).start();
 });
 ]]></content>
-  <tabTrigger>gptask-test</tabTrigger>
+  <tabTrigger>gptask-test-karma</tabTrigger>
   <scope>source.js, text.plain</scope>
 </snippet>

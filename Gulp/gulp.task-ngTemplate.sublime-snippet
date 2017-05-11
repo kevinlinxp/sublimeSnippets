@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+function prepareTemplates () {
+  return gulp.src('./src/*.html')
+    // .pipe(minify and preprocess the template html here)
+    .pipe(angularTemplatecache({
+      module: '${1:module-name}',
+      root: 'directives/decorators/bootstrap/nwp-file/',
+      moduleSystem: 'IIFE'
+    }));
+}
+
+gulp.task('ngTemplate', function () {
+  return gulp.src('./src/schema-form-file.js')
+    // .pipe(concat your app js files somehow)
+    // append the template js onto one file
+    .pipe(addStream.obj(prepareTemplates()))
+    .pipe(concat('schema-form-file.js'))
+    .pipe(header(banner, { bower: bower }))
+    .pipe(gulp.dest('./dist'));
+});
+]]></content>
+  <tabTrigger>gptask-ngTemplate</tabTrigger>
+  <scope>source.js, text.plain</scope>
+</snippet>

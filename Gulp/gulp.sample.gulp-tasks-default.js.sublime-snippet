@@ -2,21 +2,20 @@
   <content><![CDATA[
 'use strict';
 
-var gulp = require('gulp'),
-  del = require('del'),
-  streamqueue = require('streamqueue'),
-  templateCache = require('gulp-angular-templatecache'),
-  minifyHtml = require('gulp-minify-html'),
-  concat = require('gulp-concat'),
-  uglify = require('gulp-uglify'),
-  rename = require('gulp-rename');
+var gulp = require('gulp');
+var del = require('del');
+var streamqueue = require('streamqueue');
+var templateCache = require('gulp-angular-templatecache');
+var minifyHtml = require('gulp-minify-html');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
 
 gulp.task('clean', function () {
   return del('./dist');
 });
 
 gulp.task('build', function () {
-
   var stream = streamqueue({objectMode: true});
   stream.queue(
     gulp.src('./src/*.html')
@@ -27,18 +26,17 @@ gulp.task('build', function () {
     }))
     .pipe(templateCache({
       module: 'schemaform',
-      root: 'directives/decorators/bootstrap/asf-rds-selects/'
+      root: 'directives/decorators/bootstrap/${1:module-name}/'
     }))
   );
   stream.queue(gulp.src('./src/**/*.js'));
 
   stream.done()
-  .pipe(concat('rds-selects.js'))
+  .pipe(concat('${1}.js'))
   .pipe(gulp.dest('./dist'))
   .pipe(uglify())
   .pipe(rename({suffix: '.min'}))
   .pipe(gulp.dest('./dist'));
-
 });
 
 gulp.task('default', ['clean', 'build']);

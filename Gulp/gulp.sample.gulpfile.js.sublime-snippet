@@ -7,13 +7,16 @@ var settings = {
   appRoot: appRoot,
   src: appRoot + 'src/',
   test: appRoot + 'test/',
-  bowerComponents: 'src/bower_components/',
+  bowerComponents: 'bower_components/',
   dist: appRoot + 'build/',
-  karmaConfig: appRoot + 'karma.conf.js'
+  indexHtml: '${1:index}.html',
+  karmaConfigFile: appRoot + 'karma.conf.js',
+  tmp: '.tmp/'
 };
 global.settings = settings;
 
 require('./gulp');
+
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>gulp.sample.gulpfile.js</tabTrigger>

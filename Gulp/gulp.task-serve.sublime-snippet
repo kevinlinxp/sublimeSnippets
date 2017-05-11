@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+gulp.task('browser-sync', function () {
+  bs.init({
+    server: {
+      baseDir: settings.src,
+      index: settings.indexHtml,
+      routes: {
+        '/bower_components': '../bower_components'
+      }
+    }
+  });
+});
+
+gulp.task('serve', ['inject'], function (cb) {
+  runSequence('browser-sync');
+});
+]]></content>
+  <tabTrigger>gptask-serve, gptask-browser-sync</tabTrigger>
+  <scope>source.js, text.plain</scope>
+</snippet>
