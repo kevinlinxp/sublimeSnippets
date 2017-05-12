@@ -1,24 +1,26 @@
 <snippet>
   <content><![CDATA[
-describe('${1:UndoRedoController}', function () {
-  var \$rootScope, \$controller;
+describe('${1:LocationService}', function () {
+  var \$rootScope;
   var \$httpBackend;
   var \$log;
   var \$scope;
 
+  var ${1};
+
   beforeEach(function initDependencies () {
-    angular.mock.module('${2rds-schemaform-common}');
+    angular.mock.module('${2:rds-schemaform-common}');
     angular.mock.inject(function (
       _\$rootScope_,
-      _\$controller_,
       _\$httpBackend_,
-      _\$log_
+      _\$log_,
+      _${1}_
     ) {
       \$rootScope = _\$rootScope_;
-      \$controller = _\$controller_;
       \$scope = \$rootScope.\$new();
       \$httpBackend = _\$httpBackend_;
       \$log = _\$log_;
+      ${1} = _${1}_;
     });
   });
 
@@ -27,33 +29,25 @@ describe('${1:UndoRedoController}', function () {
     \$httpBackend.verifyNoOutstandingRequest();
   });
 
-  function create${1} () {
-    return \$controller('${1}', {
-      \$scope: \$scope,
-      \$log: \$log
-    });
-  }
-
-  // Helper methods to mock user operations ...
-
-  // ...
+  afterEach(function () {
+    \$httpBackend.verifyNoOutstandingExpectation();
+    \$httpBackend.verifyNoOutstandingRequest();
+  });
 
   describe('${3:method}', function () {
     it('${4:can work}', function () {
-      var ctrl = create${1}();
       // ...
     });
   });
 
   it('${5:can work}', function () {
-    var ctrl = create${1}();
     // ...
   });
 
 });
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spec.jasmine.sample.ng-controller</tabTrigger>
+  <tabTrigger>spec.jasmine.sample.ng-service</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
