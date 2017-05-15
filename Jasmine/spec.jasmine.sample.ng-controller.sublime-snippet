@@ -1,13 +1,19 @@
 <snippet>
   <content><![CDATA[
 describe('${1:UndoRedoController}', function () {
+  // Declare dependencies - start
   var \$rootScope, \$controller;
   var \$httpBackend;
   var \$log;
   var \$scope;
+  // Declare dependencies - end
+
+  // Declare test data - start
+  var data0;
+  // Declare test data - end
 
   beforeEach(function initDependencies () {
-    angular.mock.module('${2rds-schemaform-common}');
+    angular.mock.module('${2:rds-schemaform-common}');
     angular.mock.inject(function (
       _\$rootScope_,
       _\$controller_,
@@ -20,6 +26,13 @@ describe('${1:UndoRedoController}', function () {
       \$httpBackend = _\$httpBackend_;
       \$log = _\$log_;
     });
+  });
+
+  beforeEach(function initTestData () {
+    // ...
+    // jasmine.getJSONFixtures().fixturesPath = 'base/test/unit/form-designer/undo-redo/undo-redo.controller.spec';
+    // data0 = getJSONFixture('data0.json');
+    // ...
   });
 
   afterEach(function verifyHttpBackend () {

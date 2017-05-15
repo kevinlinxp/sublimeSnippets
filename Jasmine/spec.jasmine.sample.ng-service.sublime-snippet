@@ -1,12 +1,18 @@
 <snippet>
   <content><![CDATA[
 describe('${1:LocationService}', function () {
+  // Declare dependencies - start
   var \$rootScope;
   var \$httpBackend;
   var \$log;
   var \$scope;
 
   var ${1};
+  // Declare dependencies - end
+
+  // Declare test data - start
+  var data0;
+  // Declare test data - end
 
   beforeEach(function initDependencies () {
     angular.mock.module('${2:rds-schemaform-common}');
@@ -24,12 +30,14 @@ describe('${1:LocationService}', function () {
     });
   });
 
-  afterEach(function verifyHttpBackend () {
-    \$httpBackend.verifyNoOutstandingExpectation();
-    \$httpBackend.verifyNoOutstandingRequest();
+  beforeEach(function initTestData () {
+    // ...
+    // jasmine.getJSONFixtures().fixturesPath = 'base/test/unit/form-designer/undo-redo/undo-redo.controller.spec';
+    // data0 = getJSONFixture('data0.json');
+    // ...
   });
 
-  afterEach(function () {
+  afterEach(function verifyHttpBackend () {
     \$httpBackend.verifyNoOutstandingExpectation();
     \$httpBackend.verifyNoOutstandingRequest();
   });
