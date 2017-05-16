@@ -42,13 +42,13 @@ describe('${1:LocationService}', function () {
     \$httpBackend.verifyNoOutstandingRequest();
   });
 
-  describe('${3:method}', function () {
+  describe('method', function () {
     it('${4:can work}', function () {
-      // ...
+      // ...${0}
     });
   });
 
-  it('${5:can work}', function () {
+  it('can work', function () {
     // ...
   });
 
