@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+var deferred = \$q.defer();
+spyOn(${1:FormRuntimeController}, 'validateForm').and.returnValue(deferred.promise);
+
+// Something that will use the spied funtcion
+var mockBtnFormItem = {};
+FormRuntimeController.submit(mockBtnFormItem);
+// ...
+
+deferred.resolve(true);
+\$scope.\$apply();
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spec.jasmine.spyOn-and-return-a-promise</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

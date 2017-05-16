@@ -6,6 +6,7 @@ describe('${1:UndoRedoController}', function () {
   var \$httpBackend;
   var \$log;
   var \$scope;
+  var ${3:contrllerDependencies};
   // Declare dependencies - end
 
   // Declare test data - start
@@ -18,13 +19,15 @@ describe('${1:UndoRedoController}', function () {
       _\$rootScope_,
       _\$controller_,
       _\$httpBackend_,
-      _\$log_
+      _\$log_,
+      ${3/(\$?)(\w+),? */_$1$2_,\n      /g}${4}
     ) {
       \$rootScope = _\$rootScope_;
       \$controller = _\$controller_;
       \$scope = \$rootScope.\$new();
       \$httpBackend = _\$httpBackend_;
       \$log = _\$log_;
+      ${3/(\$?)(\w+),? */$1$2 = _$1$2_;\n      /g}${4}
     });
   });
 
@@ -43,7 +46,8 @@ describe('${1:UndoRedoController}', function () {
   function create${1} () {
     return \$controller('${1}', {
       \$scope: \$scope,
-      \$log: \$log
+      \$log: \$log,
+      ${3/(\$?)(\w+),? */$1$2\: $1$2,\n      /g}${4}
     });
   }
 
@@ -51,14 +55,14 @@ describe('${1:UndoRedoController}', function () {
 
   // ...
 
-  describe('${3:method}', function () {
-    it('${4:can work}', function () {
+  describe('method', function () {
+    it('can work', function () {
       var ctrl = create${1}();
-      // ...
+      // ...${0}
     });
   });
 
-  it('${5:can work}', function () {
+  it('can work', function () {
     var ctrl = create${1}();
     // ...
   });
