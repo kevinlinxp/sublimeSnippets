@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+${1:array}.filter(function (item, pos, self) {
+  return self.indexOf(item) === pos;
+});
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>arrfilterunique</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
