@@ -19,7 +19,7 @@ req.onerror = function () {
 req.send();
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>xmlhttprequest, ajax, http</tabTrigger>
+  <tabTrigger>xmlhttprequest.sample</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

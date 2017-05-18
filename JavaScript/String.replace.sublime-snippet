@@ -1,11 +1,9 @@
 <snippet>
   <content><![CDATA[
-switch (${1:expression}) {
-  ${0}
-}
+${1:str}.replace(/${2:regexp}/, '${3:new}');
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>switch</tabTrigger>
+  <tabTrigger>strreplace</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.js</scope>
+  <scope>source.js, text.plain</scope>
 </snippet>

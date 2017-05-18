@@ -3,7 +3,7 @@
 ${1:originalArray}.slice(${2:start}, ${3:endNotInclude});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>arrselect</tabTrigger>
+  <tabTrigger>arrselect, arrslice</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
