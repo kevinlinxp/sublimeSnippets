@@ -1,11 +1,9 @@
 <snippet>
   <content><![CDATA[
-beforeEach(function${1/.+/ /g}${1:optionalDescriptionOfWhatThisDoes} () {
-  ${0}
-});
+expect(${1:foo.setBar}.calls[${2:index}].args[${3:index}]).toEqual(${4:value});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spec.jasmine.beforeEach</tabTrigger>
+  <tabTrigger>spec.jasmine.expect.spy.calls-args</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

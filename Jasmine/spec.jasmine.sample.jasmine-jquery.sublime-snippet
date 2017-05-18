@@ -1,0 +1,40 @@
+<snippet>
+  <content><![CDATA[
+expect($('#id')).toBe('div')
+expect($('input[type=checkbox]')).toBeChecked()
+expect($('input[type=checkbox]')).toBeDisabled()
+expect($('input[type=checkbox]')).toBeFocused()
+expect($('#menu ul')).toBeEmpty()
+
+expect($('#toolbar')).toBeHidden()
+expect($('#toolbar')).toBeVisible()
+
+expect($('#popup')).toHaveCss({ margin: "10px" })
+expect($('option')).toBeSelected()
+
+expect($('.foo')).toExist()
+
+expect($('a')).toHaveAttr('rel')
+expect($('a')).toHaveAttr('rel', 'nofollow')
+
+expect($('a')).toHaveClass('rel')
+expect($('a')).toHaveId('home')
+
+expect($('a')).toHaveHtml('<span></span>')
+expect($('a')).toContainHtml('<span></span>')
+expect($('a')).toHaveText('hi')
+
+expect($form).toHandle('submit') // event
+expect($form).toHandleWith('submit', onSumbit)
+
+// Event spies
+spyOnEvent($('#some_element'), 'click');
+$('#some_element').click();
+expect('click').toHaveBeenPreventedOn($('#some_element'));
+expect('click').toHaveBeenTriggeredOn($('#some_element'));
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spec.jasmine.sample.jasmine-jquery</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

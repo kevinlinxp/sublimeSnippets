@@ -1,11 +1,11 @@
 <snippet>
   <content><![CDATA[
-beforeEach(function${1/.+/ /g}${1:optionalDescriptionOfWhatThisDoes} () {
+spyOn(${1:foo}, '${2:setBar}').and.andCallFake(function () {
   ${0}
 });
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spec.jasmine.beforeEach</tabTrigger>
+  <tabTrigger>spec.jasmine.spyOn-andCallFake</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
