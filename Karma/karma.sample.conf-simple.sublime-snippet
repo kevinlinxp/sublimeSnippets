@@ -1,7 +1,6 @@
 <snippet>
   <content><![CDATA[
 // Karma configuration
-// Generated on Fri Dec 02 2016 16:21:19 GMT+1030 (ACDT)
 
 module.exports = function (config) {
   config.set({
@@ -18,17 +17,12 @@ module.exports = function (config) {
       // inject-bower
       // end-inject-bower
       'node_modules/angular-mocks/angular-mocks.js',
-      'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
       // inject-app
       // end-inject-app
-      // inject-json
-      // end-inject-json
     ],
 
     // list of files to exclude
-    exclude: [
-      '**/gulpfile.js'
-    ],
+    exclude: [],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -58,7 +52,7 @@ module.exports = function (config) {
     browsers: ['PhantomJS'],
 
     // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
+    // if true, it capture browsers, run tests and exit
     singleRun: false,
 
     // Concurrency level
@@ -66,9 +60,10 @@ module.exports = function (config) {
     concurrency: Infinity
   });
 };
+
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>karmasample-karma.config.js</tabTrigger>
+  <tabTrigger>karma.sample.conf-simple</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

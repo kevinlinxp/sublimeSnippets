@@ -1,0 +1,111 @@
+<snippet>
+  <content><![CDATA[
+// Karma configuration
+
+module.exports = function (config) {
+  config.set({
+
+    // base path that will be used to resolve all patterns (eg. files, exclude)
+    basePath: '',
+
+    // frameworks to use
+    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+    frameworks: ['jasmine'],
+
+    // list of files / patterns to load in the browser
+    files: [
+      // inject-bower
+      // end-inject-bower
+      'node_modules/angular-mocks/angular-mocks.js',
+      'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
+      // inject-app
+      // end-inject-app
+      // inject-json
+      // end-inject-json
+    ],
+
+    // list of files to exclude
+    exclude: [],
+
+    // preprocess matching files before serving them to the browser
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    preprocessors: {
+      'src/**/*.js': ['coverage']
+    },
+
+    // test results reporter to use
+    // possible values: 'dots', 'progress'
+    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    reporters: ['spec', 'jasmine-diff', 'html', 'junit', 'coverage'],
+
+    htmlReporter: {
+      outputDir: 'test-reports/unit', // where to put the reports
+      // templatePath: null, // set if you moved jasmine_template.html
+      focusOnFailures: false, // reports show failures on start
+      namedFiles: true, // name files instead of creating sub-directories
+      // pageTitle: null, // page title for reports; browser info by default
+      urlFriendlyName: true, // simply replaces spaces with _ for files/dirs
+      // reportName: 'report-summary-filename', // report summary filename; browser info by default
+
+      // experimental
+      preserveDescribeNesting: false, // folded suites stay folded
+      foldAll: false // reports start folded (only with preserveDescribeNesting)
+    },
+
+    junitReporter: {
+      outputDir: 'test-reports/unit', // results will be saved as $outputDir/$browserName.xml
+      outputFile: undefined, // if included, results will be saved as $outputDir/$browserName/$outputFile
+      suite: 'rds-schemaform-common', // suite will become the package name attribute in xml testsuite element
+      useBrowserName: true, // add browser name to report and classes names
+      nameFormatter: undefined, // function (browser, result) to customize the name attribute in xml testcase element
+      classNameFormatter: undefined, // function (browser, result) to customize the classname attribute in xml testcase element
+      properties: {}, // key value pair of properties to add to the <properties> section of the report
+      xmlVersion: null // use '1' if reporting to be per SonarQube 6.2 XML format
+    },
+
+    coverageReporter: {
+      dir: 'test-reports/coverage/',
+      reporters: [
+        { type: 'html', subdir: 'html' },
+        { type: 'cobertura', subdir: '.', file: 'cobertura-coverage.xml' }
+      ]
+    },
+
+    // web server port
+    port: 9876,
+
+    // enable / disable colors in the output (reporters and logs)
+    colors: true,
+
+    // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    logLevel: config.LOG_INFO,
+
+    // enable / disable watching file and executing tests whenever any file changes
+    autoWatch: true,
+
+    // start these browsers
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    browsers: ['PhantomJS'],
+
+    // Continuous Integration mode
+    // if true, Karma captures browsers, runs the tests and exits
+    singleRun: false,
+
+    // Concurrency level
+    // how many browser should be started simultaneous
+    concurrency: Infinity,
+
+    // To avoid DISCONNECTED messages when connecting to slow virtual machines
+    browserDisconnectTimeout: 10000, // default 2000
+    browserDisconnectTolerance: 1, // default 0
+    browserNoActivityTimeout: 4 * 60 * 1000 // default 10000
+  });
+};
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>karma.sample.conf-comprehensive</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
