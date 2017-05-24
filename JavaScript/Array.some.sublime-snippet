@@ -1,0 +1,13 @@
+
+<snippet>
+  <content><![CDATA[
+// true if the callback function returns a truthy value for ANY array element; otherwise, false.
+${1:array}.some(function (${2:currentValue}${3:, index, array}) {
+  return ${0};
+}${4/.+/, /}${4:thisArg});
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>arrsome</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
