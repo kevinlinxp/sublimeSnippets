@@ -1,9 +1,11 @@
 <snippet>
   <content><![CDATA[
-\$compile('${1:<my-directive data="data"></my-directive>}');
+${1:array}.forEach(function (${2:currentValue}${3:, index, array}) {
+  ${0}
+}${4/.+/, /}${4:thisArg});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>ngcompile</tabTrigger>
+  <tabTrigger>arrforeach</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

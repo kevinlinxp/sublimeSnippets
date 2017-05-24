@@ -1,9 +1,11 @@
 <snippet>
   <content><![CDATA[
-\$compile('${1:<my-directive data="data"></my-directive>}');
+function (accumulator, currentValue, currentIndex, array}) {
+  return accumulator + currentValue;
+}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>ngcompile</tabTrigger>
+  <tabTrigger>afunaccumulator, afunreduce</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

@@ -1,7 +1,6 @@
 <snippet>
   <content><![CDATA[
-var exp = $parse("${1:model.prop1 > model.prop2}");
-var result = exp(\{${2:/*context*/}\}, \{${3:/*locals*/}\});
+\$parse(${1:'model.prop1 > model.prop2'});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>ngparse</tabTrigger>
