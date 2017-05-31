@@ -1,11 +1,11 @@
 <snippet>
   <content><![CDATA[
-function (accumulator, currentValue, currentIndex, array) {
-  return accumulator + currentValue;
-}
+${1:array}.reduce(function (${2:accumulator}, ${3:currentValue}${4:, index, array}) {
+  return ${0:accumulator + currentValue};
+}${5/.+/, /}${5:thisArg});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>afunaccumulator, afunreduce</tabTrigger>
+  <tabTrigger>arrreduce</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
