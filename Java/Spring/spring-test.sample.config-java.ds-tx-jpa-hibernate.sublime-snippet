@@ -104,7 +104,7 @@ public class TestJpaConfig
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring.junit.sample.config-java.ds-tx-jpa-hibernate</tabTrigger>
+  <tabTrigger>spring-test.sample.config-java.ds-tx-jpa-hibernate</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

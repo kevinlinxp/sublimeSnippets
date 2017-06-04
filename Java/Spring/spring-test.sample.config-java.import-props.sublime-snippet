@@ -10,7 +10,7 @@ import org.springframework.core.io.ClassPathResource;
 @Configuration
 @Import({ TestJpaConfig.class })
 @ComponentScan(basePackages = {
-        "au.com.rds.schemaformbuilder"
+  "au.com.rds.schemaformbuilder"
 })
 public class TestRestBackendConfig
 {
@@ -36,7 +36,7 @@ hibernate.hbm2ddl.auto=none
 hibernate.generate_statistics=true}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring.junit.sample.config-java.import-props</tabTrigger>
+  <tabTrigger>spring-test.sample.config-java.import-props</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

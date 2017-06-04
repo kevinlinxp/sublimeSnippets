@@ -1,0 +1,91 @@
+<snippet>
+  <content><![CDATA[
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@RunWith(SpringRunner.class)
+// Load Spring MVC configuration through the TestContext framework, which loads the Spring configuration and injects a WebApplicationContext into the test to use to build a MockMvc instance
+@WebAppConfiguration
+@ContextConfiguration("test-servlet-context.xml")
+public class ExampleTests {
+
+  @Autowired
+  private WebApplicationContext wac;
+
+  private MockMvc mockMvc;
+
+  @Before
+  public void setup() {
+    this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+  }
+
+  @Test
+  public void getAccount() throws Exception {
+    this.mockMvc
+      // The MockMvc instance is used to perform a GET request to "/accounts/1"
+      .perform(get("/accounts/1")
+        .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+      // Verify that the resulting response has status 200, the content type is "application/json"
+      .andExpect(status().isOk())
+      .andExpect(content().contentType("application/json"))
+      // and the response body has a JSON property called "name" with the value "Lee". The jsonPath syntax is supported through the Jayway JsonPath project.
+      .andExpect(jsonPath("\$.name").value("Lee"));
+  }
+
+}
+
+/* mockMvc perform samples */
+// The following equals 'get("/hotels?foo=bar")'
+mockMvc.perform(get("/hotels?foo={foo}", "bar"));
+mockMvc.perform(get("/hotels").param("foo", "bar"));
+
+// Context path and the Servlet path
+mockMvc.perform(get("/app/main/hotels/{id}").contextPath("/app").servletPath("/main"))
+
+// Set up default request properties:
+mockMvc = standaloneSetup(new AccountController())
+  .defaultRequest(get("/")
+  .contextPath("/app").servletPath("/main")
+  .accept(MediaType.APPLICATION_JSON).build();
+
+/* Expectation samples */
+// Asserts that binding or validation failed:
+mockMvc.perform(post("/persons"))
+  .andExpect(status().isOk())
+  .andExpect(model().attributeHasErrors("person"));
+
+// Dump the results of the performed request
+mockMvc.perform(post("/persons"))
+  .andDo(print())
+  .andExpect(status().isOk())
+  .andExpect(model().attributeHasErrors("person"));
+
+mockMvc.perform(post("/persons"))
+  // Will log the result data as a single DEBUG message under the org.springframework.test.web.servlet.result logging category
+  .andDo(log())
+  .andExpect(status().isOk())
+  .andExpect(model().attributeHasErrors("person"));
+
+// Get direct access to the result
+MvcResult mvcResult = mockMvc.perform(post("/persons")).andExpect(status().isOk()).andReturn();
+
+// Set up common expectations once when building the MockMvc instance
+standaloneSetup(new SimpleController())
+  .alwaysExpect(status().isOk())
+  .alwaysExpect(content().contentType("application/json;charset=UTF-8"))
+  .build()
+
+// Filter Registrations
+mockMvc = standaloneSetup(new PersonController()).addFilters(new CharacterEncodingFilter()).build();
+
+// You can inject mock services into controllers through Spring configuration in order to remain focused on testing the web layer. An example of declaring a mock service with Mockito:
+<bean id="accountService" class="org.mockito.Mockito" factory-method="mock">
+  <constructor-arg value="org.example.AccountService"/>
+</bean>
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-test.sample.mockMvc</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

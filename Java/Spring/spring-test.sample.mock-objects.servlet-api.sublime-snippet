@@ -1,0 +1,33 @@
+<snippet>
+  <content><![CDATA[
+@WebAppConfiguration
+@ContextConfiguration
+public class WacTests {
+
+  @Autowired
+  WebApplicationContext wac; // cached
+
+  @Autowired
+  MockServletContext servletContext; // cached
+
+  @Autowired
+  MockHttpSession session;
+
+  @Autowired
+  MockHttpServletRequest request;
+
+  @Autowired
+  MockHttpServletResponse response;
+
+  @Autowired
+  ServletWebRequest webRequest;
+
+  //...
+}
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-test.sample.mock-objects.servlet-api</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
