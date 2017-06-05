@@ -2,7 +2,7 @@
   <content><![CDATA[
 ${1:array}.reduce(function (${2:accumulator}, ${3:currentValue}${4:, index, array}) {
   return ${0:accumulator + currentValue};
-}${5/.+/, /}${5:thisArg});
+}${5/.+/, /}${5:initialValue});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>arrreduce</tabTrigger>
