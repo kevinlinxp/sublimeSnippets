@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-gulp.task('{1:task-name}', function () {
+gulp.task('${1:task-name}', function () {
   return runSequence('${2:task1}', '${3:task2}');
 });
 ]]></content>

@@ -11,13 +11,6 @@
 
   /* @ngInject */
   function ${2:Class}Factory (${3:dependencies}) {
-
-    /**
-     * Private properties
-     */
-    var privateProp1 = false;
-    var privateProp2 = 'Hello World';
-
     /**
      * Constructor, with class name
      */
@@ -25,6 +18,10 @@
       // Public properties, assigned to the instance ('this')
       this.publicProp1 = [];
       this.publicProp2 = {};
+
+      // Private properties, assigned to the instance ('this')
+      this._privateProp1 = [];
+      this._privateProp2 = {};
     };
 
     /**
@@ -36,7 +33,10 @@
     /**
      * Private methods
      */
-    var privateMethod = function (/*params*/) {
+    function _privateMethod1 (/*params*/) {
+    };
+
+    function _privateMethod2 (/*params*/) {
     };
 
     return ${2:Class};
