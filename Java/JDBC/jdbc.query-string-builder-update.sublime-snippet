@@ -1,9 +1,9 @@
 <snippet>
   <content><![CDATA[
 String query = new StringBuilder("UPDATE `").append(${1:tableName}).append("`") // [[AS] correlation-Name]
-    .append(" SET `COLUMN_NAME` = VALUE")
-    .append(", `COLUMN_NAME` = VALUE")
-    .append(" WHERE ${2:whereClause}")
+    .append(" SET `COLUMN_NAME` = ?")
+    .append(", `COLUMN_NAME` = ?")
+    .append(" WHERE ${2:conditions}")
     .toString();
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
