@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+String query = new StringBuilder("INSERT INTO `")
+    .append(${1:tableName}).append("`(${2:`ID`, `KEY`, `VERSION`, `NAME`, `CONTENT`})")
+    .append(" VALUES").append("(${2/`\w+`/?/g})")
+    .toString();
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jdbc.query-string-builder-insert</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

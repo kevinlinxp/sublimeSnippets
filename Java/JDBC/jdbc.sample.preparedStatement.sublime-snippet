@@ -1,0 +1,28 @@
+<snippet>
+  <content><![CDATA[
+String query = new StringBuilder("INSERT INTO `")
+    .append(${1:tableName}).append("`(${2:`ID`, `KEY`, `VERSION`, `NAME`, `CONTENT`})")
+    .append(" VALUES").append("(${2/`\w+`/?/g})")
+    .toString();
+
+PreparedStatement ps = connection.prepareStatement(query);
+Long id = 0L;
+for (Resource resource : resources)
+{
+  String fileName = resource.getFilename();
+  String key = fileName.replaceAll("\\.json\$", "");
+  String fileContent = readAsStringAndClose(resource.getInputStream());
+
+  ps.setLong(1, id++);
+  ps.setString(2, key);
+  ps.setInt(3, 0);
+  ps.setString(4, key);
+  ps.setString(5, fileContent);
+  ps.executeUpdate();
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jdbc.sample.preparedStatement</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
