@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-<bean id="${1:dataSource}" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+<bean id="${1:dataSource}" class="org.apache.commons.dbcp.BasicDataSource|com.mchange.v2.c3p0.ComboPooledDataSource|org.springframework.jdbc.datasource.DriverManagerDataSource" destroy-method="close">
   <property name="driverClassName" value="\${jdbc.driverClassName}"/>
   <property name="url" value="\${jdbc.url}"/>
   <property name="username" value="\${jdbc.username}"/>

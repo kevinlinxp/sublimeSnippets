@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+List<Object[]> batch = new ArrayList<Object[]>();
+for (Actor actor : actors) {
+  Object[] values = new Object[] {
+      actor.getFirstName(),
+      actor.getLastName(),
+      actor.getId()};
+  batch.add(values);
+}
+int[] updateCounts = jdbcTemplate.batchUpdate(
+    "update t_actor set first_name = ?, last_name = ? where id = ?",
+    batch);
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-data.jdbcTemplate-batchUpdate</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

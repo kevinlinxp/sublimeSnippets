@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+jdbcTemplate.queryForObject(
+    "${1:select first_name, last_name from t_actor where id = ?s}",
+    new Object[] {${2:1234L}},
+    new RowMapper<Actor>() {
+      public Actor mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Actor actor = new Actor();
+        actor.setFirstName(rs.getString("first_name"));
+        actor.setLastName(rs.getString("last_name"));
+        return actor;
+      }
+    })
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-data.jdbcTemplate-queryForObject-rowMapper</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

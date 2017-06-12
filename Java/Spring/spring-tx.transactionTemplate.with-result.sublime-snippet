@@ -1,0 +1,34 @@
+<snippet>
+  <content><![CDATA[
+public class SimpleService implements Service {
+
+  // single TransactionTemplate shared amongst all methods in this instance
+  private final TransactionTemplate transactionTemplate;
+
+  // use constructor-injection to supply the PlatformTransactionManager
+  public SimpleService(PlatformTransactionManager transactionManager) {
+    Assert.notNull(transactionManager, "The 'transactionManager' argument must not be null.");
+    this.transactionTemplate = new TransactionTemplate(transactionManager);
+  }
+
+  public Object someServiceMethod() {
+    return transactionTemplate.execute(new TransactionCallback() {
+      // the code in this method executes in a transactional context
+      public Object doInTransaction(TransactionStatus status) {
+        try {
+          updateOperation1();
+          return resultOfUpdateOperation2();
+        } catch (SomeBusinessExeption ex) {
+          status.setRollbackOnly();
+        }
+      }
+    });
+  }
+}
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-tx.transactionTemplate.with-result</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

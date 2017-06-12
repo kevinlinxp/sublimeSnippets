@@ -16,7 +16,7 @@ private static Resource[] getResources()
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-core.sample.list-resources-by-pathMatchingResourcePatternResolver</tabTrigger>
+  <tabTrigger>spring-core.resource.list-resources-by-pathMatchingResourcePatternResolver</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

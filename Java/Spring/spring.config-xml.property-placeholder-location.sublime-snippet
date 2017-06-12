@@ -1,6 +1,7 @@
 <snippet>
   <content><![CDATA[
 <context:property-placeholder location="${1:META-INF/jdbc-test.properties}" order="${3:1}" ignore-unresolvable="${4:true}" />
+
 ${2:#${1}
 jdbc.driverClassName=org.h2.Driver
 jdbc.url=jdbc:h2:mem:CLA;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
