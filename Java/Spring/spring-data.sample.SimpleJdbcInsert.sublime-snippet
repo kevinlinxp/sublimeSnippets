@@ -1,0 +1,29 @@
+<snippet>
+  <content><![CDATA[
+public class JdbcActorDao implements ActorDao {
+
+  private SimpleJdbcInsert insertActor;
+
+  public void setDataSource(DataSource dataSource) {
+    this.insertActor = new SimpleJdbcInsert(dataSource)
+        .withTableName("t_actor")
+        .usingGeneratedKeyColumns("id");
+  }
+
+  public void add(Actor actor) {
+    SqlParameterSource parameters = new MapSqlParameterSource()
+        .addValue("first_name", actor.getFirstName())
+        .addValue("last_name", actor.getLastName());
+    Number newId = insertActor.executeAndReturnKey(parameters);
+    actor.setId(newId.longValue());
+  }
+
+  // ... additional methods
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-data.sample.SimpleJdbcInsert</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
