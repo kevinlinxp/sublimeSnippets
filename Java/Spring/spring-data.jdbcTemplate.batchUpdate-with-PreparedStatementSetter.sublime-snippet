@@ -15,7 +15,7 @@ int[] updateCounts = jdbcTemplate.batchUpdate("update t_actor set first_name = ?
     });
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-data.jdbcTemplate-batchUpdate-with-PreparedStatementSetter</tabTrigger>
+  <tabTrigger>spring-data.jdbcTemplate.batchUpdate-with-PreparedStatementSetter</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

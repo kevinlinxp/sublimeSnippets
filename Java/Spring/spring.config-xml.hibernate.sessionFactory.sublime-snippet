@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+<bean id="mySessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+  <property name="dataSource" ref="myDataSource"/>
+  <property name="mappingResources">
+    <list>
+      <value>product.hbm.xml</value>
+    </list>
+  </property>
+  <property name="hibernateProperties">
+    <value>
+      hibernate.dialect=org.hibernate.dialect.HSQLDialect
+    </value>
+  </property>
+</bean>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring.config-xml.jdbc.dataSource</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

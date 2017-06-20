@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+@Bean
+public DataSource dataSource() {
+  return new EmbeddedDatabaseBuilder()
+    .generateUniqueName(true)
+    .setType(EmbeddedDatabaseType.HSQL|H2|Derby)
+    .setScriptEncoding("UTF-8")
+    .ignoreFailedDrops(true)
+    .addScript("schema.sql")
+    .addScripts("user_data.sql", "country_data.sql")
+    .build();
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring.config-java.jdbc.dataSource-embedded</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

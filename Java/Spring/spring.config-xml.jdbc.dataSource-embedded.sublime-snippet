@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-<jdbc:embedded-database id="${1:dataSource}" type="${2:H2}">
+<jdbc:embedded-database id="${1:dataSource}" type="${2:HSQL|H2|Derby}">
     <jdbc:script location="classpath:META-INF/test-schema.sql"/>
     <jdbc:script location="classpath:META-INF/test-data.sql"/>
 </jdbc:embedded-database>

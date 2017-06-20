@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-spyOn(${1:foo}, '${2:setBar}').and.returnValue(${3:valueToReturn});
+spyOn(${1:window}, '${2:confirm}').and.returnValue(${3:true});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>spec.jasmine.spyOn-andReturn</tabTrigger>

@@ -1,0 +1,23 @@
+<snippet>
+  <content><![CDATA[
+final String INSERT_SQL = "insert into my_test (name) values(?)";
+final String name = "Rob";
+
+KeyHolder keyHolder = new GeneratedKeyHolder();
+jdbcTemplate.update(
+    new PreparedStatementCreator() {
+      public PreparedStatement createPreparedStatement(Connection   connection) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(INSERT_SQL,   new String[] {"id"});
+        ps.setString(1, name);
+        return ps;
+      }
+    },
+    keyHolder);
+
+  // keyHolder.getKey() now contains the generated key
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-data.jdbcTemplate.update-with-PrepareStatementCreator-and-KeyHolder</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
