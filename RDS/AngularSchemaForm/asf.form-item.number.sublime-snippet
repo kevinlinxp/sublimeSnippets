@@ -1,15 +1,15 @@
 <snippet>
   <content><![CDATA[
-"${1:propertyName}": {
+{
+  "key": "${1}",
   "type": "number",
-  "required": ${2:false}${3/^.+$/,
-  "default": /}${3:0}${4/^.+$/,
-  "mininum": /}${4:0}${5/^.+$/,
-  "maximum": /}${5:10}
+  "title": "${2:Title}"${3/^.+$/,
+  "placeholder": "/}${3:eg. 130.977}${3/^.+$/"/}${4/^.+$/,
+  "description": /}${4:""}
 },
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>asf.schema.number</tabTrigger>
+  <tabTrigger>asf.form-item.number, asf.form.num</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.plain, source.json</scope>
 </snippet>

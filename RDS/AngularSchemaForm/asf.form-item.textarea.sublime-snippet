@@ -2,16 +2,14 @@
   <content><![CDATA[
 {
   "key": "${1}",
-  "type": "checkboxes",
+  "type": "textarea",
   "title": "${2:Title}"${3/^.+$/,
-  "description": /}${3:""},
-  "titleMap": [
-    ${4}
-  ]
+  "placeholder": /}${3:""}${4/^.+$/,
+  "description": /}${4:""}
 },
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>asf.form.cbs, asf.form.checkboxes</tabTrigger>
+  <tabTrigger>asf.form-item.textarea, asf.form.txtarea</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.plain, source.json</scope>
 </snippet>

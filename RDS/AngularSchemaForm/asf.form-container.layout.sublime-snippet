@@ -21,7 +21,7 @@
 }${1:,}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>asf.form.layout</tabTrigger>
+  <tabTrigger>asf.form-container.layout, asf.form.layout</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.plain, source.json</scope>
 </snippet>
