@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      http://java.sun.com/xml/ns/javaee
+      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0">
+
+  ...
+
+</web-app>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>web.sample.web.xml-3.0</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

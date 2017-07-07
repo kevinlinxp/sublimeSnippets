@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-compiler-plugin</artifactId>
+  <version>3.1</version>
+  <configuration>
+    <source>1.${1:8}</source>
+    <target>1.${1}</target>
+  </configuration>
+</plugin>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mvn.pom.build-plugins-plugin.maven-compiler-plugin</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, text.xml</scope>
+</snippet>
