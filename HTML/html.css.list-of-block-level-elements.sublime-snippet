@@ -1,0 +1,39 @@
+<snippet>
+  <content><![CDATA[
+<address> Contact information.
+<article> [HTML5] Article content.
+<aside> [HTML5] Aside content.
+<blockquote> Long ("block") quotation.
+<canvas> [HTML5] Drawing canvas.
+<dd> Describes a term in a description list.
+<div> Document division.
+<dl> Description list.
+<dt> Description list term.
+<fieldset> Field set label.
+<figcaption> [HTML5] Figure caption.
+<figure> [HTML5] Groups media content with a caption (see <figcaption>).
+<footer> [HTML5] Section or page footer.
+<form> Input form.
+<h1>, <h2>, <h3>, <h4>, <h5>, <h6> Heading levels 1-6.
+<header> [HTML5] Section or page header.
+<hgroup> [HTML5] Groups header information.
+<hr> Horizontal rule (dividing line).
+<li> List item.
+<main> Contains the central content unique to this document.
+<nav> Contains navigation links.
+<noscript> Content to use if scripting is not supported or turned off.
+<ol> Ordered list.
+<output> [HTML5] Form output.
+<p> Paragraph.
+<pre> Preformatted text.
+<section> [HTML5] Section of a web page.
+<table> Table.
+<tfoot> Table footer.
+<ul> Unordered list.
+<video> [HTML5] Video player.
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>html.css.list-of-block-level-elements</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, source.css, text.html</scope>
+</snippet>
