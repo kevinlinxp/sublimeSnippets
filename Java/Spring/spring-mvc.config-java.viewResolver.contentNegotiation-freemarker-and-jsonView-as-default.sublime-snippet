@@ -1,0 +1,26 @@
+<snippet>
+  <content><![CDATA[
+@Configuration
+@EnableWebMvc
+public class WebConfig extends WebMvcConfigurerAdapter {
+
+  @Override
+  public void configureViewResolvers(ViewResolverRegistry registry) {
+    registry.enableContentNegotiation(new MappingJackson2JsonView());
+    registry.freeMarker().cache(false);
+  }
+
+  @Bean
+  public FreeMarkerConfigurer freeMarkerConfigurer() {
+    FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
+    configurer.setTemplateLoaderPath("/WEB-INF/");
+    return configurer;
+  }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-mvc.config-java.viewResolver.contentNegotiation-freemarker-and-jsonView-as-default</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

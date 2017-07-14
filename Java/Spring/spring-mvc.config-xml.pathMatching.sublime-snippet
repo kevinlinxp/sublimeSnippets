@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+<mvc:annotation-driven>
+  <mvc:path-matching
+    suffix-pattern="true"
+    trailing-slash="false"
+    registered-suffixes-only="true"
+    path-helper="pathHelper"
+    path-matcher="pathMatcher"/>
+</mvc:annotation-driven>
+
+<bean id="pathHelper" class="org.example.app.MyPathHelper"/>
+<bean id="pathMatcher" class="org.example.app.MyPathMatcher"/>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-mvc.config-xml.pathMatching</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.xml, text.plain</scope>
+</snippet>

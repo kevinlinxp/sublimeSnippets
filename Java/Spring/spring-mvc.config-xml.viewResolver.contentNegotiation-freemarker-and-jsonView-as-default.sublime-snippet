@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+<mvc:view-resolvers>
+  <mvc:content-negotiation>
+    <mvc:default-views>
+      <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+    </mvc:default-views>
+  </mvc:content-negotiation>
+  <mvc:freemarker cache="${1:false}"/>
+</mvc:view-resolvers>
+
+<mvc:freemarker-configurer>
+  <mvc:template-loader-path location="/freemarker"/>
+</mvc:freemarker-configurer>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-mvc.config-xml.viewResolver.contentNegotiation-freemarker-and-jsonView-as-default</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.xml, text.plain</scope>
+</snippet>

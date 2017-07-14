@@ -1,0 +1,33 @@
+<snippet>
+  <content><![CDATA[
+@Configuration
+@EnableWebMvc
+public class WebConfig extends WebMvcConfigurerAdapter {
+
+  @Override
+  public void configurePathMatch(PathMatchConfigurer configurer) {
+    configurer
+      .setUseSuffixPatternMatch(true)
+      .setUseTrailingSlashMatch(false)
+      .setUseRegisteredSuffixPatternMatch(true)
+      .setPathMatcher(antPathMatcher())
+      .setUrlPathHelper(urlPathHelper());
+  }
+
+  @Bean
+  public UrlPathHelper urlPathHelper() {
+    //...
+  }
+
+  @Bean
+  public PathMatcher antPathMatcher() {
+    //...
+  }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-mvc.config-java.pathMatching</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

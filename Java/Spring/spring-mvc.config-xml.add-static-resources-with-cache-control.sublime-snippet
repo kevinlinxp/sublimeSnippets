@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+<mvc:resources mapping="/resources/**" location="/public-resources/">
+  <mvc:cache-control max-age="3600" cache-public="true"/>
+</mvc:resources>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-mvc.config-xml.add-static-resources-with-cache-control</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.xml, text.plain</scope>
+</snippet>

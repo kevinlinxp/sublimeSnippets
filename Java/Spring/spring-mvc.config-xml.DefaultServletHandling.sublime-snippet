@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+<mvc:default-servlet-handler/>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-mvc.config-java.DefaultServletHandling</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.xml, text.plain</scope>
+</snippet>
