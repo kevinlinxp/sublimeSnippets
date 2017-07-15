@@ -1,9 +1,9 @@
 <snippet>
   <content><![CDATA[
-<mvc:default-servlet-handler/>
+<mvc:view-controller path="/" view-name="home"/>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-mvc.config-xml.DefaultServletHandling</tabTrigger>
+  <tabTrigger>spring-mvc.config-xml.viewController</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.xml, text.plain</scope>
 </snippet>

@@ -1,0 +1,28 @@
+<snippet>
+  <content><![CDATA[
+public class MyWebAppInitializer extends AbstractDispatcherServletInitializer {
+
+  @Override
+  protected WebApplicationContext createRootApplicationContext() {
+    return null;
+  }
+
+  @Override
+  protected WebApplicationContext createServletApplicationContext() {
+    XmlWebApplicationContext cxt = new XmlWebApplicationContext();
+    cxt.setConfigLocation("/WEB-INF/spring/dispatcher-config.xml");
+    return cxt;
+  }
+
+  @Override
+  protected String[] getServletMappings() {
+    return new String[] { "/" };
+  }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-mvc.config-java.init.AbstractDispatcherServletInitializer</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

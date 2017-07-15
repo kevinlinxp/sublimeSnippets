@@ -7,9 +7,9 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
   @Override
   public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
     Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder()
-        .indentOutput(true)
-        .dateFormat(new SimpleDateFormat("yyyy-MM-dd"))
-        .modulesToInstall(new ParameterNamesModule());
+      .indentOutput(true)
+      .dateFormat(new SimpleDateFormat("yyyy-MM-dd"))
+      .modulesToInstall(new ParameterNamesModule());
     converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
     converters.add(new MappingJackson2XmlHttpMessageConverter(builder.xml().build()));
   }

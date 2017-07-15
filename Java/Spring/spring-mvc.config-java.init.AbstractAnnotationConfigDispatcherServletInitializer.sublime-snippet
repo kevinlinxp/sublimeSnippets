@@ -1,0 +1,26 @@
+<snippet>
+  <content><![CDATA[
+public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+  @Override
+  protected Class<?>[] getRootConfigClasses() {
+    return null;
+  }
+
+  @Override
+  protected Class<?>[] getServletConfigClasses() {
+    return new Class[] { MyWebConfig.class };
+  }
+
+  @Override
+  protected String[] getServletMappings() {
+    return new String[] { "/" };
+  }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-mvc.config-java.init.AbstractAnnotationConfigDispatcherServletInitializer</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

@@ -5,16 +5,14 @@
 public class WebConfig extends WebMvcConfigurerAdapter {
 
   @Override
-  public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    registry.addResourceHandler("/resources/**")
-      .addResourceLocations("/public-resources/")
-      .setCacheControl(CacheControl.maxAge(1, TimeUnit.HOURS).cachePublic());
+  public void addViewControllers(ViewControllerRegistry registry) {
+    registry.addViewController("/").setViewName("home");
   }
 
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-mvc.config-java.add-static-resources-with-cache-control</tabTrigger>
+  <tabTrigger>spring-mvc.config-java.viewController</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>
