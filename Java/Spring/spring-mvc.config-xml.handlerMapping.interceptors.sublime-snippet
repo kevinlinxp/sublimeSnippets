@@ -14,7 +14,7 @@
 </mvc:interceptors>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-mvc.config-xml.interceptors</tabTrigger>
+  <tabTrigger>spring-mvc.config-xml.handlerMapping.interceptors</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.xml, text.plain</scope>
 </snippet>
