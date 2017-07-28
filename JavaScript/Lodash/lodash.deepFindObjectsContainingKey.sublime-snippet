@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+function deepFindObjectsContainingKey(searchObj, key) {
+  var o = _(searchObj);
+  if (o.has(key)) {
+    return [searchObj];
+  }
+
+  return o.map(function(v) {
+    return typeof v === "object" ? deepFindObjectsContainingKey(v, key) : [];
+  }).flatten() // from [[x], [y], [z]] to [x, y, z]
+    .value();
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>lodash.deepFindObjectsContainingKey</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
