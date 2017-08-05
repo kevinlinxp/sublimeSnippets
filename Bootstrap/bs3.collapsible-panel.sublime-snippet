@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#${1:collapse1}">Collapsible panel</a>
+      </h4>
+    </div>
+    <div id="${1}" class="panel-collapse collapse ${2:in}">
+      <div class="panel-body">Panel Body</div>
+      <div class="panel-footer">Panel Footer</div>
+    </div>
+  </div>
+</div>]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>bs3.collapsible-panel</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html, text.plain</scope>
+</snippet>

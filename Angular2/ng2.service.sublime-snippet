@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+
+import 'rxjs/add/operator/toPromise';
+
+import * as _ from 'lodash';
+
+@Injectable()
+export class ${1:Foo}Service {
+
+  constructor(private http: Http) { }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>ng2.service</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

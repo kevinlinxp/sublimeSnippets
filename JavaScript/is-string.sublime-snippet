@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+typeof ${1:target} === 'string' || ${1} instanceof String
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>is-string</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
