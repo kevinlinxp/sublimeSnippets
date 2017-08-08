@@ -1,18 +1,16 @@
 <snippet>
   <content><![CDATA[
 // In gulpfile.js:
-var
-  // ...
-  uglify = require('gulp-uglify'),
-  rename = require('gulp-rename');
+  // require section ...
+  var uglify = require('gulp-uglify'),
+  var rename = require('gulp-rename');
 
-// ...
+  // task script pipeline section ...
   .pipe(...)
   .pipe(uglify())
   .pipe(rename({suffix: '.min'}))
   .pipe(gulp.dest(settings.dist + 'js/'));
-// ...
-
+  // ...
 
 // In package.json:
   "gulp-rename": "^1.2.2",

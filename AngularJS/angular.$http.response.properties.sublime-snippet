@@ -1,0 +1,14 @@
+<snippet>
+  <content><![CDATA[
+data – {string|Object} – The response body transformed with the transform functions.
+status – {number} – HTTP status code of the response.
+headers – {function([headerName])} – Header getter function.
+config – {Object} – The configuration object that was used to generate the request.
+statusText – {string} – HTTP status text of the response.
+xhrStatus – {string} – Status of the XMLHttpRequest (complete, error, timeout or abort).
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>nghttpresponseproperties</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

@@ -44,6 +44,7 @@ gulp.task('default', ['clean', 'build']);
 gulp.task('watch', function () {
   gulp.watch('./src/**/*', ['default']);
 });
+
 ]]></content>
   <tabTrigger>gpsample-gulp/tasks/default.js</tabTrigger>
   <scope>text.plain, source.js</scope>

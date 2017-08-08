@@ -1,0 +1,66 @@
+<snippet>
+  <content><![CDATA[
+private void forEachDndItem(ArrayNode dndItems, String keyPrefix, BiFunction<ObjectNode, String, Void> callback)
+{
+  dndItems.forEach(dndItem ->
+  {
+    String keyPrefixForNextCall;
+    String possibleKey = dndItem.path("key").asText();
+    if (!isBlank(possibleKey))
+    {
+      keyPrefixForNextCall = !isBlank(keyPrefix) ? keyPrefix + "." + possibleKey : possibleKey;
+      String type = dndItem.path("sfFormProperties").path("type").asText();
+      if ("array".equals(type) || "elastic-search-results".equals(type))
+      {
+        keyPrefixForNextCall += "[]";
+      }
+    }
+    else
+    {
+      keyPrefixForNextCall = keyPrefix;
+    }
+
+    ArrayNode childItems = getDndChildItems((ObjectNode) dndItem);
+    if (childItems != null)
+    {
+      forEachDndItem(childItems, keyPrefixForNextCall, callback);
+    }
+
+    callback.apply((ObjectNode) dndItem, keyPrefix);
+  });
+}
+
+public String resolveFormReferenceIfAny(String originalFormDesignJson)
+{
+  ObjectNode dndModel = JsonUtils.toObjectNode(originalFormDesignJson);
+
+  forEachDndItem(getDndChildItems(dndModel), "", (dndItem, keyPrefix) ->
+  {
+    String refFormKey = getRefFormKey(dndItem);
+    if (refFormKey == null)
+    {
+      return null;
+    }
+
+    String refDesignJson = getFormDesignJsonByKey(refFormKey);
+    if (refDesignJson == null)
+    {
+      throw new RuntimeException("Cannot find the referenced form design with key: " + refFormKey);
+    }
+
+    refDesignJson = resolveFormReferenceIfAny(refDesignJson);
+
+    convertFormReferenceToSection(dndItem);
+    assignChildItemsFromLoadedDesignToConvertedFormReference(refDesignJson, dndItem);
+    forAllChildItemsUpdateModelPathsInExpressionsAppendingKeyPrefixIfAny(dndItem, keyPrefix);
+    return null;
+  });
+
+  return dndModel.toString();
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>lambda.sample.bi-function</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
