@@ -1,0 +1,37 @@
+<snippet>
+  <content><![CDATA[
+// Add @EnableScheduling to one of your @Configuration classes to enable @Scheduled
+// Add @EnableAsync to one of your @Configuration classes to enable @Async
+@Service
+// Consider using class-based proxy by CGLIB (instead of interface-based JDK dynamic proxy) to avoid possible self-invoking issue
+// @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class ServiceImpl implements Service {
+
+  //...
+
+  @Qualifier("transactionManagerApp")
+  private PlatformTransactionManager txMgrApp;
+
+  //...
+
+  @Override
+  @Scheduled(cron="0 * * * * ?")
+  public void hourly()
+  {
+    final TransactionTemplate txTemplateApp = new TransactionTemplate(txMgrApp);
+    txTemplateApp.execute(new TransactionCallbackWithoutResult() {
+      @Override
+      protected void doInTransactionWithoutResult(TransactionStatus status)
+      {
+        //get xxx from dao
+        dao.update(xxx);
+      }
+    });
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-task.sample.@Scheduled-tx</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

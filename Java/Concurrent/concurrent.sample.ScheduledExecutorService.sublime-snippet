@@ -1,0 +1,26 @@
+<snippet>
+  <content><![CDATA[
+import static java.util.concurrent.TimeUnit.*;
+class BeeperControl {
+  private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+  public void beepForAnHour() {
+    final ScheduledFuture<?> beeperHandle = scheduler.scheduleAtFixedRate(new Runnable() {
+      public void run() {
+        System.out.println("beep");
+      }
+    }, 10, 10, SECONDS);
+
+    scheduler.schedule(new Runnable() {
+      public void run() {
+        beeperHandle.cancel(true);
+      }
+    }, 60 * 60, SECONDS);
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>concurrent.sample.ScheduledExecutorService</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
