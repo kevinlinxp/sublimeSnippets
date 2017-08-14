@@ -1,0 +1,46 @@
+<snippet>
+  <content><![CDATA[
+// require and instantiate express
+var express = require('express');
+var app = express();
+var path = require('path');
+
+var base = __dirname; // '/src', because we are using node src/app
+console.log('base: ', base);
+
+app.use('/bower_components', express.static(path.join(base, 'bower_components')));
+app.use('/runtime', express.static(path.join(base, 'bower_components/rds-schemaform-runtime/build')));
+app.use('/runtime/bower_components', express.static(path.join(base, 'bower_components')));
+app.use(express.static(path.join(base, 'src')));
+
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(base, 'src/form-designer.html'));
+});
+
+app.get('/runtime/', (req, res) => {
+  var formKey = req.query.formKey;
+  var theme = req.query.theme || 'system-builder';
+  // render `form-runtime.ejs` with the list of posts
+  res.render(path.join(base, 'bower_components/rds-schemaform-runtime/build/form-runtime.ejs'), {
+    formKey: formKey,
+    theme: theme
+  });
+});
+
+app.set('port', 3000);
+
+// Listen for requests
+var server = app.listen(app.get('port'), function () {
+  var port = server.address().port;
+  console.log('Listening on port ' + port);
+});
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>nodejs.express.sample.form-designer</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

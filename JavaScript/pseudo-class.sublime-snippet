@@ -1,0 +1,32 @@
+<snippet>
+  <content><![CDATA[
+function ${1:Class} (/* params */) {
+  // Public properties, assigned to the instance ('this')
+  this.publicProp1 = [];
+  this.publicProp2 = {};
+
+  // Private properties, assigned to the instance ('this')
+  this._privateProp1 = [];
+  this._privateProp2 = {};
+}
+
+/**
+ * Public methods
+ */
+${1}.prototype.publicMethod = function (/* params */) {
+};
+
+/**
+ * Private methods
+ */
+function _privateMethod1 (/* params */) {
+}
+
+function _privateMethod2 (/* params */) {
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>psuedo-class</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
