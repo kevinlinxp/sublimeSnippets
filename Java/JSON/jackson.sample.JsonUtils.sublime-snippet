@@ -1,0 +1,248 @@
+<snippet>
+  <content><![CDATA[
+package au.com.rds.schemaformbuilder.util;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.BinaryNode;
+import com.fasterxml.jackson.databind.node.BooleanNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.NullNode;
+import com.fasterxml.jackson.databind.node.NumericNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.TextNode;
+import com.fasterxml.jackson.databind.node.ValueNode;
+import com.fasterxml.jackson.databind.util.RawValue;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+public class JsonUtils
+{
+
+  private static ObjectMapper objectMapper = new ObjectMapper();
+
+  private static JsonNodeFactory nodeFactory = objectMapper.getNodeFactory();
+
+  public static JsonNode toJsonNode(String jsonString)
+  {
+    JsonNode result;
+    try
+    {
+      result = objectMapper.readTree(jsonString);
+    }
+    catch (IOException e)
+    {
+      throw new IllegalArgumentException("Invalid JSON string: " + jsonString);
+    }
+    return result;
+  }
+
+  public static ObjectNode toObjectNode(String jsonString)
+  {
+    JsonNode result;
+    try
+    {
+      result = objectMapper.readTree(jsonString);
+      if (!result.isObject())
+      {
+        throw new IllegalStateException(result.toString() + "\n The result above is not an json object");
+      }
+    }
+    catch (IOException e)
+    {
+      throw new IllegalArgumentException("Invalid JSON string: " + jsonString);
+    }
+    return (ObjectNode) result;
+  }
+
+  public static ArrayNode toJsonArray(String jsonString)
+  {
+    JsonNode result;
+    try
+    {
+      result = objectMapper.readTree(jsonString);
+      if (!result.isArray())
+      {
+        throw new IllegalStateException(result.toString() + "\n The result above is not an json array");
+      }
+    }
+    catch (IOException e)
+    {
+      throw new IllegalArgumentException("Invalid JSON string: " + jsonString);
+    }
+    return (ArrayNode) result;
+  }
+
+  public static JsonNode fromJson(InputStream is)
+  {
+    JsonNode result;
+    try
+    {
+      result = objectMapper.readTree(is);
+    }
+    catch (IOException e)
+    {
+      throw new RuntimeException(e);
+    }
+    return result;
+  }
+
+  public static JsonNode fromJson(String json)
+  {
+    JsonNode result;
+    try
+    {
+      result = objectMapper.readTree(json);
+    }
+    catch (IOException e)
+    {
+      throw new RuntimeException(e);
+    }
+    return result;
+  }
+
+  public static ObjectNode newObject()
+  {
+    return nodeFactory.objectNode();
+  }
+
+  public static ArrayNode newArray()
+  {
+    return nodeFactory.arrayNode();
+  }
+
+  public static ArrayNode concat(ArrayNode... arrays)
+  {
+    ArrayNode result = newArray();
+    for (ArrayNode array : arrays)
+    {
+      result.addAll(array);
+    }
+    return result;
+  }
+
+  public static BooleanNode booleanNode(boolean v)
+  {
+    return nodeFactory.booleanNode(v);
+  }
+
+  public static NullNode nullNode()
+  {
+    return nodeFactory.nullNode();
+  }
+
+  public static NumericNode numberNode(byte v)
+  {
+    return nodeFactory.numberNode(v);
+  }
+
+  public static ValueNode numberNode(Byte value)
+  {
+    return nodeFactory.numberNode(value);
+  }
+
+  public static NumericNode numberNode(short v)
+  {
+    return nodeFactory.numberNode(v);
+  }
+
+  public static ValueNode numberNode(Short value)
+  {
+    return nodeFactory.numberNode(value);
+  }
+
+  public static NumericNode numberNode(int v)
+  {
+    return nodeFactory.numberNode(v);
+  }
+
+  public static ValueNode numberNode(Integer value)
+  {
+    return nodeFactory.numberNode(value);
+  }
+
+  public static NumericNode numberNode(long v)
+  {
+    return nodeFactory.numberNode(v);
+  }
+
+  public static ValueNode numberNode(Long value)
+  {
+    return nodeFactory.numberNode(value);
+  }
+
+  public static ValueNode numberNode(BigInteger v)
+  {
+    return nodeFactory.numberNode(v);
+  }
+
+  public static NumericNode numberNode(float v)
+  {
+    return nodeFactory.numberNode(v);
+  }
+
+  public static ValueNode numberNode(Float value)
+  {
+    return nodeFactory.numberNode(value);
+  }
+
+  public static NumericNode numberNode(double v)
+  {
+    return nodeFactory.numberNode(v);
+  }
+
+  public static ValueNode numberNode(Double value)
+  {
+    return nodeFactory.numberNode(value);
+  }
+
+  public static ValueNode numberNode(BigDecimal v)
+  {
+    return nodeFactory.numberNode(v);
+  }
+
+  public static TextNode textNode(String text)
+  {
+    return nodeFactory.textNode(text);
+  }
+
+  public static BinaryNode binaryNode(byte[] data)
+  {
+    return nodeFactory.binaryNode(data);
+  }
+
+  public static BinaryNode binaryNode(byte[] data, int offset, int length)
+  {
+    return nodeFactory.binaryNode(data, offset, length);
+  }
+
+  public static ArrayNode arrayNode()
+  {
+    return nodeFactory.arrayNode();
+  }
+
+  public static ObjectNode objectNode()
+  {
+    return nodeFactory.objectNode();
+  }
+
+  public static ValueNode pojoNode(Object pojo)
+  {
+    return nodeFactory.pojoNode(pojo);
+  }
+
+  public static ValueNode rawValueNode(RawValue value)
+  {
+    return nodeFactory.rawValueNode(value);
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jackson.sample.JsonUtils</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
