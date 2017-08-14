@@ -1,0 +1,37 @@
+<snippet>
+  <content><![CDATA[
+// Keyword defined by 'compile function'
+ajv.addKeyword('range', {
+  type: 'number',
+  // During schema compilation, compile function will be passed:
+  //   schema,
+  //   parent schema,
+  //   schema compilation context
+  compile: function (sch, parentSchema) {
+    var min = sch[0];
+    var max = sch[1];
+
+    // Should return a validation function, which willbe passed the
+    // following params during validation:
+    //   data
+    //   current data path
+    //   parent data object
+    //   the property name in the parent data object
+    //   the root data
+    return parentSchema.exclusiveRange === true
+          ? function (data) { return data > min && data < max; }
+          : function (data) { return data >= min && data <= max; }
+  },
+  errors: false,
+  metaSchema: {
+    type: 'array',
+    items: [ { type: 'number' }, { type: 'number' } ],
+    additionalItems: false
+  }
+});
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>ajv.addKeyword-compile</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+// Keyword defined by 'validation function'
+ajv.addKeyword('constant', {
+  // Validation function will be passed:
+  //   schema,
+  //   data,
+  //   parent schema,
+  //   current data path,
+  //   parent data object
+  //   the property name in the parent data object
+  //   the root data
+  validate: function (schema, data) {
+    return typeof schema == 'object' && schema !== null
+          ? angular.equals(schema, data)
+          : schema === data;
+  },
+  errors: false
+});
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>ajv.addKeyword-validate</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

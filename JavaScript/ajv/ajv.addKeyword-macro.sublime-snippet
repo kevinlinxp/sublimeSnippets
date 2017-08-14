@@ -1,0 +1,45 @@
+<snippet>
+  <content><![CDATA[
+// Keyword defined by 'macro' function
+ajv.addKeyword('range_v2', {
+  type: 'number',
+  // During schema compilation, macro function will be passed:
+  //   schema,
+  //   parent schema,
+  //   schema compilation context
+  macro: function (schema, parentSchema) {
+    // Should return another schema that will be applied to the
+    // data in addition to the original schema:
+    return {
+      minimum: schema[0],
+      maximum: schema[1],
+      exclusiveMinimum: !!parentSchema.exclusiveRange,
+      exclusiveMaximum: !!parentSchema.exclusiveRange
+    };
+  },
+  metaSchema: {
+    type: 'array',
+    items: [ { type: 'number' }, { type: 'number' } ],
+    additionalItems: false
+  }
+});
+
+// Another macro example
+ajv.addKeyword('contains', {
+  type: 'array',
+  macro: function (schema) {
+    return {
+      "not": {
+        "items": {
+          "not": schema
+        }
+      }
+    };
+  }
+});
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>ajv.addKeyword-macro</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
