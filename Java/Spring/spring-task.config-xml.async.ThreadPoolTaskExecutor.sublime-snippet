@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+<!-- Option 1: Conventional bean configuration -->
+<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+    <property name="corePoolSize" value="5" />
+    <property name="maxPoolSize" value="10" />
+    <property name="queueCapacity" value="25" />
+</bean>
+
+<!-- Option 2: Use the task namespace -->
+<task:executor
+  id="taskExecutor"
+  pool-size="5-10"
+  queue-capacity="25"
+  rejection-policy="AbortPolicy|DiscardPolicy|DiscardOldestPolicy|CALLER_RUNS"/>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-task.config-xml.async.ThreadPoolTaskExecutor</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

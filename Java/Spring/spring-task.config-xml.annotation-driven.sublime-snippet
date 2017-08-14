@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+<task:annotation-driven executor="taskExecutor" scheduler="taskScheduler"/>
+<!-- An executor reference is provided for handling those tasks that correspond to methods with the @Async annotation -->
+<task:executor id="taskExecutor" pool-size="5"/>
+<!-- An scheduler reference is provided for managing those methods annotated with @Scheduled -->
+<task:scheduler id="taskScheduler" pool-size="10"/>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-task.config-xml.annotation-driven</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

@@ -1,9 +1,8 @@
 <snippet>
   <content><![CDATA[
 // Add @EnableScheduling to one of your @Configuration classes to enable @Scheduled
-// Add @EnableAsync to one of your @Configuration classes to enable @Async (unnecessary if using @Scheduled(fixedRate=...))
 // Need to use class-based proxy by CGLIB (instead of interface-based JDK dynamic proxy) to support protected/package level methods
-@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+// @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Service
 public class ServiceImpl implements Service {
 
@@ -15,7 +14,7 @@ public class ServiceImpl implements Service {
   //...
 
   @Scheduled(cron="0 * * * * ?")
-  protected void theTask()
+  public void theTask()
   {
     // To address the common bypassing proxy issue, consider refactoring the code to another implementation class and call it through its interface (thus it can be proxied)
     final TransactionTemplate txTemplate = new TransactionTemplate(txManager);
@@ -23,8 +22,7 @@ public class ServiceImpl implements Service {
       @Override
       protected void doInTransactionWithoutResult(TransactionStatus status)
       {
-        // Get xxx from dao
-        dao.update(xxx);
+        this.update(xxx);
       }
     });
   }

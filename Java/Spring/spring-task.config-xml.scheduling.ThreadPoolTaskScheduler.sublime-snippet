@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+<task:scheduler id="scheduler" pool-size="10"/>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-task.config-xml.scheduling.ThreadPoolTaskScheduler</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
