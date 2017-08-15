@@ -9,5 +9,5 @@
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>spring-task.config-xml.annotation-driven</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.java, text.plain</scope>
+  <scope>text.xml, text.plain</scope>
 </snippet>

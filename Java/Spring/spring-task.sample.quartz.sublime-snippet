@@ -1,0 +1,30 @@
+<snippet>
+  <content><![CDATA[
+<bean name="${2:sfbFileUploadRemoveJob}" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+  <property name="jobClass" value="${1:your.class.extending.QuartzJobBean}"/>
+  <property name="jobDataAsMap">
+    <map>
+      <entry key="sfbFileUploadService" value-ref="fooServiceImpl"/>
+    </map>
+  </property>
+</bean>
+
+<bean id="${3:${2}Trigger}" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+  <property name="jobDetail" ref="${1}"/>
+  <property name="startDelay" value="10000"/>
+  <property name="repeatInterval" value="15000"/>
+</bean>
+
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+    <list>
+      <ref bean="${3}"/>
+    </list>
+  </property>
+</bean>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-task.sample.quartz</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
