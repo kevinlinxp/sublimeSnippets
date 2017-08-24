@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-angular.bootstrap(${1:document}, ['${2:rds-schemaform-service}']);
+angular.bootstrap(${1:document}, ['${2:app-module}']);
 ]]></content>
   <tabTrigger>ngbootstrap</tabTrigger>
   <scope>text.plain, source.js</scope>

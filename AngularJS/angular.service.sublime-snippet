@@ -5,17 +5,17 @@
 
   angular
     .module('${1:module}')
-    .service('${2:Service}', ${2:Service});
+    .service('${2:ServiceId}', ${2});
 
-  ${2:Service}.\$inject = [${3/(\$(\w+)|\w+)/'$1'/g}];
+  ${2}.\$inject = [${3/(\$(\w+)|\w+)/'$1'/g}];
 
   /* @ngInject */
-  function ${2:Service} (${3:dependencies}) {
-    this.${4:func} = ${4:func};
+  function ${2} (${3:dependencies}) {
+    this.${4} = ${4};
 
     ////////////////
 
-    function ${4:function} () {
+    function ${4:func} () {
     }
   }
 })();

@@ -9,9 +9,12 @@
 
   config.\$inject = [${2/(\$(\w+)|\w+)/'$1'/g}];
 
-  function config (${2:dependencies}) {
-    ${3}
-  }
+  function config (${2:\$provide, \$compileProvider, \$filterProvider, MY_CONSTANT}) {
+    ${3:\$provide.value('a', 123);
+    \$provide.factory('a', function() { return 123; \});
+    \$compileProvider.directive('directiveName', ...);
+    \$filterProvider.register('filterName', ...);
+  \}}
 
 })();
 ]]></content>
