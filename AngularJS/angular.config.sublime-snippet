@@ -13,8 +13,8 @@
     ${3:\$provide.value('a', 123);
     \$provide.factory('a', function() { return 123; \});
     \$compileProvider.directive('directiveName', ...);
-    \$filterProvider.register('filterName', ...);
-  \}}
+    \$filterProvider.register('filterName', ...);}
+  }
 
 })();
 ]]></content>
