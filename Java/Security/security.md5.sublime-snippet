@@ -1,0 +1,86 @@
+<snippet>
+  <content><![CDATA[
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+/**
+ * 这里MD5_16取了MD5_32的中间16位
+ *
+ * @author hehui
+ */
+public class MD5
+{
+
+  private static String byte2Hex(byte b)
+  {
+    int value = (b & 0x7F) + (b < 0 ? 0x80 : 0);
+    return (value < 0x10 ? "0" : "") + Integer.toHexString(value).toLowerCase();
+  }
+
+  public static String MD5_32(String passwd) throws NoSuchAlgorithmException
+  {
+    MessageDigest md5 = MessageDigest.getInstance("MD5");
+    StringBuffer strbuf = new StringBuffer();
+
+    md5.update(passwd.getBytes(), 0, passwd.length());
+    byte[] digest = md5.digest();
+
+    for (int i = 0; i < digest.length; i++)
+    {
+      strbuf.append(byte2Hex(digest[i]));
+    }
+
+    return strbuf.toString();
+  }
+
+  public static String MD5_16(String passwd) throws NoSuchAlgorithmException
+  {
+    return MD5_32(passwd).subSequence(8, 24).toString();
+  }
+
+  public static String change2MD5(String srcString)
+  {
+    MessageDigest md = null;
+    try
+    {
+      md = MessageDigest.getInstance("MD5");
+    }
+    catch (NoSuchAlgorithmException nsae)
+    {
+      return "";
+    }
+
+    byte[] md5Bytes = md.digest(srcString.getBytes());
+    int tmpInt = 0;
+    StringBuffer sb = new StringBuffer();
+    for (int i = 0; i < md5Bytes.length; i++)
+    {
+      tmpInt = (int) (md5Bytes[i] & 0xff);
+      if (tmpInt < 16)
+      {
+        sb.append("0");
+      }
+      sb.append(Integer.toHexString(tmpInt));
+    }
+    return sb.toString();
+  }
+
+  public static void main(String[] args)
+  {
+    try
+    {
+      System.out.println(MD5_32("www.google.com"));
+      System.out.println(MD5_16("www.google.com"));
+    }
+    catch (NoSuchAlgorithmException e)
+    {
+      e.printStackTrace();
+    }
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>security.md5</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

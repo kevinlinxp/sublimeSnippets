@@ -1,0 +1,63 @@
+<snippet>
+  <content><![CDATA[
+Directive           Priority
+---------------     -----------
+ng-switch           1200
+ng-non-bindable     1000
+ng-repeat           1000
+ng-if               600
+ng-controller       500
+ng-init             450
+ng-include          400
+ng-checked          100
+ng-disabled         100
+ng-open             100
+ng-readonly         100
+ng-selected         100
+ng-href             99
+ng-src              99
+ng-srcset           99
+ng-model            1
+ng-app              0
+ng-bind             0
+ng-bind-html        0
+ng-bind-template    0
+ng-blur             0
+ng-change           0
+ng-class            0
+ng-class-even       0
+ng-class-odd        0
+ng-click            0
+ng-cloak            0
+ng-copy             0
+ng-csp              0
+ng-cut              0
+ng-dbl-click        0
+ng-focus            0
+ng-form             0
+ng-hide             0
+ng-keydown          0
+ng-keypress         0
+ng-keyup            0
+ng-list             0
+ng-model-options    0
+ng-mousedown        0
+ng-mouseenter       0
+ng-mouseleave       0
+ng-mousemove        0
+ng-mouseover        0
+ng-mouseup          0
+ng-options          0
+ng-paste            0
+ng-pluralize        0
+ng-show             0
+ng-style            0
+ng-submit           0
+ng-transclude       0
+ng-value            0
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>ngdirective-priority-list</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

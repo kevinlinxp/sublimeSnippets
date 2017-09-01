@@ -1,0 +1,24 @@
+<snippet>
+  <content><![CDATA[
+@RequestMapping("/download/{id}")
+public ResponseEntity<?> downloadAttachment(@PathVariable("id") Long id) throws IOException
+{
+  SfbSimpleAttachment attachment = attachmentService.findOne(id);
+  if (attachment == null)
+  {
+    // return new ResponseEntity(HttpStatus.NOT_FOUND);
+    return ResponseEntity.notFound().build();
+  }
+  final HttpHeaders headers = new HttpHeaders();
+  headers.setContentType(MediaType.valueOf(attachment.getMimeType()));
+  headers.setContentLength(attachment.getFileSize());
+  headers.setContentDispositionFormData("attachment", attachment.getOriginalName());
+  // return new ResponseEntity<>(attachment.getBytes(), headers, HttpStatus.OK);
+  return ResponseEntity.ok().headers(headers).body(attachment.getBytes());
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-mvc.controller.@RequestMapping-method.file-download</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, source.java</scope>
+</snippet>
