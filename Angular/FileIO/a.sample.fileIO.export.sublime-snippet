@@ -1,0 +1,43 @@
+<snippet>
+  <content><![CDATA[
+// foo.component.ts:
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ViewChild, ElementRef } from '@angular/core';
+
+export FooComponent {
+
+  @ViewChild('exportAssister')
+  exportAssister: ElementRef;
+  exportUrl: SafeUrl;
+
+  constructor(
+    private sanitizer: DomSanitizer
+  ) { }
+
+  exportAsJsonFile() {
+    const theJSON = JSON.stringify(...);
+    const uri = this.sanitizer.bypassSecurityTrustUrl('data:text/json;charset=UTF-8,' + encodeURIComponent(theJSON));
+    this.exportUrl = uri;
+    setTimeout(() => {
+      // Wait half second for the new exportUrl to be synchronised to the assister DOM element.
+      // TODO: Any better approach?
+      (this.exportAssister.nativeElement as HTMLElement).click();
+    }, 500);
+  }
+
+}
+
+// foo.template.html
+<a class="btn btn-clear" title="Export Form" (click)="exportAsJsonFile()">
+  Export Form...
+</a>
+<a #exportAssister class="hidden" [href]="exportUrl"
+  type="application/json" download="{{ currentFormDesignKey ? currentFormDesignKey + '.json' : 'untitled.json' }}">
+  Hidden Export Assister Link
+</a>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>a.sample.fileIO.export</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.ts, text.plain</scope>
+</snippet>

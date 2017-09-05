@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
 <div class="btn-group">
-  <button type="button" class="btn btn-default navbar-btn">{1:Button Label}</button>
+  <button type="button" class="btn btn-default navbar-btn">${1:Button Label}</button>
   <button type="button" class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span class="caret"></span>
     <span class="sr-only">Toggle Dropdown</span>

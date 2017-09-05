@@ -11,7 +11,7 @@ export class ${1}Component {
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>ng2.component</tabTrigger>
+  <tabTrigger>a.component</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.ts, text.plain</scope>
 </snippet>

@@ -1,0 +1,41 @@
+<snippet>
+  <content><![CDATA[
+// foo.component.ts:
+
+export FooComponent {
+
+  fileInputChangeListener($event) {
+    this.readFile($event.target);
+  }
+
+  private readFile(fileInput: any) {
+    const file: File = fileInput.files[0];
+    const fileReader: FileReader = new FileReader();
+    fileReader.onloadend = (e) => {
+      const contentAsJson = JSON.parse(fileReader.result);
+      if (!contentAsJson) {
+        return;
+      }
+      this._currentFormDesign.model = contentAsJson;
+      // Reset the fileInput's value so that the next change can be detected
+      // event if it's the same file
+      fileInput.value = '';
+    };
+    fileReader.readAsText(file);
+  }
+
+}
+
+// foo.template.html
+<label>
+  From File...
+  <input type="file" class="hidden" accept=".json"
+    #fileInput name="file" (change)="fileInputChangeListener($event)">
+</label>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>a.sample.fileIO.import</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.ts, text.plain</scope>
+</snippet>
+
