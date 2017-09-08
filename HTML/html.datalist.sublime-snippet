@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+<label>Choose a browser from this list:
+<input list="${1:browsers}" name="${2:name}"/></label>
+<datalist id="${1}">
+  <option value="Chrome">
+  <option value="Firefox">
+  <option value="Internet Explorer">
+  <option value="Opera">
+  <option value="Safari">
+  <option value="Microsoft Edge">
+</datalist>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>html.datalist</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html, text.plain</scope>
+</snippet>
