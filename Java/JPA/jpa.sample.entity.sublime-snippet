@@ -1,12 +1,10 @@
 <snippet>
     <content><![CDATA[
-package ${1:com.group.artifact.domain};
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "${2:TABLE_NAME}")
-public class ${3:EntityName} {
+@Table(schema=${1:SERVICES}, name = "${2:SFB_FORM_DESIGN}") // @Table configuration can be overriden in orm.xml
+public class ${3:FormDesign} {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;

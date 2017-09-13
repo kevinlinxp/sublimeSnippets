@@ -2,8 +2,21 @@
   <content><![CDATA[
 <context:component-scan base-package="${1:foo.bar}"/>
 
+<context:component-scan base-package="${1}" name-generator="x.y.z.impl.of.AnnotationBeanNameGenerator"/>
+
 <context:component-scan base-package="${1}" use-default-filters="false">
   <context:include-filter type="regex" expression=".*Impl"/>
+</context:component-scan>
+
+<!-- Often used in a Dispatcher Servlet's context which has a root context containing other service and dao beans -->
+<context:component-scan base-package="${1}" use-default-filters="false">
+  <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+</context:component-scan>
+
+<!-- Often used in a root context which has 1-N Dispatcher Servlet context(s) -->
+<context:component-scan base-package="${1}" use-default-filters="false">
+  <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+  <context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
 </context:component-scan>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

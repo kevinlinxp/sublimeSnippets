@@ -1,9 +1,9 @@
 <snippet>
   <content><![CDATA[
-<mvc:default-servlet-handler/>
+<jpa:repositories base-package="${1:foo.bar}" repository-impl-postfix="${2:CustomImpl}"/>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-mvc.config-xml.DefaultServletHandling</tabTrigger>
+  <tabTrigger>spring-data.config-xml.jpa-repositories</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>text.xml, text.plain</scope>
+  <scope>source.java, text.plain</scope>
 </snippet>
