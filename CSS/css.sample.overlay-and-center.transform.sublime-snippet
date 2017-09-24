@@ -1,0 +1,78 @@
+<snippet>
+  <content><![CDATA[
+<div style="position:relative; height: 200px"> <!-- The div to overlay -->
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  <div class="spinner-overlay"> <!-- Overlay the target -->
+    <div class="spinner-box"> <!-- The vertical center helper -->
+      <div class="spinner-icon"></div> <!-- The child element -->
+    </div>
+  </div>
+</div>
+
+.spinner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* right: 0; */
+  /* bottom: 0; */
+  width: 100%;
+  height: 100%;
+
+  background: rgba(255, 255, 255, 0.5);
+
+  z-index: 10001;
+  pointer-events: auto;
+}
+
+.spinner-box {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+
+  width: 140px;
+  height: 100px;
+
+  background-color: #f8f8f8;
+  border: 1px solid #d8d8d8;
+}
+
+.spinner-icon {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+
+  height: 14px;
+  width: 14px;
+
+  border:  solid 2px transparent;
+  border-top-color:  #29d;
+  border-left-color: #29d;
+  border-radius: 50%;
+
+  -webkit-animation: loading-bar-spinner 400ms linear infinite;
+  -moz-animation:    loading-bar-spinner 400ms linear infinite;
+  -ms-animation:     loading-bar-spinner 400ms linear infinite;
+  -o-animation:      loading-bar-spinner 400ms linear infinite;
+  animation:         loading-bar-spinner 400ms linear infinite;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>css.sample.overlay-and-center.transform</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.css, text.html, text.plain</scope>
+</snippet>
