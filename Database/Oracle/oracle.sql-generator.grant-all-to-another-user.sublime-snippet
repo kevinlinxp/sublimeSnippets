@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+SELECT
+  'GRANT ALL ON ${1:OWNER}.'||t.table_name||' TO ${2:ANOTHER};' AS GRANT_SQL
+FROM DBA_ALL_TABLES t WHERE t.owner = '${1}'
+UNION
+SELECT
+  'GRANT ALL ON ${1}.'||v.view_name||' TO ${2};' AS GRANT_SQL
+FROM DBA_VIEWS v WHERE v.owner = '${1}';
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oracle.sql-generator.grant-all-to-another-user</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>

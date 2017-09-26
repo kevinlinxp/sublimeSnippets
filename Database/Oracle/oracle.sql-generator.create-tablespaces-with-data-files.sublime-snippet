@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+SELECT DISTINCT
+  'CREATE TABLESPACE '||sgm.TABLESPACE_NAME||' DATAFILE ''/data/oracle/zonkey/zonkey5/'||substr(dtf.FILE_NAME, INSTR(dtf.FILE_NAME, '\', -1) + 1)||''' SIZE 5M AUTOEXTEND ON MAXSIZE UNLIMITED;' as CREATE_SQL,
+  substr(dtf.FILE_NAME, INSTR(dtf.FILE_NAME, '\', -1) + 1) as DATA_FILE_PATH
+FROM DBA_SEGMENTS sgm
+JOIN DBA_DATA_FILES dtf ON (sgm.TABLESPACE_NAME = dtf.TABLESPACE_NAME);
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oracle.sql-generator.create-tablespaces-with-data-files</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>
