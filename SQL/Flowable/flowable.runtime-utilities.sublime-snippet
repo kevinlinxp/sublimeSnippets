@@ -1,70 +1,69 @@
 <snippet>
   <content><![CDATA[
--- New, with procedures --
-exec survey2.ACTIVITI_CATALOG.DELETE_PROC_INST(1);
+-- New, using procedures
+EXEC survey2.ACTIVITI_CATALOG.DELETE_PROC_INST(1);
 
-exec survey2.activiti_catalog.delete_proc_inst(1212573);
-exec survey2.activiti_catalog.delete_hist_proc_inst(1212573);
-exec survey2.activiti_catalog.delete_many_proc_inst('sbk-1-2');
+EXEC survey2.activiti_catalog.delete_proc_inst(1212573);
+EXEC survey2.activiti_catalog.delete_hist_proc_inst(1212573);
+EXEC survey2.activiti_catalog.delete_many_proc_inst('sbk-1-2');
 
-exec survey2.activiti_catalog.delete_many_proc_inst('DME-1', '01/MAR/17 02:03:47.729000000 PM');
+EXEC survey2.activiti_catalog.delete_many_proc_inst('DME-1', '01/MAR/17 02:03:47.729000000 PM');
 
-
--- run this query to find start_time_ you want to delete 'before'
-select *
-from survey2.act_hi_procinst ahip
-join survey2.act_re_procdef arep on arep.id_ = ahip.proc_def_id_
-where arep.name_ = 'DME-1'
---and ahip.start_time_ < '20/FEB/17 04:15:54.058000000 PM'
-and ahip.end_time_ is null
-order by ahip.start_time_ desc;
+-- Run this query to find start_time_ you want to delete 'before'
+SELECT *
+FROM survey2.act_hi_procinst ahip
+JOIN survey2.act_re_procdef arep on arep.id_ = ahip.proc_def_id_
+WHERE arep.name_ = 'DME-1'
+--AND ahip.start_time_ < '20/FEB/17 04:15:54.058000000 PM'
+AND ahip.end_time_ IS NULL
+ORDER BY ahip.start_time_ DESC;
 
 -- paste start time in to these 5 queries
-delete from survey2.act_ru_variable rv
-where rv.proc_inst_id_ in (
- select proc_inst_id_ from survey2.act_hi_procinst hp
- where hp.proc_def_id_ like 'DME-1:%'
- and hp.start_time_ < '21/FEB/17 12:41:08.371000000 PM'
- and hp.end_time_ is null
+DELETE FROM survey2.act_ru_variable rv
+WHERE rv.proc_inst_id_ IN (
+  SELECT proc_inst_id_ FROM survey2.act_hi_procinst hp
+  WHERE hp.proc_def_id_ LIKE 'DME-1:%'
+  AND hp.start_time_ < '21/FEB/17 12:41:08.371000000 PM'
+  AND hp.end_time_ IS NULL
 );
 
-delete from survey2.act_ru_identitylink ri
-where ri.task_id_ in (
- select id_ from survey2.act_ru_task rt
- where rt.proc_inst_id_ in (
-  select proc_inst_id_ from survey2.act_hi_procinst hp
-  where hp.proc_def_id_ like 'DME-1:%'
-  and hp.start_time_ < '21/FEB/17 12:41:08.371000000 PM'
-  and hp.end_time_ is null
- )
+DELETE FROM survey2.act_ru_identitylink ri
+WHERE ri.task_id_ IN (
+  SELECT id_ FROM survey2.act_ru_task rt
+  WHERE rt.proc_inst_id_ IN (
+    SELECT proc_inst_id_ FROM survey2.act_hi_procinst hp
+    WHERE hp.proc_def_id_ LIKE 'DME-1:%'
+    AND hp.start_time_ < '21/FEB/17 12:41:08.371000000 PM'
+    AND hp.end_time_ IS NULL
+  )
 );
 
-delete from survey2.act_ru_identitylink ri
-where ri.proc_inst_id_ in (
- select proc_inst_id_ from survey2.act_hi_procinst hp
- where hp.proc_def_id_ like 'DME-1:%'
- and hp.start_time_ < '21/FEB/17 12:41:08.371000000 PM'
- and hp.end_time_ is null
+DELETE FROM survey2.act_ru_identitylink ri
+WHERE ri.proc_inst_id_ IN (
+  SELECT proc_inst_id_ FROM survey2.act_hi_procinst hp
+  WHERE hp.proc_def_id_ LIKE 'DME-1:%'
+  AND hp.start_time_ < '21/FEB/17 12:41:08.371000000 PM'
+  AND hp.end_time_ IS NULL
 );
 
-delete from survey2.act_ru_task rt
-where rt.proc_inst_id_ in (
- select proc_inst_id_ from survey2.act_hi_procinst hp
- where hp.proc_def_id_ like 'DME-1:%'
- and hp.start_time_ < '21/FEB/17 12:41:08.371000000 PM'
- and hp.end_time_ is null
+DELETE FROM survey2.act_ru_task rt
+WHERE rt.proc_inst_id_ IN (
+  SELECT proc_inst_id_ FROM survey2.act_hi_procinst hp
+  WHERE hp.proc_def_id_ LIKE 'DME-1:%'
+  AND hp.start_time_ < '21/FEB/17 12:41:08.371000000 PM'
+  AND hp.end_time_ IS NULL
 );
 
-delete from survey2.act_ru_execution rp
-where rp.proc_inst_id_ in (
- select proc_inst_id_ from survey2.act_hi_procinst hp
- where hp.proc_def_id_ like 'DME-1:%'
- and hp.start_time_ < '21/FEB/17 12:41:08.371000000 PM'
- and hp.end_time_ is null
+DELETE FROM survey2.act_ru_execution rp
+WHERE rp.proc_inst_id_ IN (
+  SELECT proc_inst_id_ FROM survey2.act_hi_procinst hp
+  WHERE hp.proc_def_id_ LIKE 'DME-1:%'
+  AND hp.start_time_ < '21/FEB/17 12:41:08.371000000 PM'
+  AND hp.end_time_ IS NULL
 );
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>flowable.runtime-utilities</tabTrigger>
-  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- Optional: Set a scope to limit WHERE the snippet will trigger -->
   <scope>source.sql, text.plain</scope>
 </snippet>
