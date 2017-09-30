@@ -1,11 +1,9 @@
 <snippet>
   <content><![CDATA[
-<c:when test="\${not empty transactionList}">...</c:when>
-<td rowspan="\${fn:length(tx.lineItems)}">...</td>
-<fmt:formatDate value="\${tx.createdTs}" pattern="yyyy-MM-dd HH:mm:ss"/>
+\${not empty ${1:transactionList}}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>jsp.jstl.fn-and-fmt</tabTrigger>
+  <tabTrigger>jsp.jstl.not-empty</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.jsp, text.plain</scope>
 </snippet>

@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+<fmt:formatDate value="\${${1:tx.createdTs}}" pattern="yyyy-MM-dd HH:mm:ss"/>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jsp.jstl.fmt-formatDate</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.jsp, text.plain</scope>
+</snippet>
