@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-javadoc-plugin</artifactId>
+  <version>2.3</version>
+  <executions>
+    <execution>
+      <id>attach-javadocs</id>
+      <goals>
+        <goal>jar</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mvn.pom.build-plugins-plugin.maven-javadoc-plugin</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, text.xml</scope>
+</snippet>
