@@ -1,18 +1,11 @@
 <snippet>
   <content><![CDATA[
-@Repository
-public class JpaMovieFinder implements MovieFinder {
-
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    // ...
-
-}
-
+jdbcTemplate.update(
+    "${1:call SUPPORT.REFRESH_ACTORS_SUMMARY(?)}",
+    new Object[] {Long.valueOf(unionId)});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-data.repository.jpa</tabTrigger>
+  <tabTrigger>spring-jdbc.jdbcTemplate.update-call-stored-procedure</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

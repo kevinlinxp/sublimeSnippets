@@ -1,13 +1,13 @@
 <snippet>
   <content><![CDATA[
 @Repository
-public class HibernateMovieFinder implements MovieFinder {
+public class JdbcMovieFinder implements MovieFinder {
 
-    private SessionFactory sessionFactory;
+    private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public void setDataSource(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     // ...
@@ -16,7 +16,7 @@ public class HibernateMovieFinder implements MovieFinder {
 
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-data.repository.hibernate</tabTrigger>
+  <tabTrigger>spring-jdbc.repository</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

@@ -14,7 +14,7 @@ private static class ${1:DataFetcher}RowMapper implements RowMapper<${1}>
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-data.rowMapper</tabTrigger>
+  <tabTrigger>spring-jdbc.rowMapper</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

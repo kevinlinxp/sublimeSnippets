@@ -1,11 +1,18 @@
 <snippet>
   <content><![CDATA[
-jdbcTemplate.update(
-    ${1:sql},
-    new Object[] {${2:params}});
+@Repository
+public class JpaMovieFinder implements MovieFinder {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    // ...
+
+}
+
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-data.jdbcTemplate.update, insert, delete</tabTrigger>
+  <tabTrigger>spring-data.jpa-repository</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

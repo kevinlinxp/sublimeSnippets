@@ -1,12 +1,9 @@
 <snippet>
   <content><![CDATA[
-jdbcTemplate.queryForObject(
-    "${1:select last_name from t_actor where id = ?}",
-    new Object[] {${2:1234L}},
-    ${3:String}.class)
+jdbcTemplate.execute("create table mytable (id integer, name varchar(100))");
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-data.jdbcTemplate.queryForObject-returning-primitive</tabTrigger>
+  <tabTrigger>spring-jdbc.jdbcTemplate.execute-create-table</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

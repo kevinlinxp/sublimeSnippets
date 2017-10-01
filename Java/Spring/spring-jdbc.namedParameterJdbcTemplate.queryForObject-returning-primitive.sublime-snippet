@@ -6,7 +6,7 @@ namedParameterJdbcTemplate.queryForObject(
     ${2:String}.class)
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-data.namedParameterJdbcTemplate.queryForObject-returning-primitive</tabTrigger>
+  <tabTrigger>spring-jdbc.namedParameterJdbcTemplate.queryForObject-returning-primitive</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>
