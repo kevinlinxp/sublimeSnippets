@@ -1,4 +1,3 @@
-
 <snippet>
   <content><![CDATA[
 // true if the callback function returns a truthy value for EVERY array element; otherwise, false.
