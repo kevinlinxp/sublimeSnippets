@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+${2:tr a-z A-Z} << ${1:END_TEXT}
+one two three
+four five six
+${1}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>here</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

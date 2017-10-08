@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+var form = scope.myForm;
+
+if (form.$invalid) {
+  // $error Is an object hash, containing references to controls or forms with failing validators.
+  angular.forEach(form.$error, function(controls, errorName) {
+    angular.forEach(controls, function(control) {
+      control.$setDirty();
+    });
+  });
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>angular.dirty-all-form-fields</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
