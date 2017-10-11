@@ -1,0 +1,27 @@
+<snippet>
+  <content><![CDATA[
+@Autowired
+public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+  auth
+      .inMemoryAuthentication()
+          .withUser("user")
+              .password("password")
+              .roles("USER");
+}
+
+// -- or --
+
+// This is only used if the AuthenticationManagerBuilder has not been populated and no AuthenticationProviderBean is defined.
+@Bean
+public UserDetailsService userDetailsService() throws Exception {
+  InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+  manager.createUser(User.withUsername("user").password("password").roles("USER").build());
+  manager.createUser(User.withUsername("admin").password("password").roles("USER","ADMIN").build());
+  return manager;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-java.authenticate.in-memory</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

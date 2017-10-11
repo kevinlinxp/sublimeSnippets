@@ -1,0 +1,41 @@
+<snippet>
+  <content><![CDATA[
+protected void configure(HttpSecurity http) throws Exception {
+  http
+    .authorizeRequests()
+      // Specified multiple URL patterns that any user can access
+      .antMatchers("/resources/**", "/signup", "/about").permitAll()
+      // No need to specify the "ROLE_" prefix since we are invoking the hasRole method
+      .antMatchers("/admin/**").hasRole("ADMIN")
+      .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
+      // Any URL that has not already been matched on only requires that the user be authenticated
+      .anyRequest().authenticated()
+      .and()
+    // ...
+    .formLogin()
+    // ...
+    .logout()
+      .logoutUrl("/my/logout")
+      .logoutSuccessUrl("/my/index")
+      .logoutSuccessHandler(logoutSuccessHandler)
+      // -- LogoutSuccessHandlers --
+      // SimpleUrlLogoutSuccessHandler - use .logoutSuccessUrl as a shortcut for this
+      // HttpStatusReturningLogoutSuccessHandler
+      .invalidateHttpSession(true)
+      .addLogoutHandler(logoutHandler)
+      // -- LogoutHandlers --
+      // PersistentTokenBasedRememberMeServices
+      // TokenBasedRememberMeServices
+      // CookieClearingLogoutHandler - use .deleteCookies() as a shortcut for this
+      // CsrfLogoutHandler
+      // SecurityContextLogoutHandler
+      .deleteCookies(cookieNamesToClear)
+      .and()
+    // ...
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-java.HttpSecurity</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

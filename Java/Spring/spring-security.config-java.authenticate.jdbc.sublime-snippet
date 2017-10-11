@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+@Autowired
+private DataSource dataSource;
+
+@Autowired
+public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+  auth
+    .jdbcAuthentication()
+      .dataSource(dataSource)
+      .withDefaultSchema()
+      .withUser("user").password("password").roles("USER").and()
+      .withUser("admin").password("password").roles("USER", "ADMIN");
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-java.authenticate.jdbc</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
