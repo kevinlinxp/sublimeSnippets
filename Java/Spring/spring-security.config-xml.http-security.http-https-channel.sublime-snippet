@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+<http>
+  <intercept-url pattern="/secure/**" access="ROLE_USER" requires-channel="https"/>
+  <intercept-url pattern="/**" access="ROLE_USER" requires-channel="any"/>
+  ...
+  <!-- If your application uses non-standard ports for HTTP and/or HTTPS -->
+  <port-mappings>
+    <port-mapping http="9080" https="9443"/>
+  </port-mappings>
+</http>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-xml.http-security.http-https-channel</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

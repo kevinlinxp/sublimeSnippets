@@ -1,0 +1,35 @@
+<snippet>
+  <content><![CDATA[
+<!-- web.xml -->
+<listener>
+  <listener-class>
+    org.springframework.security.web.session.HttpSessionEventPublisher
+  </listener-class>
+</listener>
+
+<!-- security.xml -->
+<http>
+  ...
+  <session-management>
+    <!-- A second login will cause the first to be invalidated -->
+    <concurrency-control max-sessions="1" />
+  </session-management>
+</http>
+
+<http>
+  ...
+  <session-management>
+    <!--
+      A second login will be rejected:
+      • If form-based login is being used, the user will be sent to the authentication-failure-url.
+      • If the second authentication takes place through another non-interactive mechanism, such as "remember-me", an "unauthorized" (401) error will be sent.
+    -->
+    <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+  </session-management>
+</http>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-xml.http-security.session-management.concurrent-session-control</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

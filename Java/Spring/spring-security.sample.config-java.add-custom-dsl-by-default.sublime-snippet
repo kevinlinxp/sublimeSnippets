@@ -1,0 +1,22 @@
+<snippet>
+  <content><![CDATA[
+// Create a resource on the classpath named META-INF/spring.factories with the following contents:
+META-INF/spring.factories:
+org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer = sample.MyCustomDsl
+
+// Users wishing to disable the default can do so explicitly.
+@EnableWebSecurity
+public class Config extends WebSecurityConfigurerAdapter {
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http
+      .apply(customDsl()).disable()
+      ...;
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.sample.config-java.add-custom-dsl-by-default</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

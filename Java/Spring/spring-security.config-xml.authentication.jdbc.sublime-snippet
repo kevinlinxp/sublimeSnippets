@@ -1,0 +1,24 @@
+<snippet>
+  <content><![CDATA[
+<authentication-manager>
+  <authentication-provider user-service-ref='myUserDetailsService'/>
+</authentication-manager>
+
+<beans:bean id="myUserDetailsService"
+  class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+<beans:property name="dataSource" ref="dataSource"/>
+</beans:bean>
+
+<!-- or -->
+
+<authentication-manager>
+  <authentication-provider>
+    <jdbc-user-service data-source-ref="securityDataSource"/>
+  </authentication-provider>
+</authentication-manager>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-xml.authentication.jdbc</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

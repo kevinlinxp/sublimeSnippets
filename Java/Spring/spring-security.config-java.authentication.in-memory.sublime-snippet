@@ -21,7 +21,7 @@ public UserDetailsService userDetailsService() throws Exception {
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-security.config-java.authenticate.in-memory</tabTrigger>
+  <tabTrigger>spring-security.config-java.authentication.in-memory</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

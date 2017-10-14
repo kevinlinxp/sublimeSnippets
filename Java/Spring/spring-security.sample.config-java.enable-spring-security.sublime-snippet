@@ -1,0 +1,107 @@
+<snippet>
+  <content><![CDATA[
+// 1. Dependencies
+<dependency>
+  <groupId>org.springframework.security</groupId>
+  <artifactId>spring-security-web</artifactId>
+</dependency>
+<dependency>
+  <groupId>org.springframework.security</groupId>
+  <artifactId>spring-security-config</artifactId>
+</dependency>
+
+// 2. SecurityWebApplicationInitializer
+/**
+ * The {@link SecurityWebApplicationInitializer} will do the following things:
+ * <ul>
+ *   <li>
+ *     Automatically register the springSecurityFilterChain Filter for every url in your application
+ *   </li>
+ *   <li>
+ *     Add a ContextLoaderListener that loads the {@link SecurityConfig}
+ *   </li>
+ * </ul>
+ */
+public class SecurityWebApplicationInitializer
+    extends AbstractSecurityWebApplicationInitializer {
+
+  public SecurityWebApplicationInitializer() {
+    super(SecurityConfig.class);
+  }
+}
+
+// 3. The SecurityConfig class
+/**
+ * <p>
+ *   The {@link SecurityConfig} will:
+ *   <ul>
+ *     <li>Require authentication to every URL in your application</li>
+ *     <li>Generate a login form for you</li>
+ *     <li>
+ *       Allow the user with the Username "user" and the Password "password" to authenticate with
+ *       form based authentication
+ *     </li>
+ *     <li>Allow the user to logout</li>
+ *     <li>CSRF attach prevention</li>
+ *     <li>Session Fixation protection</li>
+ *     <li>
+ *       Security Header integration
+ *       <ul>
+ *         <li>HTTP Strict Transport Security for secure requests</li>
+ *         <li>X-Content-Type-Options integration</li>
+ *         <li>Cache Control (can be overridden later by your application to allow caching of your
+ *         static resources)</li>
+ *         <li>X-XSS-Protection integration</li>
+ *         <li>X-Frame-Options integration to help prevent Clickjacking</li>
+ *       </ul>
+ *     </li>
+ *     <li>
+ *       Integrate with the following Servlet API methods
+ *       <ul>
+ *         <li>{@link HttpServletRequest#getRemoteUser()}</li>
+ *         <li>{@link HttpServletRequest#getUserPrincipal()}</li>
+ *         <li>{@link HttpServletRequest#isUserInRole(String)}</li>
+ *         <li>{@link HttpServletRequest#login(String, String)}</li>
+ *         <li>{@link HttpServletRequest#logout()}</li>
+ *       </ul>
+ *     </li>
+ *   </ul>
+ * </p>
+ */
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http
+        .authorizeRequests()
+            // Requests matched against /css/** and /index are fully accessible
+            .antMatchers("/css/**", "/index")
+                .permitAll()
+            // Requests matched against /user/** require a user to be authenticated and must be
+            // associated to the USER role
+            .antMatchers("/user/**")
+                .hasRole("USER")
+            .and()
+        .formLogin()
+            // form-based authentication is enabled with a custom login page and failure url
+            .loginPage("/login")
+            .failureUrl("/login-error");
+  }
+
+  // The name of the configureGlobal method is not important. However, it is important to only configure AuthenticationManagerBuilder in a class annotated with either @EnableWebSecurity, @EnableGlobalMethodSecurity, or @EnableGlobalAuthentication. Doing otherwise has unpredictable results.
+  @Autowired
+  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    auth
+        .inMemoryAuthentication()
+            .withUser("user")
+                .password("password")
+                .roles("USER");
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.sample.config-java.enable-spring-security</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

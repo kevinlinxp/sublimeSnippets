@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+<http>
+...
+  <!--
+    • none - Don’t do anything. The original session will be retained.
+    • newSession - Create a new "clean" session, without copying the existing session data (Spring Security-related attributes will still be copied).
+    • migrateSession - Create a new session and copy all existing session attributes to the new session. This is the default in Servlet 3.0 or older containers.
+    • changeSessionId - Do not create a new session. Instead, use the session fixation protection provided by the Servlet container (HttpServletRequest#changeSessionId()). This option is only available in Servlet 3.1 (Java EE 7) and newer containers. Specifying it in older containers will result in an exception. This is the default in Servlet 3.1 and newer containers.
+  -->
+  <session-management session-fixation-protection="none|newSession|migrateSession|changeSessionId" />
+...
+</http>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-xml.http-security.session-management.session-fixation-protection</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

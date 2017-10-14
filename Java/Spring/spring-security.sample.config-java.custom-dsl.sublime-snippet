@@ -1,0 +1,53 @@
+<snippet>
+  <content><![CDATA[
+public class MyCustomDsl extends AbstractHttpConfigurer<CorsConfigurerMyCustomDsl, HttpSecurity> {
+  private boolean flag;
+
+  @Override
+  public void init(H http) throws Exception {
+    // any method that adds another configurer
+    // must be done in the init method
+    http.csrf().disable();
+  }
+
+  @Override
+  public void configure(H http) throws Exception {
+    ApplicationContext context = http.getSharedObject(ApplicationContext.class);
+
+    // here we lookup from the ApplicationContext. You can also just create a new instance.
+    MyFilter myFilter = context.getBean(MyFilter.class);
+    myFilter.setFlag(flag);
+    http.addFilterBefore(myFilter, UsernamePasswordAuthenticationFilter.class);
+  }
+
+  public MyCustomDsl flag(boolean value) {
+    this.flag = value;
+    return this;
+  }
+
+  public static MyCustomDsl customDsl() {
+    return new MyCustomDsl();
+  }
+}
+
+@EnableWebSecurity
+public class Config extends WebSecurityConfigurerAdapter {
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http
+      .apply(customDsl())
+        .flag(true)
+        .and()
+      ...;
+  }
+}
+// The code is invoked in the following order:
+// - Code in `Config`s configure method is invoked
+// - Code in `MyCustomDsl`s init method is invoked
+// - Code in `MyCustomDsl`s configure method is invoked
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.sample.config-java.custom-dsl</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

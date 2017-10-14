@@ -1,0 +1,45 @@
+<snippet>
+  <content><![CDATA[
+<!--
+  <authentication-manager>
+  • creates a ProviderManager
+  • registers the authentication providers with it
+-->
+<authentication-manager>
+  <!--
+    <authentication-provider>
+    • Creates a DaoAuthenticationProvider bean
+  -->
+  <authentication-provider>
+    <!--
+      <user-service>
+      • Creates an InMemoryDaoImpl
+      • Also support using a properties file
+    -->
+    <user-service>
+      <user name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN" />
+      <user name="bob" password="bobspassword" authorities="ROLE_USER" />
+    </user-service>
+  </authentication-provider>
+</authentication-manager>
+
+<!-- With a password encoder -->
+<beans:bean name="bcryptEncoder"
+  class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+<authentication-manager>
+  <authentication-provider>
+    <password-encoder ref="bcryptEncoder"/>
+    <user-service>
+      <user name="jimi" password="d7e6351eaa13189a5a3641bab846c8e8c69ba39f" authorities="ROLE_USER, ROLE_ADMIN" />
+      <user name="bob" password="4e7421b1b8765d8f9406d87e7cc6aa784c4ab97f" authorities="ROLE_USER" />
+    </user-service>
+  </authentication-provider>
+</authentication-manager>
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-xml.authentication.in-memory</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>
