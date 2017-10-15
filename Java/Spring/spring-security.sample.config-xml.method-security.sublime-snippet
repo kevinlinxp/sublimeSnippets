@@ -1,9 +1,15 @@
 <snippet>
   <content><![CDATA[
-@EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
-public class MethodSecurityConfig {
-  // ...
-}
+<global-method-security secured-annotations="enabled" jsr250-annotations="enabled" pre-post-annotations="enabled"/>
+
+<!--
+  Adding Security Pointcuts using protect-pointcut.
+  * Security annotations take precedence over pointcuts
+-->
+<global-method-security>
+  <protect-pointcut expression="execution(* com.mycompany.*Service.*(..))"
+  access="ROLE_USER"/>
+</global-method-security>
 
 // securedEnabled = true
 // Spring Security’s native annotation support defines a set of attributes for the method. These will be passed to the AccessDecisionManager for it to make the actual decision:
@@ -45,7 +51,7 @@ public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
 
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-security.sample.config-java.method-security</tabTrigger>
+  <tabTrigger>spring-security.sample.config-xml.method-security</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.java, text.plain</scope>
+  <scope>text.xml, text.plain</scope>
 </snippet>
