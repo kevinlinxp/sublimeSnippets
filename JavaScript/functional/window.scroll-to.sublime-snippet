@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+// Scroll to top
+$window.scrollTo(0, 0);
+
+// Scroll to an element
+$window.scrollTo(0, angular.element('put here your element').offsetTop);
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>window.scroll-to</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
