@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+ul > li:hover {
+  -moz-box-shadow:    inset 0 0 1px #000000;
+  -webkit-box-shadow: inset 0 0 1px #000000;
+  box-shadow:         inset 0 0 1px #000000;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>css.inner-shadow</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.css, source.sass, source.css.less, text.html, text.plain</scope>
+</snippet>
