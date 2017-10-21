@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+// Select and style every <${1}> element with a lang attribute value equal to "it" (Italian).
+// Note: The lang attribute value is most often a two-letter language code, like lang="fr" (for French), or two language codes combined, like lang="fr-ca" (for Canadian French).
+${1:p}:lang(it) {
+  background: yellow;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>css.selector.lang</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.css, source.sass, source.css.less, text.html, text.plain</scope>
+</snippet>
