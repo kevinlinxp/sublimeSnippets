@@ -1,5 +1,10 @@
 <snippet>
   <content><![CDATA[
+// Note:
+// 1. The :active selector can be used on all elements, not only links.
+// 2. Use the :link selector to style links to unvisited pages, the :visited selector to style links to visited pages, and the :hover selector to style links when you mouse over them.
+// 3. :active MUST come after :hover (if present) in the CSS definition in order to be effective!
+// 4. A link becomes active when you click on it.
 a:active {
   background-color: yellow;
 }

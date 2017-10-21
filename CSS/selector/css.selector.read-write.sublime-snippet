@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+// Select and style only if the input element is not "readonly".
+// Note:
+// 1. Form elements with no "readonly" attribute, and no "disabled" attribute are defined as "read-able" and "write-able".
+// 2. Currently, in most browsers, the :read-write selector only applies to input and textarea elements, where the "readonly" attribute is not present, regardless if the element is disabled or not.
+input:-moz-read-write { /* For Firefox */
+  background-color: yellow;
+}
+
+input:read-write {
+  background-color: yellow;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>css.selector.read-write</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.css, source.sass, source.css.less, text.html, text.plain</scope>
+</snippet>

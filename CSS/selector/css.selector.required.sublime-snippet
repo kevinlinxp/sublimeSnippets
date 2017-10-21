@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+// Select if the <input> element has a "required" attribute.
+input:required {
+  background-color: yellow;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>css.selector.required</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.css, source.sass, source.css.less, text.html, text.plain</scope>
+</snippet>

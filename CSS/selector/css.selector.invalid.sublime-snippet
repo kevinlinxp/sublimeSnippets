@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-// Select and style only if the value of the <input> element is invalid
+// Select and style only if the value of the <input> element is invalid.
 // Note: The :invalid selector only works for form elements with limitations, such as input elements with min and max attributes, email fields without a legal email, or number fields without a numeric value, etc.
 input:invalid {
   border: 2px solid red;

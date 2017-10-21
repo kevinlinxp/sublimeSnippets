@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+// The ::selection selector matches the portion of an element that is selected by a user.
+// Only a few CSS properties can be applied to the ::selection selector: color, background, cursor, and outline.
+// Note: The ::selection pseudo-element was drafted for CSS Selectors Level 3, but removed before the Recommendation status. So, at the moment, the ::selection pseudo-element is not in any specification. (However, it may be re-added to future CSS specifications.)
+::-moz-selection { /* Code for Firefox */
+    color: red;
+    background: yellow;
+}
+
+::selection {
+    color: red;
+    background: yellow;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>css.selector.selection</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.css, source.sass, source.css.less, text.html, text.plain</scope>
+</snippet>

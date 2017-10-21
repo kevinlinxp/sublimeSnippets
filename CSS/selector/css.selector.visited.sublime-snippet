@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+// Note: Browsers limits the styles that can be set for a:visited links, due to security issues. Allowed styles are:
+// - color
+// - background-color
+// - border-color (and border-color for separate sides)
+// - outline color
+// - column-rule-color
+// - the color parts of fill and stroke
+// All other styles are inherited from a:link.
+a:visited {
+  color: pink;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>css.selector.visited</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.css, source.sass, source.css.less, text.html, text.plain</scope>
+</snippet>
