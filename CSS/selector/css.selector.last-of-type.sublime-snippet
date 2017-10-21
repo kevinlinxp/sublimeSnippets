@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+// Select the last <${1}> element of its parent:
+${1:p}:last-of-type {
+  background: #ff0000;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>css.selector.last-of-type</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.css, source.sass, source.css.less, text.html, text.plain</scope>
+</snippet>

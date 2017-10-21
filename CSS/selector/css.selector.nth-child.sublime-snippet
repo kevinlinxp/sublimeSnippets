@@ -1,0 +1,31 @@
+<snippet>
+  <content><![CDATA[
+// The :nth-child(n) selector matches every element that is the nth child, regardless of type, of its parent.
+${2:p}:nth-child(${1:number/keyword/formula}) {
+  background-color: yellow;
+}
+
+// number example:
+p:nth-child(2) {
+  background: red;
+}
+
+// keyword example:
+p:nth-child(odd) {
+  background: red;
+}
+
+p:nth-child(even) {
+  background: blue;
+}
+
+// formula example:
+p:nth-child(3n+0) {
+  background: red;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>css.selector.nth-child</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.css, source.sass, source.css.less, text.html, text.plain</scope>
+</snippet>

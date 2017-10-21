@@ -1,0 +1,31 @@
+<snippet>
+  <content><![CDATA[
+// The :nth-last-of-type(n) selector matches every <${2}> element that is the nth <${2}> element of its parent, counting from the last child.
+${2:p}:nth-last-of-type(${1:number/keyword/formula}) {
+  background-color: yellow;
+}
+
+// number example:
+p:nth-last-of-type(2) {
+  background: red;
+}
+
+// keyword example:
+p:nth-last-of-type(odd) {
+  background: red;
+}
+
+p:nth-last-of-type(even) {
+  background: blue;
+}
+
+// formula example:
+p:nth-last-of-type(3n+0) {
+  background: red;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>css.selector.nth-last-of-type</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.css, source.sass, source.css.less, text.html, text.plain</scope>
+</snippet>
