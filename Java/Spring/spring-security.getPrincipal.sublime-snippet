@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+if (principal instanceof UserDetails) {
+  String username = ((UserDetails)principal).getUsername();
+} else {
+  String username = principal.toString();
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.getPrincipal, spring-security.getUser</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

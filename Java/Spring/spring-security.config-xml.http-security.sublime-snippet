@@ -11,30 +11,33 @@
       <http pattern="/login.jsp*" security="none"/>
       -- The pattern is mapped to an empty filter chain.
       -- These unsecured requests will be completely oblivious to any Spring Security web-related configuration or additional attributes such as requires-channel, so you will not be able to access information on the current user or call secured methods during the request. Use access='IS_AUTHENTICATED_ANONYMOUSLY' as an alternative if you still want the security filter chain to be applied.
+
+  ? access-decision-manager-ref
+  ...
 -->
 <http>
   <!--
     <intercept-url>:
-    • pattern - ant path style syntax or regular-expression
-    • access - defines the access requirements. To use Spring EL expressions (e.g. hasRole('USER') and hasIpAddress('192.168.1.0/24')), set use-expressions="true" in the <http> element
-    • method - GET, POST, etc.
+    ? pattern - ant path style syntax or regular-expression
+    ? access - defines the access requirements. To use Spring EL expressions (e.g. hasRole('USER') and hasIpAddress('192.168.1.0/24')), set use-expressions="true" in the <http> element
+    ? method - GET, POST, etc.
 
-    * Put the most specific matches at the top
+    # Put the most specific matches at the top
   -->
   <intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
   <intercept-url pattern="/**" access="hasRole('USER')|ROLE_USER" />
 
   <!--
-    • login-page - if not specified, spring will generate one using
+    ? login-page - if not specified, spring will generate one using
       - the features that are enabled
       - standard values for logging in process URL, success redirect URL, etc.
-    • default-target-url / authentication-success-handler-ref
-    • always-use-default-target
+    ? default-target-url / authentication-success-handler-ref
+    ? always-use-default-target
   -->
   <form-login login-page="/login.jsp"/>
 
   <!--
-    • logout-url - default to "logout"
+    ? logout-url - default to "logout"
   -->
   <logout />
 </http>

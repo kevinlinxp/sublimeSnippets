@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+<!--
+  ? secured-annotations
+  ? jsr250-annotations
+  ? pre-post-annotations
+  ? access-decision-manager-ref
+-->
+<global-method-security
+  secured-annotations="enabled" jsr250-annotations="enabled" pre-post-annotations="enabled"
+  access-decision-manager-ref="myAccessDecisionManagerBean">
+</global-method-security>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-xml.method-security</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>
