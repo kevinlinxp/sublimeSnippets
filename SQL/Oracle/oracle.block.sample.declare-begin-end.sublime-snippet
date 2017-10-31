@@ -1,0 +1,23 @@
+<snippet>
+  <content><![CDATA[
+DECLARE
+  role_id NUMBER;
+  privilege_id NUMBER;
+BEGIN
+  core.audit_open('SASQL-900');
+  role_id := core.ilis_id.nextval;
+  privilege_id := core.ilis_id.nextval;
+  INSERT INTO accounts.role(id, version, name, description, branch_id, system_role, workbox_filter_yn)
+                     VALUES(role_id, 0, 'System Builder Admin', 'Provides the ability to CRUD system builder forms with the form designer', 17102, 'N', 'N');
+  INSERT INTO accounts.privilege(id, version, name, description)
+                          VALUES(privilege_id, 0, 'AC - System Builder - Form Designer - Edit *', 'System Builder - Can Edit All Forms');
+  INSERT INTO accounts.role_privilege(role_id, privilege_id)
+                               values(role_id, privilege_id);
+  COMMIT;
+END;
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oracle.block.sample.declare-begin-end</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>
