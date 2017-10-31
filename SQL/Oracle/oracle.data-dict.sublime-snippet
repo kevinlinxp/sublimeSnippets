@@ -1,0 +1,64 @@
+<snippet>
+  <content><![CDATA[
+-- To see the whole list, use:
+SELECT * FROM dictionary;
+
+-- Some common ones:
+ALL_ARGUMENTS - Arguments in object accessible to the user
+ALL_CATALOG - All tables, views, synonyms, sequences accessible to the user
+ALL_COL_COMMENTS  - Comments on columns of accessible tables and views
+ALL_CONSTRAINTS - Constraint definitions on accessible tables
+ALL_CONS_COLUMNS  - Information about accessible columns in constraint definitions
+ALL_DB_LINKS  - Database links accessible to the user
+ALL_ERRORS  - Current errors on stored objects that user is allowed to create
+ALL_INDEXES - Descriptions of indexes on tables accessible to the user
+ALL_IND_COLUMNS - COLUMNs comprising INDEXes on accessible TABLES
+ALL_LOBS  - Description of LOBs contained in tables accessible to the user
+ALL_OBJECTS - Objects accessible to the user
+ALL_OBJECT_TABLES - Description of all object tables accessible to the user
+ALL_SEQUENCES - Description of SEQUENCEs accessible to the user
+ALL_SNAPSHOTS - Snapshots the user can access
+ALL_SOURCE  - Current source on stored objects that user is allowed to create
+ALL_SYNONYMS  - All synonyms accessible to the user
+ALL_TABLES  - Description of relational tables accessible to the user
+ALL_TAB_COLUMNS - Columns of user's tables, views and clusters
+ALL_TAB_COL_STATISTICS  - Columns of user's tables, views and clusters
+ALL_TAB_COMMENTS  - Comments on tables and views accessible to the user
+ALL_TRIGGERS  - Triggers accessible to the current user
+ALL_TRIGGER_COLS  - Column usage in user's triggers or in triggers on user's tables
+ALL_TYPES - Description of types accessible to the user
+ALL_UPDATABLE_COLUMNS - Description of all updatable columns
+ALL_USERS - Information about all users of the database
+ALL_VIEWS - Description of views accessible to the user
+DATABASE_COMPATIBLE_LEVEL - Database compatible parameter set via init.ora
+DBA_DB_LINKS  - All database links in the database
+DBA_ERRORS  - Current errors on all stored objects in the database
+DBA_OBJECTS - All objects in the database
+DBA_ROLES - All Roles which exist in the database
+DBA_ROLE_PRIVS  - Roles granted to users and roles
+DBA_SOURCE  - Source of all stored objects in the database
+DBA_TABLESPACES - Description of all tablespaces
+DBA_TAB_PRIVS - All grants on objects in the database
+DBA_TRIGGERS  - All triggers in the database
+DBA_TS_QUOTAS - Tablespace quotas for all users
+DBA_USERS - Information about all users of the database
+DBA_VIEWS - Description of all views in the database
+DICTIONARY  - Description of data dictionary tables and views
+DICT_COLUMNS  - Description of columns in data dictionary tables and views
+GLOBAL_NAME - global database name
+NLS_DATABASE_PARAMETERS - Permanent NLS parameters of the database
+NLS_INSTANCE_PARAMETERS - NLS parameters of the instance
+NLS_SESSION_PARAMETERS  - NLS parameters of the user session
+PRODUCT_COMPONENT_VERSION - version and status information for component products
+ROLE_TAB_PRIVS  - Table privileges granted to roles
+SESSION_PRIVS - Privileges which the user currently has set
+SESSION_ROLES - Roles which the user currently has enabled.
+SYSTEM_PRIVILEGE_MAP  - Description table for privilege type codes. Maps privilege type numbers to type names
+TABLE_PRIVILEGES  - Grants on objects for which the user is the grantor, grantee, owner, or an enabled role or PUBLIC is the grantee
+TABLE_PRIVILEGE_MAP - Description table for privilege (auditing option) type codes. Maps privilege (auditing option) type numbers to type names
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oracle.data-dictionary.system-tables</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>
