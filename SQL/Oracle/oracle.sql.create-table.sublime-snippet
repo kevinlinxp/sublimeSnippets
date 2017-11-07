@@ -20,7 +20,7 @@ CREATE TABLE ${1:HR}.${2:EMPLOYEES}
 COMMENT ON TABLE ${1}.${2} IS 'Employee table';
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>oracle.create-table</tabTrigger>
+  <tabTrigger>oracle.sql.create-table</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.sql, text.plain</scope>
 </snippet>

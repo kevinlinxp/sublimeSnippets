@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+ALTER USER ${1:user_name} DEFAULT TABLESPACE ${2:tablespace_name};
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oracle.sql.alter-user.default-tablespace</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>

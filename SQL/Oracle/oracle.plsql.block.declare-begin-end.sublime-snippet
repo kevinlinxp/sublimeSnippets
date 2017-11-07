@@ -1,0 +1,16 @@
+<snippet>
+  <content><![CDATA[
+DECLARE
+  role_id NUMBER;
+  privilege_id NUMBER;
+  message VARCHAR2(100) := 'Hello';
+BEGIN
+  ${0}
+  COMMIT;
+END;
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oracle.plsql.block.declare-begin-end</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>

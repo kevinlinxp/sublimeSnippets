@@ -58,7 +58,7 @@ TABLE_PRIVILEGES  - Grants on objects for which the user is the grantor, grantee
 TABLE_PRIVILEGE_MAP - Description table for privilege (auditing option) type codes. Maps privilege (auditing option) type numbers to type names
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>oracle.data-dictionary.system-tables</tabTrigger>
+  <tabTrigger>oracle.sql.data-dictionary.whole-list</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.sql, text.plain</scope>
 </snippet>

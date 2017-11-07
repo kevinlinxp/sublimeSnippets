@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+ALTER SESSION SET nls_date_format='yyyymmddhh24miss';
+-- Or add the following line to init.ora (the "pfile"):
+nls_date_format='yyyymmddhh24miss'
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oracle.sql.alter-session</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>

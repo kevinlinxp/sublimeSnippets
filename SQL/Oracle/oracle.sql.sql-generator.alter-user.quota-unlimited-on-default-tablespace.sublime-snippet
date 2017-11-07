@@ -1,16 +1,16 @@
 <snippet>
   <content><![CDATA[
 SELECT
-  'CREATE USER '||t.USERNAME||' IDENTIFIED BY NULL DEFAULT TABLESPACE '||t.DEFAULT_TABLESPACE||';'AS CREATE_SQL,
-  t.DEFAULT_TABLESPACE,
-  t.*
+  'ALTER USER '||t.USERNAME||' QUOTA UNLIMITED ON '||t.DEFAULT_TABLESPACE||';'||'ALTER USER '||t.USERNAME||' QUOTA UNLIMITED ON '||t.DEFAULT_TABLESPACE||'_AUDIT;'AS ALTER_USER_SQL
+--  t.DEFAULT_TABLESPACE,
+--  t.*
 FROM DBA_USERS t
 WHERE
   t.ACCOUNT_STATUS = 'OPEN' and
   t.USERNAME NOT IN ('SYSTEM', 'SYS');
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>oracle.sql-generator.create-users-with-default-tablespaces</tabTrigger>
+  <tabTrigger>oracle.sql.sql-generator.alter-user.quota-unlimited-on-default-tablespace</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.sql, text.plain</scope>
 </snippet>

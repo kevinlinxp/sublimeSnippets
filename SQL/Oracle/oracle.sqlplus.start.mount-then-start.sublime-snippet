@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+sqlplus /NOLOG
+connect / as sysdba;
+
+SHUTDOWN NORMAL/IMMEDIATE;
+START MOUNT;
+-- ALTER DATABASE ARCHIVELOG; (this is the time to set log mode, if needed)
+ALTER DATABASE OPEN;
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oracle.sqlplus.start.mount-then-start</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

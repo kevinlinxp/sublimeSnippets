@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+ALTER TABLE ${1:table_name} DROP CONSTRAINT ${2:constraint_name}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oracle.sql.alter-table.drop-constraint</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>

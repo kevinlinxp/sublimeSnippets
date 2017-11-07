@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+-- Data Dictionary Synonym Info
+DESC all_synonyms;
+DESC dba_synonyms;
+DESC user_synonyms;
+
+-- Sample Query
+SELECT synonym_name,table_name,table_owner FROM user_synonyms
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oracle.sql.data-dictionary.synonyms</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>

@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+ALTER TABLE ${1:table_name} ADD CONSTRAINT ${2:constraint_name} PRIMARY KEY (${3:column_name});
+ALTER TABLE ${1:table_name} ADD CONSTRAINT ${2:constraint_name} UNIQUE (${3:column_name});
+ALTER TABLE ${1:table_name} ADD CONSTRAINT ${2:constraint_name} FOREIGN KEY(${3:column_name}) REFERNCES ref_table_name(ref_column_name);
+ALTER TABLE ${1:table_name} ADD CONSTRAINT ${2:constraint_name} CHECK (sex = 'male' or sex= 'female');
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oracle.sql.alter-table.add-constraint</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>

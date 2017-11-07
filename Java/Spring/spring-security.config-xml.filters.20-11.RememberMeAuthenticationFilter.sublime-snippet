@@ -1,0 +1,39 @@
+<snippet>
+  <content><![CDATA[
+<!--
+  Remember to add RememberMeAuthenticationFilter into your FilterChainProxy (typically immediately after your UsernamePasswordAuthenticationFilter)
+-->
+<bean id="rememberMeFilter" class=
+"org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
+  <property name="rememberMeServices" ref="${1:rememberMeServices}"/>
+  <property name="authenticationManager" ref="theAuthenticationManager" />
+</bean>
+
+<!--
+  Remember to add your RememberMeServices implementation to your UsernamePasswordAuthenticationFilter.setRememberMeServices() property
+-->
+<bean id="${1:rememberMeServices}" class=
+"org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+  <property name="userDetailsService" ref="myUserDetailsService"/>
+  <property name="key" value="${2:springRocks}"/>
+</bean>
+
+<!--
+  Remember to include the RememberMeAuthenticationProvider in your AuthenticationManager.setProviders() list
+-->
+<bean id="rememberMeAuthenticationProvider" class=
+"org.springframework.security.authentication.RememberMeAuthenticationProvider">
+  <property name="key" value="${2:springRocks}"/>
+</bean>
+<!-- or: -->
+<bean id="rememberMeAuthenticationProvider" class=
+"org.springframework.security.authentication.PersistentTokenBasedRememberMeServices">
+  <property name="key" value="${2:springRocks}"/>
+  <property name="tokenRepository" ref="inMemoryTokenRepositoryImpl|jdbcTokenRepositoryImpl"/>
+</bean>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-xml.filters.20-11.DigestAuthenticationFilter</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

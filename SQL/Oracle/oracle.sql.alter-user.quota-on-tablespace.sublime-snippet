@@ -1,16 +1,9 @@
 <snippet>
   <content><![CDATA[
-DECLARE
-  role_id NUMBER;
-  privilege_id NUMBER;
-  message VARCHAR2(100) := 'Hello';
-BEGIN
-  ${0}
-  COMMIT;
-END;
+ALTER USER ${1:user_name} QUOTA UNLIMITED ON ${2:tablespace_name};
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>oracle.block.declare-begin-end</tabTrigger>
+  <tabTrigger>oracle.sql.alter-user.quota-on-tablespace</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.sql, text.plain</scope>
 </snippet>

@@ -9,7 +9,7 @@ SELECT
 FROM DBA_VIEWS v WHERE v.owner = '${1}';
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>oracle.sql-generator.grant-all-to-another-user</tabTrigger>
+  <tabTrigger>oracle.sql.sql-generator.grant-all-to-another-user</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.sql, text.plain</scope>
 </snippet>
