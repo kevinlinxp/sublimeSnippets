@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+<bean id="basicAuthenticationFilter"
+class="org.springframework.security.web.authentication.www.BasicAuthenticationFilter">
+    <!-- The configured AuthenticationManager processes each authentication request. If authentication fails, the configured AuthenticationEntryPoint will be used to retry the authentication process. -->
+    <property name="authenticationManager" ref="authenticationManager"/>
+
+    <!-- Usually you will use the filter in combination with a BasicAuthenticationEntryPoint, which returns a 401 response with a suitable header to retry HTTP Basic authentication. -->
+    <property name="authenticationEntryPoint" ref="${1:authenticationEntryPoint}"/>
+</bean>
+
+<bean id="${1:authenticationEntryPoint}"
+class="org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint">
+    <property name="realmName" value="Name Of Your Realm"/>
+</bean>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-xml.filters.20-2.BasicAuthenticationFilter</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>
