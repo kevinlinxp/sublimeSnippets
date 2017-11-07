@@ -1,0 +1,27 @@
+<snippet>
+  <content><![CDATA[
+<bean id="exceptionTranslationFilter" class="org.springframework.security.web.access.ExceptionTranslationFilter">
+  <!--
+    An appropriate AuthenticationException or AccessDeniedException will be thrown by a security interceptor further down the call stack, triggering the AuthenticationEntryPoint#commence
+  -->
+  <property name="authenticationEntryPoint" ref="${1:authenticationEntryPoint}"/>
+
+  <!--
+    If an AccessDeniedException is thrown and a user has already been authenticated, ExceptionTranslationFilter will invoke a second strategy, the AccessDeniedHandler
+  -->
+  <property name="accessDeniedHandler" ref="${2:accessDeniedHandler}"/>
+</bean>
+
+<bean id="${1:authenticationEntryPoint}" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+  <property name="loginFormUrl" value="/login.jsp"/>
+</bean>
+
+<bean id="${2:accessDeniedHandler}" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+  <property name="errorPage" value="/accessDenied.htm"/>
+</bean>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-xml.filters.31.FilterSecurityInterceptor</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

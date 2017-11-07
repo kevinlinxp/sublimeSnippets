@@ -23,7 +23,7 @@ The order that filters are defined in the chain is very important. Irrespective 
 • FilterSecurityInterceptor - to protect web URIs and raise exceptions when access is denied
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-security.filter-list-and-ordering</tabTrigger>
+  <tabTrigger>spring-security.filters.filter-list-and-ordering</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.xml, text.plain</scope>
 </snippet>

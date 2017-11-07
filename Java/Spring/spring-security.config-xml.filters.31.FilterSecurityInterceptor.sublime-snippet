@@ -1,0 +1,24 @@
+<snippet>
+  <content><![CDATA[
+<bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+  <property name="authenticationManager" ref="authenticationManager"/>
+  <property name="accessDecisionManager" ref="accessDecisionManager"/>
+  <!--
+    SecurityMetadataSource is responsible for returning a List<ConfigAttribute> containing all of the configuration attributes associated with a single secure HTTP URL.
+  -->
+  <property name="securityMetadataSource">
+    <!--
+      The SecurityMetadataSource created by the namespace syntax obtains the configuration attributes for a particular FilterInvocation by matching the request URL against the configured pattern attributes.
+    -->
+    <security:filter-security-metadata-source>
+      <security:intercept-url pattern="/secure/super/**" access="ROLE_WE_DONT_HAVE"/>
+      <security:intercept-url pattern="/secure/**" access="ROLE_SUPERVISOR,ROLE_TELLER"/>
+    </security:filter-security-metadata-source>
+  </property>
+</bean>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-xml.filters.31.FilterSecurityInterceptor</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+<bean id="securityContextPersistenceFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
+  <property name='securityContextRepository'>
+    <!--
+      The HttpSessionSecurityContextRepository will stores the security context as an HttpSession attribute
+    -->
+    <bean class='org.springframework.security.web.context.HttpSessionSecurityContextRepository'>
+      <!--
+        When allowSessionCreation is set to true (by default), it allows the class to create a session if it needs one to store the security context for an authenticated user (it won’t create one unless authentication has taken place and the contents of the security context have changed).
+      -->
+      <property name='allowSessionCreation' value='false' />
+    </bean>
+  </property>
+</bean>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-xml.filters.11.SecurityContextPersistenceFilter</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

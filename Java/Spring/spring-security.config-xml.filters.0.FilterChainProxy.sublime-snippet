@@ -1,0 +1,24 @@
+<snippet>
+  <content><![CDATA[
+<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+  <constructor-arg>
+    <list>
+      <sec:filter-chain pattern="/restful/**" filters="
+        securityContextPersistenceFilterWithASCFalse,
+        basicAuthenticationFilter,
+        exceptionTranslationFilter,
+        filterSecurityInterceptor" />
+      <sec:filter-chain pattern="/**" filters="
+        securityContextPersistenceFilterWithASCTrue,
+        formLoginFilter,
+        exceptionTranslationFilter,
+        filterSecurityInterceptor" />
+    </list>
+  </constructor-arg>
+</bean>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-xml.filters.0.filterChainProxy</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>
