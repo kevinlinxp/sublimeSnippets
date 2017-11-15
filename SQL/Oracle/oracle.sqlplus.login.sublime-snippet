@@ -1,6 +1,9 @@
 <snippet>
   <content><![CDATA[
-sqlplus 'sys as sysdba'
+sqlplus 'sys@vm11g as sysdba'
+sqlplus 'system/manager@vm11g'
+
+sqlplus 'system/manager@vm11g' @runall.sql
 
 sqlplus system@devVM
 ]]></content>
