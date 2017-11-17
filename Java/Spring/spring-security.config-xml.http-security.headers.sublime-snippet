@@ -1,0 +1,84 @@
+<snippet>
+  <content><![CDATA[
+• Cache Control
+• Content Type Options
+• HTTP Strict Transport Security
+• X-Frame-Options
+• X-XSS-Protection
+
+<!-- Use all of the default headers with some customizations -->
+<http>
+  <!-- ... -->
+
+  <headers>
+    <hsts disable="true"/>
+    <frame-options policy="SAMEORIGIN" />
+  </headers>
+</http>
+
+
+<!-- If you do not want the defaults to be added and want explicit control over what should be used, you can disable the defaults. -->
+<http>
+  <!-- ... -->
+
+  <headers defaults-disabled="true">
+    <cache-control />
+    <content-type-options />
+    <hsts
+      include-subdomains="true"
+      max-age-seconds="31536000" />
+    <!-- HTTP Public Key Pinning (HPKP) is not added by default by Spring Security -->
+    <hpkp
+      include-subdomains="true"
+      report-uri="http://example.net/pkp-report">
+      <pins>
+          <pin algorithm="sha256">d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=</pin>
+          <pin algorithm="sha256">E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g=</pin>
+      </pins>
+    </hpkp>
+    <frame-options policy="SAMEORIGIN" />
+    <xss-protection block="true"/>
+    <content-security-policy
+      policy-directives="script-src 'self' https://trustedscripts.example.com; object-src https://trustedplugins.example.com; report-uri /csp-report-endpoint/"
+      report-only="false" />
+  </headers>
+</http>
+
+<!-- If necessary, you can disable all of the HTTP Security response headers -->
+<http>
+  <!-- ... -->
+
+  <headers disabled="true" />
+</http>
+
+<!-- Custom Headers -->
+<http>
+  <!-- ... -->
+
+  <headers>
+    <header name="X-Custom-Security-Header" value="header-value"/>
+    <header ref="frameOptionsWriter|headerWriter"/>
+  </headers>
+</http>
+
+<beans:bean id="frameOptionsWriter"
+  class="org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter"
+  c:frameOptionsMode="SAMEORIGIN"/>
+
+<beans:bean id="headerWriter"
+  class="org.springframework.security.web.header.writers.DelegatingRequestMatcherHeaderWriter">
+  <beans:constructor-arg>
+    <bean class="org.springframework.security.web.util.matcher.AntPathRequestMatcher"
+      c:pattern="/login"/>
+  </beans:constructor-arg>
+  <beans:constructor-arg>
+    <beans:bean
+      class="org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter"/>
+  </beans:constructor-arg>
+</beans:bean>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-xml.http-security.headers</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

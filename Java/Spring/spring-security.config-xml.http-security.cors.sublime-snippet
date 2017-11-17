@@ -1,0 +1,22 @@
+<snippet>
+  <content><![CDATA[
+<http>
+  <!-- Default to Spring MVC's CORS configuration -->
+  <cors />
+  ...
+</http>
+<!-- or: -->
+<http>
+  <cors configuration-source-ref="corsSource"/>
+  ...
+</http>
+
+<b:bean id="corsSource" class="org.springframework.web.cors.UrlBasedCorsConfigurationSource">
+  ...
+</b:bean>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-xml.http-security.cors</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

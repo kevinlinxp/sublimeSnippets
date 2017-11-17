@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+public class SecurityApplicationInitializer extends AbstractSecurityWebApplicationInitializer {
+
+  @Override
+  protected void beforeSpringSecurityFilterChain(ServletContext servletContext) {
+    insertFilters(servletContext, new MultipartFilter());
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-security.config-java.filters.-1.MultipartFilter</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
