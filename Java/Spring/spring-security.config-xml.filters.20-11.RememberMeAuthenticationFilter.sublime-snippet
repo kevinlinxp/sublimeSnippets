@@ -17,20 +17,22 @@
   <property name="userDetailsService" ref="myUserDetailsService"/>
   <property name="key" value="${2:springRocks}"/>
 </bean>
+<!-- or: -->
+<bean id="${1:rememberMeServices}" class=
+"org.springframework.security.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+  <property name="tokenRepository" ref="inMemoryTokenRepositoryImpl|jdbcTokenRepositoryImpl"/>
+  <property name="userDetailsService" ref="myUserDetailsService"/>
+  <property name="key" value="${2:springRocks}"/>
+</bean>
 
 <!--
-  Remember to include the RememberMeAuthenticationProvider in your AuthenticationManager.setProviders() list
+  Remember to include the RememberMeAuthenticationProvider in your AuthenticationManager.setProviders() list. This is used to validate RememberMeAuthenticationTokens.
 -->
 <bean id="rememberMeAuthenticationProvider" class=
 "org.springframework.security.authentication.RememberMeAuthenticationProvider">
   <property name="key" value="${2:springRocks}"/>
 </bean>
-<!-- or: -->
-<bean id="rememberMeAuthenticationProvider" class=
-"org.springframework.security.authentication.PersistentTokenBasedRememberMeServices">
-  <property name="key" value="${2:springRocks}"/>
-  <property name="tokenRepository" ref="inMemoryTokenRepositoryImpl|jdbcTokenRepositoryImpl"/>
-</bean>
+
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>spring-security.config-xml.filters.20-11.DigestAuthenticationFilter</tabTrigger>

@@ -5,5 +5,5 @@ cat ~/.ssh/id_rsa.pub | ssh ${1:user}@${2:host} "mkdir -p ~/.ssh && cat >> ~/.ss
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>ssh.local-idrsapub.remote-authorizedkeys</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.shell</scope>
+  <scope>source.shell, text.plain</scope>
 </snippet>

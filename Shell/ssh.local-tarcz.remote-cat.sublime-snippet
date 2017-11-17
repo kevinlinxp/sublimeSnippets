@@ -5,5 +5,5 @@ tar cz ${1:local.file.or.folder} | ssh ${2:user}@${3:server} "cat > ${4:dest.tar
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>ssh.local-tarcz.remote-cat</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.shell</scope>
+  <scope>source.shell, text.plain</scope>
 </snippet>
