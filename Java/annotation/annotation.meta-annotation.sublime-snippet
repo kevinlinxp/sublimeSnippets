@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+@Retention(RetentionPolicy.RUNTIME)
+${2:@PreAuthorize("#contact.name == authentication.name")}
+public @interface ${1:ContactPermission} {}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>annotation.meta-annotation</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
