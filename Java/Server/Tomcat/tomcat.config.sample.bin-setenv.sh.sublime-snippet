@@ -1,0 +1,45 @@
+<snippet>
+  <content><![CDATA[
+#!/bin/bash
+
+# The directory in which ilis configuration is stored
+IRIS_CONFIG="/Users/kelin/Work/RDS/dev-classpath/iris/iris-config"
+SB_CONFIG="\$IRIS_CONFIG/designer"
+
+# Colon separated list of paths to add to the tomcat classpath
+CLASSPATH="\$IRIS_CONFIG:\$SB_CONFIG"
+
+LOGS="/Users/kelin/Work/RDS/dev-servers/apache-tomcat-8.0.36-iris/logs"
+IP_ADDRESS="localhost"
+PORT="8280"
+ROOT_URL="http://\$IP_ADDRESS:\$PORT"
+
+# -XX:+CMSClassUnloadingEnabled puts a bit of pressure on tomcat
+# so its probably not a good thing to enable in prod; prod shouldn't be
+# affected by the issue that this flag attempts to address as we're not
+# constantly redploying in prod..
+
+# JAVA options
+JAVA_OPTS="\$JAVA_OPTS -Xmx1536m -Xms1536m"
+JAVA_OPTS="\$JAVA_OPTS -XX:+CMSClassUnloadingEnabled"
+JAVA_OPTS="\$JAVA_OPTS -XX:+UseConcMarkSweepGC"
+
+#
+# TOMCAT options
+#
+
+CATALINA_OPTS="-Dspring.config.location=\$IRIS_CONFIG"
+CATALINA_OPTS="-Dspring.profiles.active=devsecret"
+
+# For the System Designer
+CATALINA_OPTS="\$CATALINA_OPTS -Dsb.configDir=\$SB_CONFIG"
+CATALINA_OPTS="\$CATALINA_OPTS -Ddesigner.log.directory=\$LOGS/designer"
+
+# And an option to tag our tomcat
+CATALINA_OPTS="\$CATALINA_OPTS -Dproject.name=IRIS"
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>tomcat.config.sample.bin-setenv.sh</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
