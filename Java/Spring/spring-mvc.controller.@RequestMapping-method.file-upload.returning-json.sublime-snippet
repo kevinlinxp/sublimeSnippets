@@ -1,14 +1,35 @@
 <snippet>
   <content><![CDATA[
 @RequestMapping(value = "${1:/upload}", headers = "content-type=multipart/*", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-public @ResponseBody ResponseEntity<Map<String, Object>> upload(MultipartHttpServletRequest request) throws IOException
+public @ResponseBody DocumentDto upload(@RequestParam("file") MultipartFile file) throws IOException
 {
-  Iterator<String> itr = request.getFileNames();
-  MultipartFile mpf = request.getFile(itr.next());
+  // ...
 
-  Attachment attachment = attachmentService.stage(mpf);
+  return documentDto;
+}
 
-  return ResponseEntity.ok(attachment.getInformationForFrontEnd());
+@RequestMapping(value = "${1:/upload}", headers = "content-type=multipart/*", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+public @ResponseBody List<DocumentDto> upload(@RequestParam("files") MultipartFile[] files) throws IOException
+{
+  // ...
+
+  return documentDtoList;
+}
+
+@RequestMapping(value = "${1:/upload}", headers = "content-type=multipart/*", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+public @ResponseBody DocumentDto upload(@RequestParam("file") Part file) throws IOException
+{
+  // ...
+
+  return documentDto;
+}
+
+@RequestMapping(value = "${1:/upload}", headers = "content-type=multipart/*", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+public @ResponseBody List<DocumentDto> upload(@RequestParam("files") Part[] files) throws IOException
+{
+  // ...
+
+  return documentDtoList;
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
