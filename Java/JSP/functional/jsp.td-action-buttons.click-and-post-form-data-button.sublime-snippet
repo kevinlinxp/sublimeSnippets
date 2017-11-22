@@ -1,0 +1,38 @@
+<snippet>
+  <content><![CDATA[
+<td>
+  <spring:url value="/enquiry/\${dto.id}/deleteDocument" var="download_document_url"/>
+  <spring:url value="/enquiry/\${dto.id}/deleteDocument" var="delete_document_url"/>
+  <form id="delete-enquiryDoc-\${dto.id}-\${docMeta.documentId}"
+      style="padding: 0px" class="btn-group"
+      onsubmit="return confirm('Confirm to delete document \${docMeta.name}?');"
+      action="\${delete_document_url}"
+      method="POST">
+    <input type="hidden" name="_method" value="POST"/>
+    <input type="hidden" name="documentId" value="\${docMeta.documentId}"/>
+    <sec:csrfInput/>
+    <a href="\${download_document_url}" class="btn btn-info">Download</a>
+    <button class="btn btn-danger" type="submit">Delete</button>
+  </form>
+</td>
+
+<td>
+  <form id="revoke-\${item.account.id}-\${access.grantedTo.id}" style="padding: 0px"
+      onsubmit="return confirm('Confirm to revoke access to this account from \${access.grantedTo.firstName}?');"
+      action="\${pageScope.request.contextPath}/customerPortal/revokeWaterAccountAccess"
+      method="post">
+    <input type="hidden" name="_method" value="POST"/>
+    <input type="hidden" name="accountId" value="\${item.account.id}"/>
+    <input type="hidden" name="accessUserId" value="\${access.grantedTo.id}"/>
+    <sec:csrfInput/>
+    <button class="button" type="submit" name="action" value="Revoke">
+      Revoke
+    </button>
+  </form>
+</td>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jsp.td-action-buttons.click-and-post-form-data-button</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html, text.html.jsp, text.plain</scope>
+</snippet>

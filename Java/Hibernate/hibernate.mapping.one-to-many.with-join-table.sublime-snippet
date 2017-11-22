@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+@OneToMany
+@JoinTable(
+    schema = "SERVICES",
+    name = "ENQUIRY_DOCMETADATA",
+    joinColumns = @JoinColumn(name = "ENQUIRY_ID"),
+    inverseJoinColumns = @JoinColumn(name = "DOC_METADATA_ID"))
+private List<DocMetadata> documents = new ArrayList<>();
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>hibernate.mapping.one-to-many.with-join-table</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, source.sql, text.plain</scope>
+</snippet>

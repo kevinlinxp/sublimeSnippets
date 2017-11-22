@@ -1,6 +1,11 @@
 <snippet>
   <content><![CDATA[
-@RequestMapping(value = "${1:/upload}", headers = "content-type=multipart/*", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+@RequestMapping(
+  value = "${1:/upload}",
+  headers = "content-type=multipart/*",
+  produces = MediaType.APPLICATION_JSON_VALUE,
+  method = RequestMethod.POST
+)
 public @ResponseBody DocumentDto upload(@RequestParam("file") MultipartFile file) throws IOException
 {
   // ...
@@ -8,7 +13,12 @@ public @ResponseBody DocumentDto upload(@RequestParam("file") MultipartFile file
   return documentDto;
 }
 
-@RequestMapping(value = "${1:/upload}", headers = "content-type=multipart/*", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+@RequestMapping(
+  value = "${1:/upload}",
+  headers = "content-type=multipart/*",
+  produces = MediaType.APPLICATION_JSON_VALUE,
+  method = RequestMethod.POST
+)
 public @ResponseBody List<DocumentDto> upload(@RequestParam("files") MultipartFile[] files) throws IOException
 {
   // ...
@@ -16,7 +26,12 @@ public @ResponseBody List<DocumentDto> upload(@RequestParam("files") MultipartFi
   return documentDtoList;
 }
 
-@RequestMapping(value = "${1:/upload}", headers = "content-type=multipart/*", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+@RequestMapping(
+  value = "${1:/upload}",
+  headers = "content-type=multipart/*",
+  produces = MediaType.APPLICATION_JSON_VALUE,
+  method = RequestMethod.POST
+)
 public @ResponseBody DocumentDto upload(@RequestParam("file") Part file) throws IOException
 {
   // ...
@@ -24,7 +39,12 @@ public @ResponseBody DocumentDto upload(@RequestParam("file") Part file) throws 
   return documentDto;
 }
 
-@RequestMapping(value = "${1:/upload}", headers = "content-type=multipart/*", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+@RequestMapping(
+  value = "${1:/upload}",
+  headers = "content-type=multipart/*",
+  produces = MediaType.APPLICATION_JSON_VALUE,
+  method = RequestMethod.POST
+)
 public @ResponseBody List<DocumentDto> upload(@RequestParam("files") Part[] files) throws IOException
 {
   // ...

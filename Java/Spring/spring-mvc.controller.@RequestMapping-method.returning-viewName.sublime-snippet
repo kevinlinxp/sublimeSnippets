@@ -1,6 +1,10 @@
 <snippet>
   <content><![CDATA[
-@RequestMapping(value = "${1:/path/to/resources}", produces = MediaType.TEXT_HTML_VALUE, method = RequestMethod.${2:GET})
+@RequestMapping(
+  value = "${1:/path/to/resources}",
+  produces = MediaType.TEXT_HTML_VALUE,
+  method = RequestMethod.${2:GET}
+)
 public String ${3:methodName}(Model uiModel) {
   ${0}
 

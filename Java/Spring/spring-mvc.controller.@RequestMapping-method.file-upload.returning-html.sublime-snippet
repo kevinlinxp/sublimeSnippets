@@ -1,6 +1,11 @@
 <snippet>
   <content><![CDATA[
-@RequestMapping(value = "${1:/upload}", headers = "content-type=multipart/*", produces = MediaType.TEXT_HTML_VALUE, method = RequestMethod.POST)
+@RequestMapping(
+  value = "${1:/upload}",
+  headers = "content-type=multipart/*",
+  produces = MediaType.TEXT_HTML_VALUE,
+  method = RequestMethod.POST
+)
 public String upload(@RequestParam("file") MultipartFile file) throws IOException
 {
   // ...
@@ -8,7 +13,12 @@ public String upload(@RequestParam("file") MultipartFile file) throws IOExceptio
   return "redirect:uploadSuccess";
 }
 
-@RequestMapping(value = "${1:/upload}", headers = "content-type=multipart/*", produces = MediaType.TEXT_HTML_VALUE, method = RequestMethod.POST)
+@RequestMapping(
+  value = "${1:/upload}",
+  headers = "content-type=multipart/*",
+  produces = MediaType.TEXT_HTML_VALUE,
+  method = RequestMethod.POST
+)
 public String upload(@RequestParam("files") MultipartFile[] files) throws IOException
 {
   // ...
@@ -16,7 +26,12 @@ public String upload(@RequestParam("files") MultipartFile[] files) throws IOExce
   return "redirect:uploadSuccess";
 }
 
-@RequestMapping(value = "${1:/upload}", headers = "content-type=multipart/*", produces = MediaType.TEXT_HTML_VALUE, method = RequestMethod.POST)
+@RequestMapping(
+  value = "${1:/upload}",
+  headers = "content-type=multipart/*",
+  produces = MediaType.TEXT_HTML_VALUE,
+  method = RequestMethod.POST
+)
 public String upload(@RequestParam("file") Part file) throws IOException
 {
   // ...
@@ -24,7 +39,12 @@ public String upload(@RequestParam("file") Part file) throws IOException
   return "redirect:uploadSuccess";
 }
 
-@RequestMapping(value = "${1:/upload}", headers = "content-type=multipart/*", produces = MediaType.TEXT_HTML_VALUE, method = RequestMethod.POST)
+@RequestMapping(
+  value = "${1:/upload}",
+  headers = "content-type=multipart/*",
+  produces = MediaType.TEXT_HTML_VALUE,
+  method = RequestMethod.POST
+)
 public String upload(@RequestParam("files") Part[] files) throws IOException
 {
   // ...

@@ -1,6 +1,10 @@
 <snippet>
   <content><![CDATA[
-@RequestMapping(value = "${1:/path/to/resources}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.${2:GET})
+@RequestMapping(
+  value = "${1:/path/to/resources}",
+  produces = MediaType.APPLICATION_JSON_VALUE,
+  method = RequestMethod.${2:GET}
+)
 public @ResponseBody ResponseEntity<Map<String, Object>> ${3:methodName}(Model uiModel) {
   Map<String, Object> result = new HashMap<String, Object>();
 
