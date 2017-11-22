@@ -1,0 +1,57 @@
+<snippet>
+  <content><![CDATA[
+<!--
+  ref: https://www.abeautifulsite.net/whipping-file-inputs-into-shape-with-bootstrap-3
+-->
+
+<div class="row">
+  <spring:url value="/enquiry/\${dto.id}/uploadDocument" var="upload_document_url"/>
+  <form action="\${upload_document_url}" enctype="multipart/form-data" method="POST" id="${1:enquiry-upload-document-form}">
+    <sec:csrfInput/>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <div class="input-group">
+        <input type="text" class="form-control" readonly="true"
+             placeholder="Select a document and then upload" />
+        <label class="input-group-btn">
+          <span class="btn btn-default">
+            Browse...
+            <input type="file" name="file" style="display: none;" />
+          </span>
+        </label>
+      </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <button type="submit" class="btn btn-primary">Upload <span class="glyphicon glyphicon-cloud-upload"></span></button>
+    </div>
+  </form>
+</div>
+
+<script>
+\$(document).ready(function() {
+  \$(':file').on('change', function() {
+    var thisFileInput = \$(this);
+    var str_selectedFile = thisFileInput.val()
+    // remove "C:\fakepath\"
+      .replace(/\\/g, '/').replace(/.*\//, '');
+    var textInput = thisFileInput.parents('.input-group').find(':text');
+    if (textInput.length) {
+      textInput.val(str_selectedFile)
+    }
+  });
+
+  \$('#${1:enquiry-upload-document-form}').submit(function () {
+    var file = \$(':file', this);
+    if (!file.val()) {
+      alert('Please select a file to upload.');
+      return false;
+    }
+    return true;
+  });
+});
+</script>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>bs3.sample.file-upload-form</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html, text.html.jsp, text.plain</scope>
+</snippet>
