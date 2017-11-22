@@ -74,5 +74,5 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>css.sample.overlay-and-center.transform</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.css, text.html, text.plain</scope>
+  <scope>source.css, text.html, text.html.jsp, text.plain</scope>
 </snippet>

@@ -7,5 +7,5 @@
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>bs3dropdownmenuhover</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.css, text.html, text.plain</scope>
+  <scope>source.css, text.html, text.html.jsp, text.plain</scope>
 </snippet>
