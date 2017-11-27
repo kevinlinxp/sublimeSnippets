@@ -60,7 +60,7 @@ public String resolveFormReferenceIfAny(String originalFormDesignJson)
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>lambda.sample.bi-function</tabTrigger>
+  <tabTrigger>java8.lambda.sample.bi-function</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

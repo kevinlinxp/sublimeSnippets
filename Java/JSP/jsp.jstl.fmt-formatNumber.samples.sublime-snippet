@@ -1,0 +1,39 @@
+<snippet>
+  <content><![CDATA[
+<c:set var="accountBalance" value="9500.60" />
+
+<!-- $9,500.60 -->
+<fmt:formatNumber value="${accountBalance}" type="currency"/>
+
+<!-- 500.60 -->
+<fmt:formatNumber type="number" maxIntegerDigits="3" value="${accountBalance}" />
+
+<!-- 9,500.6 -->
+<fmt:formatNumber type="number" maxFractionDigits="3" value="${accountBalance}" />
+
+<!-- 9500.6 -->
+<fmt:formatNumber type="number" groupingUsed="false" value="${accountBalance}" />
+
+<!-- 060% -->
+<fmt:formatNumber type="percent" maxIntegerDigits="3" value="${accountBalance}" />
+
+<!-- 950,060.0000000000% -->
+<fmt:formatNumber type="percent" minFractionDigits="10" value="${accountBalance}" />
+
+<!-- 9.5006E3 -->
+<fmt:formatNumber type="number" pattern="###.###E0" value="${accountBalance}" />
+
+<!-- $9,500.60 -->
+<fmt:setLocale value="en_US"/>
+<fmt:formatNumber value="${accountBalance}" type="currency"/>
+
+<!-- 9 500.60 $ -->
+<fmt:setLocale value="fr_CA"/>
+<fmt:formatNumber value="${accountBalance}" type="currency"/>
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jsp.jstl.fmt-formatNumber.samples</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html.jsp, text.plain</scope>
+</snippet>

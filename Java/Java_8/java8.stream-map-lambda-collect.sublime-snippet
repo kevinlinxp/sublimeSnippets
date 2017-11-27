@@ -5,7 +5,7 @@ List<Map<String, Object>> responseList = attachmentList.stream().map(attachment-
 ).collect(Collectors.toList());
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>stream-map-lambda-collect</tabTrigger>
+  <tabTrigger>java8.stream-map-lambda-collect</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>
