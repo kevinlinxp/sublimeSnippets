@@ -4,7 +4,7 @@
 private List<Employee> employeeList = new ArrayList<>();
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>hibernate.mapping.one-to-many.inversed</tabTrigger>
+  <tabTrigger>hibernate.mapping-java.one-to-many.inversed</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.java, source.sql, text.plain</scope>
+  <scope>source.java, text.plain</scope>
 </snippet>

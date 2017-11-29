@@ -139,7 +139,7 @@
 </hibernate-mapping>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>hibernate.sample.mapping.hbm.xml</tabTrigger>
+  <tabTrigger>hibernate.sample.mapping-xml</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.xml, text.plain</scope>
 </snippet>

@@ -1,0 +1,46 @@
+<snippet>
+  <content><![CDATA[
+// A sample enum:
+enum State
+{
+  NSW,
+  ACT,
+  VIC,
+  QLD,
+  SA,
+  WA,
+  TAS,
+  NT;
+}
+
+// In entity:
+private State state;
+
+<!-- Equivalent to @Enumerated(EnumType.STRING) -->
+<property name="state" column="STATE">
+  <type name="org.hibernate.type.EnumType">
+    <param name="enumClass">my.domain.State</param>
+    <!-- If comment out the line below, will be equivalent to @Enumerated(EnumType.ORDINAL) -->
+    <param name="useNamed">true</param>
+  </type>
+</property>
+
+-- DDL sample when using string
+CREATE TABLE `Person` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `state` VARCHAR(3) NOT NULL,
+  PRIMARY KEY (`id`)
+)
+
+-- DDL sample when using ordinal
+CREATE TABLE `Person` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `state` TINYINT(1) NOT NULL,
+  PRIMARY KEY (`id`)
+)
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>hibernate.mapping-xml.enum</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, source.sql, text.plain</scope>
+</snippet>
