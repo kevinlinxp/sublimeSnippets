@@ -1,0 +1,48 @@
+<snippet>
+  <content><![CDATA[
+@Entity
+@IdClass({1:Entity}.{1:Entity}PK.class)
+class {1:Entity} implements Serializable {
+
+  public static class {1:Entity}PK implements Serializable {
+    private Long id1;
+    private String id2;
+    private Long id3; // Type should match the referenced property in "anotherEntity"
+
+    public {1:Entity}PK() {}
+
+    public {1:Entity}PK(Long id1, String id2, Long id3) {
+      this.id1 = id1;
+      this.id2 = id2;
+      this.id3 = id3;
+    }
+
+    @Override public int hashCode() {
+      // ...
+    }
+
+    @Override public boolean equals(Object o) {
+      // ...
+    }
+  }
+
+  @Id
+  private Long id1;
+
+  @Id
+  private String id2;
+
+  @Id
+  @ManyToOne
+  @JoinColumn(name = "id3", referencedColumnName = "ID_COLUMN_NAME_OF_REFERENCED_ENTITY", nullable = false)
+  @NotNull
+  private ReferencedEntity anotherEntity;
+
+  // ...
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>hibernate.sample.mapping-java.composite-id.idClass</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

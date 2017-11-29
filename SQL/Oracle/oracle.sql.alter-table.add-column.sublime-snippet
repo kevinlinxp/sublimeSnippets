@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+ALTER TABLE ${1:table_name} ADD ${2:column_name} ${3:column-definition};
+
+ALTER TABLE ${1:table_name}
+  ADD (column_1 column-definition,
+       column_2 column-definition,
+       ...
+       column_n column-definition);
+
+-- e.g.
+-- ALTER TABLE customers ADD customer_name VARCHAR2(45);
+-- ALTER TABLE customers ADD city VARCHAR2(40) DEFAULT 'Seattle';
+-- ALTER TABLE customers ADD (customer_name VARCHAR2(45), city VARCHAR2(40) DEFAULT 'Seattle');
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oracle.sql.alter-table.add-column</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>

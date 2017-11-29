@@ -1,0 +1,47 @@
+<snippet>
+  <content><![CDATA[
+// A sample enum:
+enum State
+{
+  NSW,
+  ACT,
+  VIC,
+  QLD,
+  SA,
+  WA,
+  TAS,
+  NT;
+}
+
+
+// In the entity, use @Enumerated(EnumType.STRING) or @Enumerated(EnumType.ORDINAL)
+
+// If use @Enumerated(EnumType.STRING):
+@Column(name = "STATE", length = 3) // "length here only works for string"
+@Enumerated(EnumType.STRING)
+private State state;
+
+-- DDL sample when using string
+CREATE TABLE `Person` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `state` VARCHAR(3) NOT NULL,
+  PRIMARY KEY (`id`)
+)
+
+// If use @Enumerated(EnumType.ORDINAL):
+@Column(name = "STATE", columnDefinition = "tinyint(1)") // "1 byte (-128 ~ 127) is enough for the range of states (0 ~ 7)"
+@Enumerated(EnumType.ORDINAL)
+private State state;
+
+-- DDL sample when using ordinal
+CREATE TABLE `Person` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `state` TINYINT(1) NOT NULL,
+  PRIMARY KEY (`id`)
+)
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>hibernate.mapping-java.enum</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, source.sql, text.plain</scope>
+</snippet>

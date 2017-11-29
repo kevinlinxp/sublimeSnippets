@@ -1,17 +1,20 @@
 <snippet>
   <content><![CDATA[
-ALTER TABLE ${1:table_name} MODIFY ${2:column_name} ${3:column_type};
+ALTER TABLE ${1:table_name} MODIFY ${2:column_name} ${3:column-definition};
 
 ALTER TABLE ${1:table_name}
-  MODIFY (column_1 column_type,
-          column_2 column_type,
+  MODIFY (column_1 column-definition,
+          column_2 column-definition,
           ...
-          column_n column_type);
+          column_n column-definition);
 
--- e.g. ALTER TABLE customers MODIFY customer_name varchar2(100) not null;
+-- e.g.
+-- ALTER TABLE customers MODIFY customer_name VARCHAR2(100) NOT NULL;
+-- ALTER TABLE customers MODIFY city VARCHAR2(75) DEFAULT 'Seattle' NOT NULL;
+-- ALTER TABLE customers MODIFY (customer_name VARCHAR2(100), city VARCHAR2(75) DEFAULT 'Seattle' NOT NULL);
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>oracle.sql.alter-table.add-column</tabTrigger>
+  <tabTrigger>oracle.sql.alter-table.modify-column</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.sql, text.plain</scope>
 </snippet>
