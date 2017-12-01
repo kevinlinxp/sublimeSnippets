@@ -10,6 +10,14 @@ public class JpaMovieFinder implements MovieFinder {
 
 }
 
+@Repository
+public interface EnquiryDocumentRepository extends JpaRepository<EnquiryDocument, Long>
+{
+  @Query("FROM EnquiryDocument enquiryDoc LEFT JOIN FETCH enquiryDoc.docMetadata docMeta"
+      + " WHERE enquiryDoc.enquiry.id = :enquiryId"
+      + " ORDER BY docMeta.lastChangedTs DESC, docMeta.name ASC")
+  List<EnquiryDocument> findByEnquiryId(@Param("enquiryId") Long enquiryId);
+}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>spring-data.jpa-repository</tabTrigger>
