@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+public interface EnquiryDocumentRepository extends JpaRepository<EnquiryDocument, Long>
+{
+  // ...
+  @Query("FROM EnquiryDocument enquiryDoc LEFT JOIN FETCH enquiryDoc.docMetadata docMeta"
+      + " WHERE enquiryDoc.enquiry.id = :enquiryId"
+      + " ORDER BY docMeta.lastChangedTs DESC, docMeta.name ASC")
+  List<EnquiryDocument> findByEnquiryId(@Param("enquiryId") Long enquiryId);
+  // ...
+}
+
+public interface FormDesignRepository extends JpaRepository<EnquiryDocument, Long>
+{
+  // ...
+  @Query("DELETE FROM FormDesign fd WHERE fd.name = :${1:key}")
+  void deleteByKey(@Param("${1}") String key);
+  // ...
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-data.jpa-repository.sample.@Query-annotated-queries</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

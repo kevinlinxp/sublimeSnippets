@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-interface PersonRepository extends Repository<User, Long> {
+public interface PersonRepository extends Repository<User, Long> {
 
   List<Person> findByEmailAddressAndLastname(EmailAddress emailAddress, String lastname);
 
@@ -19,7 +19,7 @@ interface PersonRepository extends Repository<User, Long> {
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-data.jpa-repository.method-name-based-queries</tabTrigger>
+  <tabTrigger>spring-data.jpa-repository.sample.method-name-based-queries</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>
