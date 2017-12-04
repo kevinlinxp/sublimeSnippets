@@ -2,15 +2,54 @@
   <content><![CDATA[
 <!-- Usually in ./src/main/resources/META-INF -->
 <?xml version="1.0" encoding="UTF-8"?>
-<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_0.xsd"
-                 version="2.0">
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_0.xsd" version="2.0">
 
-  <entity class="foo.bar.FormDesign">
-    <table schema="SERVICES" name="SFB_FORM_DESIGN" />
+  <sequence-generator
+            name="stdSequence"
+            allocation-size="1"
+            schema="CORE"
+            sequence-name="HIBERNATE_SEQUENCE" />
+
+  <!-- TODO: remove activiti references -->
+  <entity class="au.com.rds.activiti.processref.domain.ProcessInstanceRef">
+    <table schema="WORKFLOW" name="PROCESS_INSTANCE_REF" />
   </entity>
 
-  <entity class="foo.bar.CustomComponent">
-    <table schema="SERVICES" name="SFB_CUSTOM_COMPONENT" />
+  <entity class="au.com.rds.schemaformbuilder.form.FormDesign">
+    <table schema="WORKFLOW" name="SF_FORM_DESIGN" />
+  </entity>
+
+  <entity class="au.com.rds.doc.domain.DocMetadata">
+    <table schema="SERVICES" name="DOC_METADATA" />
+  </entity>
+
+  <entity class="au.com.rds.doc.domain.DocCategory">
+    <table schema="SERVICES" name="DOC_CATEGORY" />
+  </entity>
+
+  <entity class="au.com.rds.doc.domain.DocTag">
+    <table schema="SERVICES" name="DOC_TAG" />
+  </entity>
+
+  <entity class="au.com.rds.doc.domain.DocVersion">
+    <table schema="SERVICES" name="DOC_VERSION" />
+  </entity>
+
+  <entity class="au.com.rds.doc.service.strategy.support.RdsDocStore">
+    <table schema="SERVICES" name="DOC_STORE" />
+    <attributes>
+      <id name="id">
+        <generated-value strategy="SEQUENCE" generator="stdSequence"/>
+      </id>
+    </attributes>
+  </entity>
+
+  <entity class="au.com.rds.doc.domain.SecuredDoc">
+    <table schema="SERVICES" name="SECURE_DOC_STORE" />
+  </entity>
+
+  <entity class="au.com.rds.message.service.MessageEntity">
+    <table schema="RDS_LOGGING" name="RDS_MESSAGE" />
   </entity>
 
 </entity-mappings>
