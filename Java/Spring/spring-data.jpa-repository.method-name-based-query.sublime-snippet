@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+interface PersonRepository extends Repository<User, Long> {
+
+  List<Person> findByEmailAddressAndLastname(EmailAddress emailAddress, String lastname);
+
+  // Enables the distinct flag for the query
+  List<Person> findDistinctPeopleByLastnameOrFirstname(String lastname, String firstname);
+  List<Person> findPeopleDistinctByLastnameOrFirstname(String lastname, String firstname);
+
+  // Enabling ignoring case for an individual property
+  List<Person> findByLastnameIgnoreCase(String lastname);
+  // Enabling ignoring case for all suitable properties
+  List<Person> findByLastnameAndFirstnameAllIgnoreCase(String lastname, String firstname);
+
+  // Enabling static ORDER BY for a query
+  List<Person> findByLastnameOrderByFirstnameAsc(String lastname);
+  List<Person> findByLastnameOrderByFirstnameDesc(String lastname);
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-data.jpa-repository.method-name-based-queries</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

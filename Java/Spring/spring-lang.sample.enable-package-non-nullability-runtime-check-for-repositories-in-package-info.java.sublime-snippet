@@ -1,0 +1,34 @@
+<snippet>
+  <content><![CDATA[
+// package-info.java
+@org.springframework.lang.NonNullApi
+package ${1:foo.bar};
+
+
+// ${1:foo.bar}.UserRepository:
+package com.acme;
+
+import org.springframework.lang.Nullable;
+
+interface UserRepository extends Repository<User, Long> {
+
+  // Will throw an EmptyResultDataAccessException in case the query executed does not produce a result.
+  // Will throw an IllegalArgumentException in case the emailAddress handed to the method is null.
+  User getByEmailAddress(EmailAddress emailAddress);
+
+  // Will return null in case the query executed does not produce a result.
+  @Nullable
+  // Also accepts null as value for emailAddress.
+  User findByEmailAddress(@Nullable EmailAddress emailAdress);
+
+  // Will return Optional.empty() in case the query executed does not produce a result.
+  // Will throw an IllegalArgumentException in case the emailAddress handed to the method is null.
+  Optional<User> findOptionalByEmailAddress(EmailAddress emailAddress);
+}
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-lang.sample.enable-package-non-nullability-runtime-check-for-repositories-in-package-info.java</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
