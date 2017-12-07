@@ -1,0 +1,22 @@
+<snippet>
+  <content><![CDATA[
+java.util.Date ${1:date} = java.util.Date.from(localDate.atStartOfDay(ZoneId.systemDefault())).toInstant());
+
+// Keep in mind that a java.util.Date is a misnomer as it represents a date plus a time-of-day, in UTC.
+// In contrast, the LocalDate class represents a date-only value without time-of-day and without time zone.
+
+// 1. From a java.time.LocalDate to a java.util.Date means we are going from a date-only to a date-time. So we must specify a time-of-day.
+// You probably want to go for the first moment of the day. Do not assume that is 00:00:00. Anomalies such as Daylight Saving Time (DST) means the first moment may be another time such as 01:00:00. Let java.time determine that value by calling atStartOfDay on the LocalDate.
+ZonedDateTime zdt = localDate.atStartOfDay( z );
+
+// 2. Now extract an Instant:
+Instant instant = zdt.toInstant();
+
+// 3. Convert that Instant to java.util.Date:
+java.util.Date ${1:date} = java.util.Date.from(instant);
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java8.time.LocalDate-to-Date</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

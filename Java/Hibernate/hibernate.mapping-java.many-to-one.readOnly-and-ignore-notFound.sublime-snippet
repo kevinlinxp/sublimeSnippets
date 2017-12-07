@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+@ManyToOne
+@JoinColumn(name = "LAST_CHANGED_BY", referencedColumnName = "ID", nullable = false, updatable = false, insertable = false)
+@NotFound(action = NotFoundAction.IGNORE)
+@Fetch(FetchMode.JOIN)
+private UserReadOnly user;
+
+@Column(name = "LAST_CHANGED_BY")
+private String lastChangedBy;
+
+public String getUserFormattedName()
+{
+  return user == null ? lastChangedBy : user.getUserFormattedName();
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>hibernate.mapping-java.many-to-one.readOnly-and-ignore-notFound</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
