@@ -1,8 +1,19 @@
 <snippet>
   <content><![CDATA[
+@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+@JoinTable(name = "ENQUIRY_OCCUPANT_INIT",
+    joinColumns = @JoinColumn(name = "ENQUIRY_ID"),
+    inverseJoinColumns = @JoinColumn(name = "OCCUPANT_DETAIL_ID"))
+private List<OccupantDetails> initialOccupantDetailsList = new ArrayList<>(0);
+
+@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+@JoinTable(name = "ENQUIRY_OCCUPANT_REVISE",
+    joinColumns = @JoinColumn(name = "ENQUIRY_ID"),
+    inverseJoinColumns = @JoinColumn(name = "OCCUPANT_DETAIL_ID"))
+private List<OccupantDetails> revisedOccupantDetailsList = new ArrayList<>(0);
+
 @OneToMany
-@JoinTable(
-    schema = "SERVICES",
+@JoinTable(schema = "SERVICES",
     name = "ENQUIRY_DOCMETADATA",
     joinColumns = @JoinColumn(name = "ENQUIRY_ID"),
     inverseJoinColumns = @JoinColumn(name = "DOC_METADATA_ID"))

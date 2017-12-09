@@ -1,0 +1,59 @@
+<snippet>
+  <content><![CDATA[
+// Load a specific JDBC Driver in a static block
+static {
+  try {
+    Class.forName("com.mysql.jdbc.Driver");
+  } catch (ClassNotFoundException e) {
+    e.printStackTrace();
+    return;
+  }
+}
+
+// Then use JDBC APIs
+Connection conn = null;
+Statement stmt = null;
+ResultSet rs = null;
+
+try {
+  conn = DriverManager.getConnection("url", "sa", "1234");
+  conn.setAutoCommit(false);
+  stmt = conn.createStatement(
+    ResultSet.TYPE_SCROLL_SENSITIVE,
+    ResultSet.CONCUR_UPDATABLE,
+    ResultSet.HOLD_CURSORS_OVER_COMMIT
+  );
+
+  stmt.executeQuery("SQL");
+
+  stmt.addBatch("sql1");
+  stmt.addBatch("sql2");
+  stmt.executeBatch();
+
+  rs = stmt.executeQuery("querySql");
+  rs.setFetchDirection(ResultSet.FETCH_REVERSE);
+
+  conn.commit();
+} catch (SQLException e) {
+  e.printStackTrace();
+  try {
+    if (rs != null) {
+      rs.close();
+    }
+    if (stmt != null) {
+      stmt.close();
+    }
+    if (conn != null) {
+      conn.close();
+      conn.rollback();
+    }
+    } catch (SQLException e1) {
+    e1.printStackTrace();
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jdbc.sample.DriverManager-Connection-Statement-ResultSet</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

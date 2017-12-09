@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+@OneToMany(fetch = FetchType.LAZY, mappedBy = "enquiry", cascade = CascadeType.ALL)
+@Where(clause = "IS_INIT_YN = 'Y'")
+private List<OccupantDetails> initialOccupantDetailsList = new ArrayList<>();
+
+@OneToMany(fetch = FetchType.LAZY, mappedBy = "enquiry", cascade = CascadeType.ALL)
+@Where(clause = "IS_INIT_YN = 'N'")
+private List<OccupantDetails> revisedOccupantDetailsList = new ArrayList<>();
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>hibernate.mapping-java.one-to-many.with-where-clause</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

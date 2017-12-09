@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+SELECT
+  'DROP TABLESPACE ' ｜｜ tablespace_name ｜｜ ' INCLUDING CONTENTS AND DATAFILES;'
+FROM dba_tablespaces
+WHERE tablespace_name NOT IN ('SYSTEM','SYSAUX','UNDOTBS1','TEMP','USERS');
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oracle.sql.sql-generator.drop-tablespace-including-contents-and-datafiles</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>

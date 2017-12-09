@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+SELECT
+  'DROP USER ' ｜｜ username ｜｜ ' CASCADE;'
+FROM dba_users
+WHERE created >= '${1:01/FEB/17}';
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oracle.sql.sql-generator.drop-user-cascade</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>
