@@ -1,0 +1,29 @@
+<snippet>
+  <content><![CDATA[
+<form>
+  <div class="form-group${1}">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control${2}" id="exampleInputEmail1" placeholder="Email">
+  </div>
+  <div class="form-group${1}">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control${2}" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group${1}">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>bs3.form-basic</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html, text.html.jsp, text.plain</scope>
+</snippet>
