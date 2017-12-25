@@ -1,0 +1,177 @@
+<snippet>
+  <content><![CDATA[
+// ${4}.AbstractImmutableCompositeType.java
+public abstract class AbstractImmutableCompositeType<EID extends Serializable> implements CompositeUserType
+{
+  private final Type[] internalTypes = getPropertyTypes();
+  private final Class<EID> clazz;
+
+  public AbstractImmutableCompositeType(Class<EID> clazz)
+  {
+    requireNonNull(clazz);
+    this.clazz = clazz;
+  }
+
+  @Override
+  public Class<EID> returnedClass()
+  {
+    return clazz;
+  }
+
+  protected abstract EID construct(Object[] values);
+
+  public abstract Object getPropertyValue(EID component, int property) throws HibernateException;
+
+  @Override
+  public Object getPropertyValue(Object component, int property) throws HibernateException
+  {
+    return getPropertyValue(returnedClass().cast(component), property);
+  }
+
+  @Override
+  public EID nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner) throws HibernateException, SQLException
+  {
+    Object[] values = new Object[internalTypes.length];
+    for (int i = 0; i < internalTypes.length; i++)
+    {
+      values[i] = internalTypes[i].nullSafeGet(rs, names[i], session, owner);
+    }
+    return construct(values);
+  }
+
+  @Override
+  public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session) throws HibernateException, SQLException
+  {
+    if (value == null)
+    {
+      for (int i = 0; i < internalTypes.length; i++)
+      {
+        internalTypes[i].nullSafeSet(st, null, index + i, session);
+      }
+    }
+    else
+    {
+      EID cVal = returnedClass().cast(value);
+      for (int i = 0; i < internalTypes.length; i++)
+      {
+        Object property = getPropertyValue(cVal, i);
+        internalTypes[i].nullSafeSet(st, property, index + i, session);
+      }
+    }
+  }
+
+  @Override
+  public boolean equals(Object x, Object y) throws HibernateException
+  {
+    return Objects.equals(x, y);
+  }
+
+  @Override
+  public int hashCode(Object x) throws HibernateException
+  {
+    return x.hashCode();
+  }
+
+  @Override
+  public Object deepCopy(Object value) throws HibernateException
+  {
+    return value;
+  }
+
+  @Override
+  public boolean isMutable()
+  {
+    return false;
+  }
+
+  @Override
+  public Serializable disassemble(Object value, SessionImplementor session) throws HibernateException
+  {
+    return (Serializable) value;
+  }
+
+  @Override
+  public Object assemble(Serializable cached, SessionImplementor session, Object owner) throws HibernateException
+  {
+    return cached;
+  }
+
+  @Override
+  public Object replace(Object original, Object target, SessionImplementor session, Object owner) throws HibernateException
+  {
+    return original;
+  }
+
+  @Override
+  public void setPropertyValue(Object component, int property, Object value) throws HibernateException
+  {
+    throw new UnsupportedOperationException();
+  }
+}
+
+// ${4}.${1}Type.java
+public class ${1:MyComposite}Type extends AbstractImmutableCompositeType<${1}>
+{
+  public ${1}Type()
+  {
+    super(${1}.class);
+  }
+
+  @Override
+  public String[] getPropertyNames()
+  {
+    return new String[]{"${2:myProperty1}", "${3:myProperty2}"};
+  }
+
+  @Override
+  public Type[] getPropertyTypes()
+  {
+    return new Type[]{IntegerType.INSTANCE, CharacterType.INSTANCE};
+  }
+
+  @Override
+  public Object getPropertyValue(${1} component, int property) throws HibernateException
+  {
+    if (property == 0)
+    {
+      return component.get${2/.*/\u$&/}();
+    }
+    else if (property == 1)
+    {
+      return component.get${3/.*/\u$&/}();
+    }
+    else
+    {
+      return null;
+    }
+  }
+
+  @Override
+  public ${1} construct(Object[] values)
+  {
+    Integer ${2} = (Integer) values[0];
+    Character ${3} = (Character) values[1];
+    if (${2} == null || ${3} == null)
+    {
+      return null;
+    }
+    return new ${1}(${2}, ${3});
+  }
+}
+
+// package-info.java
+@TypeDefs({
+  @TypeDef(name = "my_composite", typeClass = ${1}Type.class, defaultForType = ${1}.class),
+})
+package ${4:my.package}
+
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
+
+import ${5:my.domain}.${1}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>hibernate.type.AbstractImmutableCompositeType.implements.CompositeUserType</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

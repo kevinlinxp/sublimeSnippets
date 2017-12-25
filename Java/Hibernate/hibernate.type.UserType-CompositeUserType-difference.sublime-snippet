@@ -1,0 +1,40 @@
+<snippet>
+  <content><![CDATA[
+public interface UserType {
+  public Class returnedClass();
+  public boolean equals(Object x, Object y) throws HibernateException;
+  public int hashCode(Object x) throws HibernateException;
+  public Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner) throws HibernateException, SQLException;
+  public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session) throws HibernateException, SQLException;
+  public Object deepCopy(Object value) throws HibernateException;
+  public boolean isMutable();
+  public Serializable disassemble(Object value) throws HibernateException;
+  public Object assemble(Serializable cached, Object owner) throws HibernateException;
+  public Object replace(Object original, Object target, Object owner) throws HibernateException;
+
+  public int[] sqlTypes();
+}
+
+public interface CompositeUserType {
+  public Class returnedClass();
+  public boolean equals(Object x, Object y) throws HibernateException;
+  public int hashCode(Object x) throws HibernateException;
+  public Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner) throws HibernateException, SQLException;
+  public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session) throws HibernateException, SQLException;
+  public Object deepCopy(Object value) throws HibernateException;
+  public boolean isMutable();
+  public Serializable disassemble(Object value, SessionImplementor session) throws HibernateException;
+  public Object assemble(Serializable cached, SessionImplementor session, Object owner) throws HibernateException;
+  public Object replace(Object original, Object target, SessionImplementor session, Object owner) throws HibernateException;
+
+  public String[] getPropertyNames();
+  public Type[] getPropertyTypes();
+  public Object getPropertyValue(Object component, int property) throws HibernateException;
+  public void setPropertyValue(Object component, int property, Object value) throws HibernateException;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>hibernate.type.UserType-CompositeUserType-difference</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

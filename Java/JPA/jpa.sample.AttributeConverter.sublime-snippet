@@ -1,0 +1,139 @@
+<snippet>
+  <content><![CDATA[
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
+
+@Converter(autoApply = true)
+public class ${1:MyEnum}Converter implements AttributeConverter<${1:MyEnum}, String>
+{
+  private static final EnumCodeLookup<${1:MyEnum}> LOOKUP;
+
+  static
+  {
+    LOOKUP = new EnumCodeLookup<>(${1:MyEnum}.class);
+    LOOKUP.register(${1:MyEnum}.SACAT, "ST");
+    LOOKUP.register(${1:MyEnum}.OBJECTION, "ON");
+    LOOKUP.register(${1:MyEnum}.CORRECTION, "CN");
+    LOOKUP.register(${1:MyEnum}.RELATIVITY, "RY");
+    LOOKUP.register(${1:MyEnum}.REVIEW, "RW");
+    LOOKUP.register(${1:MyEnum}.COURT, "CT");
+    LOOKUP.register(${1:MyEnum}.ERROR_OF_FACT, "EF");
+    LOOKUP.register(${1:MyEnum}.NOTIONAL, "NL");
+    LOOKUP.register(${1:MyEnum}.LAND_USE, "LU");
+    LOOKUP.register(${1:MyEnum}.MINISTERIAL, "ML");
+    LOOKUP.register(${1:MyEnum}.DIVISION_AMALGAMATION, "DA");
+    LOOKUP.register(${1:MyEnum}.SAHT_RENTAL, "SR");
+    LOOKUP.register(${1:MyEnum}.STAMP_DUTIES, "SD");
+    LOOKUP.register(${1:MyEnum}.REVENUE_SA, "RS");
+    LOOKUP.register(${1:MyEnum}.ADELAIDE_CITY_COUNCIL, "AC");
+    LOOKUP.init();
+  }
+
+  @Override
+  public String convertToDatabaseColumn(${1:MyEnum} et)
+  {
+    if (et == null)
+    {
+      return null;
+    }
+    return LOOKUP.get(et);
+  }
+
+  @Override
+  public ${1:MyEnum} convertToEntityAttribute(String value)
+  {
+    if (value == null || value.isEmpty())
+    {
+      return null;
+    }
+    return LOOKUP.get(value);
+  }
+}
+
+
+
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.TreeMap;
+
+import static java.util.Objects.requireNonNull;
+
+public class EnumCodeLookup<T extends Enum<T>>
+{
+  private final Map<String, T> fromString;
+  private final Map<T, String> toString;
+  private final Class<T> enumClass;
+
+  private boolean complete = false;
+
+  public EnumCodeLookup(Class<T> enumClass)
+  {
+    requireNonNull(enumClass);
+
+    this.fromString = new TreeMap<>();
+    this.toString = new EnumMap<>(enumClass);
+    this.enumClass = enumClass;
+  }
+
+  public void register(T value, String code)
+  {
+    if (complete)
+    {
+      throw new IllegalStateException("Initialised - Read Only");
+    }
+    requireNonNull(value);
+    requireNonNull(code);
+
+    String existingCode = toString.get(value);
+    T existingValue = fromString.get(code);
+    if (existingCode != null || existingValue != null)
+    {
+      throw new IllegalArgumentException(value + "(" + code + ") already registered with " + existingValue + "(" + existingCode + ")");
+    }
+    else
+    {
+      toString.put(value, code);
+      fromString.put(code, value);
+    }
+  }
+
+  public void init()
+  {
+    final int expected = enumClass.getEnumConstants().length;
+    if (toString.size() != expected)
+    {
+      throw new AssertionError("Incorrect number of values in toString; expected " + expected + ", was " + toString.size() + "; " + toString);
+    }
+    if (fromString.size() != expected)
+    {
+      throw new AssertionError("Incorrect number of values in fromString; expected " + expected + ", was " + fromString.size() + "; " + fromString);
+    }
+    complete = true;
+  }
+
+  public String get(T value)
+  {
+    String s = toString.get(value);
+    if (s == null)
+    {
+      throw new IllegalArgumentException("No code for " + enumClass.getCanonicalName() + "." + value);
+    }
+    return s;
+  }
+
+  public T get(String code)
+  {
+    T t = fromString.get(code);
+    if (t == null)
+    {
+      throw new IllegalArgumentException("No " + enumClass.getCanonicalName() + " for code " + code);
+    }
+    return t;
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jpa.sample.AttributeConverter</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

@@ -1,0 +1,61 @@
+<snippet>
+  <content><![CDATA[
+// 1. Interface
+public interface IdGenerator<T>
+{
+  @Nonnull
+  T nextId();
+}
+
+// 2. Abstract Implementation
+public abstract class SequenceIdGenerator implements IdGenerator<Long>
+{
+  private static final Pattern SEQUENCE_PATTERN = Pattern.compile("^(?:[A-Za-z_][A-Za-z0-9_]*[.])?[A-Za-z_][A-Za-z0-9_]*$");
+
+  @PersistenceContext
+  private EntityManager em;
+
+  private final String qualifiedSequenceName;
+
+  public SequenceIdGenerator(@Nonnull String qualifiedSequenceName)
+  {
+    requireNonNull(qualifiedSequenceName);
+    if (SEQUENCE_PATTERN.matcher(qualifiedSequenceName).matches())
+    {
+      this.qualifiedSequenceName = qualifiedSequenceName;
+    }
+    else
+    {
+      throw new IllegalArgumentException("Invalid Sequence " + qualifiedSequenceName);
+    }
+  }
+
+  @Nonnull
+  @Override
+  public Long nextId()
+  {
+    Object result = em.createNativeQuery("SELECT " + qualifiedSequenceName + ".NEXTVAL FROM DUAL").getSingleResult();
+    if (result instanceof Long)
+    {
+      return (Long) result;
+    }
+    else if (result instanceof BigDecimal)
+    {
+      return ((BigDecimal) result).longValueExact();
+    }
+    else if (result == null)
+    {
+      throw new NullPointerException();
+    }
+    else
+    {
+      throw new ClassCastException("Cannot cast " + result + " of type " + result.getClass() + " to Long");
+    }
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jpa.sample.SequenceGenerator</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

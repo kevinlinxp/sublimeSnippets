@@ -1,8 +1,8 @@
 <snippet>
   <content><![CDATA[
-var ${3:regexp} = /${1:model(\.[\w.[\]]+)}/${2:g};
+var ${2:regexp} = /${1:model(\.[\w.[\]]+)}/g;
 var m;
-while ((m = ${3}.exec(${4:str})) !== null) {
+while ((m = ${2}.exec(${3:str})) !== null) {
   var s = m[0];${0}
 }
 ]]></content>
