@@ -1,47 +1,7 @@
 <snippet>
   <content><![CDATA[
-// Auto-configuration classes are regular Spring Configuration beans. They are located using the SpringFactoriesLoader mechanism (keyed against this class). Generally auto-configuration beans are @Conditional beans (most often using @ConditionalOnClass and @ConditionalOnMissingBean annotations)
-
-package au.com.rds.email.config;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import au.com.rds.email.domain.RdsEmail;
-import au.com.rds.email.domain.RdsEmailAttachment;
-import au.com.rds.email.domain.RdsEmailRecipient;
-import au.com.rds.entityconfigutils.mapping.EntityMappings;
-import au.com.rds.entityconfigutils.util.SchemaMappingBuilder;
-
 @Configuration
-@ConditionalOnExpression("${rdsc.auto-entity.enabled:false}")
-@ConditionalOnClass(EntityMappings.class)
-public class EmailEntitiesConfiguration
-{
-  private static final String NAME_MUST_BE_UNIQUE = "emailServicesEntities";
-
-  @Value("${rdsc.auto-entity.email-services.schema:SERVICES}")
-  private String emailsSchema;
-
-  @Bean(name = NAME_MUST_BE_UNIQUE)
-  @ConditionalOnExpression("${rdsc.auto-entity.email-services.enabled:true}")
-  public EntityMappings emailServicesEntities()
-  {
-    SchemaMappingBuilder m = new SchemaMappingBuilder(emailsSchema);
-    m.add(RdsEmail.class, "RDS_EMAIL");
-    m.add(RdsEmailAttachment.class, "RDS_EMAIL_ATTACHMENT");
-    m.add(RdsEmailRecipient.class, "RDS_EMAIL_RECIPIENT");
-
-    return m.getMappings();
-  }
-}
-
-
-@Configuration
-public class RdsAutoEntityConfig
+public class AutoJpaEntityConfig
 {
   @Autowired(required = false)
   private List<EntityMappings> explicitMappedEntities;
@@ -52,25 +12,6 @@ public class RdsAutoEntityConfig
     return new RuntimeMappedOrmSources(explicitMappedEntities);
   }
 }
-
-
-package au.com.rds.entityconfigutils.hibernate;
-
-import au.com.rds.entityconfigutils.mapping.EntityMappings;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.spi.MetadataSourcesContributor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 public class RuntimeMappedOrmSources implements MetadataSourcesContributor
 {
@@ -156,7 +97,7 @@ public class RuntimeMappedOrmSources implements MetadataSourcesContributor
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-boot.sample.auto-config.RdsJavaMailEntities</tabTrigger>
+  <tabTrigger>spring-boot.config.util.configurable-jpa-entities-support</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

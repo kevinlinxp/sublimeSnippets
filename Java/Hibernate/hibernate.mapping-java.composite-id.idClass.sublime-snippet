@@ -7,7 +7,7 @@ class {1:Entity} implements Serializable {
   public static class {1:Entity}PK implements Serializable {
     private Long id1;
     private String id2;
-    private Long id3; // Type should match the referenced property in "anotherEntity"
+    private Long id3; // This field is also a foreign key. Its type should match the referenced property in "anotherEntity"
 
     public {1:Entity}PK() {}
 
