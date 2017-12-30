@@ -31,7 +31,7 @@ public int hashCode()
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>javase.sample.hashCode</tabTrigger>
+  <tabTrigger>javase.Object.hashCode</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

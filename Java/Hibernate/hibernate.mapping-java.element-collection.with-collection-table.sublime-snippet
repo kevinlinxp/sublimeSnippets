@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+@ElementCollection(fetch = FetchType.EAGER)
+@CollectionTable(
+  name = "NOTICE_TEMPLATE_CATEGORY",
+  joinColumns = @JoinColumn(name = "NOTICE_TEMPLATE_ID")) // Foreign key column or columns in the collection table that reference this table.
+@Column(name = "CATEGORY", length = 30) // The column in the collection table that contains collection values.
+private Set<String> categories = new HashSet<>();
+
+@ElementCollection(fetch = FetchType.EAGER)
+@CollectionTable(name = "NOTICE_TEMPLATE_RESTRICT_TO", joinColumns = @JoinColumn(name = "NOTICE_TEMPLATE_ID"))
+@Column(name = "ENQUIRY_TYPE", length = 30)
+private Set<String> restrictTo = new HashSet<>();
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>hibernate.mapping-java.element-collection.with-collection-table</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

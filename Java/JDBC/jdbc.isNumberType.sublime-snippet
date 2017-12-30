@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+public static boolean isNumberType(int type) {
+  return type == Types.BIGINT || type == Types.BIT || type == Types.DECIMAL
+      || type == Types.DOUBLE
+      || type == Types.FLOAT || type == Types.INTEGER || type == Types.NUMERIC
+      || type == Types.REAL
+      || type == Types.SMALLINT;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jackson.convertJsonStringToMap</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

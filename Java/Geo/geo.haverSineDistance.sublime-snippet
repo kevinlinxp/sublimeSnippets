@@ -1,0 +1,36 @@
+<snippet>
+ <content><![CDATA[
+/**
+ * Calculates geodetic distance between two points specified by latitude/longitude
+ *
+ * @param lat1 first point latitude in decimal degrees
+ * @param lon1 first point longitude in decimal degrees
+ * @param lat2 second point latitude in decimal degrees
+ * @param lon2 second point longitude in decimal degrees
+ * @author mHager 08-12-2012
+ * @returns distance in meters between points
+ * @see <a href="http://en.wikipedia.org/wiki/Haversine_formula">Haversine Formula</a>
+ */
+public static double haverSineDistance(double lat1, double lng1, double lat2, double lng2)
+{
+  // convert to radians
+  lat1 = Math.toRadians(lat1);
+  lng1 = Math.toRadians(lng1);
+  lat2 = Math.toRadians(lat2);
+  lng2 = Math.toRadians(lng2);
+
+  double dlon = lng2 - lng1;
+  double dlat = lat2 - lat1;
+
+  double a = Math.pow((Math.sin(dlat / 2)), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(dlon / 2), 2);
+
+  double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  return EARTH_RADIUS * c;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>geo.haverSineDistance</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

@@ -2,8 +2,9 @@
   <content><![CDATA[
 @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 @JoinTable(name = "ENQUIRY_OCCUPANT_INIT",
-    joinColumns = @JoinColumn(name = "ENQUIRY_ID"),
-    inverseJoinColumns = @JoinColumn(name = "OCCUPANT_DETAIL_ID"))
+    joinColumns = @JoinColumn(name = "ENQUIRY_ID"), // Foreign key column or columns in the join table that reference this table.
+    inverseJoinColumns = @JoinColumn(name = "OCCUPANT_DETAIL_ID") // Foreign key column or columns in the join table that reference the target table.
+)
 private List<OccupantDetails> initialOccupantDetailsList = new ArrayList<>(0);
 
 @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

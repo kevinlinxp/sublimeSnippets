@@ -6,7 +6,7 @@
 
 <div class="row">
   <spring:url value="/enquiry/\${dto.id}/uploadDocument" var="upload_document_url"/>
-  <form action="\${upload_document_url}" enctype="multipart/form-data" method="POST" id="${1:enquiry-upload-document-form}">
+  <form action="\${upload_document_url}" enctype="multipart/form-data" method="POST" id="${1:myForm}">
     <sec:csrfInput/>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
       <div class="input-group">
@@ -15,7 +15,7 @@
         <label class="input-group-btn">
           <span class="btn btn-default">
             Browse...
-            <input type="file" name="file" style="display: none;" />
+            <input type="file" name="file" accept=".docx" style="display: none;" />
           </span>
         </label>
       </div>
@@ -28,7 +28,7 @@
 
 <script>
 \$(document).ready(function() {
-  var \$form = \$('form');
+  var \$form = \$('#${1}');
   var \$fileInput = \$(':file', \$form);
   \$fileInput.on('change', function () {
     var strSelectedFile = \$fileInput.val()

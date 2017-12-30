@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+public static Map<String, Object> convertJsonStringToMap(String jsonData) throws IOException {
+  Map<String, Object> result;
+  if (jsonData != null) {
+    result = new ObjectMapper().readValue(jsonData, new TypeReference<HashMap<String, Object>>() {});
+  } else {
+    result = new HashMap<String, Object>();
+  }
+  return result;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jackson.convertJsonStringToMap</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

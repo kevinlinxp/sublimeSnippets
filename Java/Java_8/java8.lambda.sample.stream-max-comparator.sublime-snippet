@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[
+Optional<DocVersion> lastVersion = docMetadata.getDocVersions().stream()
+        .max(Comparator.comparingLong(DocVersion::getDocVersion));
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java8.lambda.sample.stream-max-comparator</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
