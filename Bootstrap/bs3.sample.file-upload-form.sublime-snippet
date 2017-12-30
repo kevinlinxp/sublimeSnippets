@@ -28,14 +28,14 @@
 
 <script>
 \$(document).ready(function() {
-  \$(':file').on('change', function() {
-    var thisFileInput = \$(this);
-    var str_selectedFile = thisFileInput.val()
-    // remove "C:\fakepath\"
-      .replace(/\\/g, '/').replace(/.*\//, '');
-    var textInput = thisFileInput.parents('.input-group').find(':text');
-    if (textInput.length) {
-      textInput.val(str_selectedFile)
+  var \$form = \$('form');
+  var \$fileInput = \$(':file', \$form);
+  \$fileInput.on('change', function () {
+    var strSelectedFile = \$fileInput.val()
+      .replace(/\\\\/g, '/').replace(/.*\\//, '');
+    var \$textInput = \$fileInput.parents('.input-group').find(':text');
+    if (\$textInput.length) {
+      \$textInput.val(strSelectedFile);
     }
   });
 
