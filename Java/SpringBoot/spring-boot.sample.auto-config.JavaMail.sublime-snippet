@@ -1,0 +1,97 @@
+<snippet>
+  <content><![CDATA[
+// Auto-configuration classes are regular Spring Configuration beans. They are located using the SpringFactoriesLoader mechanism (keyed against this class). Generally auto-configuration beans are @Conditional beans (most often using @ConditionalOnClass and @ConditionalOnMissingBean annotations)
+
+@Configuration
+@EnableConfigurationProperties(EmailProperties.class)
+@ComponentScan(basePackages = { "my.package.email" })
+@EntityScan(basePackages = { "my.package.email" })
+@EnableJpaRepositories(basePackages = {"my.package.email" }, repositoryImplementationPostfix = "CustomImpl")
+public class EmailConfiguration
+{
+  @Bean
+  @ConditionalOnMissingBean(${1:MyEmailService}.class)
+  public ${1:MyEmailService} ${1/.*/\l$&/}(EmailProperties properties)
+  {
+    ${1:MyEmailService}Impl ${1/.*/\l$&/} = new ${1:MyEmailService}Impl();
+    ${1/.*/\l$&/}.setEmailDefaultFrom(properties.getDefaultFrom());
+    ${1/.*/\l$&/}.setTestServer(properties.isTestServer());
+    ${1/.*/\l$&/}.setTestEmailAddress(properties.getTestEmailAddress());
+    return ${1/.*/\l$&/};
+  }
+
+  @Bean
+  public JavaMailSender mailSender(EmailProperties properties)
+  {
+    JavaMailSenderImpl sender = new JavaMailSenderImpl();
+    sender.setHost(properties.getMailSenderHost());
+    sender.setPort(properties.getMailSenderPort());
+    return sender;
+  }
+}
+
+@ConfigurationProperties(prefix = "${2:foo}.email")
+public class EmailProperties
+{
+  private String mailSenderHost = "localhost";
+  private int mailSenderPort = 25;
+  private String defaultFrom = "test@rds.com.au";
+  private boolean testServer = true;
+  private String testEmailAddress;
+
+  public String getMailSenderHost()
+  {
+    return mailSenderHost;
+  }
+
+  public void setMailSenderHost(String mailSenderHost)
+  {
+    this.mailSenderHost = mailSenderHost;
+  }
+
+  public int getMailSenderPort()
+  {
+    return mailSenderPort;
+  }
+
+  public void setMailSenderPort(int mailSenderPort)
+  {
+    this.mailSenderPort = mailSenderPort;
+  }
+
+  public String getDefaultFrom()
+  {
+    return defaultFrom;
+  }
+
+  public void setDefaultFrom(String defaultFrom)
+  {
+    this.defaultFrom = defaultFrom;
+  }
+
+  public boolean isTestServer()
+  {
+    return testServer;
+  }
+
+  public void setTestServer(boolean testServer)
+  {
+    this.testServer = testServer;
+  }
+
+  public String getTestEmailAddress()
+  {
+    return testEmailAddress;
+  }
+
+  public void setTestEmailAddress(String testEmailAddress)
+  {
+    this.testEmailAddress = testEmailAddress;
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-boot.sample.auto-config.JavaMail</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

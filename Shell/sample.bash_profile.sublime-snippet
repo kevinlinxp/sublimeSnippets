@@ -13,6 +13,7 @@ export M2_HOME="\$HOME/Work/dev/java_tools/apache-maven-3.0.5"
 export GRADLE_HOME="/usr/local/Cellar/gradle/3.4.1"
 
 ## Executable
+export PATH="\$PATH:$HOME/Work/dev/dbs/oracle/instantclient_12_2"
 export PATH="\$PATH:/usr/local/mysql/bin"
 export PATH="\$PATH:\$M2_HOME/bin:\$GRADLE_HOME/bin"
 export PATH="\$PATH:\$HOME/.composer/vendor/bin"

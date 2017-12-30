@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+(?=)                Look ahead positive
+(?!)                Look ahead negative
+(?<=)               Look behind positive
+(?<!)               Look behind negative
+
+Given "foobarbarfoo":
+bar(?=bar)          Finds the 1st bar ("bar" which has "bar" after it)
+bar(?!bar)          Finds the 2nd bar ("bar" which does not have "bar" after it)
+(?<=foo)bar         Finds the 1st bar ("bar" which has "foo" before it)
+(?<!foo)bar         Finds the 2nd bar ("bar" which does not have "foo" before it)
+(?<=foo)bar(?=bar)  Finds the 1st bar ("bar" with "foo" before it and "bar" after it)
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>regexp.look-arounds</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, source.js, text.plain</scope>
+</snippet>
