@@ -1,0 +1,24 @@
+<snippet>
+  <content><![CDATA[
+public static void downloadImage(String imageURL, String destFileName) throws IOException {
+  URL url = new URL(imageURL);
+  InputStream in = new BufferedInputStream(url.openStream());
+  ByteArrayOutputStream out = new ByteArrayOutputStream();
+  byte[] buf = new byte[1024];
+  int n;
+  while (-1 != (n = in.read(buf))) {
+    out.write(buf, 0, n);
+  }
+  out.close();
+  in.close();
+  byte[] response = out.toByteArray();
+  FileOutputStream fos = new FileOutputStream(fileName);
+  fos.write(response);
+  fos.close();
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>io.downloadImage</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

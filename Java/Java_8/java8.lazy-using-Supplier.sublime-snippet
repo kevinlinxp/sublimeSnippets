@@ -1,0 +1,46 @@
+<snippet>
+  <content><![CDATA[
+public final class Lazy<T>
+{
+  private volatile T value;
+
+  public T getOrCompute(Supplier<T> supplier)
+  {
+    final T result = value; // Just one volatile read
+    return result == null ? maybeCompute(supplier) : result;
+  }
+
+  private synchronized T maybeCompute(Supplier<T> supplier)
+  {
+    if (value == null)
+    {
+      value = requireNonNull(supplier.get());
+    }
+    return value;
+  }
+}
+
+public class Point
+{
+  private final int x, y;
+  private final Lazy<String> lazyToString;
+
+  public Point(int x, int y)
+  {
+    this.x = x;
+    this.y = y;
+    lazyToString = new Lazy<>();
+  }
+
+  @Override
+  public String toString()
+  {
+    return lazyToString.getOrCompute(() -> "(" + x + ", " + y + ")");
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java8.lazy-using-Supplier</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

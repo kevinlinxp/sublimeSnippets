@@ -1,0 +1,30 @@
+<snippet>
+  <content><![CDATA[
+public static Connection getDBConnectionFromJNDI()
+{
+  Connection con = null;
+  DataSource ds = null;
+  Context context = null;
+
+  try
+  {
+    context = new InitialContext();
+    ds = (DataSource) context.lookup("java:comp/env/jdbc/mysql-local");
+    con = ds.getConnection();
+  }
+  catch (NamingException e)
+  {
+    e.printStackTrace();
+  }
+  catch (SQLException e)
+  {
+    e.printStackTrace();
+  }
+  return con;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jdbc.getDBConnectionFromJNDI</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

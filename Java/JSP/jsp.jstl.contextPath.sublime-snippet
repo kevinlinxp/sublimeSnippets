@@ -1,6 +1,37 @@
 <snippet>
   <content><![CDATA[
+<!-- Get context path -->
+\${pageContext.servletContext.contextPath}
+<c:set var="ctxPath" value="\${pageContext.servletContext.contextPath}"/>
+
 \${pageContext.request.contextPath}
+<c:set var="ctxPath" value="\${pageContext.request.contextPath}"/>
+
+<!--
+  Note:
+  As stated by http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html#getContextPath():
+  The context path returned by ServletContext.getContextPath() should be considered as the prime or preferred context path of the application.
+-->
+
+<!-- Get absolute context path -->
+<c:set var="ctxPathAbs" value="\${fn:replace(pageContext.request.requestURL, pageContext.request.requestURI, pageContext.request.contextPath)}" />
+---- or ----
+<c:set var="ctxPathAbs" value="\${pageContext.request.scheme}://\${pageContext.request.localAddr}:\${pageContext.request.localPort}\${pageContext.request.contextPath}"/>
+
+<!-- Usage -->
+<base href="\${ctxPath}/"/>
+<link rel="stylesheet" href="foo.css" />
+<script src="foo.js"></script>
+<a href="foo.jsp">link</a>
+---- or ----
+<link rel="stylesheet" href="\${ctxPath}/foo.css" />
+<link rel="stylesheet" href="\${ctxPathAbs}/foo.css" />
+
+<script src="\${ctxPath}/foo.js"></script>
+<script src="\${ctxPathAbs}/foo.js"></script>
+
+<a href="\${ctxPath}/foo.jsp">link</a>
+<a href="\${ctxPathAbs}/foo.jsp">link</a>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>jsp.jstl.contextPath</tabTrigger>

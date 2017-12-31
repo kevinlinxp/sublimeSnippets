@@ -91,7 +91,7 @@ public class EmailProperties
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-boot.sample.auto-config.JavaMail</tabTrigger>
+  <tabTrigger>spring-boot.auto-config.sample.EmailService</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

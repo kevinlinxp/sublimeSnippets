@@ -1,0 +1,40 @@
+<snippet>
+  <content><![CDATA[
+public static void create(String filePath, String classDir) throws Exception {
+  File mfFile = new File(filePath);
+  if (!mfFile.exists()) {
+    mfFile.createNewFile();
+  }
+  FileOutputStream fos = new FileOutputStream(mfFile);
+  StringBuffer sb = new StringBuffer();
+  File classFile = new File(classDir);
+  int count = 0;
+  if (classFile.exists()) {
+    if (classFile.isDirectory()) {
+      File[] files = classFile.listFiles();
+      for (int i = 0; i < files.length; i++) {
+        if (files[i].getName().endsWith(".jar")) {
+          count++;
+          sb.append(files[i].getName()).append(" ");
+        }
+      }
+    }
+  }
+  System.out.println("There are " + count + " jar files!");
+  System.out.println(sb.toString());
+  Manifest m = new Manifest();
+  Attributes a = m.getMainAttributes();
+  a.put(Attributes.Name.MANIFEST_VERSION, "1.0");
+  a.put(Attributes.Name.CLASS_PATH, sb.toString());
+  System.out.println("a.getValue =---------=" + a.getValue(Attributes.Name.CLASS_PATH));
+  System.out.println(a.getValue(Attributes.Name.CLASS_PATH).length());
+  m.write(fos);
+  fos.flush();
+  fos.close();
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>misc.generate-manifest</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

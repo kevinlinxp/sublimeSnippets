@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+public static String readStreamAsString(InputStream is) throws IOException
+{
+  String result;
+  try
+  {
+    result = IOUtils.toString(is, StandardCharsets.UTF_8);
+    return result;
+  }
+  catch (IOException e)
+  {
+    throw e;
+  }
+  finally
+  {
+    IOUtils.closeQuietly(is);
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>io.readStreamAsString</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

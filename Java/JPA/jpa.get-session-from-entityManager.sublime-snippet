@@ -1,0 +1,16 @@
+<snippet>
+  <content><![CDATA[
+// JPA 2.0+
+Session session = entityManager.unwrap(Session.class);
+
+// JPA 1.0
+org.hibernate.Session session = (Session) manager.getDelegate();
+
+// JPA 1.0 - GlassFish
+org.hibernate.Session session = ((org.hibernate.ejb.EntityManagerImpl) em.getDelegate()).getSession();
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jpa.get-session-from-entityManager</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

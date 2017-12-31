@@ -1,0 +1,39 @@
+<snippet>
+  <content><![CDATA[
+<jsp:root
+  xmlns:jsp="http://java.sun.com/JSP/Page"
+  version="2.0">
+
+  <jsp:output omit-xml-declaration="yes"/>
+
+  ${0}
+
+</jsp:root>
+
+
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div
+  xmlns:jsp="http://java.sun.com/JSP/Page"
+  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:spring="http://www.springframework.org/tags"
+  xmlns:form="http://www.springframework.org/tags/form"
+  xmlns:rds="http://rds.com.au/tags/rds"
+  xmlns:rds-form="http://rds.com.au/tags/rds-form"
+  xmlns:display="urn:jsptagdir:/WEB-INF/tags/display"
+  xmlns:buttons="urn:jsptagdir:/WEB-INF/tags/buttons"
+  version="2.0">
+
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <jsp:output omit-xml-declaration="yes"/>
+
+  ${0}
+
+</div>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jsp.common-jspx-page-start</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html.jsp, text.html, text.plain</scope>
+</snippet>
