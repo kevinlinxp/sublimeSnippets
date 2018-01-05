@@ -1,5 +1,6 @@
 <snippet>
   <content><![CDATA[
+// --- String Version ---
 @ElementCollection(fetch = FetchType.EAGER)
 @CollectionTable(
   name = "NOTICE_TEMPLATE_CATEGORY",
@@ -11,6 +12,21 @@ private Set<String> categories = new HashSet<>();
 @CollectionTable(name = "NOTICE_TEMPLATE_RESTRICT_TO", joinColumns = @JoinColumn(name = "NOTICE_TEMPLATE_ID"))
 @Column(name = "ENQUIRY_TYPE", length = 30)
 private Set<String> restrictTo = new HashSet<>();
+
+// --- Enum Version ---
+@ElementCollection(fetch = FetchType.EAGER)
+@CollectionTable(
+  name = "NOTICE_TEMPLATE_CATEGORY",
+  joinColumns = @JoinColumn(name = "NOTICE_TEMPLATE_ID"))
+@Column(name = "CATEGORY", length = 30)
+@Enumerated(EnumType.STRING)
+  private Set<NoticeTemplateCategory> categories = new HashSet<>();
+
+@ElementCollection(fetch = FetchType.EAGER)
+@CollectionTable(name = "NOTICE_TEMPLATE_RESTRICT_TO", joinColumns = @JoinColumn(name = "NOTICE_TEMPLATE_ID"))
+@Column(name = "ENQUIRY_TYPE", length = 30)
+@Enumerated(EnumType.STRING)
+private Set<EnquiryType> restrictTo = new HashSet<>();
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>hibernate.mapping-java.element-collection.with-collection-table</tabTrigger>
