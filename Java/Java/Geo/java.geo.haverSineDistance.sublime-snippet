@@ -30,7 +30,7 @@ public static double haverSineDistance(double lat1, double lng1, double lat2, do
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>geo.haverSineDistance</tabTrigger>
+  <tabTrigger>java.geo.haverSineDistance</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

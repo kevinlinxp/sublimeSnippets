@@ -9,7 +9,7 @@ public static String[] split(String str, String delims) {
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>javase.String.split-using-StringTokenizer</tabTrigger>
+  <tabTrigger>java.String.split-using-StringTokenizer</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.plain</scope>
 </snippet>

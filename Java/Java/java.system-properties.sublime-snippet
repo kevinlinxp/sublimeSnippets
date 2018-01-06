@@ -59,7 +59,7 @@ System.out.println("Java运行时环境规范供应商：" + props.getProperty("
 System.out.println("Java运行时环境规范名称：" + props.getProperty("java.specification.name"));
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>javase.sample.hashCode</tabTrigger>
+  <tabTrigger>java.system-properties</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

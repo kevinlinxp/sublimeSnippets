@@ -1,25 +1,21 @@
 <snippet>
   <content><![CDATA[
-public static String readStreamAsString(InputStream is) throws IOException
+public static String readPathAsString(Path path)
 {
-  String result;
   try
   {
-    result = IOUtils.toString(is, StandardCharsets.UTF_8);
-    return result;
+    byte[] encoded = Files.readAllBytes(path);
+    return new String(encoded);
   }
   catch (IOException e)
   {
-    throw e;
-  }
-  finally
-  {
-    IOUtils.closeQuietly(is);
+    e.printStackTrace();
+    throw new RuntimeException(e);
   }
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>io.readStreamAsString</tabTrigger>
+  <tabTrigger>java.io.readPathAsString</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

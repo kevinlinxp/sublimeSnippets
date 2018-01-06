@@ -1,13 +1,12 @@
 <snippet>
   <content><![CDATA[
-public static String readFileAsString(File file)
+public static String convertEncoding(String str, String from, String to)
 {
-  String content = new Scanner(file).useDelimiter("\\Z").next();
-  return content;
+  return new String(str.getBytes(from), to);
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>io.readFileAsString.with-Scanner</tabTrigger>
+  <tabTrigger>java.String.convertEncoding</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>
