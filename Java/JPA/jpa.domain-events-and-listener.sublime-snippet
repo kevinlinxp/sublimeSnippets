@@ -1,0 +1,38 @@
+<snippet>
+  <content><![CDATA[
+// 1. Entities managed by repositories are aggregate roots.
+// 2. In a Domain-Driven Design application, these aggregate roots usually publish domain events.
+class AnAggregateRoot {
+
+    // The method using @DomainEvents can either return a single event instance or a collection of events. It must not take any arguments.
+    @DomainEvents
+    Collection<Object> domainEvents() {
+        // … return events you want to get published here
+    }
+
+    // After all events have been published, a method annotated with @AfterDomainEventPublication. It e.g. can be used to potentially clean the list of events to be published.
+    @AfterDomainEventPublication
+    void callbackMethod() {
+       // … potentially clean up domain events list
+    }
+}
+
+class FooServiceImpl implements FooService{
+
+  // ...
+
+  // Processing of @EventListener annotations is performed via the internal EventListenerMethodProcessor bean which gets registered automatically when using Java config or manually via the <context:annotation-config/> or <context:component-scan/> element when using XML config.
+  @EventListener
+  @Transactional
+  public void handleXxxEvent(XxxEvent event) {
+    // ...
+  }
+
+  // ...
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jpa.domain-events-and-listener</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
