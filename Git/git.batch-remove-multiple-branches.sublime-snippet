@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+git for-each-ref --format="%(refname:short)" ${1:refs/heads/3.2\*} | xargs git branch -D
+
+... or the xargs-free version:
+git branch -D `git for-each-ref --format="%(refname:short)" ${1:refs/heads/3.2\*}`
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>git.batch-remove-multiple-branches</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
