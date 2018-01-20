@@ -1,0 +1,14 @@
+<snippet>
+  <content><![CDATA[
+#!/bin/bash
+TEMP_SOURCE_LIST=sources.txt
+
+find ./src -name "*.java" > \${TEMP_SOURCE_LIST}
+javac -sourcepath src -classpath lib/commons-io-1.4.jar:lib/commons-lang-2.6.jar:lib/dom4j-1.6.1.jar:lib/jaxen-1.1-beta-6.jar:lib/log4j-1.2.16.jar:lib/opencsv-2.0.jar:lib/json-simple-1.1.1.jar:lib/jpinyin-1.1.1.jar -d bin @\${TEMP_SOURCE_LIST}
+rm -rf \${TEMP_SOURCE_LIST}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>javac.sample</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+xjc -d ${1:target-directory} -p ${2:target-package} ${3:<schema file/URL/dir/jar>}
+
+xjc -d generated http://java.sun.com/xml/ns/persistence/orm_2_0.xsd
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java.xml.jaxb-xjc</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
