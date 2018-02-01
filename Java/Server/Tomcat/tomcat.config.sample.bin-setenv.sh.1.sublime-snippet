@@ -27,9 +27,8 @@ JAVA_OPTS="\$JAVA_OPTS -XX:+UseConcMarkSweepGC"
 #
 # TOMCAT options
 #
-
 CATALINA_OPTS="-Dspring.config.location=\$IRIS_CONFIG"
-CATALINA_OPTS="-Dspring.profiles.active=devsecret"
+CATALINA_OPTS="\$CATALINA_OPTS -Dspring.profiles.active=devsecret"
 
 # For the System Designer
 CATALINA_OPTS="\$CATALINA_OPTS -Dsb.configDir=\$SB_CONFIG"
@@ -39,7 +38,7 @@ CATALINA_OPTS="\$CATALINA_OPTS -Ddesigner.log.directory=\$LOGS/designer"
 CATALINA_OPTS="\$CATALINA_OPTS -Dproject.name=IRIS"
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>server.tomcat.config.sample.bin-setenv.sh</tabTrigger>
+  <tabTrigger>server.tomcat.config.sample.bin-setenv.sh.1</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.shell, text.plain</scope>
 </snippet>

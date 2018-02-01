@@ -1,0 +1,23 @@
+<snippet>
+  <content><![CDATA[
+#!/bin/bash
+
+#CATALINA_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"
+JAVA_OPTS="\$JAVA_OPTS -Xms2048m -Xmx4096m -XX:PermSize=512m -XX:MaxPermSize=1024m"
+JPDA_OPTS="\$JPDA_OPTS -agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n"
+CATALINA_OPTS="\$CATALINA_OPTS
+-Djavax.xml.accessExternalDTD=all
+-Dnet.jawr.debug.on=true
+-Dilis.configDir=/Users/kelin/Work/RDS/dev-classpath/bia/ilis-conf
+-Dilis.logs.directory=/Users/kelin/Work/RDS/dev-logs/bia/logs
+-Dilis.building.logs.directory=/Users/kelin/Work/RDS/dev-logs/bia/building
+-Dspring.profiles.active=dev,ies-dev,vots-dev"
+
+CLASSPATH="\$CLASSPATH:/Users/kelin/Work/RDS/dev-classpath/bia/ilis-conf"
+CATALINA_PID="\$CATALINA_BASE/tomcat.pid";
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>server.tomcat.config.sample.bin-setenv.sh.2</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
