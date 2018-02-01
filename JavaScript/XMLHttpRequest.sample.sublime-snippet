@@ -1,22 +1,22 @@
 <snippet>
   <content><![CDATA[
-var req = new XMLHttpRequest();
-req.open('${1:GET}', ${2:url});
+var ${1:xhr} = new XMLHttpRequest();
+${1:xhr}.open('${2:GET}', ${3:url});
 
-req.onload = function () {
-  if (req.status === 200) {
-    ${3:var responseJson = JSON.parse(req.response);
+${1:xhr}.onload = function () {
+  if (${1:xhr}.status === 200) {
+    ${4:var responseJson = JSON.parse(${1:xhr}.response);
     resolve(responseJson)};
   } else {
-    ${4:reject(Error(req.statusText))};
+    reject(Error(${1:xhr}.statusText));
   }
 }
 
-req.onerror = function () {
-  ${5:reject(Error("Network Error"));}
+${1:xhr}.onerror = function () {
+  reject(Error("Network Error"));
 }
 
-req.send();
+${1:xhr}.send();
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>xmlhttprequest.sample</tabTrigger>
