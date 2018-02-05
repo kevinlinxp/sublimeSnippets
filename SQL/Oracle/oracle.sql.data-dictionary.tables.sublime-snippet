@@ -1,43 +1,16 @@
 <snippet>
   <content><![CDATA[
 -- Data Dictionary Table Info
+DESC all_tables;
+DESC dba_tables;
 DESC user_tables;
-
--- Data Dictionary Table Column Info
-DESC user_tab_cols;
-DESC user_col_comments;
 
 -- Sample Query
 SELECT
-  utc.table_name   as 表名,
-  utc.column_name  as 列名,
-  utc.data_type    as 数据类型,
-  utc.data_length  as 长度,
-  utc.nullable     as 是否为空,
-  utc.column_id    as 列序号,
-  ycc.comments     as 备注
-FROM user_tab_cols as utc
-INNER JOIN user_col_comments as ucc
-  ON ucc.table_name = utc.table_name
-  AND ucc.column_name = utc.column_name
-  AND utc.table_name = 'T_COMPANY_DETAIL'
-
-SELECT
-  utc.column_name     as 字段名,
-  utc.data_type       as 数据类型,
-  utc.data_length     as 长度,
-  utc.data_precision  as 整数位,
-  utc.Data_Scale      as 小数位,
-  utc.nullable        as 允许空值,
-  utc.Data_default    as 缺省值,
-  ucc.comments        as 备注
-FROM
-  user_tab_columns as utc,
-  user_col_comments as ucc
-WHERE
-  utc.table_name = ucc.table_name
-  AND utc.column_name = ucc.column_name
-  AND utc.table_name = 'T_COMPANY_DETAIL'
+  *
+FROM all_tables t
+WHERE t.table_name LIKE 'ACT_%'
+AND t.owner = 'BUILDING';
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>oracle.sql.data-dictionary.tables</tabTrigger>
