@@ -4,7 +4,7 @@ set "JAVA_OPTS=%JAVA_OPTS% -Xms2048m -Xmx4096m -XX:PermSize=512m -XX:MaxPermSize
 set "JPDA_OPTS=%JPDA_OPTS% -agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=nrem"
 
 rem CATALINA_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"
-set "CATALINA_OPTS=-Djavax.xml.accessExternalDTD=all -Dnet.jawr.debug.on=true  "
+set "CATALINA_OPTS=-Djavax.xml.accessExternalDTD=all -Dnet.jawr.debug.on=true"
 set "CATALINA_OPTS=%CATALINA_OPTS% -Dilis.configDir=C:\Development\bia\dev-classpath\ilis-conf"
 set "CATALINA_OPTS=%CATALINA_OPTS% -Dilis.logs.directory=C:\Development\bia\dev-logs"
 set "CATALINA_OPTS=%CATALINA_OPTS% -Dilis.building.logs.directory=C:\Development\bia\dev-logs\building"

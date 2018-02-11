@@ -16,5 +16,5 @@ Years.yearsBetween(LocalDate.now(), LocalDate.now().plusDays(365*5)).getYears()
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>java.time.duration-between</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.js, text.plain</scope>
+  <scope>source.java, text.plain</scope>
 </snippet>
