@@ -37,6 +37,17 @@ public class SimpleCorsFilter implements Filter
   {
   }
 }
+
+/* 3. Config the filter in web.xml */
+<filter>
+  <filter-name>SimpleCrosFilter</filter-name>
+  <filter-class>au.com.rds.sb.security.SimpleCorsFilter</filter-class>
+</filter>
+
+<filter-mapping>
+  <filter-name>SimpleCrosFilter</filter-name>
+  <url-pattern>/workflow/deploy</url-pattern>
+</filter-mapping>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>web.filter.cors-filter</tabTrigger>
