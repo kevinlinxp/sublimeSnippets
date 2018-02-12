@@ -1,5 +1,6 @@
 <snippet>
   <content><![CDATA[
+<!-- Since Spring 4.2 -->
 <http>
   <!-- Default to Spring MVC's CORS configuration -->
   <cors />
