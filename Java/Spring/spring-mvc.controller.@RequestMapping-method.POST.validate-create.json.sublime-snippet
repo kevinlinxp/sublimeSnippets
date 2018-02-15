@@ -1,0 +1,31 @@
+<snippet>
+  <content><![CDATA[
+@RequestMapping(
+  value = "${1:/path/to/resources}",
+  produces = MediaType.APPLICATION_JSON_VALUE,
+  method = RequestMethod.POST
+)
+public @ResponseBody ${2:YourDto} create(@RequestBody ${2:YourDto} dto)
+{
+  requireNonNull(dto);
+  validateDto(dto, ${2:YourDto}.ValidationGroups.Create.class);
+  ${2:YourDto} created = yourService.create(dto);
+  return created;
+}
+
+private void validateDto(${2:YourDto} dto, Class<?> validationGroup)
+{
+  String objectName = Conventions.getVariableName(dto);
+  Errors errors = new BeanPropertyBindingResult(dto, objectName);
+  ValidationUtils.invokeValidator(defaultValidator, dto, errors, validationGroup);
+  if (errors.hasErrors())
+  {
+    throw new ValidationException(errors);
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-mvc.controller.@RequestMapping-method.POST.validate-create.json</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, source.java</scope>
+</snippet>

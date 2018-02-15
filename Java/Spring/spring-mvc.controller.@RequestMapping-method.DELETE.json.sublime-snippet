@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+@RequestMapping(
+  value = "${1:/path/to/resources}/{${2:id}}",
+  produces = MediaType.APPLICATION_JSON_VALUE,
+  method = RequestMethod.DELETE
+)
+public @ResponseBody boolean delete(@PathVariable("${2:id}") Long ${2:id})
+{
+  requireNonNull(${2:id});
+  yourService.delete(${2:id});
+  return true;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-mvc.controller.@RequestMapping-method.DELETE.json</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, source.java</scope>
+</snippet>

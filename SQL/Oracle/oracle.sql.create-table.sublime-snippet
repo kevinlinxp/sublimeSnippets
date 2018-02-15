@@ -2,20 +2,23 @@
   <content><![CDATA[
 CREATE TABLE ${1:HR}.${2:EMPLOYEES}
 (
-  ${3:EMP_NO}             NUMBER(5) CONSTRAINT ${3}_NN NOT NULL,
-  FULL_NAME               VARCHAR2(50) NOT NULL,
-  -- SSN                  NUMBER(9) ENCRYPT,
-  ${4:MANAGER_EMP_NO}     NUMBER(5) NOT NULL ,
-  -- ${5:DEPARTMENT_ID}   NUMBER(3) NOT NULL CONSTRAINT FK_${2}_${5} REFERENCES ${1}.DEPARTMENTS(ID),
-  HIRE_DATE               DATE DEFAULT (sysdate),
-  PHOTO                   BLOB,
-  ${6:SALARY}             NUMBER(7,2),
-  HRLY_RATE               NUMBER(7,2) GENERATED ALWAYS AS (${6:SALARY}/2080),
-  CONSTRAINT PK_${2}      PRIMARY KEY(${3}),
-  CONSTRAINT FK_${2}_${4} FOREIGN KEY(${4}) REFERENCES ${1}.${2}(${3})
+  ${3:EMP_NO}              NUMBER(5) CONSTRAINT ${2}_${3}_NN NOT NULL,
+  FULL_NAME                VARCHAR2(50) NOT NULL,
+  -- SSN                   NUMBER(9) ENCRYPT,
+  ${4:MANAGER_EMP_NO}      NUMBER(5) NOT NULL,
+  -- ${5:DEPARTMENT_ID}    NUMBER(3) NOT NULL CONSTRAINT ${2}_${5}_FK REFERENCES ${1}.DEPARTMENTS(ID),
+  HIRE_DATE                DATE DEFAULT (sysdate),
+  PHOTO                    BLOB,
+  ${6:SALARY}              NUMBER(7,2),
+  HRLY_RATE                NUMBER(7,2) GENERATED ALWAYS AS (${6:SALARY}/2080),
+--  CONSTRAINT ${2}_${3}_PK  PRIMARY KEY(${3}),
+  CONSTRAINT ${2}_${4}_FK  FOREIGN KEY(${4}) REFERENCES ${1}.${2}(${3})
 )
-  -- TABLESPACE admin_tbs
-  -- STORAGE (INITIAL 50K);
+-- TABLESPACE admin_tbs
+-- STORAGE (INITIAL 50K);
+
+CREATE UNIQUE INDEX ${1}.IDX_${2}_PK ON ${1}.${2}(${3});
+ALTER TABLE ${1}.${2} ADD CONSTRAINT ${2}_${3}_PK PRIMARY KEY(${3}) USING INDEX ${1}.IDX_${2}_PK;
 
 COMMENT ON TABLE ${1}.${2} IS 'Employee table';
 ]]></content>

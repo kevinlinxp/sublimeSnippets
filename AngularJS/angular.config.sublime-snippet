@@ -15,7 +15,6 @@
     \$compileProvider.directive('directiveName', ...);
     \$filterProvider.register('filterName', ...);}
   }
-
 })();
 ]]></content>
   <tabTrigger>ngconfig</tabTrigger>

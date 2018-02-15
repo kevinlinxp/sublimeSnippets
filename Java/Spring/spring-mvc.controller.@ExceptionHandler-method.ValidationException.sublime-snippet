@@ -1,0 +1,22 @@
+<snippet>
+  <content><![CDATA[
+@ExceptionHandler(ValidationException.class)
+public ResponseEntity<String> handleValidationException(ValidationException e)
+{
+  StringBuilder errorMessagesBuilder = new StringBuilder();
+  for (ObjectError error : e.getErrors().getAllErrors())
+  {
+    String errorMessage = applicationContext.getMessage(error, Locale.getDefault());
+    errorMessagesBuilder.append(errorMessage).append("\n");
+  }
+
+  String responseBody = "{ \"message\": \" " + errorMessagesBuilder.toString().replaceAll("\\n$", "") + " \" }";
+  ResponseEntity<String> response = new ResponseEntity<>(responseBody, HttpStatus.BAD_REQUEST);
+  return response;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-mvc.controller.@ExceptionHandler-method.ValidationException</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, source.java</scope>
+</snippet>

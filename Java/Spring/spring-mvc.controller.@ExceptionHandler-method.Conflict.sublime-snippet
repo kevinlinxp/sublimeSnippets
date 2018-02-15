@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+@ExceptionHandler(EntityExistsException.class)
+public ResponseEntity<String> handleEntityExistsException(EntityExistsException e)
+{
+  String responseBody = "{ \"message\": \" " + e.getMessage() + " \" }";
+  ResponseEntity<String> response = new ResponseEntity<>(responseBody, HttpStatus.CONFLICT);
+  return response;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-mvc.controller.@ExceptionHandler-method.Conflict</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, source.java</scope>
+</snippet>

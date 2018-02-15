@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+@RequestMapping(
+  value = "${1:/path/to/resources}/{${2:id}}",
+  produces = MediaType.APPLICATION_JSON_VALUE,
+  method = RequestMethod.GET
+)
+public @ResponseBody ${3:YourDto} (@PathVariable("${2:id}") Long ${2:id})
+  requireNonNull(${2:id});
+  return yourService.get(${2:id});
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-mvc.controller.@RequestMapping-method.GET.one.json</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, source.java</scope>
+</snippet>
