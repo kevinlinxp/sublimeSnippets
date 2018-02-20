@@ -3,7 +3,7 @@
 \${fn:length(${1:tx.lineItems})}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>jsp.jstl.fn-length</tabTrigger>
+  <tabTrigger>jsp.jstl-el.fn-length</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.html.jsp, text.plain</scope>
 </snippet>

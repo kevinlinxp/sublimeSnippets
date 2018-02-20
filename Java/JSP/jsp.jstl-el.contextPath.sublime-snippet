@@ -34,7 +34,7 @@
 <a href="\${ctxPathAbs}/foo.jsp">link</a>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>jsp.jstl.contextPath</tabTrigger>
+  <tabTrigger>jsp.jstl-el.contextPath</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.html.jsp, text.plain</scope>
 </snippet>
