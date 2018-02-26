@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+ssh ${1:keith.lin}@${2:ilis-app-1uv.ntlis.nt.gov.au} -p22 -L ${3:localhost:9200}:${4:192.168.7.150:9200}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>ssh.port-forwarding</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
