@@ -10,7 +10,7 @@ public static boolean isValidDatabaseTableName(String tableName)
     return false;
   }
 
-  String regex = "^[a-zA-Z]\\w*$";
+  String regex = "^[a-zA-Z]\\w*\$";
   if (tableName.matches(regex)) {
     return true;
   } else {

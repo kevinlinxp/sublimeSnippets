@@ -1,8 +1,8 @@
 <snippet>
   <content><![CDATA[
 <input type="number" name="${1:name}" ng-model="${3:targetArray}.length" ng-min="1" class="hidden">
-<ng-messages for="${2}.${1}.$error" role="alert"
-             ng-if="${2}.${1}.$dirty">
+<ng-messages for="${2}.${1}.\$error" role="alert"
+             ng-if="${2}.${1}.\$dirty">
   <div ng-message="min"><span class="field-error noLabel">${4:At least one item required.}</span></div>
 </ng-messages>
 ]]></content>

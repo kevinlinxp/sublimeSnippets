@@ -50,7 +50,7 @@
           <configuration>
             <source>1.7</source> <!-- default 1.5 -->
             <target>1.7</target> <!-- default 1.5 -->
-                  <encoding>UTF-8</encoding> <!-- default ${project.build.sourceEncoding} -->
+                  <encoding>UTF-8</encoding> <!-- default \${project.build.sourceEncoding} -->
           </configuration>
         </plugin>
       </plugins>

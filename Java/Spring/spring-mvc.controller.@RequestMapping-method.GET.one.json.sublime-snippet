@@ -5,7 +5,7 @@
   produces = MediaType.APPLICATION_JSON_VALUE,
   method = RequestMethod.GET
 )
-public @ResponseBody ${3:YourDto} (@PathVariable("${2:id}") Long ${2:id})
+public @ResponseBody ${4:YourDto} ${3:get}(@PathVariable("${2:id}") Long ${2:id})
   requireNonNull(${2:id});
   return yourService.get(${2:id});
 }

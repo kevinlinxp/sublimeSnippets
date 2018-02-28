@@ -12,7 +12,7 @@
               <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
-              <li><a href="#" ngf-select="fdCtrl.importDndJson($file)">Load from a JSON file</a></li>
+              <li><a href="#" ngf-select="fdCtrl.importDndJson(\$file)">Load from a JSON file</a></li>
             </ul>
           </div>
           </li>

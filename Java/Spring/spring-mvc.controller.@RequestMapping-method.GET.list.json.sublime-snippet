@@ -5,7 +5,7 @@
   produces = MediaType.APPLICATION_JSON_VALUE,
   method = RequestMethod.GET
 )
-public @ResponseBody List<YourDto> ${2:methodName}() {
+public @ResponseBody List<${3:YourDto}> ${2:list}() {
   return yourService.list();
 }
 ]]></content>

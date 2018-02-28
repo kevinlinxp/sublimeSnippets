@@ -10,7 +10,7 @@ public ResponseEntity<String> handleValidationException(ValidationException e)
     errorMessagesBuilder.append(errorMessage).append("\n");
   }
 
-  String responseBody = "{ \"message\": \" " + errorMessagesBuilder.toString().replaceAll("\\n$", "") + " \" }";
+  String responseBody = "{ \"message\": \" " + errorMessagesBuilder.toString().replaceAll("\\n\$", "") + " \" }";
   ResponseEntity<String> response = new ResponseEntity<>(responseBody, HttpStatus.BAD_REQUEST);
   return response;
 }

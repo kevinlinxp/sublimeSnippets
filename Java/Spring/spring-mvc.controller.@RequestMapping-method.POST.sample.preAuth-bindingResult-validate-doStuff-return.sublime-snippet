@@ -1,34 +1,34 @@
 <snippet>
   <content><![CDATA[
-  @PreAuthorize("group('evalue').isConfigurationAdmin()")
-  @RequestMapping(
-      value = "config/noticeTemplates",
-      headers = "content-type=multipart/*",
-      produces = MediaType.TEXT_HTML_VALUE,
-      method = RequestMethod.POST
-  )
-  @RdsFormController(errorsViewName = NOTICE_TEMPLATE_POPUP_FORM)
-  public String create(
-      @ModelAttribute("dto") NoticeTemplateDto dto,
-      BindingResult bindingResult,
-      Model uiModel,
-      HttpServletRequest request) throws IOException
+@PreAuthorize("group('evalue').isConfigurationAdmin()")
+@RequestMapping(
+    value = "config/noticeTemplates",
+    headers = "content-type=multipart/*",
+    produces = MediaType.TEXT_HTML_VALUE,
+    method = RequestMethod.POST
+)
+@RdsFormController(errorsViewName = NOTICE_TEMPLATE_POPUP_FORM)
+public String create(
+    @ModelAttribute("dto") NoticeTemplateDto dto,
+    BindingResult bindingResult,
+    Model uiModel,
+    HttpServletRequest request) throws IOException
+{
+  dto.setMode(NoticeTemplateDto.Mode.create);
+  RdsValidationUtils.invokeValidators(dto, bindingResult, noticeTemplateDtoValidator);
+  if (bindingResult.hasErrors())
   {
-    dto.setMode(NoticeTemplateDto.Mode.create);
-    RdsValidationUtils.invokeValidators(dto, bindingResult, noticeTemplateDtoValidator);
-    if (bindingResult.hasErrors())
-    {
-      throw new ValidationException(bindingResult);
-    }
-
-    noticeTemplateService.create(dto);
-
-    Message successMessage = Message
-        .successMessage(NOTICE_TEMPLATE_CREATED, "Template has been successfully uploaded.");
-    RequestUtils.addMessage(request, successMessage);
-
-    return popupManager.closePopupAndRefresh(uiModel, request);
+    throw new ValidationException(bindingResult);
   }
+
+  noticeTemplateService.create(dto);
+
+  Message successMessage = Message
+      .successMessage(NOTICE_TEMPLATE_CREATED, "Template has been successfully uploaded.");
+  RequestUtils.addMessage(request, successMessage);
+
+  return popupManager.closePopupAndRefresh(uiModel, request);
+}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>spring-mvc.controller.@RequestMapping-method.POST.sample.preAuth-bindingResult-validate-doStuff-return</tabTrigger>

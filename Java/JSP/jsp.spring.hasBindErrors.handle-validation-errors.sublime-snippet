@@ -1,9 +1,9 @@
 <snippet>
   <content><![CDATA[
 <spring:hasBindErrors name="dto">
-  <c:if test="${errors.hasFieldErrors('${1:username}')}">
+  <c:if test="\${errors.hasFieldErrors('${1:username}')}">
     <span class="field-error">
-      <c:out value="${errors.getFieldError('${1:username}').defaultMessage}"/>
+      <c:out value="\${errors.getFieldError('${1:username}').defaultMessage}"/>
     </span>
   </c:if>
 </spring:hasBindErrors>

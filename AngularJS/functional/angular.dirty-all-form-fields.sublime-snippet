@@ -2,11 +2,11 @@
   <content><![CDATA[
 var form = scope.myForm;
 
-if (form.$invalid) {
-  // form.$error Is an object hash, containing references to controls or forms with failing validators.
-  angular.forEach(form.$error, function(controls, errorName) {
+if (form.\$invalid) {
+  // form.\$error Is an object hash, containing references to controls or forms with failing validators.
+  angular.forEach(form.\$error, function(controls, errorName) {
     angular.forEach(controls, function(control) {
-      control.$setDirty();
+      control.\$setDirty();
     });
   });
 }

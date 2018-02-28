@@ -10,7 +10,7 @@ public interface IdGenerator<T>
 // 2. Abstract Implementation
 public abstract class SequenceIdGenerator implements IdGenerator<Long>
 {
-  private static final Pattern SEQUENCE_PATTERN = Pattern.compile("^(?:[A-Za-z_][A-Za-z0-9_]*[.])?[A-Za-z_][A-Za-z0-9_]*$");
+  private static final Pattern SEQUENCE_PATTERN = Pattern.compile("^(?:[A-Za-z_][A-Za-z0-9_]*[.])?[A-Za-z_][A-Za-z0-9_]*\$");
 
   @PersistenceContext
   private EntityManager em;

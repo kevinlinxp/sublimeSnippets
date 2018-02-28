@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-ng-repeat="n in [].constructor(${1:6}) track by $index"
+ng-repeat="n in [].constructor(${1:6}) track by \$index"
 ]]></content>
   <tabTrigger>ngrepeatnum</tabTrigger>
   <scope>text.plain, text.html</scope>
