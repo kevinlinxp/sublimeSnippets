@@ -4,7 +4,7 @@
 
 export FooComponent {
 
-  fileInputChangeListener($event) {
+  fileInputChangeListener(\$event) {
     this.readFile($event.target);
   }
 
@@ -30,7 +30,7 @@ export FooComponent {
 <label>
   From File...
   <input type="file" class="hidden" accept=".json"
-    #fileInput name="file" (change)="fileInputChangeListener($event)">
+    #fileInput name="file" (change)="fileInputChangeListener(\$event)">
 </label>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
