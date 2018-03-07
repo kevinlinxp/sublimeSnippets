@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+mysql_root=root
+mysql_root_password=root_password
+db_name=db_name
+db_password=db_password
+
+mysql -hlocalhost -u\${mysql_root} -p\${mysql_root_password} -e"\
+DROP DATABASE IF EXISTS \`\$db_name\`;\
+GRANT USAGE ON *.* TO \`\$db_name\`@\`localhost\`;\
+DROP USER \`\$db_name\`@\`localhost\`;\
+GRANT USAGE ON *.* TO \`\$db_name\`@\`127.0.0.1\`;\
+DROP USER \`\$db_name\`@\`127.0.0.1\`;\
+\
+CREATE DATABASE \`\$db_name\`;\
+CREATE USER \`\$db_name\`@\`localhost\` identified by '\$db_password';\
+CREATE USER \`\$db_name\`@\`127.0.0.1\` identified by '\$db_password';\
+GRANT ALL PRIVILEGES ON \`\$db_name\`.* to \`\$db_name\`@\`localhost\`;\
+GRANT ALL PRIVILEGES ON \`\$db_name\`.* to \`\$db_name\`@\`127.0.0.1\`;"
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mysql.init-db</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, source.sql, text.plain</scope>
+</snippet>
