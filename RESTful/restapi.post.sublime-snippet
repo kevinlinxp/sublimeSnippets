@@ -1,8 +1,8 @@
 <snippet>
   <content><![CDATA[
-HTTP Verb: POST
+HTTP Verb: POST - Request that the resource at a URI do something with the enclosed entity
 
-CRUD: Create
+CRUD: Create/Modify
 
 Entire Collection (e.g. /customers): 201 (Created), 'Location' header with link to /customers/{id} containing new ID.
 
@@ -10,7 +10,13 @@ Specific Item (e.g. /customers/{id}): 404 (Not Found), 409 (Conflict) if resourc
 
 Examples:
 POST http://www.example.com/customers
-POST http://www.example.com/customers/12345/orders
+{
+  "firstName": "Foo",
+  "lastName": "Bar"
+}
+
+Notes:
+• Thing that doesn't make sense with PUT, goes to POST.
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>restpost</tabTrigger>

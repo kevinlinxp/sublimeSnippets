@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-HTTP Verb: PUT
+HTTP Verb: PUT - Request that the entity passed, be stored at the URI
 
 CRUD: Update/Replace
 
@@ -10,8 +10,7 @@ Specific Item (e.g. /customers/{id}): 200 (OK) or 204 (No Content). 404 (Not Fou
 
 Examples:
 PUT http://www.example.com/customers/12345
-PUT http://www.example.com/customers/12345/orders
-PUT http://www.example.com/buckets/sample
+{ "status": "ACTIVATED" }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>restput</tabTrigger>

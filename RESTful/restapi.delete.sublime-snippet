@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-HTTP Verb: DELETE
+HTTP Verb: DELETE - Request that a resource be removed
 
 CRUD: Delete
 
@@ -12,6 +12,9 @@ Examples:
 DELETE http://www.example.com/customers/12345
 DELETE http://www.example.com/customers/12345/orders
 DELETE http://www.example.com/bucket/sample
+
+Notes:
+• The resource doesn't have to be removed immediately, i.e. removal may be a long running task
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>restdelete</tabTrigger>

@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-HTTP Verb: GET
+HTTP Verb: GET - Retrieve Information
 
 CRUD: Read
 
@@ -12,6 +12,13 @@ Examples:
 GET http://www.example.com/customers/12345
 GET http://www.example.com/customers/12345/orders
 GET http://www.example.com/buckets/sample
+
+Notes:
+• Must be safe and idempotent
+• Can have side-effects (e.g. access log), but since the user doesn't expect them, they shouldn't be critical to the operation of the system
+• Can be conditional or partial
+  - If-Modified-Since
+  - Range
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>restget</tabTrigger>
