@@ -16,10 +16,11 @@ alias java8='export JAVA_HOME=\$JAVA_8_HOME'
 # Defaults to java8
 export JAVA_HOME=\$JAVA_8_HOME
 
-# Maven and Gradle
+# Maven, Gradle and Spring
 export M2_HOME="\$HOME/Work/dev/java_tools/apache-maven-${1:3.0.5}"
 export GRADLE_HOME="\$HOME/Work/dev/java_tools/gradle-${3:3.5.1}"
-export PATH="\$M2_HOME/bin:\$GRADLE_HOME/bin:\$PATH"
+export SPRING_HOME="\$HOME/Work/dev/java_tools/spring-${4:2.0.0.RELEASE}"
+export PATH="\$M2_HOME/bin:\$GRADLE_HOME/bin:\$SPRING_HOME/bin:\$PATH"
 
 alias mvn${1:3.0.5}="export M2_HOME=\$HOME/Work/dev/java_tools/apache-maven-${1:3.0.5}"
 alias mvn${2:3.5.2}="export M2_HOME=\$HOME/Work/dev/java_tools/apache-maven-${2:3.5.2}"
