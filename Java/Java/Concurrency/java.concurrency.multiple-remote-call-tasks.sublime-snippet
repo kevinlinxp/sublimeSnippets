@@ -1,0 +1,20 @@
+<snippet>
+  <content><![CDATA[
+ExecutorService executorService = Executors.newFixedThreadPool(${2:taskCount});
+List<Callable<${1:V}>> remoteCalls = new LinkedList<>();
+IntStream.range(1, ${2:taskCount} + 1).forEach(taskIndex ->
+    remoteCalls.add(() -> yourBusinessMethod(taskIndex))
+);
+List<Future<${1:V}>> futures = executorService.invokeAll(remoteCalls);
+executorService.shutdown();
+
+for (Future<${1:V}> future : futures) {
+  ${1:V} result = future.get();
+  ${0}
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java.concurrency.multiple-remote-call-tasks</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

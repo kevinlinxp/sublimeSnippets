@@ -1,7 +1,8 @@
 <snippet>
   <content><![CDATA[
 @ExceptionHandler({1:IOException}.class)
-public ResponseEntity<String> handleIOException({1:IOException} ex) {
+public ResponseEntity<String> handleIOException({1:IOException} ex)
+{
   ${0}// prepare responseEntity
   return responseEntity;
 }

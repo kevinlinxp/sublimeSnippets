@@ -5,7 +5,8 @@
   produces = MediaType.TEXT_HTML_VALUE,
   method = RequestMethod.GET
 )
-public String ${2:list}(Model uiModel) {
+public String ${2:list}(Model uiModel)
+{
   ${0}
 
   uiModel.addAttribute("attributeName", attributeValue);

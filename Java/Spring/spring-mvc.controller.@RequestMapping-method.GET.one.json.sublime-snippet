@@ -6,6 +6,7 @@
   method = RequestMethod.GET
 )
 public @ResponseBody ${4:YourDto} ${3:get}(@PathVariable("${2:id}") Long ${2:id})
+{
   requireNonNull(${2:id});
   return yourService.get(${2:id});
 }
