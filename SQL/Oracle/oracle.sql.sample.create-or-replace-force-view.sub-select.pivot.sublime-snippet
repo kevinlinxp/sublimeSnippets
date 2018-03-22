@@ -1,0 +1,41 @@
+<snippet>
+  <content><![CDATA[
+CREATE OR REPLACE FORCE VIEW BUILDING.PROCESS_INSTANCE_DATA_ENQUIRY AS
+SELECT
+  PROCESS_INSTANCE_ID,
+  DATE_OF_ENQUIRY,
+  ENQUIRER_NAME,
+  ASSIGNEE,
+  ENQUIRY_OUTCOME,
+  ENQUIRY_SUMMARY,
+  TRM_REFERENCE
+FROM
+(
+  SELECT
+    procVars.proc_inst_id_ AS PROCESS_INSTANCE_ID,
+    procVars.name_,
+    procVars.text_
+  FROM BUILDING.ACT_HI_VARINST procVars
+  JOIN BUILDING.ACT_HI_PROCINST procInst ON procInst.PROC_INST_ID_ = procVars.PROC_INST_ID_
+  JOIN BUILDING.ACT_RE_PROCDEF procDef ON procDef.ID_ = procInst.PROC_DEF_ID_
+  WHERE procDef.key_ = 'CreateEnquiry'
+)
+PIVOT
+(
+  MIN (text_)
+  FOR name_ IN (  'dateOfEnquiry' AS DATE_OF_ENQUIRY
+                , 'enquirerName' AS ENQUIRER_NAME
+                , 'assignee' AS ASSIGNEE
+                , 'enquiryOutcome' AS ENQUIRY_OUTCOME
+                , 'enquirySummary' AS ENQUIRY_SUMMARY
+                , 'trmReference' AS TRM_REFERENCE)
+)
+ORDER BY DATE_OF_ENQUIRY, process_instance_id;
+
+COMMENT ON TABLE BUILDING.PROCESS_INSTANCE_DATA_ENQUIRY IS q'{This view contains most of the simple fields that a client can enter on the enquiry form}';
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oracle.sql.sample.create-or-replace-force-view.sub-select.pivot</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>
