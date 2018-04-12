@@ -1,0 +1,16 @@
+<snippet>
+  <content><![CDATA[
+<cache:annotation-driven/>
+<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+  <property name="caches">
+    <set>
+      <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" name="${1:userAccountFullNames}"/>
+    </set>
+  </property>
+</bean>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-core.cache.config-xml.Simple</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

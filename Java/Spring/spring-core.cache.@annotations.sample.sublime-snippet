@@ -1,0 +1,29 @@
+<snippet>
+  <content><![CDATA[
+// In some @Component/@Service...
+
+@Override
+@Cacheable("${1:userAccountFullNames}")
+public String getFullNameForUserAccount(String username)
+{
+  String name = ilisAccountsUserDetailService.getFullNameForUserAccount(username);
+  if (name == null)
+  {
+    return username;
+  }
+
+  return name;
+}
+
+@Override
+@CacheEvict(allEntries = true, value = "${1:userAccountFullNames}")
+public void refreshFullNameForUserAccount()
+{
+  logger.debug("Cache ${1:userAccountFullNames} evicted.");
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-core.cache.@annotations.sample</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

@@ -1,0 +1,66 @@
+<snippet>
+  <content><![CDATA[
+SELECT *
+FROM building.act_hi_procinst ahip
+JOIN building.act_re_procdef arep ON arep.id_ = ahip.proc_def_id_
+WHERE arep.key_ = '${2:YourProcessDefinitionKey}'
+AND ahip.start_time_ ${3:<} '${4:21/FEB/17 12:41:08.371000000 PM}'
+AND ahip.end_time_ IS NULL
+ORDER BY ahip.start_time_ DESC;
+
+-- Delete process instances - paste start time in to these 6 queries
+delete from ${1:building}.act_ru_variable rv
+where rv.proc_inst_id_ in (
+ select proc_inst_id_ from ${1:building}.act_hi_procinst hp
+ where hp.proc_def_id_ like '${2:YourProcessDefinitionKey}:%'
+ and hp.start_time_ ${3:<} '${4:21/FEB/17 12:41:08.371000000 PM}'
+ and hp.end_time_ is null
+);
+
+delete from ${1:building}.act_ru_identitylink ri
+where ri.task_id_ in (
+ select id_ from ${1:building}.act_ru_task rt
+ where rt.proc_inst_id_ in (
+  select proc_inst_id_ from ${1:building}.act_hi_procinst hp
+  where hp.proc_def_id_ like '${2:YourProcessDefinitionKey}:%'
+  and hp.start_time_ ${3:<} '${4:21/FEB/17 12:41:08.371000000 PM}'
+  and hp.end_time_ is null
+ )
+);
+
+delete from ${1:building}.act_ru_identitylink ri
+where ri.proc_inst_id_ in (
+ select proc_inst_id_ from ${1:building}.act_hi_procinst hp
+ where hp.proc_def_id_ like '${2:YourProcessDefinitionKey}:%'
+ and hp.start_time_ ${3:<} '${4:21/FEB/17 12:41:08.371000000 PM}'
+ and hp.end_time_ is null
+);
+
+delete from ${1:building}.act_ru_task rt
+where rt.proc_inst_id_ in (
+ select proc_inst_id_ from ${1:building}.act_hi_procinst hp
+ where hp.proc_def_id_ like '${2:YourProcessDefinitionKey}:%'
+ and hp.start_time_ ${3:<} '${4:21/FEB/17 12:41:08.371000000 PM}'
+ and hp.end_time_ is null
+);
+
+delete from ${1:building}.act_ru_execution rp
+where rp.proc_inst_id_ in (
+ select proc_inst_id_ from ${1:building}.act_hi_procinst hp
+ where hp.proc_def_id_ like '${2:YourProcessDefinitionKey}:%'
+ and hp.start_time_ ${3:<} '${4:21/FEB/17 12:41:08.371000000 PM}'
+ and hp.end_time_ is null
+);
+
+delete from ${1:building}.act_hi_procinst hp
+where hp.proc_def_id_ like '${2:YourProcessDefinitionKey}:%'
+and hp.start_time_ ${3:<} '${4:21/FEB/17 12:41:08.371000000 PM}'
+and hp.end_time_ is null;
+
+commit;
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>flowable.find-and-delete-process-instances</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>

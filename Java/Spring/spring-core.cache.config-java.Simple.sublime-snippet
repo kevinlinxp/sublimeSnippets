@@ -1,0 +1,22 @@
+<snippet>
+  <content><![CDATA[
+@Configuration
+@EnableCaching
+public class CachingConfig {
+
+    @Bean
+    public CacheManager cacheManager() {
+        SimpleCacheManager cacheManager = new SimpleCacheManager();
+        cacheManager.setCaches(Arrays.asList(
+          new ConcurrentMapCache("${1:userAccountFullNames}"),
+          new ConcurrentMapCache("nameOfAnotherCache")
+        ));
+        return cacheManager;
+    }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-core.cache.config-java.Simple</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
