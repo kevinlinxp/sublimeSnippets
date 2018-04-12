@@ -1,0 +1,81 @@
+<snippet>
+  <content><![CDATA[
+private static String OPTION_HELP_SHORT = "h";
+private static String OPTION_HELP_LONG = "help";
+
+private static String OPTION_DEPLOY_SHORT = "d";
+private static String OPTION_DEPLOY_LONG = "deploy";
+
+private static String OPTION_UPDATE_CLOSED_PROCESS_SHORT = "ucp";
+private static String OPTION_UPDATE_CLOSED_PROCESS_LONG = "updateClosedProcess";
+
+private static String OPTION_PID_SHORT = "pid";
+private static String OPTION_PID_LONG = "processInstanceId";
+
+private static Options constructGnuOptions()
+{
+  final Options gnuOptions = new Options();
+  gnuOptions
+      .addOption(OPTION_HELP_SHORT, OPTION_HELP_LONG, false, "show this help")
+      .addOption(OPTION_DEPLOY_SHORT, OPTION_DEPLOY_LONG, true, "bpmn20.xml file to deploy")
+      .addOption(OPTION_PID_SHORT, OPTION_PID_LONG, true, "process instance id")
+      .addOption(OPTION_UPDATE_CLOSED_PROCESS_SHORT, OPTION_UPDATE_CLOSED_PROCESS_LONG, true,
+          "variable to update in a closed process in format: foo.bar=new_value");
+
+  return gnuOptions;
+}
+
+private static void showHelp(Options options)
+{
+  HelpFormatter formatter = new HelpFormatter();
+  formatter.printHelp("...", options);
+}
+
+private static boolean assertPropertiesFileExists()
+{
+  if (Supporter.class.getClassLoader().getResource(PROPERTIES_FILE_NAME) == null)
+  {
+    System.out.println("Please ensure " + PROPERTIES_FILE_NAME + " is on the classpath.");
+    return false;
+  }
+  return true;
+}
+
+@SuppressWarnings("resource")
+public static void main(String[] args) throws Exception
+{
+  Options options = constructGnuOptions();
+
+  CommandLineParser parser = new DefaultParser();
+  CommandLine cmd = parser.parse(options, args);
+
+  if (cmd.hasOption(OPTION_HELP_SHORT))
+  {
+    showHelp(options);
+    return;
+  }
+
+  if (!assertPropertiesFileExists())
+  {
+    return;
+  }
+
+  String fileToDeploy = cmd.getOptionValue(OPTION_DEPLOY_SHORT);
+  if (fileToDeploy != null)
+  {
+    File file = new File(fileToDeploy);
+    Assert.isTrue(file.exists(), fileToDeploy + "  doesn't exist!");
+
+    new AnnotationConfigApplicationContext(Supporter.class.getPackage().getName()).getBean(Supporter.class)
+        .deploy(fileToDeploy);
+    return;
+  }
+
+  // ...
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>trigger</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain</scope>
+</snippet>
