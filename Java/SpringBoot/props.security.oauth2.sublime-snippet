@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+security:
+  oauth2:
+    client:
+      access-token-uri: ${1:https://github.com/login/oauth/access_token}
+      user-authorization-uri: ${2:https://github.com/login/oauth/authorize}
+      client-authentication-scheme: ${3:form}
+      resource:
+        user-info-uri: ${4:https://api.github.com/user}
+${0}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>props.security.oauth2</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.yaml, text.plain</scope>
+</snippet>
