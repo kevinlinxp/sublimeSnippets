@@ -1,0 +1,40 @@
+<snippet>
+  <content><![CDATA[
+// Ref: https://github.com/snicoll-demos/cfp-example
+
+// 1. Dependencies
+<dependency>
+  <groupId>org.flywaydb</groupId>
+  <artifactId>flyway-core</artifactId>
+</dependency>
+
+// 2. Turn off hibernate auto-ddl generation
+spring.jpa.hibernate.ddl-auto=none
+
+// 3. src/main/resources/db/migration/V1__Initial_Setup.sql
+CREATE TABLE USER (
+  id         BIGINT auto_increment,
+  email      VARCHAR(100),
+  name       VARCHAR(100) NOT NULL,
+  github     VARCHAR(30),
+  twitter    VARCHAR(30),
+  avatar_url VARCHAR(200),
+  bio        TEXT,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE SUBMISSION (
+  id         BIGINT auto_increment,
+  speaker_id BIGINT,
+  title      VARCHAR(100),
+  status     INTEGER,
+  summary    TEXT,
+  track      INT,
+  PRIMARY KEY (id)
+);
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-boot.db-migration.flyway.sample</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

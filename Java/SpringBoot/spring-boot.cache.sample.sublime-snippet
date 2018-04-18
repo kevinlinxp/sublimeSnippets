@@ -1,0 +1,65 @@
+<snippet>
+  <content><![CDATA[
+// Ref: https://github.com/snicoll-demos/cfp-example
+
+// 1. Dependencies
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-cache</artifactId>
+</dependency>
+<dependency>
+  <groupId>javax.cache</groupId>
+  <artifactId>cache-api</artifactId>
+</dependency>
+<dependency>
+  <groupId>org.ehcache</groupId>
+  <artifactId>ehcache</artifactId>
+</dependency>
+
+// 2. @Configuration class
+@Configuration
+@EnableCaching
+public class CachingConfig {
+
+  @Bean
+  public JCacheManagerCustomizer cacheManagerCustomizer() {
+    return cm -> {
+      cm.createCache("github.commits", initConfiguration(Duration.TEN_MINUTES));
+      cm.createCache("github.polishCommit", initConfiguration(Duration.ONE_HOUR));
+      cm.createCache("github.user", initConfiguration(Duration.ONE_HOUR));
+    };
+  }
+
+  private MutableConfiguration<Object, Object> initConfiguration(Duration duration) {
+    return new MutableConfiguration<>()
+        .setStoreByValue(false)
+        .setStatisticsEnabled(true)
+        .setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(duration));
+  }
+
+}
+
+// 3. Use
+@Service
+public class GithubClient }
+  @Cacheable("github.commits")
+  public List<Commit> getRecentCommits(String organization, String project) {
+    // ...
+  }
+
+  @Cacheable("github.polishCommit")
+  public Commit getRecentPolishCommit(String organization, String project) {
+    // ..
+  }
+
+  @Cacheable("github.user")
+  public GithubUser getUser(String githubId) {
+    // ..
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-boot.cache.sample</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

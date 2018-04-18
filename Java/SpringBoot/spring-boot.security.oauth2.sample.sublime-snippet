@@ -1,0 +1,85 @@
+<snippet>
+  <content><![CDATA[
+// Ref: https://github.com/snicoll-demos/cfp-example
+
+// 1. Dependency
+<dependency>
+  <groupId>org.springframework.security.oauth</groupId>
+  <artifactId>spring-security-oauth2</artifactId>
+</dependency>
+
+// 2. Properties
+See snippet: props.security.oauth2
+See snippet: props.security.oauth2-secrets
+See snippet: spring-boot.configuration-properties
+
+// 3. @Configuration class
+@Configuration
+@EnableOAuth2Sso
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+  private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
+
+  private final CfpProperties cfpProperties;
+
+  public SecurityConfig(CfpProperties cfpProperties) {
+    this.cfpProperties = cfpProperties;
+  }
+
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.authorizeRequests()
+        .antMatchers("/admin/**").hasRole("ADMIN")
+        .antMatchers("/", "/news", "/login**", "/css/**", "/img/**", "/webjars/**", "/bootstrap/**").permitAll()
+        .anyRequest().authenticated()
+        .and()
+      .csrf()
+        .ignoringAntMatchers("/admin/h2-console/*")
+        .and()
+      .logout()
+        .logoutSuccessUrl("/")
+        .permitAll()
+        .and()
+      .headers()
+        .frameOptions().sameOrigin();
+  }
+
+  @Bean
+  public AuthoritiesExtractor authoritiesExtractor() {
+    return map -> {
+      String username = (String) map.get("login");
+      if (this.cfpProperties.getSecurity().getAdmins().contains(username)) {
+        return AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER,ROLE_ADMIN");
+      }
+      else {
+        return AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
+      }
+    };
+  }
+
+  @Bean
+  public PrincipalExtractor principalExtractor(GithubClient githubClient, UserRepository userRepository) {
+    return map -> {
+      String githubLogin = (String) map.get("login");
+      User speaker = userRepository.findByGithub(githubLogin);
+      if (speaker == null) {
+        logger.info("Initialize user with githubId {}", githubLogin);
+        GithubUser user = githubClient.getUser(githubLogin);
+        speaker = new User();
+        speaker.setEmail(user.getEmail());
+        speaker.setName(user.getName());
+        speaker.setGithub(githubLogin);
+        speaker.setAvatarUrl(user.getAvatar());
+        userRepository.save(speaker);
+      }
+      return speaker;
+    };
+  }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-boot.security.oauth2.sample</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
