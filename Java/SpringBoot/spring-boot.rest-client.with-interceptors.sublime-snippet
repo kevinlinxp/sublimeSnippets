@@ -1,0 +1,209 @@
+<snippet>
+  <content><![CDATA[
+// 1. Rest client class and the interceptor
+@Component
+public class GithubClient {
+
+  private final RestTemplate restTemplate;
+
+  private static final String EVENT_ISSUES_URL = "https://api.github.com/repos/{owner}/{repo}/issues/events";
+
+  public GithubClient(RestTemplateBuilder builder, GithubProperties properties, MeterRegistry meterRegistry) {
+
+    this.restTemplate = builder
+        .additionalInterceptors(new GithubAppTokenInterceptor(properties.getToken()))
+        .additionalInterceptors(new MetricsInterceptor(meterRegistry))
+        .build();
+  }
+
+  public ResponseEntity<RepositoryEvent[]> fetchEvents(String orgName, String repoName) {
+    return this.restTemplate.getForEntity(EVENT_ISSUES_URL, RepositoryEvent[].class, orgName, repoName);
+  }
+
+  public List<RepositoryEvent> fetchEventsList(String orgName, String repoName) {
+    return Arrays.asList(fetchEvents(orgName, repoName).getBody());
+  }
+
+
+  private static class GithubAppTokenInterceptor implements ClientHttpRequestInterceptor {
+
+    private final String token;
+
+    GithubAppTokenInterceptor(String token) {
+      this.token = token;
+    }
+
+    @Override
+    public ClientHttpResponse intercept(HttpRequest httpRequest, byte[] bytes,
+        ClientHttpRequestExecution clientHttpRequestExecution) throws IOException {
+      if (StringUtils.hasText(this.token)) {
+        byte[] basicAuthValue = this.token.getBytes(StandardCharsets.UTF_8);
+        httpRequest.getHeaders().set(HttpHeaders.AUTHORIZATION,
+            "Basic " + Base64Utils.encodeToString(basicAuthValue));
+      }
+      return clientHttpRequestExecution.execute(httpRequest, bytes);
+    }
+
+  }
+
+  private static class MetricsInterceptor implements ClientHttpRequestInterceptor {
+
+    private final AtomicInteger gauge;
+
+    public MetricsInterceptor(MeterRegistry meterRegistry) {
+      this.gauge = meterRegistry.gauge("github.ratelimit.remaining", new AtomicInteger(0));
+    }
+
+    @Override
+    public ClientHttpResponse intercept(HttpRequest httpRequest, byte[] bytes,
+        ClientHttpRequestExecution clientHttpRequestExecution) throws IOException {
+      ClientHttpResponse response = clientHttpRequestExecution.execute(httpRequest, bytes);
+      this.gauge.set(Integer.parseInt(response.getHeaders().getFirst("X-RateLimit-Remaining")));
+      return response;
+    }
+  }
+}
+
+// 2. Rest Entities:
+public class RepositoryEvent {
+
+  private final Type type;
+
+  private final OffsetDateTime creationTime;
+
+  private final Actor actor;
+
+  private final Issue issue;
+
+  @JsonCreator
+  public RepositoryEvent(@JsonProperty("event") String type,
+      @JsonProperty("created_at") OffsetDateTime creationTime,
+      @JsonProperty("actor") Actor actor,
+      @JsonProperty("issue") Issue issue) {
+    this.type = Type.valueFrom(type);
+    this.creationTime = creationTime;
+    this.actor = actor;
+    this.issue = issue;
+  }
+
+  public Type getType() {
+    return type;
+  }
+
+  public OffsetDateTime getCreationTime() {
+    return creationTime;
+  }
+
+  public Actor getActor() {
+    return actor;
+  }
+
+  public Issue getIssue() {
+    return issue;
+  }
+
+  public enum Type {
+
+    CLOSED("closed"),
+    REOPENED("reopened"),
+    SUBSCRIBED("subscribed"),
+    UNSUBSCRIBED("unsubscribed"),
+    MERGED("merged"),
+    REFERENCED("referenced"),
+    MENTIONED("mentioned"),
+    ASSIGNED("assigned"),
+    UNASSIGNED("unassigned"),
+    LABELED("labeled"),
+    UNLABELED("unlabeled"),
+    MILESTONED("milestoned"),
+    DEMILESTONED("demilestoned"),
+    RENAMED("renamed"),
+    LOCKED("locked"),
+    UNLOCKED("unlocked"),
+    HEAD_REF_DELETED("head_ref_deleted"),
+    HEAD_REF_RESTORED("head_ref_restored"),
+    CONVERTED_NOTE_TO_ISSUE("converted_note_to_issue"),
+    MOVED_COLUMNS_IN_PROJECT("moved_columns_in_project");
+
+    private String type;
+
+    Type(String type) {
+      this.type = type;
+    }
+
+    static Type valueFrom(String type) {
+      for (Type value : values()) {
+        if (type.equals(value.type)) {
+          return value;
+        }
+      }
+      throw new IllegalArgumentException(
+          "'" + type + "' is not a valid event type");
+    }
+  }
+
+}
+
+public class Actor {
+
+  private final String login;
+
+  private final String avatarUrl;
+
+  private final String htmlUrl;
+
+  @JsonCreator
+  public Actor(@JsonProperty("login") String login,
+      @JsonProperty("avatar_url") String avatarUrl, @JsonProperty("html_url") String htmlUrl) {
+    this.login = login;
+    this.avatarUrl = avatarUrl;
+    this.htmlUrl = htmlUrl;
+  }
+
+  public String getLogin() {
+    return login;
+  }
+
+  public String getAvatarUrl() {
+    return avatarUrl;
+  }
+
+  public String getHtmlUrl() {
+    return htmlUrl;
+  }
+}
+
+public class Issue {
+
+  private final String htmlUrl;
+
+  private final int number;
+
+  private final String title;
+
+  @JsonCreator
+  public Issue(@JsonProperty("html_url") String htmlUrl,
+      @JsonProperty("number") int number, @JsonProperty("title") String title) {
+    this.htmlUrl = htmlUrl;
+    this.number = number;
+    this.title = title;
+  }
+
+  public String getHtmlUrl() {
+    return htmlUrl;
+  }
+
+  public int getNumber() {
+    return number;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-boot.rest-client-with-interceptors</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

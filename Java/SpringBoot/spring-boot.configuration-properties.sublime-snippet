@@ -6,6 +6,7 @@ public class FooConfiguration {
 }
 
 @ConfigurationProperties("${1:foo}")
+@Validated // You can use validation annotations
 public class FooProperties
 {
   // Your POJO ...

@@ -1,0 +1,47 @@
+<snippet>
+  <content><![CDATA[
+// 1. Dependency
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+
+// 2. Set properties to expose actuator end-points. "*" means all.
+management.endpoints.web.expose=*
+management.endpoint.health.show-details=true
+
+// 3. Custom health indicator
+@Component
+public class GithubApiHealthIndicator implements HealthIndicator {
+
+  private final GithubClient githubClient;
+
+  public GithubApiHealthIndicator(GithubClient githubClient) {
+    this.githubClient = githubClient;
+  }
+
+  @Override
+  public Health health() {
+    try {
+      ResponseEntity<RepositoryEvent[]> responseEntity = githubClient
+          .fetchEvents("spring-projects", "spring-boot");
+      if (responseEntity.getStatusCode().is2xxSuccessful()) {
+        return Health.up()
+            .withDetail("X-RateLimit-Remaining", responseEntity.getHeaders().getFirst("X-RateLimit-Remaining"))
+            .build();
+      }
+      else {
+        return Health.down().withDetail("status", responseEntity.getStatusCode()).build();
+      }
+    }
+    catch (Exception e) {
+      return Health.down(e).build();
+    }
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-boot.actuator</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
