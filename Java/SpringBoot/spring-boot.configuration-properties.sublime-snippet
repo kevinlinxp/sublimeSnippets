@@ -1,0 +1,26 @@
+<snippet>
+  <content><![CDATA[
+@EnableConfigurationProperties(FooProperties.class)
+public class FooConfiguration {
+  // Your Configuration Class ...
+}
+
+@ConfigurationProperties("${1:foo}")
+public class FooProperties
+{
+  // Your POJO ...
+}
+
+// To enable auto-completion support for your IDE:
+<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-configuration-processor -->
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-configuration-processor</artifactId>
+  <optional>true</optional>
+</dependency>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-boot.configuration-properties</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
