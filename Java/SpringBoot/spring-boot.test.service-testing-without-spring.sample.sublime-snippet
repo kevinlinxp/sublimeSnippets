@@ -1,0 +1,39 @@
+<snippet>
+  <content><![CDATA[
+@RunWith(MockitoJUnitRunner.class)
+public class CarServiceTest {
+
+  @Mock
+  private CarRepository carRepository;
+
+  private CarService carService;
+
+  @Before
+  public void setup() {
+    carService = new CarService(carRepository);
+  }
+
+  @Test
+  public void getCarDetails_returnsCarInfo() {
+    given(carRepository.findByName("prius")).willReturn(new Car("prius", "hybrid"));
+
+    Car car = carService.getCarDetails("prius");
+
+    assertThat(car.getName()).isEqualTo("prius");
+    assertThat(car.getType()).isEqualTo("hybrid");
+  }
+
+  @Test(expected = CarNotFoundException.class)
+  public void getCarDetails_whenCarNotFound() throws Exception {
+    given(carRepository.findByName("prius")).willReturn(null);
+
+    carService.getCarDetails("prius");
+  }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-boot.test.service-testing-without-spring.sample</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

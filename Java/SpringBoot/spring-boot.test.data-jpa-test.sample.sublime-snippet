@@ -1,0 +1,28 @@
+<snippet>
+  <content><![CDATA[
+@RunWith(SpringRunner.class)
+@DataJpaTest
+public class CarRepositoryTest {
+
+  @Autowired
+  private CarRepository repository;
+
+  @Autowired
+  private TestEntityManager entityManager;
+
+  @Test
+  public void findByName_returnsCarDetails() throws Exception {
+    Car savedCar = entityManager.persistFlushFind(new Car("prius", "hybrid"));
+    Car car = repository.findByName("prius");
+
+    Assertions.assertThat(car.getName()).isEqualTo(savedCar.getName());
+    Assertions.assertThat(car.getType()).isEqualTo(savedCar.getType());
+  }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-boot.test.data-jpa-test.sample</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

@@ -1,0 +1,37 @@
+<snippet>
+  <content><![CDATA[
+@RunWith(SpringRunner.class)
+@WebMvcTest(CarController.class)
+public class CarControllerTest {
+
+  @Autowired
+  private MockMvc mockMvc;
+
+  @MockBean
+  private CarService carService;
+
+  @Test
+  public void getCar_shouldReturnCar() throws Exception {
+    given(carService.getCarDetails(anyString())).willReturn(new Car("prius", "hybrid"));
+
+    mockMvc.perform(get("/cars/prius"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("name").value("prius"))
+        .andExpect(jsonPath("type").value("hybrid"));
+  }
+
+  @Test
+  public void getCar_notFound() throws Exception {
+    given(carService.getCarDetails(anyString())).willThrow(new CarNotFoundException());
+
+    mockMvc.perform(get("/cars/prius"))
+        .andExpect(status().isNotFound());
+  }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-boot.test.webMvc-controller-test.sample</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

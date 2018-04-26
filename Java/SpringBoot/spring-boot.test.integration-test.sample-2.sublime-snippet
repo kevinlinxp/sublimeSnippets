@@ -1,0 +1,168 @@
+<snippet>
+  <content><![CDATA[
+package au.com.domain.demo;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import au.com.domain.demo.domain.IssueStatus;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(
+    webEnvironment = WebEnvironment.RANDOM_PORT,
+    classes = IssueTrackerApplication.class
+)
+@AutoConfigureMockMvc
+@TestPropertySource(properties = "spring.datasource.url=jdbc:h2:mem:testdb")
+//@SqlGroup({
+//    @Sql("classpath:/db/migration/V1__init.sql"),
+//    @Sql("classpath:/db/migration/V2__comments.sql")
+//})
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class IssueTrackerApplicationTest {
+
+  private static final String POST_REQUEST_BODY_TEMPLATE = "{ \"title\": \"%s\", \"description\": \"%s\" }";
+
+  @Autowired
+  private MockMvc mockMvc;
+
+  @Test
+  public void test_a_IssueSearch_noParam() throws Exception {
+    this.mockMvc
+        .perform(get("/api/issues")
+            .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType("application/json;charset=UTF-8"))
+        .andExpect(jsonPath("\$.numberOfElements").value(5))
+        .andExpect(jsonPath("\$.totalElements").value(5))
+        .andExpect(jsonPath("\$.content").isArray());
+  }
+
+  @Test
+  public void test_b_IssueSearch_filtering() throws Exception {
+    this.mockMvc
+        .perform(get("/api/issues/")
+            .param("reporterId", "1")
+            .param("createdFrom", "2017-08-01")
+            .param("createdTo", "2017-08-02")
+            .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType("application/json;charset=UTF-8"))
+        .andExpect(jsonPath("\$.numberOfElements").value(2))
+        .andExpect(jsonPath("\$.totalElements").value(2))
+        .andExpect(jsonPath("\$.content").isArray());
+
+    this.mockMvc
+        .perform(get("/api/issues/")
+            .param("reporterId", "1")
+            .param("createdFrom", "2017-08-01")
+            .param("createdTo", "2017-08-01")
+            .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType("application/json;charset=UTF-8"))
+        .andExpect(jsonPath("\$.numberOfElements").value(1))
+        .andExpect(jsonPath("\$.totalElements").value(1))
+        .andExpect(jsonPath("\$.content").isArray());
+  }
+
+  @Test
+  public void test_c_IssueSearch_paging() throws Exception {
+    this.mockMvc
+        .perform(get("/api/issues/")
+            .param("pageSize", "2")
+            .param("pageNumber", "1")
+            .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType("application/json;charset=UTF-8"))
+        .andExpect(jsonPath("\$.numberOfElements").value(2))
+        .andExpect(jsonPath("\$.totalElements").value(5))
+        .andExpect(jsonPath("\$.first").value(true))
+        .andExpect(jsonPath("\$.last").value(false));
+
+    this.mockMvc
+        .perform(get("/api/issues/")
+            .param("pageSize", "2")
+            .param("pageNumber", "2")
+            .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType("application/json;charset=UTF-8"))
+        .andExpect(jsonPath("\$.numberOfElements").value(2))
+        .andExpect(jsonPath("\$.totalElements").value(5))
+        .andExpect(jsonPath("\$.first").value(false))
+        .andExpect(jsonPath("\$.last").value(false));
+
+    this.mockMvc
+        .perform(get("/api/issues/")
+            .param("pageSize", "2")
+            .param("pageNumber", "3")
+            .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType("application/json;charset=UTF-8"))
+        .andExpect(jsonPath("\$.numberOfElements").value(1))
+        .andExpect(jsonPath("\$.totalElements").value(5))
+        .andExpect(jsonPath("\$.first").value(false))
+        .andExpect(jsonPath("\$.last").value(true));
+  }
+
+  @Test
+  public void test_d_IssueCreate() throws Exception {
+    String testTitle = "Kevin Test 1 - Title";
+    String testDescription = "Kevin Test 1 - Description";
+    this.mockMvc
+        .perform(post("/api/issues")
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content(String.format(POST_REQUEST_BODY_TEMPLATE, testTitle, testDescription))
+            .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        .andExpect(status().isCreated())
+        .andExpect(content().contentType("application/json;charset=UTF-8"))
+        .andExpect(jsonPath("\$.title").value(testTitle))
+        .andExpect(jsonPath("\$.description").value(testDescription))
+        .andExpect(jsonPath("\$.status").value(IssueStatus.BACKLOG.getLabel()));
+
+    this.mockMvc
+        .perform(get("/api/issues")
+            .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType("application/json;charset=UTF-8"))
+        .andExpect(jsonPath("\$.numberOfElements").value(6))
+        .andExpect(jsonPath("\$.totalElements").value(6))
+        .andExpect(jsonPath("\$.content").isArray());
+  }
+
+
+  @Test
+  public void test_e_IssueDelete() throws Exception {
+    this.mockMvc
+        .perform(delete("/api/issues/1")
+            .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        .andExpect(status().isOk());
+
+    this.mockMvc
+        .perform(get("/api/issues/1")
+            .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        .andExpect(status().isNotFound());
+  }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-boot.test.integration-test.sample-2</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
