@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+@Rule
+public ExpectedException thrown = ExpectedException.none();
+
+@Test
+public void getVehicleDetailsWhenVinIsNullShouldThrowException() throws Exception {
+  this.thrown.expect(IllegalArgumentException.class);
+  this.thrown.expectMessage("VIN must not be null");
+  this.service.getVehicleDetails(null);
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>junit.rule-expectedException</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

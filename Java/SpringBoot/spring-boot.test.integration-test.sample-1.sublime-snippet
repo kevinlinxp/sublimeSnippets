@@ -2,6 +2,7 @@
   <content><![CDATA[
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+${1:@AutoConfigureTestDatabase} // Use this when you want to use an in-memory one instead of the one in your main application configuration.
 public class IntegrationTest {
 
   @Autowired

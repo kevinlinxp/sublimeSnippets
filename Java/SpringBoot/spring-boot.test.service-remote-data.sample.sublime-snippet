@@ -1,0 +1,67 @@
+<snippet>
+  <content><![CDATA[
+@RunWith(SpringRunner.class)
+@RestClientTest({ RemoteVehicleDetailsService.class,
+    RemoteVehicleDetailsServiceProperties.class })
+@TestPropertySource(properties = "vehicle.service.root-url=http://example.com/")
+public class RemoteVehicleDetailsServiceTest {
+
+  private static final String VIN = "01234567890123456";
+
+  @Rule
+  public ExpectedException thrown = ExpectedException.none();
+
+  @Autowired
+  private MockRestServiceServer server;
+
+  @Autowired
+  private RemoteVehicleDetailsService service;
+
+  @Test
+  public void getVehicleDetailsWhenVinIsNullShouldThrowException() throws Exception {
+    this.thrown.expect(IllegalArgumentException.class);
+    this.thrown.expectMessage("VIN must not be null");
+    this.service.getVehicleDetails(null);
+  }
+
+  @Test
+  public void getVehicleDetailsWhenResultIsSuccessShouldReturnDetails()
+      throws Exception {
+    this.server.expect(requestTo("http://example.com/vehicle/" + VIN + "/details"))
+        .andRespond(withSuccess(getClassPathResource("vehicledetails.json"),
+            MediaType.APPLICATION_JSON));
+    VehicleDetails details = this.service
+        .getVehicleDetails(new VehicleIdentificationNumber(VIN));
+    assertThat(details.getMake()).isEqualTo("Honda");
+    assertThat(details.getModel()).isEqualTo("Civic");
+  }
+
+  @Test
+  public void getVehicleDetailsWhenResultIsNotFoundShouldThrowException()
+      throws Exception {
+    this.server.expect(requestTo("http://example.com/vehicle/" + VIN + "/details"))
+        .andRespond(withStatus(HttpStatus.NOT_FOUND));
+    this.thrown.expect(VehicleIdentificationNumberNotFoundException.class);
+    this.service.getVehicleDetails(new VehicleIdentificationNumber(VIN));
+  }
+
+  @Test
+  public void getVehicleDetailsWhenResultIServerErrorShouldThrowException()
+      throws Exception {
+    this.server.expect(requestTo("http://example.com/vehicle/" + VIN + "/details"))
+        .andRespond(withServerError());
+    this.thrown.expect(HttpServerErrorException.class);
+    this.service.getVehicleDetails(new VehicleIdentificationNumber(VIN));
+  }
+
+  private ClassPathResource getClassPathResource(String path) {
+    return new ClassPathResource(path, getClass());
+  }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-boot.test.service-remote-data.sample</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

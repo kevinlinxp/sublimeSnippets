@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+@Test
+public void ${1:methodTested}_${2:condition}_${3:whatYouExpectToHappen}() ${4:throws Exception} {
+  // Arrange
+  ${0}
+
+  // Act
+
+  // Assert
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>junit.@Test-method</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
