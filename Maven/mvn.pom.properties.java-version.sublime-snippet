@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+<maven.compiler.source>${1:1.8}</maven.compiler.source>
+<maven.compiler.target>${1}</maven.compiler.target>
+
+<!-- Can use this alternatively when using SpringBoot -->
+<!-- <java.version>${1}</java.version> -->
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mvn.pom.properties.java-version</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, text.xml</scope>
+</snippet>
