@@ -1,0 +1,92 @@
+<snippet>
+  <content><![CDATA[
+  <profiles>
+    <profile>
+      <id>run-app</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-maven-plugin</artifactId>
+            <version>${jetty-maven-plugin.version}</version>
+            <dependencies>
+              <dependency>
+                <groupId>au.com.suncorp.common.security</groupId>
+                <artifactId>mock-aim-authentication</artifactId>
+                <version>0.0.10</version>
+              </dependency>
+            </dependencies>
+            <configuration>
+              <loginServices>
+                <loginService implementation="org.eclipse.jetty.security.HashLoginService">
+                  <name>motor</name>
+                  <config>${basedir}/src/test/resources/realm.properties</config>
+                </loginService>
+              </loginServices>
+              <webAppSourceDirectory>${basedir}/src/main/webapp</webAppSourceDirectory>
+              <webAppConfig>
+                <contextPath>/motor</contextPath>
+                <extraClasspath>${basedir}/build/env/local</extraClasspath>
+                <defaultsDescriptor>${basedir}/build/env/local/webdefault.xml</defaultsDescriptor>
+                <resourceBases>
+                  <resourceBase>${basedir}/src/main/webapp</resourceBase>
+                </resourceBases>
+              </webAppConfig>
+              <contextHandlers>
+                <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                  <war>${basedir}/build/env/local</war>
+                  <contextPath>/app-resources</contextPath>
+                </contextHandler>
+              </contextHandlers>
+              <systemProperties>
+                <systemProperty>
+                  <name>catalina.base</name>
+                  <value>${basedir}/target</value>
+                </systemProperty>
+                <systemProperty>
+                  <name>logback.configurationFile</name>
+                  <value>file:${basedir}/build/env/local/logback.xml</value>
+                </systemProperty>
+                <systemProperty>
+                  <name>loggedInUser.properties</name>
+                  <value>${basedir}/src/test/resources/loggedInUser.properties</value>
+                </systemProperty>
+                <systemProperty>
+                  <name>NonAuthenticationRegion</name>
+                  <value>true</value>
+                </systemProperty>
+                <systemProperty>
+                  <name>net.jawr.debug.on</name>
+                  <value>false</value>
+                </systemProperty>
+              </systemProperties>
+              <httpConnector>
+                <port>${jetty.port}</port>
+                <idleTimeout>3600000</idleTimeout>
+              </httpConnector>
+              <contextXml>${basedir}/build/env/local/jetty.xml</contextXml>
+            </configuration>
+            <executions>
+              <execution>
+                <phase>test</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+  
+  <properties>   
+    <jetty-maven-plugin.version>9.0.7.v20131107</jetty-maven-plugin.version>
+    <jetty.port>13001</jetty.port>
+  </properties>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mvn.pom.profiles-profile-build-plugins.jetty-maven-plugin</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>

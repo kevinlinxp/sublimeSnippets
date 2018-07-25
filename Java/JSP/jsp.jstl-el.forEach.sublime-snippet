@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+<c:forEach items="\${${1:items}}" var="${2:item}" varStatus="${3:status}">
+  ${0}
+</c:forEach>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jsp.jstl-el.forEach</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html.jsp, text.plain</scope>
+</snippet>

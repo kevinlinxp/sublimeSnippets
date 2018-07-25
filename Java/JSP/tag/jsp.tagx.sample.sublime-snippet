@@ -25,7 +25,7 @@
 
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>jsp.tag.sample</tabTrigger>
+  <tabTrigger>jsp.tagx.sample</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.html.jsp, text.html, text.plain</scope>
 </snippet>
