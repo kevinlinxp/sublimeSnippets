@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+aws ec2 run-instances --image-id ${1:ami-60a26a02} --count ${2:1} --instance-type ${3:t2.micro} --key-name ${4:MyEC2KeyPair} --security-group-ids ${5:sg-095c841d8f5716303} --subnet-id ${6:subnet-b91856de}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>aws.ec2.run-instances</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
