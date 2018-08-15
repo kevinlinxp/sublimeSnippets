@@ -1,0 +1,65 @@
+<snippet>
+  <content><![CDATA[
+<div ng-app="ng-form-playground">
+  <ng-form name="myFormCtrl" ng-controller="MyFormController as myCtrl">
+    <table>
+      <tbody>
+        <tr ng-repeat="row in myCtrl.rows">
+          <td>
+            <input type="text" ng-model="row.firstName">
+          </td>
+          <td>
+            * <input type="text" name="ln{{\$index}}" ng-model="row.lastName" ng-required="true">
+            <ng-messages for="myFormCtrl['ln' + \$index].\$error" role="alert">
+              <div ng-message="required">Hey, this field is mandatory.</div>
+              <div ng-message="email">This field must be a valid email address.</div>
+              <div ng-message="maxlength">This field can be at most 15 characters long.</div>
+            </ng-messages>
+          </td>
+          <td><input type="text" ng-model="row.acn"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+    Form Valid: {{ myFormCtrl.\$valid }}
+    </div>
+   <pre>{{ myCtrl.rows | json }}</pre>
+  </ng-form>
+</div>
+
+---
+(function () {
+  'use strict';
+  angular
+    .module('ng-form-playground', ['ngMessages'])
+    .controller('MyFormController', MyFormController);
+
+  MyFormController.\$inject = ['\$scope'];
+
+  /* @ngInject */
+  function MyFormController (\$scope) {
+    this.rows = [
+    	{
+      	firstName: 'Ke',
+        lastName: 'Lin',
+        acn: 123456789
+      },
+    	{
+        firstName: 'Kevin',
+        lastName: 'L',
+        acn: 987654321
+      },
+    	{
+        firstName: 'Keith',
+        lastName: 'Lin',
+        acn: 101010101 
+      }
+    ]
+  }
+})();
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>angular.form-validation</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html, source.js, text.plain</scope>
+</snippet>

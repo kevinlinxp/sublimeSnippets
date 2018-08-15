@@ -1,0 +1,72 @@
+<snippet>
+  <content><![CDATA[
+var a = [1, 2, 3];
+
+(function theProblem() {
+  console.log('-- The problem: we write a loop like below and expect 1 2 3 here --');
+  var func1 = [];
+  for (var i = 0; i < a.length; i++) {
+    func1[i] = function () {
+      console.log(i);
+    };
+  }
+  for (var j = 0; j < a.length; j++) { // try using i, and then think why :)
+    func1[j]();
+  }
+  /**
+   * Result: 3 3 3
+   * The problem is that the variable i, within each of the anonymous
+   * functions, is bound to the same variable outside of the function. This is
+   * because JavaScript DOES NOT have "Block Scope", variables introduced with
+   * a block are scoped to the containing function or script
+   */
+})();
+
+(function solution1_functionHack() {
+  console.log('-- Solution 1: use for-return function hack to avoid this problem --');
+  var func2 = [];
+  for (var i = 0; i < a.length; i++) {
+    func2[i] = (function (x) {
+      return function () {
+        console.log(x);
+      };
+    }(i));
+  }
+  for (var j = 0; j < a.length; j++) { // try using i, and then think why :)
+    func2[j]();
+  }
+  // Result: 1 2 3
+})();
+
+(function solution2_useIterationAPIs() {
+  console.log('-- Use [].forEach or [].map which are more common --');
+  var func3 = [];
+  a.forEach(function (currentValue, index, array) {
+    func3[index] = function () {
+      console.log(index);
+    };
+  });
+  for (var j = 0; j < a.length; j++) { // try using i, and then think why :)
+    func3[j]();
+  }
+  // Result: 1 2 3
+})();
+
+(function solution3_use_let() {
+  console.log("-- In new version of JavaScript, one could use 'let' which is block scoped. --");
+  var func4 = [];
+  for (let i = 0; i < a.length; i++) {
+    func4[i] = function () {
+      console.log(i);
+    };
+  }
+  for (var j = 0; j < a.length; j++) { // try using i, and then think why :)
+    func4[j]();
+  }
+})();
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>functional.closure-inside-loop-problem</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

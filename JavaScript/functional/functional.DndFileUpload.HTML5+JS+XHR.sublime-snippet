@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-var DndFileUploadWidget = (function() {
+var DndFileUploadWidget = (function defineDndFileUploadWidget() {
 
   /* public static fields */
   DndFileUploadWidget.DEFAULT_MAX_ALLOWED_TOTAL_BYTES = 10 * 1024 * 1024;
@@ -93,7 +93,7 @@ var DndFileUploadWidget = (function() {
     var filesContainer = this.getFilesContainer();
     var filename = file.name;
     var fileSize = file.size;
-    var domString = '<div class="row form-group"> <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"> <div class="text-left" style="line-height:32px">' + filename + '</div> </div> <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"> <div style="line-height:32px">' + humanReadableFileSize(fileSize) + '</div> </div> <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 dnd-file-upload-widget-docType-row"> </div> <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-right"> <button class="btn btn-danger dnd-file-upload-widget-remove-file-button"> Remove </button> </div> </div>'
+    var domString = '<div class="row form-group"> <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"> <div class="text-left" style="line-height:32px">' + filename + '</div> </div> <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"> <div style="line-height:32px">' + humanReadableFileSize(fileSize) + '</div> </div> <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-right"> <button class="btn btn-danger dnd-file-upload-widget-remove-file-button"> Remove </button> </div> </div>'
     var parser = new DOMParser();
     var html = parser.parseFromString(domString, 'text/html');
     var fileUploadRow = html.body.firstChild;
@@ -101,13 +101,6 @@ var DndFileUploadWidget = (function() {
       .addEventListener('click', bind(this.removeFileUploadRow, this));
     filesContainer.appendChild(fileUploadRow);
     fileUploadRow.file = file;
-
-    var docTypeSelect = this.createDocTypeSelect();
-    fileUploadRow.querySelector('.dnd-file-upload-widget-docType-row').appendChild(docTypeSelect);
-    \$(docTypeSelect).chosen({
-      width: "100%",
-      disable_search_threshold: 5
-    });
   };
 
   DndFileUploadWidget.prototype.removeFileUploadRow = function(ev) {
@@ -163,10 +156,7 @@ var DndFileUploadWidget = (function() {
     for(var i = 0; i < fileUploadRows.length; i++) {
       var fileUploadRow = fileUploadRows[i];
       var file = fileUploadRow.file;
-      var docTypeSelect = fileUploadRow.querySelector("select[name='docType']");
-      var docType = docTypeSelect.value;
       formData.append('files[]', file, file.name);
-      formData.append('docTypes[]', docType);
     }
 
     var url = this._uploadUrl;
@@ -200,10 +190,8 @@ var DndFileUploadWidget = (function() {
   DndFileUploadWidget.prototype.enterLoadingState = function() {
     this.getUploadButton().classList.add('hidden');
     this.getUploadingButton().classList.remove('hidden');
-    var docTypeSelects = this.getFilesContainer().querySelectorAll('select');
     var removeButtons = this.getFilesContainer().querySelectorAll('button');
-    for (var i = 0; i < docTypeSelects.length; i++) {
-      docTypeSelects[i].disabled = true;
+    for (var i = 0; i < removeButtons.length; i++) {
       removeButtons[i].disabled = true;
     }
   };
@@ -211,10 +199,8 @@ var DndFileUploadWidget = (function() {
   DndFileUploadWidget.prototype.exitLoadingState = function() {
     this.getUploadButton().classList.remove('hidden');
     this.getUploadingButton().classList.add('hidden');
-    var docTypeSelects = this.getFilesContainer().querySelectorAll('select');
     var removeButtons = this.getFilesContainer().querySelectorAll('button');
-    for (var i = 0; i < docTypeSelects.length; i++) {
-      docTypeSelects[i].disabled = false;
+    for (var i = 0; i < removeButtons.length; i++) {
       removeButtons[i].disabled = false;
     }
   };
@@ -238,12 +224,7 @@ var DndFileUploadWidget = (function() {
   DndFileUploadWidget.prototype.getFilesContainer = function() {
     return this.queryWithinWidget('.files-container');
   };
-
-  DndFileUploadWidget.prototype.createDocTypeSelect = function() {
-    var result = this.queryWithinWidget('.dnd-file-upload-widget-docTypeSelect > select').cloneNode(true);
-    result.style = undefined;
-    return result;
-  };
+  
 
   /**
    * Private methods
@@ -266,83 +247,46 @@ var DndFileUploadWidget = (function() {
   return DndFileUploadWidget;
 })();
 
+(function useDndFileUploadWidget(){
+  var widgetDom = document.getElementById('theWidget');
+  var uploadUrl = '';
+  var completeUrl = '';
+  var options = {
+    maxAllowedTotalBytes: 50 * 1024 * 1024, // 50MiB
+    csrfHeaderName: '',
+    csrfToken: ''
+  };
 
-<jsp:root
-    xmlns:jsp="http://java.sun.com/JSP/Page"
-    xmlns:c="http://java.sun.com/jsp/jstl/core"
-    xmlns:meta="urn:jsptagdir:/WEB-INF/tags/meta"
-    version="2.0" xmlns:spring="http://www.springframework.org/tags">
+  new DndFileUploadWidget(widgetDom, uploadUrl, completeUrl, options);
+})();
 
-  <jsp:output omit-xml-declaration="yes" />
-
-  <jsp:directive.attribute name="uploadUrl" type="java.lang.String" required="true" rtexprvalue="true"/>
-  <jsp:directive.attribute name="completeUrl" type="java.lang.String" required="true" rtexprvalue="true"/>
-
-  <spring:url var="xhr_upload_documents_url" value="${uploadUrl}" />
-  <spring:url var="refresh_url" value="${completeUrl}" />
-
-  <c:set var="dragFileCounter" value="${empty dragFileCounter ? 1 : dragFileCounter + 1}" scope="request" />
-  <c:set var="widgetId" value="dragFileWidget_${dragFileCounter}" />
-
-  <div id="${widgetId}" class="dnd-file-upload-widget">
-    <div class="dnd-file-upload-widget-docTypeSelect hidden">
-      <select name="docType" class="form-control chosen-exclude">
-        <c:forEach items="${docTypes}" var="docType">
-          <c:choose>
-            <c:when test="${docType eq defaultDocType}">
-              <option value="${docType.code}" selected="true"><c:out value="${docType.label}"/></option>
-            </c:when>
-            <c:otherwise>
-              <option value="${docType.code}"><c:out value="${docType.label}"/></option>
-            </c:otherwise>
-          </c:choose>
-        </c:forEach>
-      </select>
-    </div>
-
-    <div class="form-group drop_zone">
-      <span>Drag files here to attach</span>
-      <span>or</span>
-      <label class="btn btn-default">
-        Select files
-        <input type="file" multiple="" />
-      </label>
-    </div>
-
-    <div class="files-container"><!-- placeholder --></div>
-
-    <div class="form-group text-center">
-      <button class="btn btn-default dnd-file-upload-widget-upload-button hidden">
-        Upload
-      </button>
-      <button class="btn btn-default dnd-file-upload-widget-uploading-button hidden" disabled="">
-        Uploading...
-        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"><!-- placeholder --></span>
-      </button>
-      <span class="text-danger dnd-file-upload-widget-size-error hidden"><!-- placeholder --></span>
-    </div>
+---
+<div id="theWidget" class="dnd-file-upload-widget">
+  <div class="form-group drop_zone">
+    <span>Drag files here to attach</span>
+    <span>or</span>
+    <label class="btn btn-default">
+      Select files
+      <input type="file" multiple="" />
+    </label>
   </div>
 
-  <c:if test="${not dragFileScriptIncluded}">
-    <c:set var="dragFileScriptIncluded" value="${true}" scope="request" />
-    <meta:script url="/js/form/dragFileWidget.js" />
-  </c:if>
-  <script>
-      var widgetDom = document.getElementById('${widgetId}');
-      var uploadUrl = '${xhr_upload_documents_url}';
-      var completeUrl = '${refresh_url}';
-      var options = {
-          maxAllowedTotalBytes: 50 * 1024 * 1024, // 50MiB
-          csrfHeaderName: '${_csrf.headerName}',
-          csrfToken: '${_csrf.token}'
-      };
+  <div class="files-container"></div>
 
-      new DndFileUploadWidget(widgetDom, uploadUrl, completeUrl, options);
-  </script>
-</jsp:root>
+  <div class="form-group text-center">
+    <button class="btn btn-default dnd-file-upload-widget-upload-button hidden">
+      Upload
+    </button>
+    <button class="btn btn-default dnd-file-upload-widget-uploading-button hidden" disabled="">
+      Uploading...
+      <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+    </button>
+    <span class="text-danger dnd-file-upload-widget-size-error hidden"></span>
+  </div>
+</div>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>functional.DndFileUploadWidget</tabTrigger>
+  <tabTrigger>functional.DndFileUpload.HTML5+JS+XHR</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
