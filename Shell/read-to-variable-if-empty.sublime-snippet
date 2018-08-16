@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+if [ -z "\$${1:local_mysql_root_password}" ]; then
+    read -s -p "${2:Please enter localhost mysql root password:}" ${1:local_mysql_root_password}
+    echo ""
+fi
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>read-to-variable-if-empty</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
