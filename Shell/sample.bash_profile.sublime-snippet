@@ -27,6 +27,9 @@ alias mvn${2:3.5.2}="export M2_HOME=\$HOME/Work/dev/java_tools/apache-maven-${2:
 
 alias gradle${3:3.5.1}="export GRADLE_HOME=\$HOME/Work/dev/java_tools/gradle-${3:3.5.1}"
 
+# Ansible
+export ANSIBLE_INVENTORY="\$HOME/Work/devOps/ansible/hosts"
+
 # Android
 export PATH="\$PATH:\$HOME/Library/Android/sdk/platform-tools"
 
