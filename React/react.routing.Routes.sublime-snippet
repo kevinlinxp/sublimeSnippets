@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+<Switch>
+  <Route path="/login" component="LoginForm" />
+  <Route path="/movies/:id" component="{MovieForm}" />
+  <Route path="/movies" component="{Movies}" />
+  <Route path="/customers" component="{Customers}" />
+  <Route path="/rentals" component="{Rentals}" />
+  <Route path="/not-found" component="{NotFound}" />
+  <Redirect exact from="/" to="/movies" />
+  <Redirect to="/not-found" />
+</Switch>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>react.routing.Routes</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

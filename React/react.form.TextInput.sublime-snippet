@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+import React, { Component } from 'react';
+
+import React from "react";
+
+const TextInput = ({ name, label, error, ...rest }) => {
+  return (
+    <div className="form-group">
+      <label htmlFor={name}>{label}</label>
+      <input
+        {...rest} id={name} name="name" className="form-control"
+      />
+      {error && <div className="alert alert-danger">{error}</div>}
+    </div>
+  );
+};
+
+export default TextInput;
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>react.form.TextInput</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
