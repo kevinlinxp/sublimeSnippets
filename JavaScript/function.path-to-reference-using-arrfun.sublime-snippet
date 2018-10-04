@@ -3,7 +3,7 @@
 '${1:a.b.etc}'.split('.').reduce((o,i)=>o[i], ${2:obj})
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>function.path-to-ref-es6</tabTrigger>
+  <tabTrigger>function.path-to-reference-using-arrfun</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

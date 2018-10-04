@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+JAVA_HOME="C:/Dev/jdk1.7" M2_HOME="C:/Dev/apache-maven-3.2.1"  MAVEN_OPTS="-XX:PermSize=128M -XX:MaxPermSize=256M -Xmx1536M" C:/Dev/apache-maven-3.2.1/bin/mvn.bat -s config/maven-settings.xml clean package
+
+Some other options:
+--resume-from - resumes a reactor the specified project (e.g. when it fails in the middle)
+--also-make - build the specified projects, and any of their dependencies in the reactor
+--also-make-dependents - build the specified projects, and any that depend on them
+--fail-fast - the default behavior - whenever a module build fails, stop the overall build immediately
+--fail-at-end - if a particular module build fails, continue the rest of the reactor and report all failed modules at the end instead
+--non-recursive - do not use a reactor build, even if the current project declares modules and just build the project in the current directory
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mvn.build-with-settings</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, source.shell</scope>
+</snippet>
