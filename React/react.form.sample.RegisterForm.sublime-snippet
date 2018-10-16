@@ -1,0 +1,54 @@
+<snippet>
+  <content><![CDATA[
+import React, { Component } from "react";
+import Joi from "joi-browser";
+
+export default class RegisterForm extends Form {
+  state = {
+    date: { username: "", password: "" },
+    errors: {}
+  };
+
+  schema = {
+    username: Joi.string()
+      .required()
+      .email()
+      .label("Username"),
+    password: Joi.string()
+      .required()
+      .min(5)
+      .label("Password"),
+    name: Joi.string()
+      .required()
+      .label("name")
+  };
+
+  constructor(props) {
+    super(props);
+    this.props = props;
+  }
+
+  doSubmit = () => {
+    console.log("Submitted!");
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>Register</h1>
+        <form onSubmit={this.handleSubmit}>
+          {this.renderInput("username", "Username")}
+          {this.renderInput("password", "Password", "password")}
+          {this.renderInput("name", "Name")}
+          {this.renderButton("Register")}
+        </form>
+      </div>
+    );
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>react.form.TextInput</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
