@@ -1,20 +1,30 @@
 <snippet>
   <content><![CDATA[
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export default class ${1:MyComponent} extends Component {
+class ${1:MyComponent} extends Component {
   constructor(props) {
     super(props);
     this.props = props;
   }
 
   render() {
-    return ${2:(
-      ${3:<div>${4}</div>}
-    )};
+    return ${0};
   }
 }
 
+${1}.propTypes = {
+  ${2:foo}: PropTypes.string.isRequired,
+  ${3:onChange}: PropTypes.func,
+};
+
+${1}.defaultProps = {
+  ${2}: '',
+  ${3}: () => {},
+};
+
+export default ${1};
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>react.create-component</tabTrigger>

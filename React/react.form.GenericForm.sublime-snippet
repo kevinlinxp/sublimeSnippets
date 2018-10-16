@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import Joi from "joi-browser";
 import Input from "./Input";
 
-export default class GenericForm extends Component {
+class GenericForm extends Component {
   state = {
     data: {},
     errors: {}
@@ -77,6 +77,8 @@ export default class GenericForm extends Component {
     );
   }
 }
+
+export default GenericForm;
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>react.form.GenericForm</tabTrigger>

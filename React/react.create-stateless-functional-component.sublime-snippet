@@ -1,14 +1,23 @@
 <snippet>
   <content><![CDATA[
 import React from "react";
+import PropTypes from 'prop-types';
 
 const ${1:MyComponent} = (${2:props}) => {
-  return ${3:(
-    ${4:<div>${5}</div>}
-  )};
+  return ${0};
 };
 
-export default ${1:MyComponent};
+${1}.propTypes = {
+  ${3:foo}: PropTypes.string.isRequired,
+  ${4:onChange}: PropTypes.func,
+};
+
+${1}.defaultProps = {
+  ${3}: '',
+  ${4}: () => {},
+};
+
+export default ${1};
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>react.create-stateless-functional-component</tabTrigger>
