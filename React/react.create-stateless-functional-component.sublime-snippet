@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const ${1:MyComponent} = (${2:props}) => {
   return ${0};
