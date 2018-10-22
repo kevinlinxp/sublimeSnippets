@@ -1,9 +1,11 @@
 <snippet>
   <content><![CDATA[
-expect(${1}).toBeFalsy();
+it('${1:description}', () => {
+  ${0}
+});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spec.jasmine.expect.to-be-falsy</tabTrigger>
+  <tabTrigger>js-test.it</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

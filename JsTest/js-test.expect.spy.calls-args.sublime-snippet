@@ -1,9 +1,9 @@
 <snippet>
   <content><![CDATA[
-expect(${1}).toBe(${2});
+expect(${1:foo.setBar}.calls[${2:index}].args[${3:index}]).toEqual(${4:value});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spec.jasmine.expect.to-be</tabTrigger>
+  <tabTrigger>js-test.expect.spy.calls-args</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

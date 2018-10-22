@@ -1,24 +1,24 @@
 <snippet>
   <content><![CDATA[
-it("should run async", function() {
-  var flag = false, value = 0;
+it("should run async", () => {
+  let flag = false, value = 0;
 
-  runs(function() {
-    setTimeout(function() { flag = true; }, 500);
+  runs(() => {
+    setTimeout(() => { flag = true; }, 500);
   });
 
-  waitsFor(function() {
+  waitsFor(() => {
     value++;
     return flag;
   }, "increment", 750);
 
-  runs(function() {
+  runs(() => {
     expect(value).toBeGreaterThan(0);
   });
 });
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spec.jasmine.sample.async</tabTrigger>
+  <tabTrigger>js-test.sample.async</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

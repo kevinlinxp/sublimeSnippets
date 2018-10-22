@@ -1,9 +1,10 @@
 <snippet>
   <content><![CDATA[
-expect(${1:foo.setBar}).toHaveBeenCalledWith();
+xit("this is a pending test", () => { ... })
+xdescribe("this is a pending block", () => { ... })
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spec.jasmine.expect.spy.toHaveBeenCalledWith</tabTrigger>
+  <tabTrigger>js-test.sample.pending</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

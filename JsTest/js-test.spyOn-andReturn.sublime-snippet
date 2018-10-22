@@ -1,11 +1,9 @@
 <snippet>
   <content><![CDATA[
-spyOn(${1:foo}, '${2:setBar}').and.andCallFake(function () {
-  ${0}
-});
+spyOn(${1:window}, '${2:confirm}').and.returnValue(${3:true});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spec.jasmine.spyOn-andCallFake</tabTrigger>
+  <tabTrigger>js-test.spyOn-andReturn</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

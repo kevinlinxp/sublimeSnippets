@@ -1,9 +1,9 @@
 <snippet>
   <content><![CDATA[
-expect(${1}).toBeTruthy();
+expect(${1:foo.setBar}).toHaveBeenCalledWith();
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spec.jasmine.expect.to-be-truthy</tabTrigger>
+  <tabTrigger>js-test.expect.spy.toHaveBeenCalledWith</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

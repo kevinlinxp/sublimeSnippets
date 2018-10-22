@@ -2,15 +2,15 @@
   <content><![CDATA[
 describe('${1:UndoRedoController}', function () {
   // Declare dependencies - start
-  var \$rootScope, \$controller;
-  var \$httpBackend;
-  var \$log;
-  var \$scope;
-  var ${3:contrllerDependencies};
+  let \$rootScope, \$controller;
+  let \$httpBackend;
+  let \$log;
+  let \$scope;
+  let ${3:contrllerDependencies};
   // Declare dependencies - end
 
   // Declare test data - start
-  var data0;
+  let data0;
   // Declare test data - end
 
   beforeEach(function initDependencies () {
@@ -57,20 +57,20 @@ describe('${1:UndoRedoController}', function () {
 
   describe('method', function () {
     it('can work', function () {
-      var ctrl = create${1}();
+      let ctrl = create${1}();
       // ...${0}
     });
   });
 
   it('can work', function () {
-    var ctrl = create${1}();
+    let ctrl = create${1}();
     // ...
   });
 
 });
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spec.jasmine.sample.ng-controller</tabTrigger>
+  <tabTrigger>js-test.sample.ng-controller</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

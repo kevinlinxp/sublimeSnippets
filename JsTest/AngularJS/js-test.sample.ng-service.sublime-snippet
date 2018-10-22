@@ -2,16 +2,16 @@
   <content><![CDATA[
 describe('${1:LocationService}', function () {
   // Declare dependencies - start
-  var \$rootScope;
-  var \$httpBackend;
-  var \$log;
-  var \$scope;
+  let \$rootScope;
+  let \$httpBackend;
+  let \$log;
+  let \$scope;
 
-  var ${1};
+  let ${1};
   // Declare dependencies - end
 
   // Declare test data - start
-  var data0;
+  let data0;
   // Declare test data - end
 
   beforeEach(function initDependencies () {
@@ -55,7 +55,7 @@ describe('${1:LocationService}', function () {
 });
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spec.jasmine.sample.ng-service</tabTrigger>
+  <tabTrigger>js-test.sample.ng-service</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

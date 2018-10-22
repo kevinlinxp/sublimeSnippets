@@ -25,11 +25,11 @@
         <execution>
           <id>install-jar</id>
           <configuration>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>${project.artifactId}</artifactId>
-            <version>${project.version}</version>
+            <groupId>\${project.groupId}</groupId>
+            <artifactId>\${project.artifactId}</artifactId>
+            <version>\${project.version}</version>
             <packaging>jar</packaging>
-            <file>${project.build.directory}/${final.name.context}.jar</file>
+            <file>\${project.build.directory}/\${final.name.context}.jar</file>
           </configuration>
           <phase>package</phase>
           <goals>

@@ -3,7 +3,7 @@
 angular.mock.module('${1:rds-schemaform-designer}');
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spec.jasmine.angular-mock-module</tabTrigger>
+  <tabTrigger>js-test.angular-mock-module</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

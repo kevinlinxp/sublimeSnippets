@@ -24,7 +24,7 @@ expect(pi).toBeCloseTo(3.1415, 0.1)
 expect(func).toThrow()
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spec.jasmine.sample.expectations</tabTrigger>
+  <tabTrigger>js-test.sample.expectations</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

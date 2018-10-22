@@ -1,10 +1,11 @@
 <snippet>
   <content><![CDATA[
-xit("this is a pending test", function() { ... })
-xdescribe("this is a pending block", function() { ... })
+spyOn(${1:foo}, '${2:setBar}').and.andCallFake(() => {
+  ${0}
+});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spec.jasmine.sample.pending</tabTrigger>
+  <tabTrigger>js-test.spyOn-andCallFake</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
