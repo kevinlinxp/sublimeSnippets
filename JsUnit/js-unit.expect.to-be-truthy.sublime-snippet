@@ -1,11 +1,9 @@
 <snippet>
   <content><![CDATA[
-describe('${1:description}', () => {
-  ${0}
-});
+expect(${1}).toBeTruthy();
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>js-test.describe</tabTrigger>
+  <tabTrigger>jsunit.expect.to-be-truthy</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

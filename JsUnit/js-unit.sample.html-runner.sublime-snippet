@@ -9,7 +9,7 @@ jasmineEnv.addReporter(htmlReporter);
 $(() => { jasmineEnv.execute(); });
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>js-test.sample.html-runner</tabTrigger>
+  <tabTrigger>jsunit.sample.html-runner</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

@@ -1,9 +1,11 @@
 <snippet>
   <content><![CDATA[
-expect(${1}).toBe(${2});
+spyOn(${1:foo}, '${2:setBar}').and.andCallFake(() => {
+  ${0}
+});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>js-test.expect.to-be</tabTrigger>
+  <tabTrigger>jsunit.spyOn-andCallFake</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

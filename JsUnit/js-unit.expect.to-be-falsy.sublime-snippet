@@ -1,9 +1,9 @@
 <snippet>
   <content><![CDATA[
-expect(${1:foo.setBar}.calls.length).toEqual(${2:times});
+expect(${1}).toBeFalsy();
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>js-test.expect.spy.calls-length</tabTrigger>
+  <tabTrigger>jsunit.expect.to-be-falsy</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
