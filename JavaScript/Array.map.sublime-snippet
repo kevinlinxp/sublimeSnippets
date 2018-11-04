@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-${1:array}.map(function(${2:currentValue}${3:, index, array}) {
+${1:array}.map((${2:currentValue}${3:, index, array}) => {
   return ${0:valueInTheNewArray};
 });
 ]]></content>
