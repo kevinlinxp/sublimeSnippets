@@ -1,0 +1,38 @@
+<snippet>
+  <content><![CDATA[
+/* Basic version */
+const traverse = (obj, func) => {
+  for (var prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      if (obj[prop] !== null && typeof obj[prop] === 'object') { // typeof null === 'object'
+        traverse(obj[prop], func);
+      } else {
+        func.call(this, obj, prop, obj[prop]);
+      }
+    }
+  }
+}
+
+/* With data path */
+const traverse = (obj, func, path) => {
+  path = path || [];
+  for (var prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      if (obj[prop] !== null && typeof obj[prop] === 'object') {
+        path.push(prop);
+        traverse(obj[prop], func, path);
+      } else {
+        var currentPath = path.slice(); // Make a copy
+        currentPath.push(prop);
+        func.call(obj, obj, prop, obj[prop], currentPath);
+      }
+    }
+  }
+  path.pop();
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>functional.es5-function.traverse-object</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

@@ -6,7 +6,7 @@ var w=window.open('about:blank','image from canvas');
 w.document.write("<img src='"+d+"' alt='from canvas'/>");
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>functional.export-canvas-as-image-from-browser</tabTrigger>
+  <tabTrigger>functional.dom.export-canvas-as-image-from-browser</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

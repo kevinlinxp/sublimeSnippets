@@ -1,8 +1,8 @@
 <snippet>
   <content><![CDATA[
-then(function (response) {
+then(response => {
   ${1}
-}).catch(function (response) {
+}).catch(response => {
   ${2}
 })
 ]]></content>

@@ -1,11 +1,11 @@
 <snippet>
   <content><![CDATA[
-function ${1:funName}(${2:arguments}) {
-  ${0}
-}
+${1:array}.filter(function(item, pos, self) {
+  return self.indexOf(item) === pos;
+});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>es5-function-with-name</tabTrigger>
+  <tabTrigger>functional.array.es5-filter-unique, ex5-remove-duplication</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

@@ -1,11 +1,9 @@
 <snippet>
   <content><![CDATA[
-function ${1:funName}(${2:arguments}) {
-  ${0}
-}
+'${1:a.b.etc}'.split('.').reduce((o,i)=>o[i], ${2:obj})
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>es5-function-with-name</tabTrigger>
+  <tabTrigger>functional.function.path-to-reference</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

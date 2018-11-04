@@ -66,7 +66,7 @@ var a = [1, 2, 3];
 })();
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>functional.closure-inside-loop-problem</tabTrigger>
+  <tabTrigger>functional.demo.closure-inside-loop-problem</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

@@ -1,11 +1,11 @@
 <snippet>
   <content><![CDATA[
-function ${1:funName}(${2:arguments}) {
+${1:array}.forEach(function(${2:currentValue}${3:, index, array}) {
   ${0}
-}
+}, ${4:thisArg});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>es5-function-with-name</tabTrigger>
+  <tabTrigger>array.es5-forEach</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

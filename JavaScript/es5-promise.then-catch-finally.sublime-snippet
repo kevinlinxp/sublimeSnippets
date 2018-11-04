@@ -1,9 +1,15 @@
 <snippet>
   <content><![CDATA[
-'${1:a.b.etc}'.split('.').reduce((o,i)=>o[i], ${2:obj})
+then(function(response) {
+  ${1}
+}).catch(function(response) {
+  ${2}
+}).finally(function() {
+  ${3}
+})
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>function.path-to-reference-using-arrfun</tabTrigger>
+  <tabTrigger>es5-then-catch-finally</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

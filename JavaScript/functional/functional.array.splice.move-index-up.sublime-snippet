@@ -1,11 +1,9 @@
 <snippet>
   <content><![CDATA[
-function ${1:funName}(${2:arguments}) {
-  ${0}
-}
+${1:array}.splice(${2:index}, 2, ${1}[${2}+1], ${1}[${2}]);
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>es5-function-with-name</tabTrigger>
+  <tabTrigger>functional.array.splice.move-index-up</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

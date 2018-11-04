@@ -1,15 +1,11 @@
 <snippet>
   <content><![CDATA[
-var reader = new FileReader();
-reader.onload = function (){
-  var text = reader.result;
-  ${0}
-};
-
-reader.readAsText(${1:file});
+${1:array}.reduce(function(${2:accumulator}, ${3:currentValue}${4:, index, array}) {
+  return ${0:accumulator + currentValue};
+}, ${5:initialValue});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>filereader</tabTrigger>
+  <tabTrigger>array.es5-reduce</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

@@ -1,11 +1,11 @@
 <snippet>
   <content><![CDATA[
-catch(function (response) {
-
-})
+function(${1:accumulator}, ${2:currentValue}${3:, index, array}) {
+  return ${0:accumulator + currentValue};
+}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>catch</tabTrigger>
+  <tabTrigger>es5-funreduce, es5-funaccumulator</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

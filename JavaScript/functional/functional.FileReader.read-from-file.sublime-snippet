@@ -1,11 +1,15 @@
 <snippet>
   <content><![CDATA[
-function (accumulator, currentValue, currentIndex, array) {
-  return accumulator + currentValue;
-}
+var reader = new FileReader();
+reader.onload = function (){
+  var text = reader.result;
+  ${0}
+};
+
+reader.readAsText(${1:file});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>funreduce, funaccumulator</tabTrigger>
+  <tabTrigger>functional.FileReader.read-from-file</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

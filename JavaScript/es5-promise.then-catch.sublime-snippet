@@ -1,11 +1,13 @@
 <snippet>
   <content><![CDATA[
-${1:array}.filter(function (item, pos, self) {
-  return self.indexOf(item) === pos;
-});
+then(function(response) {
+  ${1}
+}).catch(function(response) {
+  ${2}
+})
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>arrfilterunique, arrremoveduplication</tabTrigger>
+  <tabTrigger>es5-then-catch</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

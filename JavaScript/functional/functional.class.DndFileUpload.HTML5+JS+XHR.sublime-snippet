@@ -224,7 +224,7 @@ var DndFileUploadWidget = (function defineDndFileUploadWidget() {
   DndFileUploadWidget.prototype.getFilesContainer = function() {
     return this.queryWithinWidget('.files-container');
   };
-  
+
 
   /**
    * Private methods
@@ -286,7 +286,7 @@ var DndFileUploadWidget = (function defineDndFileUploadWidget() {
 </div>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>functional.DndFileUpload.HTML5+JS+XHR</tabTrigger>
+  <tabTrigger>functional.class.DndFileUpload.HTML5+JS+XHR</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

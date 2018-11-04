@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-function ${1:Class} (/* params */) {
+function ${1:Class}(/* params */) {
   // Public properties, assigned to the instance ('this')
   this.publicProp1 = [];
   this.publicProp2 = {};
@@ -26,7 +26,7 @@ function _privateMethod2 (/* params */) {
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>psuedo-class</tabTrigger>
+  <tabTrigger>es5-class</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>

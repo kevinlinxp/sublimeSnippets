@@ -1,9 +1,11 @@
 <snippet>
   <content><![CDATA[
-${1:array}.splice(${2:index}-1, 2, ${1}[${2}], ${1}[${2}-1]);
+(${1:element}${2:, index, array}) => {
+  return ${0};
+}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>arrmoveindexdown</tabTrigger>
+  <tabTrigger>funmap, funsome, funevery</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.js, text.plain</scope>
+  <scope>text.plain, source.js</scope>
 </snippet>
