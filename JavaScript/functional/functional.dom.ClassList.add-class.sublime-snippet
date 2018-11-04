@@ -1,9 +1,9 @@
 <snippet>
   <content><![CDATA[
-${1:domElement}.classList.remove('${2:dragover}')
+${1:domElement}.classList.add('${2:dragover}')
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>dom.ClassList.remove-class</tabTrigger>
+  <tabTrigger>functional.dom.ClassList.add-class</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.html, text.plain</scope>
 </snippet>

@@ -1,0 +1,26 @@
+<snippet>
+  <content><![CDATA[
+import { fromJS } from 'immutable';
+import {
+  ${1:ACTION_TYPE},
+} from './FooConstants';
+
+export const initState = fromJS({
+  bar: [],
+  baz: '',
+});
+
+export default FooReducer = (state = initState, action) => {
+  switch (action.type) {
+    case ${1:ACTION_TYPE}:
+      return state.${0}
+    default:
+      return state;
+  }
+};
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>redux.reducer</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

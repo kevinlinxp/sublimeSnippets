@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-\$("${1:selector}").removeClass(${2:function (index, css) {
+\$("${1:selector}").removeClass(${2:function(index, css) {
   return (css.match (/(^|\s)color-\S+/g) || []).join(' ');
 \}});
 ]]></content>

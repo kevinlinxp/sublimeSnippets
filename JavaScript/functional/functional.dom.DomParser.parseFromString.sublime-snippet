@@ -1,9 +1,11 @@
 <snippet>
   <content><![CDATA[
-${1:domElement}.parentNode.removeChild(${1});
+var parser = new DOMParser();
+var html = parser.parseFromString(${1:domString}, 'text/html');
+${2:theParentNode}.append(html.body.firstChild);
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>dom.removeFromParent</tabTrigger>
+  <tabTrigger>functional.dom.DomParser.parseFromString</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.html, text.plain</scope>
 </snippet>

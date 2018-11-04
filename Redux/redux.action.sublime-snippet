@@ -1,0 +1,14 @@
+<snippet>
+  <content><![CDATA[
+export const ${1:ACTION_TYPE} = '${1:ACTION_TYPE}';
+
+export const ${2:actionName} = (${3}) => {{
+  type: ${1:ACTION_TYPE},
+  payload: ${0}
+}};
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>redux.action</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>

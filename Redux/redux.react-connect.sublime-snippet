@@ -1,0 +1,45 @@
+<snippet>
+  <content><![CDATA[
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import injectReducer from 'utils/injectReducer';
+import { createStructuredSelector } from 'reselect';
+
+import {
+  actionName,
+} from './FooActions';
+import reducer from './FooReducer';
+
+import {
+  selectFooBar,
+} from './FooSelectors';
+import FooComponent from './FooComponent';
+
+export const mapStateToProps = createStructuredSelector({
+  fooBar: selectFooBar,
+});
+
+export const mapDispatchToProps = dispatch => ({
+  actionName: (${1:actionParams}) => dispatch(actionName(${1:actionParams})),
+});
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+const withFooReducer = injectReducer({
+  key: 'foo',
+  reducer,
+});
+
+export default compose(
+  withFooReducer,
+  withConnect,
+)(FooComponent);
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>redux.react-connect</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
