@@ -3,7 +3,7 @@
 import { createSelector } from 'reselect';
 import { initState } from './FooReducer';
 
-export selectFooBar = createSelector(
+export const selectFooBar = createSelector(
   state =>
     state.getIn(${0}
       [

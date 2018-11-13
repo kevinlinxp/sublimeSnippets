@@ -2,7 +2,7 @@
   <content><![CDATA[
 const ${1:funName} = (${2:arguments}) => {
   ${0}
-}
+};
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>function-with-name</tabTrigger>
