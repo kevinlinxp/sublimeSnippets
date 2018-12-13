@@ -1,11 +1,19 @@
 <snippet>
   <content><![CDATA[
 describe('${1}', () => {
-  ${0}
+  beforeEach(() => {
+    ${0}
+  });
+
+  describe('${2}', () => {
+    it('should${3}', () => {
+
+    });
+  });
 });
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>jsunit.describe</tabTrigger>
+  <tabTrigger>jsunit.describe-beforeEach-describe-it</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
