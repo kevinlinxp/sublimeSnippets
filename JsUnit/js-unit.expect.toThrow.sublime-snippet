@@ -1,9 +1,9 @@
 <snippet>
   <content><![CDATA[
-expect(${1:foo.setBar}).toHaveBeenCalled();
+expect(${1}).toThrow(${0});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>jsunit.expect.spy.toHaveBeenCalled</tabTrigger>
+  <tabTrigger>jsunit.expect.toThrow</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
