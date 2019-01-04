@@ -41,7 +41,7 @@ describe('${1:FooComponent}', () => {
 });
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>js-unit.react.sample.shallow</tabTrigger>
+  <tabTrigger>jsunit.react.sample.shallow</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
