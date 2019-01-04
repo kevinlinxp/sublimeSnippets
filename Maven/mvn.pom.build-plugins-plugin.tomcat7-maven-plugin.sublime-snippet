@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+<plugin>
+  <groupId>org.apache.tomcat.maven</groupId>
+  <artifactId>tomcat7-maven-plugin</artifactId>
+  <version>2.1</version>
+  <configuration>
+    <port>${1:8080}</port>
+    <path></path>
+    <uriEncoding></uriEncoding>
+    <server>myserver</server>
+  </configuration>
+</plugin>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mvn.pom.build-plugins-plugin.tomcat7-maven-plugin</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, text.xml</scope>
+</snippet>
