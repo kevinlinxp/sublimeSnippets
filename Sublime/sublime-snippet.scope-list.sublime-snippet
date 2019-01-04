@@ -4,6 +4,7 @@ ActionScript: source.actionscript.2
 AppleScript: source.applescript
 ASP: source.asp
 Batch FIle: source.dosbatch
+C: source.c
 C#: source.cs
 C++: source.c++
 Clojure: source.clojure
