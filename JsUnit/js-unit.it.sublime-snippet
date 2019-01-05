@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 <snippet>
   <content><![CDATA[
-it('${1:description}', () => {
+it('should ${1}', () => {
   ${0}
 });
 ]]></content>
@@ -10,16 +9,3 @@ it('${1:description}', () => {
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
-=======
-<snippet>
-  <content><![CDATA[
-it('should${1}', () => {
-  ${0}
-});
-]]></content>
-  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>jsunit.it</tabTrigger>
-  <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.js, text.plain</scope>
-</snippet>
->>>>>>> 2f34479fad8362871e0754037c5e2a9f485f5fc4
