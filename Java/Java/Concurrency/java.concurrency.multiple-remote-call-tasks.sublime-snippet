@@ -1,6 +1,7 @@
 <snippet>
   <content><![CDATA[
-ExecutorService executorService = Executors.newFixedThreadPool(${2:taskCount});
+ExecutorService executorService = Executors.newFixedThreadPool();
+
 List<Callable<${1:V}>> remoteCalls = new LinkedList<>();
 IntStream.range(1, ${2:taskCount} + 1).forEach(taskIndex ->
     remoteCalls.add(() -> yourBusinessMethod(taskIndex))

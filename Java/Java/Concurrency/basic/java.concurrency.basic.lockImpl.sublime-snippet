@@ -1,0 +1,56 @@
+<snippet>
+  <content><![CDATA[
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+
+public class LockImpl implements Lock {
+
+  private Aqs aqs = new Aqs() {
+    @Override
+    protected boolean tryAcquire() {
+      return owner.compareAndSet(null, Thread.currentThread());
+    }
+
+    @Override
+    protected boolean tryRelease() {
+      return owner.compareAndSet(Thread.currentThread(), null);
+    }
+  };
+
+  @Override
+  public boolean tryLock() {
+    return aqs.tryAcquire();
+  }
+
+  @Override
+  public void lock() {
+    aqs.acquire();
+  }
+
+  @Override
+  public void unlock() {
+    aqs.release();
+  }
+
+  @Override
+  public void lockInterruptibly() throws InterruptedException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public Condition newCondition() {
+    throw new UnsupportedOperationException();
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java.concurrency.basic.lockImpl</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

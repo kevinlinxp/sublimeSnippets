@@ -1,0 +1,86 @@
+<snippet>
+  <content><![CDATA[
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.locks.LockSupport;
+
+/**
+ * <ul>
+ * <li>{@link #tryAcquire()}, {@link #tryAcquireShared()}, 争用资源的具体操作，由AQS的使用者去实现。</li>
+ * <li>{@link #acquire()}, {@link #acquireShared()}, 争用资源逻辑。尝试争用，如果失败，则进入队列并等待。由AQS实现。</li>
+ * <li>{@link #tryRelease()}, {@link #tryReleaseShared()}, 释放资源的具体操作，由AQS的使用者去实现。</li>
+ * <li>{@link #release()}, {@link #releaseShared()}, 释放资源逻辑，由AQS实现。</li>
+ * </ul>
+ */
+public abstract class Aqs {
+
+  protected final AtomicReference<Thread> owner = new AtomicReference<>();
+  protected final AtomicInteger state = new AtomicInteger(0);
+
+  private volatile LinkedBlockingDeque<Thread> waiters = new LinkedBlockingDeque<>();
+
+  protected boolean tryAcquire() {
+    throw new UnsupportedOperationException();
+  }
+
+  public void acquire() {
+    boolean enqueued = false;
+    while (!tryAcquire()) {
+      if (!enqueued) {
+        waiters.offer(Thread.currentThread());
+        enqueued = true;
+      }
+      LockSupport.park();
+    }
+    waiters.remove(Thread.currentThread());
+  }
+
+  protected boolean tryRelease() {
+    throw new UnsupportedOperationException();
+  }
+
+  public void release() {
+    if (tryRelease()) {
+      unparkAll();
+    }
+  }
+
+  protected int tryAcquireShared() {
+    throw new UnsupportedOperationException();
+  }
+
+  public void acquireShared() {
+    boolean enqueued = false;
+    while (tryAcquireShared() < 0) {
+      if (!enqueued) {
+        waiters.offer(Thread.currentThread());
+        enqueued = true;
+      }
+      LockSupport.park();
+    }
+    waiters.remove(Thread.currentThread());
+  }
+
+  protected boolean tryReleaseShared() {
+    throw new UnsupportedOperationException();
+  }
+
+  public void releaseShared() {
+    if (tryReleaseShared()) {
+      unparkAll();
+    }
+  }
+
+  private void unparkAll() {
+    for (Thread t : waiters) {
+      LockSupport.unpark(t);
+    }
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java.concurrency.basic.aqs</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

@@ -1,0 +1,47 @@
+<snippet>
+  <content><![CDATA[
+package concurrency;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.stream.Collectors;
+
+public class CountDownLatchApp {
+
+  public static void main(String[] args) throws InterruptedException {
+
+    LinkedBlockingQueue<String> results = new LinkedBlockingQueue<>();
+
+    CountDownLatch count = new CountDownLatch(2);
+    new Thread(() -> {
+      try {
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      results.add("Work 1 result");
+      count.countDown();
+    }).start();
+
+    new Thread(() -> {
+      try {
+        Thread.sleep(2000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      results.add("Work 2 result");
+      count.countDown();
+    }).start();
+
+    count.await();
+    System.out.println(String.format("All work done! Results are:\n%s", results.stream().collect(
+        Collectors.joining("\n"))));
+  }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java.concurrency.sample.CountDownLatch</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
