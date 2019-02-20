@@ -46,7 +46,7 @@ describe('${1:someSelectors}', () => {
 });
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>js-unit.react.selectors</tabTrigger>
+  <tabTrigger>jsunit.redux.selectors</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
