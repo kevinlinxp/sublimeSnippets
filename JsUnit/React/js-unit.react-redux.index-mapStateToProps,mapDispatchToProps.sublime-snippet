@@ -1,0 +1,56 @@
+<snippet>
+  <content><![CDATA[
+import {
+  fooAction,
+  barAction,
+} from 'actions/someActions';
+import {
+  fooSelector,
+  barSelector,
+} from '${1}';
+import { mapStateToProps, mapDispatchToProps } from '../index';
+
+jest.mock('${1:selectors/someSelectors}');
+
+describe('index', () => {
+
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
+  describe('mapStateToProps', () => {
+    it('should work', () => {
+      ${0}fooSelector.mockReturnValue('foo');
+      barSelector.mockReturnValue('bar');
+
+      expect(mapStateToProps()).toEqual({
+        foo: 'foo',
+        bar: 'bar',
+      });
+    });
+  });
+
+  describe('mapDispatchToProps', () => {
+    it('should work', () => {
+      const dispatch = jest.fn();
+      const {
+        handleSomeUserAction1,
+        handleSomeUserAction2,
+      } = mapDispatchToProps(dispatch);
+
+      handleSomeUserAction1();
+      expect(dispatch).toHaveBeenCalledWith(fooAction());
+
+      handleSomeUserAction2('param1', 'param2');
+      expect(dispatch).toHaveBeenCalledWith(
+        fooAction('param1', 'param2'),
+      );
+    });
+  });
+});
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>js-unit.react-redux.index-mapStateToProps,mapDispatchToProps</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
