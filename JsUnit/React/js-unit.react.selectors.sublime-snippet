@@ -1,0 +1,52 @@
+<snippet>
+  <content><![CDATA[
+import { fromJS } from 'immutable';
+import {
+  selector1,
+  selector2,
+} from '../${1}';
+import testState from '${2:./test-state.json}';
+
+const { foo, bar } = testState;
+const jsState = {
+  foo,
+  bar,
+};
+
+describe('${1:someSelectors}', () => {
+  describe('selector1', () => {
+    it('should select the correct value', () => {
+      expect(selector1(fromJS(jsState))).toEqual({
+        //...
+      });
+    });
+  });
+
+  describe('selector2', () => {
+    it('should select the correct value', () => {
+      const foo = {
+        //...
+      };
+
+      expect(
+        selector1(
+          fromJS({
+            ...jsState,
+            foo: {
+              ...jsState.foo,
+              ...foo,
+            },
+          }),
+        ),
+      ).toEqual({
+        //...
+      });
+    });
+  });
+});
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>js-unit.react.selectors</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
