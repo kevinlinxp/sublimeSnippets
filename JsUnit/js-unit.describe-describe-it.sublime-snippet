@@ -5,6 +5,10 @@ describe('${1}', () => {
     ${0}
   });
 
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
   describe('${2}', () => {
     it('should${3}', () => {
 
@@ -13,7 +17,7 @@ describe('${1}', () => {
 });
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>jsunit.describe-beforeEach-describe-it</tabTrigger>
+  <tabTrigger>jsunit.describe-describe-it</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
