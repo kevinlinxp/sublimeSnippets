@@ -1,0 +1,59 @@
+<snippet>
+  <content><![CDATA[
+import React from 'react';
+import throttle from 'lodash/throttle';
+
+export const withSessionTimeout = (
+  timeoutMills,
+  timeoutHandler,
+) => Component =>
+  class ComponentWithSessionTimeout extends React.Component {
+    constructor(props) {
+      super(props);
+      this.resetTimeout = throttle(this.resetTimeout, 1000);
+    }
+
+    resetTimeout = () => {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.expired = true;
+        this.cleanUp();
+        timeoutHandler();
+      }, timeoutMills);
+    };
+
+    cleanUp = () => {
+      window.removeEventListener('mousemove', this.resetTimeout, true);
+      window.removeEventListener('mousedown', this.resetTimeout, true);
+      window.removeEventListener('touchstart', this.resetTimeout, true);
+      window.removeEventListener('click', this.resetTimeout, true);
+      window.removeEventListener('keypress', this.resetTimeout, true);
+      window.removeEventListener('scroll', this.resetTimeout, true);
+      clearTimeout(this.timer);
+      this.timer = null;
+    };
+
+    componentDidMount() {
+      this.timer = setTimeout(timeoutHandler, timeoutMills);
+      window.addEventListener('mousemove', this.resetTimeout, true);
+      window.addEventListener('mousedown', this.resetTimeout, true);
+      window.addEventListener('touchstart', this.resetTimeout, true);
+      window.addEventListener('click', this.resetTimeout, true);
+      window.addEventListener('keypress', this.resetTimeout, true);
+      window.addEventListener('scroll', this.resetTimeout, true);
+    }
+
+    componentWillUnmount() {
+      this.cleanUp();
+    }
+
+    render() {
+      return <Component {...this.props} />;
+    }
+  };
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>react.hoc.withSessionTimeout</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
