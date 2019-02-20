@@ -17,7 +17,7 @@ describe('${1:someSelectors}', () => {
   describe('selector1', () => {
     it('should select the correct value', () => {
       expect(selector1(fromJS(jsState))).toEqual({
-        //...
+        //...${0}
       });
     });
   });
