@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+jest.mock('${1:path/to/mobule}', () => ({
+  ...jest.requireActual('${1}'),
+  ${0}someFunction1: () => 'mockValue1',
+  someFunction2: () => 'mockValue2',
+}));
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>js-unit.mock.module-with-mockImpls-and-actual</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
