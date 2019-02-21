@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+import React from 'react';
+import { shallow } from 'enzyme';
+import { ${1} } from '../${1}';
+
+describe('${1:FooComponent}', () => {
+  it('can render as expected', () => {
+    expect(shallow(<${1} />)).toMatchSnapshot();
+  });
+});
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jsunit.react.Component.simple-snapshot</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
