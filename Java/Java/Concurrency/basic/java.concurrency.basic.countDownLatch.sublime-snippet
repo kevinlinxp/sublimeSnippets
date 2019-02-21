@@ -1,0 +1,48 @@
+<snippet>
+  <content><![CDATA[
+public class CountDownLatch {
+
+  private final Aqs aqs;
+
+  public CountDownLatch(int count) {
+    aqs = new Aqs(count) {
+      @Override
+      protected int tryAcquireShared() {
+        return state.get() == 0 ? 1 : -1;
+      }
+
+      @Override
+      protected boolean tryReleaseShared() {
+        for (; ; ) {
+          int count = state.get();
+          if (count <= 0) {
+            return false;
+          }
+
+          int n = count - 1;
+          if (state.compareAndSet(count, n)) {
+            return n == 0;
+          }
+        }
+      }
+    };
+  }
+
+  public void await() {
+    aqs.acquireShared();
+  }
+
+  public void countDown() {
+    aqs.releaseShared();
+  }
+
+  public int getCount() {
+    return aqs.state.get();
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java.concurrency.basic.lockImpl</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

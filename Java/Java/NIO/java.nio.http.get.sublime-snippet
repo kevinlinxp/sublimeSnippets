@@ -1,0 +1,28 @@
+<snippet>
+  <content><![CDATA[
+String hostname = new URI("http://www.google.com.au").getHost();
+int port = 80;
+SocketAddress remote = new InetSocketAddress(hostname, port);
+SocketChannel channel = SocketChannel.open(remote);
+
+String requestContent = "GET / HTTP/1.1\r\n"
+    + "Accept: text/*\r\n"
+    + "Connection: close\r\n"
+    + "Host: " + hostname + "\r\n"
+    + "\r\n";
+ByteBuffer request = ByteBuffer.wrap(requestContent.getBytes());
+channel.write(request);
+
+Scanner sc = new Scanner(channel);
+while (sc.hasNextLine()) {
+  String line = sc.nextLine();
+  System.out.println(line);
+}
+channel.close();
+sc.close();
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java.nio.http.get</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

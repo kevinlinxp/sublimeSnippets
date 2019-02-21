@@ -1,0 +1,45 @@
+<snippet>
+  <content><![CDATA[
+public class Semaphore {
+
+  private final Aqs aqs;
+
+  public Semaphore(int permits) {
+    this.aqs = new Aqs(permits) {
+      @Override
+      protected int tryAcquireShared() {
+        for (; ; ) {
+          int permits = aqs.state.get();
+          if (permits <= 0) {
+            return -1;
+          }
+
+          int n = permits - 1;
+          if (aqs.state.compareAndSet(permits, n)) {
+            return 1;
+          }
+        }
+      }
+
+      @Override
+      protected boolean tryReleaseShared() {
+        aqs.state.incrementAndGet();
+        return true;
+      }
+    };
+  }
+
+  public void acquire() {
+    aqs.acquireShared();
+  }
+
+  public void release() {
+    aqs.releaseShared();
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java.concurrency.basic.lockImpl</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

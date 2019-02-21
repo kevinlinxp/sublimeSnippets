@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+jstat -gc -h5 `jcmd | grep UserService | awk '{print \$1}'`
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jstat.gc.sample</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

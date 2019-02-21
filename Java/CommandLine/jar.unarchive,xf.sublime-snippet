@@ -1,9 +1,9 @@
 <snippet>
   <content><![CDATA[
-my snippet here
+jar xf ${1:config-server.jar}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>react.create-component-with-redux-all-in-one</tabTrigger>
+  <tabTrigger>jar.unarchive,xf</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>source.js, text.plain</scope>
+  <scope>ource.shell, text.plain</scope>
 </snippet>

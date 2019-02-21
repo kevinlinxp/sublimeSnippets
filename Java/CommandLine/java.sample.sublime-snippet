@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+java -server -Xms512m -Xmx1024m -verbose:gc -Xloggc:./gc1.log -XX:+PrintGCDetails -XX:+DisableExplicitGC -cp some-jar.jar some.package.TheMainClass
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java.sample</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
