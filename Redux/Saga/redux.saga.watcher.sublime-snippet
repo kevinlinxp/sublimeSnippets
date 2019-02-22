@@ -1,0 +1,22 @@
+<snippet>
+  <content><![CDATA[
+import { takeLatest } from 'redux-saga/effects';
+
+export default function* fooActionsWatcher() {
+  yield [
+    takeLatest(
+      FOO_ACTION_1,
+      fooSaga1,
+    ),
+    takeLatest(
+      FOO_ACTION_2,
+      fooSaga2,
+    ),
+  ];
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>redux.saga.watcher</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
