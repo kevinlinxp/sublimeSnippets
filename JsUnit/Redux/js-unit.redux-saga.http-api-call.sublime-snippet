@@ -1,0 +1,85 @@
+<snippet>
+  <content><![CDATA[
+import { put } from 'redux-saga/effects';
+import { sendFooApiRequest } from '../sendFooApiRequest';
+import { updateIsLoading, updateError } from '../fooAction';
+import {
+  REQUEST_TIMEOUT_CODE,
+  REQUEST_TIMEOUT_MESSAGE,
+} from '../Constants';
+
+describe('sendRequestAndHandleResponse', () => {
+  function* mockedSuccessHook(someData) {
+    yield put({
+      type: 'some mocked action',
+      someData,
+    });
+  }
+
+  let gen;
+
+  beforeEach(() => {
+    gen = sendFooApiRequest('', {}, mockedSuccessHook);
+
+    const putDescriptor = gen.next().value;
+    expect(putDescriptor).toMatchSnapshot();
+    const raceDescriptor = gen.next().value;
+    expect(raceDescriptor).toMatchSnapshot();
+  });
+
+  it('should run the success hook function when request success', () => {
+    const mockedRaceResponse = {
+      response: { foo: 'fooData', bar: 'barData' },
+    };
+    expect(gen.next(mockedRaceResponse).value).toEqual(
+      put({
+        type: 'some mocked action',
+        someData: response,
+      }),
+    );
+
+    expect(gen.next().value).toEqual(
+      put(updateIsLoading(false)),
+    );
+  });
+
+  it('should update timeout error when timeout', () => {
+    const mockedRaceResponse = {
+      timeout: {},
+    };
+    expect(gen.next(mockedRaceResponse).value).toEqual(
+      put(
+        updateError({
+          errorMessage: REQUEST_TIMEOUT_MESSAGE,
+          errorCode: REQUEST_TIMEOUT_CODE,
+        }),
+      ),
+    );
+
+    expect(gen.next().value).toEqual(
+      put(updateIsLoading(false)),
+    );
+  });
+
+  it('should update error and error status when error captured', () => {
+    const error = new Error('some error');
+    error.status = 400;
+
+    const updateErrorPutDescriptor = gen.throw(error).value;
+
+    expect(updateErrorPutDescriptor).toEqual(
+      put(
+        updateError({
+          errorMessage: 'some error',
+          errorCode: error.status
+        }),
+      ),
+    );
+  });
+});
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>js-unit.redux-saga.http-api-call.sublime-snippet</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
