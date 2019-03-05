@@ -1,0 +1,48 @@
+<snippet>
+  <content><![CDATA[
+import { delay } from 'redux-saga';
+import { call, put, race } from 'redux-saga/effects';
+import request from './request';
+import { updateIsLoading } from './fooAction';
+import {
+  REQUEST_TIMEOUT_TIME,
+  REQUEST_TIMEOUT_MESSAGE,
+  REQUEST_TIMEOUT_CODE,
+} from './fooConstants';
+
+export function* sendFooApiRequest(
+  requestUrl,
+  requestOptions,
+  requestSuccessHook,
+) {
+  try {
+    put(updateIsLoading(true)),
+    const { response } = yield race({
+      response: call(request, requestUrl, requestOptions),
+      timeout: call(delay, REQUEST_TIMEOUT_TIME),
+    });
+
+    if (response) {
+      yield* requestSuccessHook && requestSuccessHook(response);
+    } else {
+      const error = new Error(REQUEST_TIMEOUT_MESSAGE);
+      error.status = REQUEST_TIMEOUT_CODE;
+      throw error;
+    }
+  } catch (error) {
+    yield put(
+      updateError({
+        errorMessage: error.message,
+        errorCode: error.status,
+      }),
+    );
+  } finally {
+    yield put(updateIsLoading(false));
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>redux-saga.http-api-call</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
