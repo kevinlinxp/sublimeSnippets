@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+import { takeLatest, put } from 'redux-saga/effects';
+
+describe('fooActionsWatcher', () => {
+  it('should work', () => {
+    const takeLatestDescriptor = fooActionsWatcher().next().value;
+    expect(takeLatestDescriptor).toEqual([
+      takeLatest(
+        FOO_ACTION_1,
+        fooSaga1,
+      ),
+      takeLatest(
+        FOO_ACTION_2,
+        fooSaga2,
+      ),
+    ]);
+  });
+});
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jsunit.redux-saga.sample</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
