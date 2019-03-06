@@ -2,7 +2,7 @@
   <content><![CDATA[
 function usage {
   echo ""
-  echo "Usage: $0 -a|--longa -b|--longb [-c|--longc] [-h|--help]"
+  echo "Usage: \$0 -a|--longa -b|--longb [-c|--longc] [-h|--help]"
   echo ""
   echo " -a|--longa   Description A"
   echo " -b|--longb   Description B"
@@ -11,20 +11,20 @@ function usage {
   echo ""
 }
 
-while [ $# -gt 0 ]; do
-  key="$1"
+while [ \$# -gt 0 ]; do
+  key="\$1"
 
-  case $key in
+  case \$key in
     -a|--longa)
-      longa="$2"
+      longa="\$2"
       shift
       ;;
     -b|--longb)
-      longb="$2"
+      longb="\$2"
       shift
       ;;
     -c|--longc)
-      longc="$2"
+      longc="\$2"
       shift
       ;;
     -h|--help)
@@ -40,13 +40,13 @@ while [ $# -gt 0 ]; do
   shift
 done
 
-if [ -z "$longa" ] || [ -z "$longb" ]; then
+if [ -z "\$longa" ] || [ -z "\$longb" ]; then
   usage
   exit 1
 fi
 
-if [ ! -z "$longc" ]; then
-  someVar="$longc"
+if [ ! -z "\$longc" ]; then
+  someVar="\$longc"
 else
   someVar="someDefaultValue"
 fi
