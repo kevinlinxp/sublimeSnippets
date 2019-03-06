@@ -1,0 +1,58 @@
+<snippet>
+  <content><![CDATA[
+function usage {
+  echo ""
+  echo "Usage: $0 -a|--longa -b|--longb [-c|--longc] [-h|--help]"
+  echo ""
+  echo " -a|--longa   Description A"
+  echo " -b|--longb   Description B"
+  echo " -c|--longc   (optional)Description C"
+  echo " -h|--help    (optional)Need some help?"
+  echo ""
+}
+
+while [ $# -gt 0 ]; do
+  key="$1"
+
+  case $key in
+    -a|--longa)
+      longa="$2"
+      shift
+      ;;
+    -b|--longb)
+      longb="$2"
+      shift
+      ;;
+    -c|--longc)
+      longc="$2"
+      shift
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "x"
+      usage
+      exit 1
+      ;;
+  esac
+  shift
+done
+
+if [ -z "$longa" ] || [ -z "$longb" ]; then
+  usage
+  exit 1
+fi
+
+if [ ! -z "$longc" ]; then
+  someVar="$longc"
+else
+  someVar="someDefaultValue"
+fi
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>parse-commandLine-params,options</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
