@@ -1,0 +1,29 @@
+<snippet>
+  <content><![CDATA[
+echo ""
+echo "*********************************"
+echo "UPLOADING TO S3 with PARAMETERS"
+echo "---------------------------------"
+echo "OBJECT_PATH:      \$objectpath"
+echo "BUCKET:           \$bucket"
+echo "AWS_ROLE          \$aws_role"
+echo ""
+echo "*********************************"
+echo ""
+
+aws s3 sync \$objectpath s3://\$bucket --delete
+
+retcode=\$?
+if [ \$retcode -ne 0 ]; then
+    echo "S3 upload failed with the following return code \${retcode}"
+    exit \${retcode}
+fi
+
+s3_upload_details=\$(aws s3 ls s3://\$bucket --recursive --human-readable --summarize)
+echo \${s3_upload_details}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>aws.s3.upload</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

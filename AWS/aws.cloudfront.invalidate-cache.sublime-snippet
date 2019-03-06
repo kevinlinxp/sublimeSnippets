@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+echo ""
+echo "*********************************"
+echo "INVALIDATING CACHE"
+echo "---------------------------------"
+echo "DISTRIBUTION_ID:  \$distributionId"
+echo "AWS_ROLE          \$aws_role"
+echo ""
+echo "*********************************"
+echo ""
+
+aws cloudfront create-invalidation --distribution-id \${distributionId} --paths '/*'
+
+retcode=\$?
+if [ \$retcode -ne 0 ]; then
+    echo "Cache Invalidation failed with following error \${retcode}"
+    exit \${retcode}
+fi
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>aws.cloudfront.invalidate-cache</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
