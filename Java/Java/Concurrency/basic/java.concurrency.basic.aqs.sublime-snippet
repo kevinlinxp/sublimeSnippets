@@ -9,10 +9,22 @@ import java.util.concurrent.locks.LockSupport;
 
 /**
  * <ul>
- * <li>{@link #tryAcquire()}, {@link #tryAcquireShared()}, 争用资源的具体操作，由AQS的使用者去实现。</li>
- * <li>{@link #acquire()}, {@link #acquireShared()}, 争用资源逻辑。尝试争用，如果失败，则进入队列并等待。由AQS实现。</li>
- * <li>{@link #tryRelease()}, {@link #tryReleaseShared()}, 释放资源的具体操作，由AQS的使用者去实现。</li>
- * <li>{@link #release()}, {@link #releaseShared()}, 释放资源逻辑，由AQS实现。</li>
+ * <li>{@link #acquire()}, {@link #acquireShared()} -【由AQS实现】争用资源逻辑：
+ *   <ul>
+ *     <li>将返回值作为条件，循环调用对应的尝试争用方法({@link #tryAcquire()}或{@link #tryAcquireShared()})</li>
+ *     <li>如果争用资源成功，则当前线程则退出等待队列（如果已入列）</li>
+ *     <li>如果争用资源失败，则当前线程进入等待队列并阻塞，被唤醒后开始下一次争用循环</li>
+ *   </ul>
+ * </li>
+ * <li>{@link #release()}, {@link #releaseShared()} -【由AQS实现】释放资源逻辑：
+ *   <ul>
+ *     <li>调用对应的尝试释放方法({@link #tryRelease()}或{@link #tryReleaseShared()})</li>
+ *     <li>如果释放资源成功，则唤醒所有等待队列中的线程</li>
+ *     <li>如果释放资源失败，则返回</li>
+ *   </ul>
+ * </li>
+ * <li>{@link #tryAcquire()}, {@link #tryAcquireShared()} -【由用户实现】争用资源的具体操作</li>
+ * <li>{@link #tryRelease()}, {@link #tryReleaseShared()} -【由用户实现】释放资源的具体操作</li>
  * </ul>
  */
 public abstract class Aqs {

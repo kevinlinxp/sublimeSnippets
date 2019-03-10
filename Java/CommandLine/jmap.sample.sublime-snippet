@@ -1,10 +1,10 @@
 <snippet>
   <content><![CDATA[
 jmap -heap pid #View memory info
-jmap -dump:format=b,file=2019.hprof -f pid #Use -f to force dump, because sometimes jmap may end up running Full GC and halt if there is not enough mem in the server.
+jmap -dump:format=b,file=2019.hprof -F pid #Use -F to force dump, because sometimes jmap may end up running Full GC and halt if there is not enough mem in the server.
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>trigger</tabTrigger>
+  <tabTrigger>jmap.sample</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.plain</scope>
 </snippet>
