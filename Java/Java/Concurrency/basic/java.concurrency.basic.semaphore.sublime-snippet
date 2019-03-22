@@ -39,7 +39,7 @@ public class Semaphore {
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>java.concurrency.basic.lockImpl</tabTrigger>
+  <tabTrigger>java.concurrency.basic.semaphore</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>
