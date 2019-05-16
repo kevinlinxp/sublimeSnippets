@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
 @Test
-public void ${1:methodTested}_${2:condition}_${3:whatYouExpectToHappen}() ${4:throws Exception} {
+public void ${1:methodTested}_when${2:Condition}_should${3:ExpectedToHappen}() ${4:throws Exception} {
   // Arrange
   ${0}
 
