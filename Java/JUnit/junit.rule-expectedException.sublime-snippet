@@ -4,7 +4,7 @@
 public ExpectedException thrown = ExpectedException.none();
 
 @Test
-public void getVehicleDetailsWhenVinIsNullShouldThrowException() throws Exception {
+public void getVehicleDetails_whenVinIsNull_shouldThrowException() throws Exception {
   this.thrown.expect(IllegalArgumentException.class);
   this.thrown.expectMessage("VIN must not be null");
   this.service.getVehicleDetails(null);
