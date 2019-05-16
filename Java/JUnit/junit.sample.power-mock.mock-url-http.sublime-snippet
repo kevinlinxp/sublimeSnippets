@@ -22,8 +22,8 @@ import java.net.URL;
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestRestBackendConfig.class)
-@Transactional
 @PrepareForTest({ServerSideRemoteValidationHelper.class}) // The class(es) that are the consumer(s) of the mocked class(es)
+@Transactional
 public class ServerSideValidationServiceTest {
 
   @Autowired
