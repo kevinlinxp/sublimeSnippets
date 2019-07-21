@@ -30,7 +30,7 @@ describe('${1:FooComponent}', () => {
 
   describe('rendering', () => {
     it('should render correctly with the testing defaultProps', () => {
-      { wrapper } = shallow${1}();
+      ({ wrapper } = shallow${1}());
       expect(wrapper).toMatchSnapshot();
     });
 
@@ -60,7 +60,7 @@ describe('${1:FooComponent}', () => {
   });
 
   describe('interaction', () => {
-    it('should render correctly when {2}', () => {
+    it('should handle correctly when {2}', () => {
       ({ wrapper, props } = shallow${1}());
     });
     wrapper.find(AnotherComponent)
