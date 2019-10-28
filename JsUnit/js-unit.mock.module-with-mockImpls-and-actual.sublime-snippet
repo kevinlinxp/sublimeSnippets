@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-jest.mock('${1:path/to/mobule}', () => ({
+jest.mock('${1:path/to/module}', () => ({
   ...jest.requireActual('${1}'),
   ${0}someFunction1: () => 'mockValue1',
   someFunction2: () => 'mockValue2',
