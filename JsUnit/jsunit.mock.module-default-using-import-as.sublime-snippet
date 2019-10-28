@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+import * as ${2} from '${1:path/to/module}';
+
+it('should ...', () => {
+  const spy = jest.spyOn(${2}, 'default');
+  spy.mockReturnValue(${3});
+
+  //...${0}
+
+  spy.mockRestore();
+});
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jsunit.mock.module-default-using-import-as</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
