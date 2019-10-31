@@ -1,0 +1,203 @@
+<snippet>
+  <content><![CDATA[
+mkdir ${1:my-project}
+cd ${1}
+
+
+cat > package.json <<EOF
+{
+  "name": "${1}",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config build-utils/webpack.config.js --env.profile=dev",
+    "build": "webpack --config build-utils/webpack.config.js --env.profile=prod",
+    "build:analyze": "npm run build -- --env.addon=bundleanalyze --env.addon=bundlevisualizer",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+EOF
+
+
+mkdir src
+cat > src/index.js <<EOF
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import App from './App';
+
+const title = 'React with Webpack and Babel';
+ReactDOM.render(
+  <App title={title} />,
+  document.getElementById('app')
+);
+
+module.hot.accept();
+EOF
+
+cat > src/App.js <<EOF
+import React from 'react';
+
+const App = ({ title }) =>
+  <div>{title}</div>;
+export default App;
+EOF
+
+cat > src/index.html <<EOF
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <div>
+      <h1><%= htmlWebpackPlugin.options.title %></h1>
+      <div id="app">
+    </div>
+  </body>
+</html>
+EOF
+
+
+npm install --save-dev @babel/core
+
+# @babel/preset-env is a smart preset that allows you to use the latest JavaScript without needing to micromanage which syntax transforms (and optionally, browser polyfills) are needed by your target environment(s). This both makes your life easier and JavaScript bundles smaller!
+npm install --save-dev @babel/preset-env @babel/preset-react
+
+# https://webpack.js.org/loaders/
+npm install --save-dev babel-loader
+
+cat > .babelrc <<EOF
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ]
+}
+EOF
+
+
+npm install --save-dev webpack webpack-dev-server webpack-cli
+npm install --save-dev html-webpack-plugin clean-webpack-plugin
+npm install --save-dev webpack-merge
+npm install --save-dev webpack-bundle-analyzer webpack-visualizer-plugin
+
+mkdir build-utils
+mkdir build-utils/addons
+
+cat > build-utils/webpack.config.js <<EOF
+const webpackMerge = require('webpack-merge');
+const commonConfig = require('./webpack.common.js');
+
+const getAddons = addonsArgs => {
+  const addons = Array.isArray(addonsArgs)
+    ? addonsArgs
+    : [addonsArgs];
+  return addons
+    .filter(Boolean)
+    .map(name => require(\`./addons/webpack.\\\${name}.js\`));
+};
+
+module.exports = ({ profile, addon }) => {
+  const envConfig = require(\`./webpack.\\\${profile}.js\`);
+  return webpackMerge(commonConfig, envConfig, ...getAddons(addon));
+};
+EOF
+
+cat > build-utils/webpack.common.js <<EOF
+const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+  // 1. Use the src/index.js file as entry point to bundle it. If the src/index.js file imports other JavaScript files, bundle them as well.
+  entry: './src/index.js',
+  module: {
+    rules: [
+      {
+        // 2. Make use of the previously installed Loader for Babel. You need to tell Webpack on which files to use the loader (e.g. .js files) and optionally which folders to exclude from the process (e.g. node_modules):
+        test: /\.(js|jsx)\$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Hello Webpack bundled JavaScript Project',
+      template: './src/index.html'
+    })
+  ],
+  // 3. The bundled source code files shall result in a bundle.js file in the /dist folder.
+  output: {
+    path: path.resolve(__dirname, '../', 'dist'),
+    publicPath: '/',
+    filename: 'bundle.js'
+  }
+};
+EOF
+
+cat > build-utils/webpack.dev.js <<EOF
+const webpack = require('webpack');
+
+module.exports = {
+  mode: 'development',
+  devtool: 'eval-source-map',
+  // The /dist folder will be used to serve our application to the browser.
+  devServer: {
+    contentBase: './dist',
+    hot: true
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
+};
+EOF
+
+cat > build-utils/webpack.prod.js <<EOF
+module.exports = {
+  mode: 'production',
+  devtool: 'source-map'
+};
+EOF
+
+cat > build-utils/addons/webpack.bundleanalyze.js <<EOF
+const WebpackBundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+module.exports = {
+  plugins: [
+    new WebpackBundleAnalyzer({
+      analyzerMode: 'static',
+      reportFilename: './report.html',
+      openAnalyzer: false
+    })
+  ]
+};
+EOF
+
+cat > build-utils/addons/webpack.bundlevisualizer.js <<EOF
+const Visualizer = require('webpack-visualizer-plugin');
+
+module.exports = {
+  plugins: [
+    new Visualizer()
+  ]
+};
+EOF
+
+npm install --save react react-dom
+npm install --save-dev react-hot-loader
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>npm.init-webpack-babel-react</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

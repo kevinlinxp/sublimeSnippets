@@ -1,0 +1,14 @@
+<snippet>
+  <content><![CDATA[
+# Commands for set default init values
+npm config list
+npm set init.author.name "<Your Name>"
+npm set init.author.email "you@example.com"
+npm set init.author.url "example.com"
+npm set init.license "MIT"
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>npm.set-init-default</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

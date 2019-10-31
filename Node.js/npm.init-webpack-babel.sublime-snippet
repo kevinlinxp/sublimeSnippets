@@ -1,0 +1,98 @@
+<snippet>
+  <content><![CDATA[
+mkdir ${1:my-project}
+cd ${1}
+
+
+cat > package.json <<EOF
+{
+  "name": "${1}",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+EOF
+
+
+mkdir src
+cat > src/index.js <<EOF
+console.log('Hello Webpack!');
+EOF
+
+
+mkdir dist
+cat > dist/index.html <<EOF
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello Webpack</title>
+  </head>
+  <body>
+    <div>
+      <h1>Hello Webpack</h1>
+    </div>
+    <script src="./bundle.js"></script>
+  </body>
+</html>
+EOF
+
+
+# Two main Babel dependencies
+# @babel/preset-env is a smart preset that allows you to use the latest JavaScript without needing to micromanage which syntax transforms (and optionally, browser polyfills) are needed by your target environment(s). This both makes your life easier and JavaScript bundles smaller!
+npm install --save-dev @babel/core @babel/preset-env
+
+# https://webpack.js.org/loaders/
+npm install --save-dev babel-loader
+
+cat > .babelrc <<EOF
+{
+  "presets": [
+    "@babel/preset-env"
+  ]
+}
+EOF
+
+
+npm install --save-dev webpack webpack-dev-server webpack-cli
+cat > webpack.config.js <<EOF
+module.exports = {
+  // 1. Use the src/index.js file as entry point to bundle it. If the src/index.js file imports other JavaScript files, bundle them as well.
+  entry: './src/index.js',
+  module: {
+    rules: [
+      {
+        // 2. Make use of the previously installed Loader for Babel. You need to tell Webpack on which files to use the loader (e.g. .js files) and optionally which folders to exclude from the process (e.g. node_modules):
+        test: /\.(js)\$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['*', '.js']
+  },
+  // 3. The bundled source code files shall result in a bundle.js file in the /dist folder.
+  output: {
+    path: __dirname + '/dist',
+    publicPath: '/',
+    filename: 'bundle.js'
+  },
+  // 4. The /dist folder will be used to serve our application to the browser.
+  devServer: {
+    contentBase: './dist'
+  }
+};
+EOF
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>npm.init-webpack-babel</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
