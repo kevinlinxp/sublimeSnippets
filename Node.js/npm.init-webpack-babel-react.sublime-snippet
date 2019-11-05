@@ -23,6 +23,9 @@ cat > package.json <<EOF
 EOF
 
 
+npm install --save react react-dom prop-types
+npm install --save-dev react-hot-loader
+
 mkdir src
 cat > src/index.js <<EOF
 import React from 'react';
@@ -30,20 +33,29 @@ import ReactDOM from 'react-dom';
 
 import App from './App';
 
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable no-undef */
 const title = 'React with Webpack and Babel';
 ReactDOM.render(
   <App title={title} />,
-  document.getElementById('app')
+  document.getElementById('app'),
 );
+/* eslint-enable no-undef */
+/* eslint-enable react/jsx-filename-extension */
 
 module.hot.accept();
 EOF
 
-cat > src/App.js <<EOF
+cat > src/App.jsx <<EOF
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const App = ({ title }) =>
-  <div>{title}</div>;
+const App = ({ title }) => <div>{title}</div>;
+
+App.propTypes = {
+  title: PropTypes.string.isRequired,
+};
+
 export default App;
 EOF
 
@@ -60,6 +72,53 @@ cat > src/index.html <<EOF
     </div>
   </body>
 </html>
+EOF
+
+
+npm install --save-dev eslint
+
+# Tell Webpack to use eslint in the build process.
+npm install --save-dev eslint-loader # and then webpack.xxx.js -> "module.rules[].use": "eslint-loader"
+
+# Let ESLint know about Babel enabled JavaScript features:
+npm install --save-dev babel-eslint # and then .eslintrc -> "parser": "babel-eslint"
+
+npx install-peerdeps --dev eslint-config-airbnb # and then .eslintrc -> "extends": ["airbnb"]
+
+
+npm install --save-dev prettier
+
+# Turns off all ESLint rules that could conflict with Prettier.
+npm install --save-dev eslint-config-prettier
+
+# Integrates the Prettier rules into ESLint rules.
+npm install --save-dev eslint-plugin-prettier
+
+# And then .eslintrc -> "extends": ["prettier"], "plugins": ["prettier"]
+
+cat > .eslintrc <<EOF
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error"]
+  }
+}
+EOF
+
+cat > .eslintignore <<EOF
+build-utils
+dist
+EOF
+
+cat > .prettierrc <<EOF
+{
+  "semi": true,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "printWidth": 70,
+}
 EOF
 
 
@@ -119,10 +178,10 @@ module.exports = {
   module: {
     rules: [
       {
-        // 2. Make use of the previously installed Loader for Babel. You need to tell Webpack on which files to use the loader (e.g. .js files) and optionally which folders to exclude from the process (e.g. node_modules):
+        // 2. Make use of the previously installed Loader for Babel and ESLint. You need to tell Webpack on which files to use the loader (e.g. .js files) and optionally which folders to exclude from the process (e.g. node_modules):
         test: /\.(js|jsx)\$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ['babel-loader', 'eslint-loader']
       }
     ]
   },
@@ -192,9 +251,6 @@ module.exports = {
   ]
 };
 EOF
-
-npm install --save react react-dom
-npm install --save-dev react-hot-loader
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>npm.init-webpack-babel-react</tabTrigger>
