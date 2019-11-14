@@ -1,0 +1,38 @@
+<snippet>
+  <content><![CDATA[
+import React, { Component } from 'react';
+
+export default WrappedComponent =>
+  class extends Component {
+    state = { width: 0, height: 0 };
+
+    componentWillMount() {
+      this.updateWindowDimensions();
+      window.addEventListener('resize', this.updateWindowDimensions);
+    }
+
+    componentWillUnmount() {
+      this.updateWindowDimensions();
+      window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+
+    updateWindowDimensions = () => {
+      this.setState({ width: window.innerWidth, height: window.innerHeight });
+    };
+
+    render() {
+      return (
+        <WrappedComponent
+          {...this.props}
+          windowWidth={this.state.width}
+          windowHeight={this.state.height}
+        />
+      );
+    }
+  };
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>react.hoc.withWindowInfo</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
