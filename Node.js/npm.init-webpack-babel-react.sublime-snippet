@@ -130,11 +130,16 @@ npm install --save-dev @babel/preset-env @babel/preset-react
 # https://webpack.js.org/loaders/
 npm install --save-dev babel-loader
 
+npm install --save-dev @babel/plugin-proposal-class-properties
+
 cat > .babelrc <<EOF
 {
   "presets": [
     "@babel/preset-env",
     "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties"
   ]
 }
 EOF
@@ -213,7 +218,8 @@ module.exports = {
   // The /dist folder will be used to serve our application to the browser.
   devServer: {
     contentBase: './dist',
-    hot: true
+    hot: true,
+    historyApiFallback: true
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
@@ -250,6 +256,19 @@ module.exports = {
     new Visualizer()
   ]
 };
+EOF
+
+cat > .gitignore <<EOF
+/node_modules
+/dist
+
+.DS_Store
+EOF
+
+cat > README.md <<EOF
+# ${1}
+
+This project is created using the script generated from https://github.com/kevinlinxp/sublimeSnippets/blob/master/Node.js/npm.init-webpack-babel-react.sublime-snippet
 EOF
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
