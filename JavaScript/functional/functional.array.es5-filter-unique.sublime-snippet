@@ -5,7 +5,7 @@ ${1:array}.filter(function(item, pos, self) {
 });
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>functional.array.es5-filter-unique, ex5-remove-duplication</tabTrigger>
+  <tabTrigger>functional.array.es5-filter-unique, es5-remove-duplication</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.js, text.plain</scope>
 </snippet>
