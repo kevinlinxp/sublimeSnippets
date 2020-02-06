@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+git url: 'https://github.com/user/repo'
+git url: apiManagerRepositoryURL, branch: "master", credentialsId: piDigitalCreds, poll: false, changelog: false
+checkout scm
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jenkins.scm</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.groovy, text.plain</scope>
+</snippet>
