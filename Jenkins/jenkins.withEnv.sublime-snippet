@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+withEnv([
+  "JAVA_HOME=/path/to/jdk1.8.0_201/",
+  "PATH=/path/to/jdk1.8.0_201/bin:${env.PATH}"
+]) {
+  sh 'java -version'
+  sh '$JAVA_HOME/bin/java -version'
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jenkins.withEnv</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.groovy, text.plain</scope>
+</snippet>
