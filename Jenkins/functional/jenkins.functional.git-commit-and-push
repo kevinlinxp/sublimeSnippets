@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+sh "git add -A"
+sh "git commit -m 'Your commit message'"
+sh "git log -1"
+sshagent(credentials: [gitWriteCreds]) {
+  sh "git push origin HEAD:${env.BRANCH_NAME}"
+  echo "..."
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jenkins.functional.git-commit-and-push</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.groovy, text.plain</scope>
+</snippet>
