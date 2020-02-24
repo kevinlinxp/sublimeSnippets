@@ -1,0 +1,95 @@
+<snippet>
+  <content><![CDATA[
+// CredentialIds
+myCredentialIds = "myCredentialIds"
+
+pipeline {
+    agent {
+        label none
+    }
+
+    parameters {
+        booleanParam(
+            name: 'BOOLEAN_PARAM',
+            defaultValue: true,
+            description: '...'
+        )
+        choice(
+            name: 'CHOICE_PARAM',
+            choices: ['DefaultOption', 'Option 1', 'Option 2', 'Option 3'],
+            description: '...'
+        )
+    }
+
+    environment {
+        HTTP_PROXY = 'http://your_proxy:port'
+        HTTPS_PROXY = 'https://your_proxy:port'
+        NO_PROXY = '...'
+        JAVA_HOME='...'
+        MY_CREDS = credentials("${myCredentialIds}")
+    }
+
+    stages {
+        stage('Stage 1') {
+            steps {
+                script {
+                }
+                sh ""
+                sh ""
+                echo ""
+                script {
+                }
+            }
+
+            post {
+                always {
+                }
+                changed {
+                }
+                fixed {
+                }
+                regression {
+                }
+                aborted {
+                }
+                failure {
+                }
+                success {
+                }
+                unstable {
+                }
+                unsuccessful {
+                }
+                cleanup {
+                }
+            }
+        }
+
+        stage('Stage 2') {
+            when {
+                beforeAgent true
+                expression { return params.BOOLEAN_PARAM }
+            }
+
+            agent {
+                label buildSlaveLabel
+            }
+
+            environment {
+            }
+
+            steps {
+            }
+        }
+    }
+}
+
+def utils() {
+  // ....
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jenkinsFile-skeleton.declarative</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.groovy, text.plain</scope>
+</snippet>
