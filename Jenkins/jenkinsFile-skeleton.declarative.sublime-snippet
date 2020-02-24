@@ -26,7 +26,7 @@ pipeline {
         HTTPS_PROXY = 'https://your_proxy:port'
         NO_PROXY = '...'
         JAVA_HOME='...'
-        MY_CREDS = credentials("${myCredentialIds}")
+        MY_CREDS = credentials("\${myCredentialIds}")
     }
 
     stages {
