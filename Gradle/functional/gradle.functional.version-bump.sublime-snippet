@@ -3,6 +3,7 @@
 // In build.gradle:
 apply from: file('gradle/artefact-versioning.gradle')
 
+
 // In gradle/artefact-versioning.gradle:
 task artefactVersionBump {
     if (!project.hasProperty("versionToBump")) {
@@ -40,6 +41,10 @@ def void updateVersionInPropsFile(newVersion) {
 
     gradlePropsFile.write(newContent.toString())
 }
+
+
+// Command line:
+./gradlew artefactVersionBump -PversionToBump=Minor
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>gradle.functional.version-bump</tabTrigger>
