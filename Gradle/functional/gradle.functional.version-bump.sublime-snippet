@@ -1,0 +1,48 @@
+<snippet>
+  <content><![CDATA[
+// In build.gradle:
+apply from: file('gradle/artefact-versioning.gradle')
+
+// In gradle/artefact-versioning.gradle:
+task artefactVersionBump {
+    if (!project.hasProperty("versionToBump")) {
+        return
+    }
+
+    def versionToBump = project.versionToBump.toLowerCase();
+    def startIndex = [ 'major': 0, 'minor': 1, 'patch': 2 ][versionToBump]
+
+    if (startIndex == null) {
+        throw new IllegalArgumentException("Invalid versionToBump parameter: \${versionToBump}, must be one of major, minor or patch (case-insentitive).")
+    }
+
+    def versionNumbers = project.version.split('\\.').collect { it.toInteger() }
+    ++versionNumbers[startIndex]
+
+    for (def index = startIndex + 1; index < 3; ++index) {
+        versionNumbers[index] = 0;
+    }
+
+    updateVersionInPropsFile(versionNumbers.join('.'))
+}
+
+def void updateVersionInPropsFile(newVersion) {
+    File gradlePropsFile = file("gradle.properties")
+
+    def newContent = new StringBuilder();
+    gradlePropsFile.eachLine('UTF-8') {
+        if (it.trim().startsWith("version=")) {
+            newContent.append("version=\${newVersion}").append('\n');
+        } else {
+            newContent.append(it).append('\n')
+        }
+    }
+
+    gradlePropsFile.write(newContent.toString())
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>gradle.functional.version-bump</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.groovy, text.plain</scope>
+</snippet>
