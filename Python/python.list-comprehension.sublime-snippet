@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+new_list = [expression for_loop_one_or_more conditions]
+
+numbers = [1, 2, 3, 4]
+squares = [n**2 for n in numbers] # 1, 4, 9, 16]
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>python.list-comprehension</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.python, text.plain</scope>
+</snippet>

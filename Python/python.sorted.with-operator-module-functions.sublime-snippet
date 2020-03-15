@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+from operator import itemgetter, attrgetter
+
+
+pairs = [(0, 3), (2, 3), (9, 11), (4, 8), (5, 18), (5, 12), (3, 9), (5, 6), (7, 8), (10, 21), (-1, 2), (-2, 0)]
+sorted_pairs = sorted(pairs, key=itemgetter(0, 1))
+
+student_objects = [
+    Student('john', 'A', 15),
+    Student('jane', 'B', 12),
+    Student('dave', 'B', 10),
+]
+sorted_students = sorted(student_objects, key=attrgetter('grade', 'age'))
+[('john', 'A', 15), ('dave', 'B', 10), ('jane', 'B', 12)]
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>python.sorted.with-operator-module-functions</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.python, text.plain</scope>
+</snippet>

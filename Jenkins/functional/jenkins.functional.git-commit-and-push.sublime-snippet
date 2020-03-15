@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-sh "git add -A"
+sh "git add -A${0}"
 sh "git commit -m 'Your commit message'"
 sh "git log -1"
 sshagent(credentials: [gitWriteCreds]) {
