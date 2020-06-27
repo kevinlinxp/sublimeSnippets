@@ -1,0 +1,23 @@
+<snippet>
+  <content><![CDATA[
+node node_modules/jest-cli/bin/jest.js -- "./app/some-folder/some-component.test.js"
+node node_modules/jest-cli/bin/jest.js --runTestsByPath app/some-folder/some-component.test.js
+
+node node_modules/jest-cli/bin/jest.js \
+--runTestsByPath app/some-folder/some-component.test.js \
+"--testNamePattern=^QuickQuote should render list for comprehensive product$"
+
+C:\Dev\nodejs\node.exe \
+--require "C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\plugins\JavaScriptLanguage\helpers\jest-intellij\lib\jest-intellij-stdin-fix.js" \
+C:\Dev\apps\reimagine\reimagine-aami-motor\node_modules\jest-cli\bin\jest.js \
+--colors \
+--reporters "C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\plugins\JavaScriptLanguage\helpers\jest-intellij\lib\jest-intellij-reporter.js" \
+--verbose \
+--runTestsByPath path/to/some.test.js
+"--testNamePattern=^Some should do something when some condition$" \
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>npm.jest</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

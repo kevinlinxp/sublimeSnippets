@@ -1,0 +1,14 @@
+<snippet>
+  <content><![CDATA[
+oc run my-api-deployment1 \
+--image=docker-registry.default.svc:5000/my-project/my-api:version \
+--image-pull-policy=IfNotPresent \
+--labels app=my-api-deployment1
+
+oc run test-pod --image=registry.access.redhat.com/rhel7/rhel-tools --restart=Never --command=true sleep infinity
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oc.run</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

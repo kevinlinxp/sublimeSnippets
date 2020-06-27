@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+oc adm policy remove-role-from-user edit S123456
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oc.adm.policy.remove-role-from-user</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

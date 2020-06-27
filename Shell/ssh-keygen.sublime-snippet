@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+ssh-keygen -f ~/.ssh/S123456 -t rsa -b 4096 -C "Deployment Manager"
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>ssh-keygen</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

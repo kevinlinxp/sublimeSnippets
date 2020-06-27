@@ -1,11 +1,11 @@
 <snippet>
   <content><![CDATA[
-synchronized(obj) {
-  while(${1:<condition does not hold>}) // Condition before/after .wait()
+synchronized(${1:monitor}) {
+  while(${2:<condition does not hold>}) // Condition before/after .wait()
   {
-    obj.wait();
+    ${1:monitor}.wait();
   }
-  ${2:// ... Perform action appropriate to condition}
+  ${3:// ... Perform action appropriate to condition}
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

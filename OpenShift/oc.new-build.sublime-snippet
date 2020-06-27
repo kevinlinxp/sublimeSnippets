@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+oc new-build \
+--image-stream some-s2i-image:latest \
+--code https://github.com/some-user/some-repo.git#some-branch \
+--source-secret some-artefact-manager-ssh \
+--name my-api \
+--labels=app=my-api \
+--env BUILD_ARTIFACT_URL=https://some-artifactory/artifactory/some-repo/group/artifact/artifact.jar
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>oc.new-build</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

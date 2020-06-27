@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+ssh-copy-id -i ~/.ssh/S123456 user@host # If the filename does not end in .pub this is added.
+
+# Equivalent:
+cat ~/.ssh/S123456.pub | ssh user@host "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>ssh-copy-id</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
