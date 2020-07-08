@@ -1,0 +1,47 @@
+<snippet>
+  <content><![CDATA[
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+/**
+ * '@ExtendWith(SpringExtension.class)' is used to provide a bridge between Spring Boot test features and JUnit.
+ * Whenever we are using any Spring Boot testing features in our JUnit tests, this annotation will be required.
+ */
+@ExtendWith(SpringExtension.class)
+class ${1:Some}Test {
+
+    @TestConfiguration
+    @ComponentScan("some.package.to.scan")
+    static class ${1}Configuration {
+
+        // Additional Beans to add
+        // @Bean
+        // public ComponentA componentA() {
+        //     return new ComponentA();
+        // }
+        //
+        // @Bean
+        // public ComponentB componentB() {
+        //     return new ComponentB();
+        // }
+    }
+
+    @Autowired
+    private ComponentB compB;
+
+    @Test
+    void someTest() {
+        Assertions.assertEquals(compB.getMessage(), "Hi!");
+    }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-boot-test-junit5.unit-test.skeleton</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

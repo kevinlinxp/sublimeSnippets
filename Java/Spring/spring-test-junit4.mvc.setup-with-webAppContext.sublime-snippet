@@ -1,14 +1,17 @@
 <snippet>
   <content><![CDATA[
+@Autowired
+private WebApplicationContext wac;
+
 private MockMvc mockMvc;
 
 @Before
 public void setup() {
-  this.mockMvc = MockMvcBuilders.standaloneSetup(new AccountController()).build();
+  this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-test.mvc.setup-standalone</tabTrigger>
+  <tabTrigger>spring-test-junit4.mvc.setup-with-webAppContext</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

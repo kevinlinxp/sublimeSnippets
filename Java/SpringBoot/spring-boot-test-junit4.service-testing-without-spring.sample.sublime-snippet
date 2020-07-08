@@ -33,7 +33,7 @@ public class CarServiceTest {
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-boot.test.service-testing-without-spring.sample</tabTrigger>
+  <tabTrigger>spring-boot-test-junit4.service-testing-without-spring.sample</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>
