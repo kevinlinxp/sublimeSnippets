@@ -4,11 +4,11 @@ repositories {
   mavenLocal()
   mavenCentral()
   maven {
+    url 'http://<repoUrl>:<port>/artifactory/public/'
     credentials {
       username 'deployment'
       password '********'
     }
-    url 'http://<repoUrl>:<port>/artifactory/public/'
     authentication {
       basic(BasicAuthentication)
     }
