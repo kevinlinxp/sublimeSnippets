@@ -1,13 +1,9 @@
 <snippet>
   <content><![CDATA[
-for ${2:dir} in ${1:dirs}
-do
-  test -d "\$${2}" || continue
-  ${0:echo "\$${2}"}
-done
+curl -O -L -k https://github.com/kevinlinxp/sublimeSnippets/archive/master.zip
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>for-in.dir</tabTrigger>
+  <tabTrigger>curl.github-repo-zip</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.shell, text.plain</scope>
 </snippet>

@@ -1,12 +1,12 @@
 <snippet>
   <content><![CDATA[
-for ${1:f} in "\$@"
+for ${1:arg} in "\$@"
 do
-  ${2:echo "\$${1}"}
+  ${0:echo "\$${1}"}
 done
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>for-in-arguments</tabTrigger>
+  <tabTrigger>for-in.arguments</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.shell, text.plain</scope>
 </snippet>
