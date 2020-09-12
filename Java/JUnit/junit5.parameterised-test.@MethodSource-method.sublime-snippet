@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+private static Stream<Arguments> paramsForTest() {
+  return Stream.of(
+      Arguments.of(11, "12", 13L),
+      Arguments.of(21, "22", 23L),
+      Arguments.of(31, null, null)
+  );
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>junit5.parameterised-test.@MethodSource-method</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

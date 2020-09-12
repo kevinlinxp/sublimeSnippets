@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+when(${1:mock}.${2:method()}).thenThrow(${0});
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>junit.mockito.when-thenThrow</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

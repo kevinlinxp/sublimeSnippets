@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+@ParameterizedTest
+@MethodSource("paramsForTest")
+void ${1:methodTested}_when${2:Condition}_should${3:Work}(int p1, String p2, long p3) {
+  // Arrange
+  ${0}
+
+  // Act
+
+  // Assert
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>junit5.parameterised-test.@MethodSource</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

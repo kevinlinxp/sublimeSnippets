@@ -2,7 +2,7 @@
   <content><![CDATA[
 // Need to annotate the test class with @RunWith(JUnitParamsRunner.class)
 
-private Object[] parametersForMatchTwoUserInfoObjects() {
+private Object[] parametersFor${1/(\w+)(\w*)/\u$1$2/g}() {
   return new Object[]{
     new Object[]{${2/(\w+ +)(\w+\b)/$2ValueForRound1/g}},
     new Object[]{${2/(\w+ +)(\w+\b)/$2ValueForRound2/g}},
@@ -12,7 +12,7 @@ private Object[] parametersForMatchTwoUserInfoObjects() {
 
 @Test
 @Parameters
-public void ${1:methodTested}(${2:int intParam, String strParam}) {
+public void ${1:unitTestMethodName}(${2:int intParam, String strParam}) {
   // Arrange
   ${0}
 
@@ -22,7 +22,7 @@ public void ${1:methodTested}(${2:int intParam, String strParam}) {
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>junit.@Test-method.with-junitparams</tabTrigger>
+  <tabTrigger>junit4.test.with-junitparams</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

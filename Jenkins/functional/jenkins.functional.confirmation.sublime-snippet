@@ -1,0 +1,24 @@
+<snippet>
+  <content><![CDATA[
+def confirmationStep(String agentLabel, String prompt, String task = 'Task', int timeoutHours = 1, Closure yesScript) {
+  try {
+    timeout(time: timeoutHours, unit:'HOURS') {
+      input prompt
+    }
+    node(agentLabel) {
+      yesScript.call()
+    }
+  } catch(ex) {
+    println "ERROR = \$ex"
+    def user = ex.getCauses()[0].getUser() as String
+    currentBuild.result = "SUCCESS"
+    currentBuild.description = (user != "SYSTEM") ? "\${task} aborted by \${user}" : "\${task} timed out"
+    aborted = true
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jenkins.functional.confirmation</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.groovy, text.plain</scope>
+</snippet>
