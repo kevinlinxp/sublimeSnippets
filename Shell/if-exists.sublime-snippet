@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
 if [[ -e "\$${1:fileOrDir}" ]]; then
-  ${1}
+  ${1}${0}
 fi
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
