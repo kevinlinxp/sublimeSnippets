@@ -17,7 +17,7 @@ curl --location --request GET 'https://api.some-domain.com.au/some-api-name/api/
 --header 'Authorization: Bearer KJyv1nWZwrcbtUHYpYiV1CMaUmm7GRMAcC0QzWtkoWjms7dEpKdGYQ'
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>curl.with-proxy</tabTrigger>
+  <tabTrigger>curl.oauth</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.shell, text.plain</scope>
 </snippet>
