@@ -5,7 +5,7 @@
   <artifactId>spring-boot-maven-plugin</artifactId>
   <configuration>
     <fork>true</fork>
-    <mainClass>${start-class}</mainClass>
+    <mainClass>\${start-class}</mainClass>
   </configuration>
   <executions>
     <execution>
