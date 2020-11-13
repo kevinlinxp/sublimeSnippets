@@ -1,0 +1,54 @@
+<snippet>
+  <content><![CDATA[
+<!-- The properties can be from a spring-boot BOM -->
+<plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>aspectj-maven-plugin</artifactId>
+	<version>1.11</version>
+	<dependencies>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>\${aspectj.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjtools</artifactId>
+			<version>\${aspectj.version}</version>
+		</dependency>
+	</dependencies>
+	<configuration>
+		<complianceLevel>\${maven.compiler.target}</complianceLevel>
+		<source>\${maven.compiler.target}</source>
+		<target>\${maven.compiler.target}</target>
+		<showWeaveInfo>true</showWeaveInfo>
+		<verbose>true</verbose>
+		<Xlint>ignore</Xlint>
+		<encoding>\${project.build.sourceEncoding}</encoding>
+		<forceAjcCompile>true</forceAjcCompile>
+		<sources/>
+		<weaveDirectories>
+			<weaveDirectory>\${project.build.directory}/classes</weaveDirectory>
+		</weaveDirectories>
+		<aspectLibraries>
+			<aspectLibrary>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+			</aspectLibrary>
+		</aspectLibraries>
+	</configuration>
+	<executions>
+		<execution>
+			<phase>process-classes</phase>
+			<goals>
+				<goal>compile</goal>
+			</goals>
+		</execution>
+	</executions>
+</plugin>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mvn.pom.build-plugins-plugin.aspectj-maven-plugin.lombok-compatible</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, text.xml</scope>
+</snippet>
