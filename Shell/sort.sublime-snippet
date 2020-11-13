@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+sort -n -k5.3,5 my-log.txt
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>sort</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
