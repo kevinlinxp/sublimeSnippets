@@ -1,0 +1,23 @@
+<snippet>
+  <content><![CDATA[
+<plugin>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-maven-plugin</artifactId>
+  <configuration>
+    <fork>true</fork>
+    <mainClass>${start-class}</mainClass>
+  </configuration>
+  <executions>
+    <execution>
+      <goals>
+        <goal>repackage</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mvn.pom.build-plugins-plugin.spring-boot-maven-plugin</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, text.xml</scope>
+</snippet>
