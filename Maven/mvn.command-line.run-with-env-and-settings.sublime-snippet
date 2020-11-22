@@ -11,7 +11,7 @@ Some other options:
 --non-recursive - do not use a reactor build, even if the current project declares modules and just build the project in the current directory
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>mvn.build-with-settings</tabTrigger>
+  <tabTrigger>mvn.command-line.run-with-env-and-settings</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.plain, source.shell</scope>
 </snippet>
