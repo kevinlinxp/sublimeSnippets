@@ -1,0 +1,31 @@
+<snippet>
+  <content><![CDATA[
+logging:
+  file:
+    path: "./logs"
+    name: "\${logging.file.path}/my-application.log"
+    max-size: 5MB
+    total-size-cap: 10GB
+    max-history: 60
+  pattern:
+    rolling-file-name: "\${logging.file.path}/my-application.%d{yyyy-MM-dd}.%i.log"
+  level:
+    root: DEBUG
+    org.springframework: INFO
+    org:
+      springframework:
+        boot: INFO
+    com:
+      microsoft:
+        sqlserver: INFO
+      zaxxer:
+        hikari: INFO
+    jdk:
+      event:
+        security: INFO
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-boot.properties.logging.sample-console-and-rolling-file</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.yaml, text.plain</scope>
+</snippet>
