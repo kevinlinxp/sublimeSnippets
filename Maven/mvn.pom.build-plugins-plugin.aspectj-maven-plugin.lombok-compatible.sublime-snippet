@@ -26,10 +26,6 @@
     <Xlint>ignore</Xlint>
     <encoding>\${project.build.sourceEncoding}</encoding>
     <forceAjcCompile>true</forceAjcCompile>
-    <sources/>
-    <weaveDirectories>
-      <weaveDirectory>\${project.build.directory}/classes</weaveDirectory>
-    </weaveDirectories>
     <aspectLibraries>
       <aspectLibrary>
         <groupId>org.springframework</groupId>
@@ -39,10 +35,30 @@
   </configuration>
   <executions>
     <execution>
+      <id>aspectj-compile</id>
       <phase>process-classes</phase>
       <goals>
         <goal>compile</goal>
       </goals>
+      <configuration>
+        <sources/>
+        <weaveDirectories>
+          <weaveDirectory>\${project.build.outputDirectory}</weaveDirectory>
+        </weaveDirectories>
+      </configuration>
+    </execution>
+    <execution>
+      <id>aspectj-testCompile</id>
+      <phase>process-test-classes</phase>
+      <goals>
+        <goal>test-compile</goal>
+      </goals>
+      <configuration>
+        <testSources/>
+        <weaveDirectories>
+          <weaveDirectory>\${project.build.testOutputDirectory}</weaveDirectory>
+        </weaveDirectories>
+      </configuration>
     </execution>
   </executions>
 </plugin>
