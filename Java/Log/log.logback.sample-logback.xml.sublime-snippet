@@ -48,7 +48,7 @@
 </configuration>
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>log.logback.sample-logback.xml.sublime-snippet</tabTrigger>
+  <tabTrigger>log.logback.sample-logback.xml</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.plain, text.xml</scope>
 </snippet>
