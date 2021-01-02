@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+java -Xms1024m -Xmx1024m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath="C:/NotBackedUp/Workspace/bcbs-239-poc/gc-info" -cp some-jar.jar some.package.TheMainClass
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java.with-options.heap-dump-on-oom</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
