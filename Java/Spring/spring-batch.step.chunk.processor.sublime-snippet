@@ -1,0 +1,97 @@
+<snippet>
+  <content><![CDATA[
+public class UVRRowChecker
+        implements ItemProcessor<Map<String, Object>, List<DQICheckResult>> {
+
+    private final String fieldName;
+    private final List<Check<?, ?>> checkList;
+
+    @Value("#{stepExecutionContext['fileName']}")
+    private Resource resource;
+
+    public UVRRowChecker(
+            String fieldName,
+            List<Check<?, ?>> checkList
+    ) {
+        this.fieldName = fieldName;
+        this.checkList = checkList;
+    }
+
+    @Override
+    public List<DQICheckResult> process(Map<String, Object> item) {
+
+        Object valueForTest = getValueForTest(item);
+        String portfolio = getPortfolio(item);
+
+        List<DQICheckResult> dqiCheckResultList = new ArrayList<>();
+        for (Check<?, ?> check : checkList) {
+            List<String> failMessages = new ArrayList<>();
+
+            @SuppressWarnings("unchecked")
+            boolean passed = ((Check<Object, Object>) check).apply(
+                    valueForTest,
+                    item,
+                    failMessages);
+
+            Rule<?, ?> rule = check.getRule();
+            String uniqueRowIdentifier = getUniqueRowIdentifier(item);
+            DQICheckResult rowCheckResult =
+                    new DQICheckResult(uniqueRowIdentifier);
+            rowCheckResult.setFieldName(fieldName);
+
+            rowCheckResult.setRuleId(rule.getId());
+            rowCheckResult.setRuleName(rule.getName());
+            rowCheckResult.setDataTerm(rule.getDataTerm());
+            rowCheckResult.setPortfolio(portfolio);
+            rowCheckResult.setRuleDescription(rule.getPassCriteriaDescription());
+            rowCheckResult.setFileName(getSourceName());
+
+            String failMessage = String.join("\n", failMessages);
+            rowCheckResult.setFailsMessage(failMessage);
+
+            dqiCheckResultList.add(rowCheckResult);
+            if (!passed) {
+                rowCheckResult.setFieldValue(getValueForDisplay(valueForTest));
+                break;
+            }
+        }
+
+        return dqiCheckResultList;
+    }
+
+    private String getSourceName() {
+        return resource.getFilename();
+    }
+
+    private Object getValueForTest(Map<String, Object> rowData) {
+        return rowData.get(fieldName);
+    }
+
+    protected String getPortfolio(Map<String, Object> rowData) {
+        return (String) rowData.get("M_PTFOLIO");
+    }
+
+    private String getUniqueRowIdentifier(Map<String, Object> rowData) {
+        return Stream.of(
+                "M_LABEL",
+                "M_DEALNUM",
+                "M_PTFOLIO",
+                "M_DATE",
+                "M_PL_CUR",
+                "M_TRN_FMLY",
+                "M_TRN_GRP",
+                "M_TRN_TYPE",
+                "M_INSTRUMENT",
+                "M_CUR")
+                .map(rowData::get)
+                .map(Object::toString)
+                .collect(Collectors.joining("#"));
+    }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-batch.step.chunk.processor</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

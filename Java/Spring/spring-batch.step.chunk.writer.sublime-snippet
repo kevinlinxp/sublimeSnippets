@@ -1,0 +1,67 @@
+<snippet>
+  <content><![CDATA[
+public class UVRRowCheckResultWriter implements ItemWriter<List<DQICheckResult>> {
+
+    @Value("#{jobParameters['date']}")
+    private String date;
+
+    @Value("#{stepExecutionContext['fileName']}")
+    private Resource resource;
+
+    @Autowired
+    private ResultRepository resultRepository;
+
+    @BeforeStep
+    public void beforeStep(StepExecution stepExecution) {
+        resultRepository.deleteIfExists(
+                getExceptionDetailsRelativePath(),
+                getSummaryRelativePath()
+        );
+    }
+
+    @Override
+    public void write(List<? extends List<DQICheckResult>> items) {
+        List<DQICheckResult> exceptions = items.stream()
+                .flatMap(List::stream)
+                .filter(item -> !item.pass())
+                .collect(Collectors.toList());
+
+        resultRepository.createOrAppendExceptionDetails(
+                getExceptionDetailsRelativePath(),
+                exceptions);
+    }
+
+    @AfterStep
+    public ExitStatus afterStep(StepExecution stepExecution) {
+        ExecutionContext executionContext = stepExecution.getExecutionContext();
+        Map<String, DQISummary> summaryMap = (Map<String, DQISummary>)
+                executionContext.get(CONTEXT_KEY_UVR_FILE_CHECK_SUMMARY);
+        resultRepository.writeSummary(
+                getSummaryRelativePath(),
+                new ArrayList<>(summaryMap.values())
+        );
+        summaryMap.clear();
+        return null;
+    }
+
+    private Path getSummaryRelativePath() {
+        return getReportFileRelativePath("summary.csv");
+    }
+
+    private Path getExceptionDetailsRelativePath() {
+        return getReportFileRelativePath("exceptions.csv");
+    }
+
+    private Path getReportFileRelativePath(String reportSuffix) {
+        String reportFileName = String.join(".",
+                resource.getFilename(),
+                reportSuffix);
+        return Paths.get(date).resolve(reportFileName);
+    }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-batch.step.chunk.writer</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

@@ -1,0 +1,171 @@
+<snippet>
+  <content><![CDATA[
+@Configuration
+@EnableBatchProcessing
+public class BatchConfig extends DefaultBatchConfigurer {
+
+    @Autowired
+    private JobBuilderFactory jobBuilderFactory;
+
+    @Autowired
+    private StepBuilderFactory stepBuilderFactory;
+
+    @Autowired
+    private RemoteFilesLookupService filesLookupService;
+
+    @Override
+    public void setDataSource(DataSource dataSource) {
+    }
+
+    @Bean
+    public TaskExecutor taskExecutor() {
+        ThreadPoolTaskExecutor t = new ThreadPoolTaskExecutor();
+        t.setCorePoolSize(4);
+        t.setMaxPoolSize(4);
+        // t.setQueueCapacity(50);
+        t.setAllowCoreThreadTimeOut(true);
+        t.setKeepAliveSeconds(120);
+        return t;
+    }
+
+    @Bean(name = JOB_UVR_FILES_CHECK)
+    public Job uvrFilesJob() throws IOException { // Rule
+        return this.jobBuilderFactory.get(JOB_UVR_FILES_CHECK)
+                .preventRestart()
+                .start(partitioningUvrFileStep())
+                .build();
+    }
+
+    @Bean
+    public Step partitioningUvrFileStep() throws IOException {
+        Step workingStep = uvrFileStep();
+        return this.stepBuilderFactory.get("partitioningUvrFileStep")
+                .partitioner(
+                        workingStep.getName(),
+                        uvrFileBasedPartitioner(null, null)
+                )
+                // .aggregator(new DefaultStepExecutionAggregator()) // By
+                // Default
+                .taskExecutor(taskExecutor())
+                .step(workingStep)
+                // The gridSize attribute determines the number of separate
+                // step executions to create, so it can be matched to the
+                // size of the thread pool in the TaskExecutor. Alternatively,
+                // it can be set to be larger than the number of threads
+                // available, which makes the blocks of work smaller.
+                .gridSize(1)
+                .build();
+    }
+
+    @Bean
+    @StepScope
+    public Partitioner uvrFileBasedPartitioner(
+            @Value("#{jobParameters[date]}") String date,
+            @Value("#{jobParameters[filePattern]}") String filePattern
+    ) throws IOException {
+        List<ResolvedFileWrapper> resolvedFileWrappers =
+                filesLookupService.resolveFiles(date, filePattern);
+        Resource[] resources = resolvedFileWrappers.stream()
+                .map(wrapper ->
+                        new FileSystemResource(wrapper.getResolvedFilePath()))
+                .toArray(Resource[]::new);
+
+        MultiResourcePartitioner multiResourcePartitioner =
+                new MultiResourcePartitioner();
+        multiResourcePartitioner.setResources(resources);
+
+        return multiResourcePartitioner;
+    }
+
+    @Bean
+    public Step uvrFileStep() {
+        return this.stepBuilderFactory.get("uvrFileStep")
+                .listener(uvrRowCheckResultAggregator())
+                .<Map<String, Object>, List<DQICheckResult>>
+                        chunk(100)
+                .reader(uvrFileItemReader(null))
+                .processor(uvrRowChecker(null, null))
+                .listener(uvrRowCheckResultAggregator())
+                .writer(uvrCheckResultWriter())
+                .build();
+    }
+
+
+//    @Bean
+//    @StepScope
+//    public MultiResourceItemReader<Map<String, Object>>
+//    multiUvrFilesItemReader(
+//            @Value("#{jobParameters[date]}") String date,
+//            @Value("#{jobParameters[filePattern]}") String filePattern
+//    ) throws IOException {
+//        List<ResolvedFileWrapper> resolvedFileWrappers =
+//                filesLookupService.resolveFiles(date, filePattern);
+//        Resource[] resources = resolvedFileWrappers.stream()
+//                .map(wrapper ->
+//                        new FileSystemResource(wrapper.getResolvedFilePath()))
+//                .toArray(Resource[]::new);
+//
+//        return new MultiResourceItemReaderBuilder<Map<String, Object>>()
+//                .delegate(uvrFileItemReader())
+//                .resources(resources)
+//                .build();
+//    }
+
+    @Bean
+    @StepScope
+    public FlatFileItemReader<Map<String, Object>> uvrFileItemReader(
+            @Value("#{stepExecutionContext['fileName']}") Resource resource
+    ) {
+        DelimitedLineTokenizer delimitedLineTokenizer =
+                new DelimitedLineTokenizer(";");
+
+        Map<String, FieldParser<?>> headerToFieldParser = new HashMap<>();
+        headerToFieldParser.put("M_RESULTV", new PipeDelimitedFieldParser());
+        UVRFieldSetMapper uvrFieldSetMapper =
+                new UVRFieldSetMapper(headerToFieldParser);
+
+        DefaultLineMapper<Map<String, Object>> lineMapper =
+                new DefaultLineMapper<>();
+        lineMapper.setLineTokenizer(delimitedLineTokenizer);
+        lineMapper.setFieldSetMapper(uvrFieldSetMapper);
+
+        return new FlatFileItemReaderBuilder<Map<String, Object>>()
+                .name("uvrFileItemReader")
+                .resource(resource)
+                .bufferedReaderFactory(new UVRFileBufferedReaderFactory())
+                .linesToSkip(1)
+                .skippedLinesCallback(line ->
+                        delimitedLineTokenizer.setNames(line.split(";")))
+                .lineMapper(lineMapper)
+                .build();
+    }
+
+    @Bean
+    @StepScope
+    public UVRRowChecker uvrRowChecker(
+            @Value("#{jobParameters[fieldName]}") String fieldName,
+            @Value("#{jobParameters[checkList]}") String serialisedCheckList
+    ) {
+        return new UVRRowChecker(fieldName,
+                CheckSerialiser.deserialiseCheckList(serialisedCheckList));
+    }
+
+    @Bean
+    @StepScope
+    public UVRRowCheckResultAggregator uvrRowCheckResultAggregator() {
+        return new UVRRowCheckResultAggregator();
+    }
+
+    @Bean
+    @StepScope
+    public UVRRowCheckResultWriter uvrCheckResultWriter() {
+        return new UVRRowCheckResultWriter();
+    }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-batch.config-java.BatchConfig.with-local-partition</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

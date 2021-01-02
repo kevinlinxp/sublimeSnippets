@@ -1,0 +1,53 @@
+<snippet>
+  <content><![CDATA[
+public class UVRRowCheckResultAggregator {
+
+    protected final LinkedHashMap<String, DQISummary> summaryMap =
+            new LinkedHashMap<>();
+
+    @BeforeStep
+    public void beforeStep(StepExecution stepExecution) {
+        stepExecution.getExecutionContext()
+                .put(CONTEXT_KEY_UVR_FILE_CHECK_SUMMARY, summaryMap);
+    }
+
+    @AfterProcess
+    public void afterProcess(Map<String, Object> item,
+                             List<DQICheckResult> result) {
+        if (result != null) {
+            for (DQICheckResult dqiCheckResult : result) {
+                aggregate(dqiCheckResult);
+            }
+        }
+    }
+
+    private void aggregate(DQICheckResult result) {
+        String ruleId = result.getRuleId();
+        String portfolio = result.getPortfolio();
+        String summaryAggregateKey = ruleId + "|" + portfolio;
+        DQISummary dqiSummary = summaryMap.get(summaryAggregateKey);
+        if (dqiSummary == null) {
+            dqiSummary = new DQISummary();
+            summaryMap.put(summaryAggregateKey, dqiSummary);
+            dqiSummary.setRuleId(ruleId);
+            dqiSummary.setPortfolio(portfolio);
+            dqiSummary.setRuleName(result.getRuleId());
+            dqiSummary.setRuleDescription(result.getRuleDescription());
+            dqiSummary.setDataTerm(result.getDataTerm().getText());
+        }
+
+        dqiSummary.incrementTotal();
+        if (result.pass()) {
+            dqiSummary.incrementPass();
+        } else {
+            dqiSummary.incrementFail();
+        }
+    }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-batch.step.chunk.processor-aggregator</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
