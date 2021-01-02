@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+String.join(".", str1${0}, str2, ...);
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java.String.join</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
