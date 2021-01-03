@@ -4,6 +4,9 @@
 @EnableBatchProcessing
 public class BatchConfig extends DefaultBatchConfigurer {
 
+    public static final int CHUNK_SIZE = 100;
+    public static final int CHUNK_SIZE_RDW = 500;
+
     @Autowired
     private JobBuilderFactory jobBuilderFactory;
 
@@ -12,6 +15,9 @@ public class BatchConfig extends DefaultBatchConfigurer {
 
     @Autowired
     private RemoteFilesLookupService filesLookupService;
+
+    @Autowired
+    private SqlSessionFactory sqlSessionFactory;
 
     @Override
     public void setDataSource(DataSource dataSource) {
@@ -80,16 +86,19 @@ public class BatchConfig extends DefaultBatchConfigurer {
     @Bean
     public Step uvrFileStep() {
         return this.stepBuilderFactory.get("uvrFileStep")
-                .listener(uvrRowCheckResultAggregator())
-                .<Map<String, Object>, List<DQICheckResult>>
-                        chunk(100)
+                .listener(rowCheckResultAggregator())
+                .<Map<String, Object>, List<DQICheckResult>>chunk(CHUNK_SIZE)
                 .reader(uvrFileItemReader(null))
                 .processor(uvrRowChecker(null, null))
-                .listener(uvrRowCheckResultAggregator())
+                .listener(rowCheckResultAggregator())
                 .writer(uvrCheckResultWriter())
                 .build();
     }
 
+//    @Bean
+//    public Tasklet getTasklet() {
+//        return null;
+//    }
 
 //    @Bean
 //    @StepScope
@@ -146,20 +155,81 @@ public class BatchConfig extends DefaultBatchConfigurer {
             @Value("#{jobParameters[fieldName]}") String fieldName,
             @Value("#{jobParameters[checkList]}") String serialisedCheckList
     ) {
-        return new UVRRowChecker(fieldName,
-                CheckSerialiser.deserialiseCheckList(serialisedCheckList));
+        List<Check<?, ?>> checkList =
+                CheckSerialiser.deserialiseCheckList(serialisedCheckList);
+        return new UVRRowChecker(fieldName, checkList);
     }
 
     @Bean
     @StepScope
-    public UVRRowCheckResultAggregator uvrRowCheckResultAggregator() {
-        return new UVRRowCheckResultAggregator();
+    public DQIRowCheckResultAggregator rowCheckResultAggregator() {
+        return new DQIRowCheckResultAggregator();
     }
 
     @Bean
     @StepScope
     public UVRRowCheckResultWriter uvrCheckResultWriter() {
         return new UVRRowCheckResultWriter();
+    }
+
+    @Bean(name = JOB_RDW_DATA_CHECK)
+    public Job rdwDataJob() { // Rule
+        return this.jobBuilderFactory.get(JOB_RDW_DATA_CHECK)
+                .preventRestart()
+                .start(rdw10DayDataAtRiskStep())
+                .build();
+    }
+
+    @Bean
+    public Step rdw10DayDataAtRiskStep() {
+        return this.stepBuilderFactory.get("rdw10DayDataAtRiskStep")
+                .listener(rowCheckResultAggregator())
+                .<Map<String, Object>, List<DQICheckResult>>
+                        chunk(CHUNK_SIZE_RDW)
+                .reader(rdw10DayDataAtRiskReader(null, null))
+                .processor(rdw10DayDataAtRiskItemChecker(null))
+                .listener(rowCheckResultAggregator())
+                .writer(rdwRowCheckResultWriter())
+                .build();
+    }
+
+    @Bean
+    @StepScope
+    public MyBatisPagingItemReader<Map<String, Object>> rdw10DayDataAtRiskReader(
+            @Value("#{jobParameters[date]}") String date,
+            @Value("#{jobParameters[isNormalVarNotStressVar]}") Boolean isNormalVarNotStressVar
+    ) {
+        String prevDay = getDayBefore(date);
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("today", date);
+        params.put("prevDay", prevDay);
+        params.put("isNormalVarNotStressVar", isNormalVarNotStressVar ? 1 : 0);
+
+        return new MyBatisPagingItemReaderBuilder<Map<String, Object>>()
+                .sqlSessionFactory(sqlSessionFactory)
+                .queryId(String.join(".",
+                        CapitalMultiplierVarMapper.class.getCanonicalName(),
+                        "get10DayDataAtRisk"))
+                .parameterValues(params)
+                .pageSize(CHUNK_SIZE_RDW)
+                .build();
+    }
+
+    @Bean
+    @StepScope
+    public RDW10DayDataAtRiskRowChecker rdw10DayDataAtRiskItemChecker(
+            @Value("#{jobParameters[checkList]}") String serialisedCheckList
+    ) {
+        List<Check<?, ?>> checkList =
+                CheckSerialiser.deserialiseCheckList(serialisedCheckList);
+        return new RDW10DayDataAtRiskRowChecker(checkList);
+    }
+
+    @Bean
+    @StepScope
+    public RDWRowCheckResultWriter rdwRowCheckResultWriter() {
+        return new RDWRowCheckResultWriter();
     }
 
 }
