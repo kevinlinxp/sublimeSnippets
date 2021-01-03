@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+public class UVRFileBufferedReaderFactory implements BufferedReaderFactory {
+  @Override
+  public BufferedReader create(Resource resource, String encoding)
+      throws IOException {
+    if (resource.getFilename().endsWith(".gz")) {
+      return new BufferedReader(new InputStreamReader(
+          new GZIPInputStream(resource.getInputStream()), encoding));
+    } else {
+      return new BufferedReader(new InputStreamReader(
+          resource.getInputStream(), encoding));
+    }
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-batch.step.chunk.reader.sample-BufferedReaderFactory</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
