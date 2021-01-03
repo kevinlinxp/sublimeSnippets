@@ -15,7 +15,7 @@ public class UVRFileBufferedReaderFactory implements BufferedReaderFactory {
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-batch.step.chunk.reader.sample-BufferedReaderFactory</tabTrigger>
+  <tabTrigger>spring-batch.step.chunk.item-reader.gzip-adaptive-BufferedReaderFactory</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>
