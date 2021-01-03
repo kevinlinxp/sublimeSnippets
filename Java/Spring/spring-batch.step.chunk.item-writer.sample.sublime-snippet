@@ -61,7 +61,7 @@ public class UVRRowCheckResultWriter implements ItemWriter<List<DQICheckResult>>
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-batch.step.chunk.writer</tabTrigger>
+  <tabTrigger>spring-batch.step.chunk.item-writer.sample</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>
