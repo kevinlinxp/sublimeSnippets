@@ -1,0 +1,33 @@
+<snippet>
+  <content><![CDATA[
+<plugin>
+  <artifactId>maven-deploy-plugin</artifactId>
+  <executions>
+    <execution>
+      <id>default-deploy</id>
+      <phase>none</phase>
+    </execution>
+    <execution>
+      <id>upload-zip</id>
+      <phase>deploy</phase>
+      <goals>
+        <goal>deploy-file</goal>
+      </goals>
+      <configuration>
+        <file>\${project.build.directory}/\${project.artifactId}-\${project.version}.zip</file>
+        <repositoryId>\${project.distributionManagement.repository.id}</repositoryId>
+        <url>\${project.distributionManagement.repository.url}</url>
+        <groupId>\${project.groupId}</groupId>
+        <artifactId>\${project.artifactId}</artifactId>
+        <version>\${project.version}</version>
+        <packaging>zip</packaging>
+      </configuration>
+    </execution>
+  </executions>
+</plugin>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mvn.pom.build-plugins-plugin.maven-deploy-plugin.deploy-file.zip</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, text.xml</scope>
+</snippet>
