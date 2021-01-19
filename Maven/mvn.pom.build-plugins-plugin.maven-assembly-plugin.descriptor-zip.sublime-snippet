@@ -11,7 +11,7 @@
   <includeBaseDirectory>false</includeBaseDirectory>
   <fileSets>
     <fileSet>
-      <directory>${project.build.directory}</directory>
+      <directory>\${project.build.directory}</directory>
       <includes>
         <include>*.jar</include>
         <include>BCBS239_Run_PROD.bat</include>
