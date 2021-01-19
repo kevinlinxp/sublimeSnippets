@@ -1,0 +1,40 @@
+<snippet>
+  <content><![CDATA[
+pom.xml:
+<distributionManagement>
+  <repository>
+    <id>your-releases-repo</id>
+    <name>Your Releases</name>
+    <url>https://your-domain.com/artifactory/repo1</url>
+  </repository>
+  <snapshotRepository>
+    <id>your-snapshots-repo</id>
+    <name>Your Snapshots</name>
+    <url>https://your-domain.com/artifactory/repo2</url>
+  </snapshotRepository>
+</distributionManagement>
+
+
+settings.xml:
+...
+<servers>
+    ...
+    <server>
+        <id>your-releases-repo</id>
+        <username>your-user-name</username>
+        <password>VqofJgyDmgGWap5F91TWjQrNYAa</password>
+    </server>
+    <server>
+        <id>your-snapshots-repo</id>
+        <username>your-user-name</username>
+        <password>VqofJgyDmgGWap5F91TWjQrNYAa</password>
+    </server>
+    ...
+</servers>
+...
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mvn.pom.distributionManagement</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.xml, text.plain</scope>
+</snippet>
