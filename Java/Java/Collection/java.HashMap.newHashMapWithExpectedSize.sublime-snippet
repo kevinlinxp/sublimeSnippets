@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+public static <K, V> HashMap<K, V> newHashMapWithExpectedSize(int expectedSize) {
+    return new HashMap<>((int) (expectedSize / 0.75) + 1);
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java.HashMap.newHashMapWithExpectedSize</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
