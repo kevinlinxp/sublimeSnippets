@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+task copyBats(type: Copy) {
+  from('src/scripts') {
+    include '*.bat'
+  }
+  into "\$buildDir"
+
+  filter { line ->
+    if (line.startsWith('SET JAR_ARTEFACT=')) {
+      line = "SET JAR_ARTEFACT=\${project.archivesBaseName}-\${project.version}.jar";
+    }
+    line
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>gradle.build.task.copyWithFilter</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.groovy, text.plain</scope>
+</snippet>

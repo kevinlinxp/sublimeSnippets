@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+task createZipDist(type: Zip) {
+  dependsOn jar
+  dependsOn copyBats
+  from("\$buildDir") {
+    include '*.bat'
+    include '*.jar'
+  }
+
+  destinationDirectory = buildDir
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>gradle.build.task.zip</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.groovy, text.plain</scope>
+</snippet>

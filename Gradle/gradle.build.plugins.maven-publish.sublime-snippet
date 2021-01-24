@@ -1,0 +1,28 @@
+<snippet>
+  <content><![CDATA[
+plugins {
+  id 'maven-publish'
+}
+
+publishing {
+  publications {
+    myApp(MavenPublication) {
+      // from(components.java)
+      artifact source: createZipDist //, extension: 'zip'
+    }
+    // The block above will generate the following task that will be invoked when the task "publish" or "publishToMavenLocal" is called respectively:    
+    // - task ':publishMyAppPublicationToMavenRepository'
+    // - task ':publishMyAppPublicationToMavenLocal'
+    // 
+  }
+
+  repositories {
+    // ...
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>gradle.build.plugins.maven-publish</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.groovy, text.plain</scope>
+</snippet>
