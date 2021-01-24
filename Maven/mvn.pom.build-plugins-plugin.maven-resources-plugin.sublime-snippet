@@ -1,0 +1,32 @@
+<snippet>
+  <content><![CDATA[
+<plugin>
+    <artifactId>maven-resources-plugin</artifactId>
+    <executions>
+        <execution>
+            <id>package-shell-script</id>
+            <phase>prepare-package</phase>
+            <goals>
+                <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+                <outputDirectory>\${project.build.directory}</outputDirectory>
+                <resources>
+                    <resource>
+                        <filtering>true</filtering>
+                        <directory>\${basedir}/src/scripts</directory>
+                        <includes>
+                            <include>run_*.sh</include>
+                        </includes>
+                    </resource>
+                </resources>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mvn.pom.build-plugins-plugin.maven-resources-plugin</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, text.xml</scope>
+</snippet>
