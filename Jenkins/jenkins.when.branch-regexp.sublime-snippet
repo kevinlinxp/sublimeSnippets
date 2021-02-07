@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+when { branch pattern: "${1:(release|hotfix)/.+}", comparator: "REGEXP" }
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jenkins.when.branch-regexp</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.groovy, text.plain</scope>
+</snippet>
