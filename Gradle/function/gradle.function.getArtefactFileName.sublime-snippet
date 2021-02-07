@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+def getArtefactFileName() {
+    return jar${1}bootJar.archiveFileName.get()
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>gradle.function.getArtefactFileName</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.groovy, text.plain</scope>
+</snippet>
