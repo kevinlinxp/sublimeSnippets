@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+new Date().format("${1:yyyyMMdd}", TimeZone.getTimeZone("${2:Australia/Sydney}"))
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>groovy.date.format-with-timeZone</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.groovy, text.plain</scope>
+</snippet>
