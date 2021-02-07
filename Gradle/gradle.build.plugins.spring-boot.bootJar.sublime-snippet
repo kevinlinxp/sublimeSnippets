@@ -2,6 +2,13 @@
 <content><![CDATA[
 bootJar {
   mainClassName = 'com.exapmle.Application'
+  manifest {
+    attributes([
+        'Commit-ID': "${gitHash}",
+        'Built-By' : 'Some One'
+    ])
+  }
+  classifier getArtefactClassifier()
   destinationDirectory = buildDir
 }
 ]]></content>
