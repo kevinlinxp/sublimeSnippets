@@ -4,7 +4,7 @@ bootJar {
   mainClassName = 'com.exapmle.Application'
   manifest {
     attributes([
-        'Commit-ID': "${gitHash}",
+        'Commit-ID': "\${gitHash}",
         'Built-By' : 'Some One'
     ])
   }
