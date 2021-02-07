@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+static def getArtefactClassifier() {
+    String date = getCurrentDate()
+    String buildNumber = "\${BUILD_NUMBER}"
+    buildNumber != null ? "\${date}-\${buildNumber}" : "\${date}-local"
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jenkins.function.getArtefactClassifier.using-buildNumber</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.groovy, text.plain</scope>
+</snippet>
