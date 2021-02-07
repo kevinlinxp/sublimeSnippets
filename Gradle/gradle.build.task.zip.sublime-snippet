@@ -7,7 +7,7 @@ task createZipDist(type: Zip) {
     include '*.bat'
     include '*.jar'
   }
-
+  classifier getArtefactClassifier()
   destinationDirectory = buildDir
 }
 ]]></content>
