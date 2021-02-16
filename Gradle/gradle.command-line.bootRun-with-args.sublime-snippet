@@ -1,7 +1,5 @@
 <snippet>
 <content><![CDATA[
-./gradlew run --args='-r DATA_CHECK?date=20201111&file-pattern=*&field=...'
-
 ./gradlew bootRun --args='--spring.profiles.active=stable1'
 
 SPRING_PROFILES_ACTIVE=stable1 SERVER_PORT=8082 ./gradlew bootRun
