@@ -8,7 +8,7 @@ task copyBats(type: Copy) {
 
   filter { line ->
     if (line.startsWith('SET JAR_ARTEFACT=')) {
-      line = "SET JAR_ARTEFACT=${getArtefactFileName()}"
+      line = "SET JAR_ARTEFACT=${artefactFileName}"
     }
     line
   }
