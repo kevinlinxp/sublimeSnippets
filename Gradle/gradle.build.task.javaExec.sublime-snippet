@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+task ${1:run}(type: JavaExec) {
+    group ${2:'application'}
+    classpath = sourceSets.main.runtimeClasspath
+    main = ${3:main_class_name}
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>gradle.build.task.javaExec</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.groovy, text.plain</scope>
+</snippet>
