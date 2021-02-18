@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+# In ${1}:
+spring:
+  datasource:
+  	password: DEC(real-password-to-protect)
+
+# The command line:
+mvn jasypt:encrypt \
+-Djasypt.plugin.path="${1:file:src/main/resources/application-local.yml}" \
+-Djasypt.encryptor.password="${2:the-jasypt.encryptor.password-value}"
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mvn.command-line.jasypt.encrypt-file</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
