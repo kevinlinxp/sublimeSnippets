@@ -5,5 +5,5 @@ jar xf ${1:config-server.jar}
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>jar.unarchive,xf</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>ource.shell, text.plain</scope>
+  <scope>source.shell, text.plain</scope>
 </snippet>

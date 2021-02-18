@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI \
+algorithm=PBEWithMD5AndDES \
+password=${1:the-jasypt.encryptor.password-value} \
+input="${2:text-to-encrypt}"
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java.jasypt.encrypt</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
