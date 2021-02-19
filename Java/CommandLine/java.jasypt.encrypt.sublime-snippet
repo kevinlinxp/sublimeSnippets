@@ -1,7 +1,9 @@
 <snippet>
   <content><![CDATA[
+# @Deprecated Use snippet "java.cryptography.jasypt.StringEncryptor" instead.
+# Using command line is not recommended due to its unpredictable implementation details.
+# A more reliable way is to use the same StringEncryptor instance to encode and decode text programmatically.
 java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI \
-algorithm=PBEWithMD5AndDES \
 password=${1:the-jasypt.encryptor.password-value} \
 input="${2:text-to-encrypt}"
 ]]></content>
