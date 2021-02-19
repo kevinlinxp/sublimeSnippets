@@ -1,19 +1,14 @@
 <snippet>
   <content><![CDATA[
-# In ${1}:
-spring:
-  datasource:
-  	password: DEC(real-password-to-protect)
-
 # @Deprecated Use snippet "java.cryptography.jasypt.StringEncryptor" instead.
 # Using command line is not recommended due to its unpredictable implementation details.
 # A more reliable way is to use the same StringEncryptor instance to encode and decode text programmatically.
-mvn jasypt:encrypt \
--Djasypt.plugin.path="${1:file:src/main/resources/application-local.yml}" \
--Djasypt.encryptor.password="${2:the-jasypt.encryptor.password-value}"
+mvn jasypt:encrypt-value \
+-Djasypt.encryptor.password="${2:the-jasypt.encryptor.password-value}" \
+-Djasypt.plugin.value="${1:theValueYouWantToEncrypt}"
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>mvn.command-line.jasypt.encrypt-file</tabTrigger>
+  <tabTrigger>mvn.command-line.jasypt.encrypt-value</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.shell, text.plain</scope>
 </snippet>
