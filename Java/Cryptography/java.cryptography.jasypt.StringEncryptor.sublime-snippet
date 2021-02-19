@@ -1,0 +1,23 @@
+<snippet>
+  <content><![CDATA[
+@Bean("jasyptStringEncryptor")
+public StringEncryptor stringEncryptor() {
+  PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
+  SimpleStringPBEConfig config = new SimpleStringPBEConfig();
+  config.setPassword("${1:your-encryptor-password-value}");
+  config.setAlgorithm("PBEWITHHMACSHA512ANDAES_256");
+  config.setKeyObtentionIterations("1000");
+  config.setPoolSize("1");
+  config.setProviderName("SunJCE");
+  config.setSaltGeneratorClassName("org.jasypt.salt.RandomSaltGenerator");
+  config.setIvGeneratorClassName("org.jasypt.iv.RandomIvGenerator");
+  config.setStringOutputType("base64");
+  encryptor.setConfig(config);
+  return encryptor;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>java.cryptography.jasypt.StringEncryptor</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
