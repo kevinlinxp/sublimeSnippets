@@ -5,7 +5,7 @@
 SPRING_PROFILES_ACTIVE=stable1 SERVER_PORT=8082 ./gradlew bootRun
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>gradle.command-line.bootRun-with-args</tabTrigger>
+  <tabTrigger>gradle.command-line.task.bootRun-with-args</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.shell, text.plain</scope>
 </snippet>
