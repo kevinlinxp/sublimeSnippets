@@ -1,0 +1,19 @@
+<snippet>
+<content><![CDATA[
+rem Find out what this is doing...
+C:\NotBackedUp\Dev\Java\jdk1.8.0_261\bin\java.exe ^
+-XX:MaxPermSize=512m ^
+-XX:+HeapDumpOnOutOfMemoryError ^
+-Xmx2048m ^
+-Dfile.encoding=UTF-8 ^
+-Duser.country=US ^
+-Duser.language=en ^
+-Duser.variant ^
+-cp C:\NotBackedUp\.gradle\wrapper\dists\gradle-6.8.1-bin\8reeqy1kgcehggz73qaa4c7aa\gradle-6.8.1\lib\gradle-launcher-6.8.1.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 6.8.1 ^
+--args="-r BCBS-44-SKY-PRO-DQ-VAL-06?date=20201111&file-pattern=*&field=M_RESULTV"
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>gradle.command-line.gradle-launcher.jar.GradleDaemon</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
