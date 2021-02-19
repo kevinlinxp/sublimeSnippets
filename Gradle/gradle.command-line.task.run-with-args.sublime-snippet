@@ -3,7 +3,7 @@
 ./gradlew run --args='-r DATA_CHECK?date=20201111&file-pattern=*&field=...'
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>gradle.command-line.run-with-args</tabTrigger>
+  <tabTrigger>gradle.command-line.task.run-with-args</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.shell, text.plain</scope>
 </snippet>
