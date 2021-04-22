@@ -1,0 +1,64 @@
+<snippet>
+  <content><![CDATA[
+@Configuration
+public class BatchDeleteRawReportsJobConfig {
+
+    @Autowired
+    private JobBuilderFactory jobBuilderFactory;
+
+    @Autowired
+    private StepBuilderFactory stepBuilderFactory;
+
+    @Bean(name = JOB_FILE_DELETE_RAW_REPORTS)
+    public Job job() {
+        return this.jobBuilderFactory
+                .get(JOB_FILE_DELETE_RAW_REPORTS)
+                .preventRestart()
+                .start(step())
+                .build();
+    }
+
+    @Bean(name = JOB_FILE_DELETE_RAW_REPORTS + "_STEP")
+    public Step step() {
+        return this.stepBuilderFactory
+                .get(JOB_FILE_DELETE_RAW_REPORTS + "_WORKING_STEP")
+                .tasklet(tasklet())
+                .build();
+    }
+
+    @Bean(name = JOB_FILE_DELETE_RAW_REPORTS + "_TASKLET")
+    @StepScope
+    public DeleteRawReportsTasklet tasklet() {
+        return new DeleteRawReportsTasklet();
+    }
+
+}
+
+public class DeleteRawReportsTasklet implements Tasklet {
+
+    private ResultRepository resultRepository;
+
+    @Override
+    public RepeatStatus execute(
+            StepContribution contribution,
+            ChunkContext chunkContext
+    ) {
+        JobParameters jobParameters =
+                contribution.getStepExecution().getJobParameters();
+        String date = jobParameters.getString("date");
+        resultRepository.deleteIndividualReports(date);
+        return RepeatStatus.FINISHED;
+    }
+
+    @Autowired
+    public void setResultRepository(ResultRepository resultRepository) {
+        this.resultRepository = resultRepository;
+    }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-batch.config-java.BatchConfig.tasklet</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

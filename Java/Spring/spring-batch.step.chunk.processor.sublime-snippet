@@ -1,57 +1,50 @@
 <snippet>
   <content><![CDATA[
-public class UVRRowChecker
+public abstract class DQIRowChecker<V, C>
         implements ItemProcessor<Map<String, Object>, List<DQICheckResult>> {
 
-    private final String fieldName;
     private final List<Check<?, ?>> checkList;
 
-    @Value("#{stepExecutionContext['fileName']}")
-    private Resource resource;
+    private RulesMetaDataHelper rulesMetaDataHelper;
 
-    public UVRRowChecker(
-            String fieldName,
-            List<Check<?, ?>> checkList
-    ) {
-        this.fieldName = fieldName;
-        this.checkList = checkList;
+    protected DQIRowChecker(List<Check<?, ?>> checkList) {
+        this.checkList = Collections.unmodifiableList(checkList);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<DQICheckResult> process(Map<String, Object> item) {
-
-        Object valueForTest = getValueForTest(item);
-        String portfolio = getPortfolio(item);
+        V valueForTest = getValue(item);
+        C contextValue = getContextValue(item);
 
         List<DQICheckResult> dqiCheckResultList = new ArrayList<>();
         for (Check<?, ?> check : checkList) {
             List<String> failMessages = new ArrayList<>();
 
-            @SuppressWarnings("unchecked")
             boolean passed = ((Check<Object, Object>) check).apply(
                     valueForTest,
-                    item,
+                    contextValue,
                     failMessages);
 
-            Rule<?, ?> rule = check.getRule();
+            Rule<?> rule = check.getRule();
             String uniqueRowIdentifier = getUniqueRowIdentifier(item);
-            DQICheckResult rowCheckResult =
-                    new DQICheckResult(uniqueRowIdentifier);
-            rowCheckResult.setFieldName(fieldName);
 
-            rowCheckResult.setRuleId(rule.getId());
-            rowCheckResult.setRuleName(rule.getName());
-            rowCheckResult.setDataTerm(rule.getDataTerm());
-            rowCheckResult.setPortfolio(portfolio);
-            rowCheckResult.setRuleDescription(rule.getPassCriteriaDescription());
+            RuleMetaData ruleMetaData =
+                    rulesMetaDataHelper.getRuleMetaData(rule.getId());
+
+            DQICheckResult rowCheckResult =
+                    new DQICheckResult(ruleMetaData, uniqueRowIdentifier);
+            rowCheckResult.setPortfolio(getPortfolio(item));
             rowCheckResult.setFileName(getSourceName());
+            rowCheckResult.setFieldName(getFieldName());
 
             String failMessage = String.join("\n", failMessages);
             rowCheckResult.setFailsMessage(failMessage);
 
             dqiCheckResultList.add(rowCheckResult);
             if (!passed) {
-                rowCheckResult.setFieldValue(getValueForDisplay(valueForTest));
+                rowCheckResult.setFieldValue(((Check<Object, Object>) check)
+                        .getFormattedValueTested(valueForTest));
                 break;
             }
         }
@@ -59,33 +52,21 @@ public class UVRRowChecker
         return dqiCheckResultList;
     }
 
-    private String getSourceName() {
-        return resource.getFilename();
-    }
+    protected abstract String getSourceName();
 
-    private Object getValueForTest(Map<String, Object> rowData) {
-        return rowData.get(fieldName);
-    }
+    protected abstract String getFieldName();
 
-    protected String getPortfolio(Map<String, Object> rowData) {
-        return (String) rowData.get("M_PTFOLIO");
-    }
+    protected abstract String getUniqueRowIdentifier(Map<String, Object> item);
 
-    private String getUniqueRowIdentifier(Map<String, Object> rowData) {
-        return Stream.of(
-                "M_LABEL",
-                "M_DEALNUM",
-                "M_PTFOLIO",
-                "M_DATE",
-                "M_PL_CUR",
-                "M_TRN_FMLY",
-                "M_TRN_GRP",
-                "M_TRN_TYPE",
-                "M_INSTRUMENT",
-                "M_CUR")
-                .map(rowData::get)
-                .map(Object::toString)
-                .collect(Collectors.joining("#"));
+    protected abstract V getValue(Map<String, Object> item);
+
+    protected abstract C getContextValue(Map<String, Object> item);
+
+    protected abstract String getPortfolio(Map<String, Object> item);
+
+    @Autowired
+    public void setRulesMetaDataHelper(RulesMetaDataHelper rulesMetaDataHelper) {
+        this.rulesMetaDataHelper = rulesMetaDataHelper;
     }
 
 }

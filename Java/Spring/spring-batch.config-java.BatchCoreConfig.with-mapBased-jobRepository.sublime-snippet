@@ -1,0 +1,40 @@
+<snippet>
+  <content><![CDATA[
+@EnableBatchProcessing
+@Configuration
+public class BatchCoreConfig extends DefaultBatchConfigurer {
+
+    public static final String BCBS_TASK_EXECUTOR = "bcbsTaskExecutor";
+
+    @Override
+    public void setDataSource(DataSource dataSource) {
+    }
+
+    @Bean(name = BCBS_TASK_EXECUTOR)
+    public TaskExecutor taskExecutor() {
+        ThreadPoolTaskExecutor t = new ThreadPoolTaskExecutor();
+        t.setCorePoolSize(4);
+        t.setMaxPoolSize(4);
+        // t.setQueueCapacity(50);
+        t.setAllowCoreThreadTimeOut(true);
+        t.setKeepAliveSeconds(120);
+        return t;
+    }
+
+    @Bean
+    public UVRFilesJobExecutionLogger uvrFilesJobExecutionLogger() {
+        return new UVRFilesJobExecutionLogger();
+    }
+
+    @Bean
+    public RDWDataJobExecutionLogger rdwJobExecutionLogger() {
+        return new RDWDataJobExecutionLogger();
+    }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-batch.config-java.BatchCoreConfig.with-mapBased-jobRepository</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

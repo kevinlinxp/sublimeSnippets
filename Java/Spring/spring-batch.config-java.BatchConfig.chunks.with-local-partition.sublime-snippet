@@ -1,0 +1,137 @@
+<snippet>
+  <content><![CDATA[
+@Configuration
+public class BatchHistoricalPnlDQSourceJobConfig {
+
+    public static final String DELIMITER = ";";
+
+    @Autowired
+    private JobBuilderFactory jobBuilderFactory;
+
+    @Autowired
+    private StepBuilderFactory stepBuilderFactory;
+
+    @Autowired
+    @Qualifier(BCBS_TASK_EXECUTOR)
+    private TaskExecutor taskExecutor;
+
+    @Autowired
+    private UVRFilesJobExecutionLogger uvrFilesJobExecutionLogger;
+
+    @Bean(name = JOB_UVR_HISTORICAL_PNL_DQ_SOURCE_CHECK)
+    public Job job() {
+        return this.jobBuilderFactory
+                .get(JOB_UVR_HISTORICAL_PNL_DQ_SOURCE_CHECK)
+                .preventRestart()
+                .listener(uvrFilesJobExecutionLogger)
+                .start(partitioningStep())
+                .build();
+    }
+
+    @Bean(name = JOB_UVR_HISTORICAL_PNL_DQ_SOURCE_CHECK + "_PARTITIONING_STEP")
+    public Step partitioningStep() {
+        Step workingStep = workingStep();
+        return this.stepBuilderFactory
+                .get(JOB_UVR_HISTORICAL_PNL_DQ_SOURCE_CHECK +
+                        "_PARTITIONING_STEP")
+                .partitioner(
+                        workingStep.getName(),
+                        partitioner(null)
+                )
+                // .aggregator(new DefaultStepExecutionAggregator()) // By
+                // Default
+                .taskExecutor(taskExecutor)
+                .step(workingStep)
+                // The gridSize attribute determines the number of separate
+                // step executions to create, so it can be matched to the
+                // size of the thread pool in the TaskExecutor. Alternatively,
+                // it can be set to be larger than the number of threads
+                // available, which makes the blocks of work smaller.
+                .gridSize(1)
+                .build();
+    }
+
+    @Bean(name = JOB_UVR_HISTORICAL_PNL_DQ_SOURCE_CHECK + "_PARTITIONER")
+    @JobScope
+    public Partitioner partitioner(
+            @Value("#{jobParameters[fileNames]}") String fileNames
+    ) {
+        List<String> uvrFiles = deserialiseToListOfStrings(fileNames);
+        UvrFilesPartitioner uvrFilesPartitioner = new UvrFilesPartitioner();
+        uvrFilesPartitioner.setUvrFiles(uvrFiles);
+        return uvrFilesPartitioner;
+    }
+
+    @Bean(name = JOB_UVR_HISTORICAL_PNL_DQ_SOURCE_CHECK + "_WORKING_STEP")
+    public Step workingStep() {
+        return this.stepBuilderFactory
+                .get(JOB_UVR_HISTORICAL_PNL_DQ_SOURCE_CHECK + "_WORKING_STEP")
+                .listener(uvrFilesJobExecutionLogger)
+                .listener(summaryAggregator())
+                .<Map<String, Object>, List<DQICheckResult>>chunk(JobConstants.CHUNK_SIZE)
+                .reader(itemReader(null))
+                .processor(itemChecker(null, null))
+                .listener(summaryAggregator())
+                .writer(resultWriter())
+                .build();
+    }
+
+    @Bean(name = JOB_UVR_HISTORICAL_PNL_DQ_SOURCE_CHECK + "_ITEM_READER")
+    @StepScope
+    public FlatFileItemReader<Map<String, Object>> itemReader(
+            @Value("#{stepExecutionContext['fileName']}") Resource resource
+    ) {
+        DelimitedLineTokenizer delimitedLineTokenizer =
+                new DelimitedLineTokenizer(DELIMITER);
+
+        Map<String, FieldParser<?>> headerToFieldParser = new HashMap<>();
+        headerToFieldParser.put("M_RESULTV", new PipeDelimitedFieldParser());
+        UVRFieldSetMapper uvrFieldSetMapper =
+                new UVRFieldSetMapper(headerToFieldParser);
+
+        DefaultLineMapper<Map<String, Object>> lineMapper =
+                new DefaultLineMapper<>();
+        lineMapper.setLineTokenizer(delimitedLineTokenizer);
+        lineMapper.setFieldSetMapper(uvrFieldSetMapper);
+
+        return new FlatFileItemReaderBuilder<Map<String, Object>>()
+                .name(JOB_UVR_HISTORICAL_PNL_DQ_SOURCE_CHECK + "_ITEM_READER")
+                .resource(resource)
+                .bufferedReaderFactory(new UVRFileBufferedReaderFactory())
+                .linesToSkip(1)
+                .skippedLinesCallback(line ->
+                        delimitedLineTokenizer.setNames(line.split(DELIMITER)))
+                .lineMapper(lineMapper)
+                .build();
+    }
+
+    @Bean(name = JOB_UVR_HISTORICAL_PNL_DQ_SOURCE_CHECK + "_ITEM_PROCESSOR")
+    @StepScope
+    public HistoricalPnlDQSourceUVRRowChecker itemChecker(
+            @Value("#{jobParameters[fieldName]}") String fieldName,
+            @Value("#{jobParameters[checkList]}") String serialisedCheckList
+    ) {
+        List<Check<?, ?>> checkList =
+                CheckSerialiser.deserialiseCheckList(serialisedCheckList);
+        return new HistoricalPnlDQSourceUVRRowChecker(fieldName, checkList);
+    }
+
+    @Bean(name = JOB_UVR_HISTORICAL_PNL_DQ_SOURCE_CHECK + "_SUMMARY_AGGREGATOR")
+    @StepScope
+    public DQIRowCheckResultAggregator summaryAggregator() {
+        return new DQIRowCheckResultAggregator();
+    }
+
+    @Bean(name = JOB_UVR_HISTORICAL_PNL_DQ_SOURCE_CHECK + "_RESULT_WRITER")
+    @StepScope
+    public UVRRowCheckResultWriter resultWriter() {
+        return new UVRRowCheckResultWriter();
+    }
+
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-batch.config-java.BatchConfig.chunks.with-local-partition</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>

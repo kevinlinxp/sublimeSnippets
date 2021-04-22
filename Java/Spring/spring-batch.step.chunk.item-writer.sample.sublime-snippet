@@ -1,19 +1,20 @@
 <snippet>
   <content><![CDATA[
-public class UVRRowCheckResultWriter implements ItemWriter<List<DQICheckResult>> {
+public abstract class DQIRowCheckResultWriter
+        implements ItemWriter<List<DQICheckResult>> {
 
     @Value("#{jobParameters['date']}")
     private String date;
 
-    @Value("#{stepExecutionContext['fileName']}")
-    private Resource resource;
+    @Value("#{jobParameters['resultFilesClassifier']}")
+    private String resultFilesClassifier;
 
     @Autowired
     private ResultRepository resultRepository;
 
     @BeforeStep
     public void beforeStep(StepExecution stepExecution) {
-        resultRepository.deleteIfExists(
+        resultRepository.deleteByRelativePathIfExists(
                 getExceptionDetailsRelativePath(),
                 getSummaryRelativePath()
         );
@@ -28,35 +29,52 @@ public class UVRRowCheckResultWriter implements ItemWriter<List<DQICheckResult>>
 
         resultRepository.createOrAppendExceptionDetails(
                 getExceptionDetailsRelativePath(),
-                exceptions);
+                exceptions
+        );
     }
 
     @AfterStep
     public ExitStatus afterStep(StepExecution stepExecution) {
         ExecutionContext executionContext = stepExecution.getExecutionContext();
+        @SuppressWarnings("unchecked")
         Map<String, DQISummary> summaryMap = (Map<String, DQISummary>)
-                executionContext.get(CONTEXT_KEY_UVR_FILE_CHECK_SUMMARY);
+                executionContext.get(CONTEXT_KEY_DQI_CHECK_SUMMARY);
+
+        List<DQISummary> summaryList = new ArrayList<>(summaryMap.values());
+        summaryList.sort(Comparator
+                .comparing(DQISummary::getPortfolio)
+                .thenComparing(DQISummary::getRuleId)
+        );
+
         resultRepository.writeSummary(
                 getSummaryRelativePath(),
-                new ArrayList<>(summaryMap.values())
+                DQISummary.getEdgDetailHeaders(),
+                summaryList
         );
         summaryMap.clear();
         return null;
     }
 
+    protected String getDate() {
+        return date;
+    }
+
+    protected String getResultFilesClassifier() {
+        return resultFilesClassifier;
+    }
+
+    protected abstract String getSourceName();
+
+    protected abstract Path getReportFileRelativePath(String reportSuffix);
+
     private Path getSummaryRelativePath() {
-        return getReportFileRelativePath("summary.csv");
+        return getReportFileRelativePath(
+                getVersionedCsvFileName("details"));
     }
 
     private Path getExceptionDetailsRelativePath() {
-        return getReportFileRelativePath("exceptions.csv");
-    }
-
-    private Path getReportFileRelativePath(String reportSuffix) {
-        String reportFileName = String.join(".",
-                resource.getFilename(),
-                reportSuffix);
-        return Paths.get(date).resolve(reportFileName);
+        return getReportFileRelativePath(
+                getVersionedCsvFileName("exceptions"));
     }
 }
 ]]></content>
