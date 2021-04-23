@@ -10,7 +10,12 @@ SSL_CERT=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
 
 TARGET_URL=\${ARTIFACTORY_BASE_URL}/\${ARTIFACTORY_REPO_NAME}/\${ARTEFACT_PACKAGE_NAME}
 
-curl -X PUT -H "X-JFrog-Art-Api: \${ARTIFACTORY_API_KEY}" --cacert \${SSL_CERT} -T build/\${ARTEFACT_PACKAGE_NAME} \${TARGET_URL}
+curl \
+-X PUT \
+-H "X-JFrog-Art-Api: \${ARTIFACTORY_API_KEY}" \
+--cacert \${SSL_CERT} \
+-T build/\${ARTEFACT_PACKAGE_NAME} \
+\${TARGET_URL}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>curl.put.upload-to-artifactory</tabTrigger>

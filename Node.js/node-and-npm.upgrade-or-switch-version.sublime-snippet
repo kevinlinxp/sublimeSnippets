@@ -1,11 +1,10 @@
 <snippet>
   <content><![CDATA[
-curl -L -k \
--x http://${1:username}:${2:password}0@${3:someproxy.com}:${4:port} \
-${5:https://your-destination.com}
+sudo npm install n -g
+sudo n [stable|latest|lts|...]
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>curl.with-proxy</tabTrigger>
+  <tabTrigger>node-and-npm.upgrade-or-switch-version</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.shell, text.plain</scope>
 </snippet>

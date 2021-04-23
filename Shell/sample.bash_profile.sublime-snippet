@@ -27,13 +27,13 @@ alias mvn${2:3.5.2}="export M2_HOME=\$HOME/Work/dev/java_tools/apache-maven-${2:
 
 alias gradle${3:3.5.1}="export GRADLE_HOME=\$HOME/Work/dev/java_tools/gradle-${3:3.5.1}"
 
-# Ansible
+## Ansible
 export ANSIBLE_INVENTORY="\$HOME/Work/devOps/ansible/hosts"
 
-# Android
+## Android
 export PATH="\$PATH:\$HOME/Library/Android/sdk/platform-tools"
 
-# ANTLR
+## ANTLR
 export CLASSPATH=".:/usr/local/lib/antlr-4.7-complete.jar:\$CLASSPATH"
 alias antlr4='java -jar /usr/local/lib/antlr-4.7-complete.jar'
 alias grun='java org.antlr.v4.gui.TestRig'
@@ -45,7 +45,10 @@ export PATH="\$PATH:/usr/local/mysql/bin"
 ## PHP
 export PATH="\$PATH:\$HOME/.composer/vendor/bin"
 
-## My own executable folders
+## Ruby (with rbenv)
+export RBENV_VERSION=2.3.4
+
+## My own executables and aliases
 export PATH="\$PATH:\$HOME/bin"
 
 for dir in \$HOME/Work/*
@@ -63,9 +66,15 @@ do
   export PATH="\$PATH:\$dir_scripts_local"
 done
 
-## Others
 alias gitdiffhead="git diff HEAD^ HEAD"
 alias cd-sublime-packages="cd \$HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages"
+
+## Tools init
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "\$(pyenv init -)"
+fi
+
+eval "\$(rbenv init -)"
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>sample.bash_profile</tabTrigger>

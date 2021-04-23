@@ -1,10 +1,10 @@
 <snippet>
   <content><![CDATA[
-curl --location --request POST 'https://api.some-domain.com.au/oauth/v2/aami/token' \
+curl --location --request POST 'https://api.some-domain.com/oauth/v2/some-app/token' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---header 'Authorization: Basic NmZlZDZhMmItZjVhMi00MThjLWFmYTEtYzI3YTYxZTNhZGVlOjBjOGJmNTczLThiYzEtNDhiZS05M2JjLWQ1ZjMxYTFhZjMwMw==' \
---data-urlencode 'username=cqqlin@gmail.com' \
---data-urlencode 'password=1qaZXsw2' \
+--header 'Authorization: Basic NmZlZDZhMmItZjVhMi00MThjLWFmYTEtYzI3YTYxZTNhOBVlOjBjOGJmNTczLThiYzEtNDhiZS05M2JjLWQ1ZjMxYTFhZjMwMw==' \
+--data-urlencode 'username=some-user' \
+--data-urlencode 'password=some-password' \
 --data-urlencode 'grant_type=password' \
 --data-urlencode 'scope=openid resource.READ resource.WRITE'
 
@@ -14,7 +14,7 @@ curl --location --request GET 'https://api.some-domain.com.au/some-api-name/api/
 --header 'X-Client-Version: 1' \
 --header 'X-Request-Id: 1' \
 --header 'X-Client-Id: 1' \
---header 'Authorization: Bearer KJyv1nWZwrcbtUHYpYiV1CMaUmm7GRMAcC0QzWtkoWjms7dEpKdGYQ'
+--header 'Authorization: Bearer KJyv1nWZwrcbtUHYpYiV1YGaUmm7GRMAcC0QzWtkoWjms7dEpKdGYQ'
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>curl.oauth</tabTrigger>
