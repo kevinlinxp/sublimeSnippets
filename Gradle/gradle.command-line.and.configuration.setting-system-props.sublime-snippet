@@ -1,0 +1,39 @@
+<snippet>
+<content><![CDATA[
+# Option 1 - via command line -D option
+./gradlew \
+-Dgradle.wrapperUser=myuser \
+-Dgradle.wrapperPassword=mypassword \
+-Dgradle.user.home=path/to/directory \
+-Dhttp.proxyHost=myproxy.com \
+-Dhttp.proxyPort=80 \
+-Dhttp.nonProxyHosts=intra-net.service|localhost \
+-Dhttps.proxyHost=myproxy.com \
+-Dhttps.proxyPort=80 \
+-Dhttps.nonProxyHosts=intra-net.service|localhost \
+build
+
+# Option 2 - via "systemProp.xxx" in gradle.properties
+systemProp.gradle.wrapperUser=myuser
+systemProp.gradle.wrapperPassword=mypassword
+systemProp.gradle.user.home=path/to/directory
+systemProp.http.proxyHost=myproxy.com
+systemProp.http.proxyPort=80
+systemProp.http.nonProxyHosts=intra-net.service|localhost
+systemProp.https.proxyHost=myproxy.com
+systemProp.https.proxyPort=80
+systemProp.https.nonProxyHosts=intra-net.service|localhost
+
+# Precedence:
+1. Command line -Dxxx options
+2. "systemProp.xxx" in GRADLE_USER_HOME/gradle.properties
+3. "systemProp.xxx" in %{projectRoot}/gradle.properties
+4. "systemProp.xxx" in <Gradle_Installation_Directory>/gradle.properties
+
+# In a multi project build, “systemProp.xxx” set in any project except the root will be ignored.
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>gradle.command-line.and.configuration.setting-system-props</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

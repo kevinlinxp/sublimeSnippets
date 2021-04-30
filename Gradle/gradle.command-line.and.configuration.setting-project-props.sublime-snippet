@@ -1,0 +1,30 @@
+<snippet>
+<content><![CDATA[
+# Option 1 - via environment variable, -P options or -Dorg.gradle.project.xxx options in a command line
+ORG_GRADLE_PROJECT_foo=fooValue \
+./gradlew \
+-Pbar=barValue \
+-Dorg.gradle.project.baz=bazValue \
+build
+
+# Option 2 - via normal properties in gradle.properties
+foo=fooValue
+bar=barValue
+baz=bazValue
+artifactoryApiKey=***
+artifactoryPassword=***
+artifactoryMavenRepoUrl=https://artifactory.com/artifactory/my-repo
+
+# Precedence:
+1. Command line -Pxxx options
+2. Command line -Dorg.gradle.project.xxx options ("org.gradle.project.xxx" system properties)
+3. GRADLE_USER_HOME/gradle.properties
+4. %{projectRoot}/gradle.properties
+5. <Gradle_Installation_Directory>/gradle.properties
+6. Environment varialbe ORG_GRADLE_PROJECT_xxx
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>gradle.command-line.and.configuration.setting-project-props</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
