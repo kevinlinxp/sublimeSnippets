@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-doReturn(${1:value}).when(${2:mockOrSpy}).${3:method}(${0});
+doReturn(${1:value}).when(${2:mockOrSpy}).${3:method}(${4});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>junit.mockito.doReturn-when</tabTrigger>

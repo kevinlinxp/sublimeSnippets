@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-when(${1:mock}.${2:method()}).thenThrow(${0});
+when(${1:mockOrSpy}.${2:method()}).thenThrow(${3});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>junit.mockito.when-thenThrow</tabTrigger>

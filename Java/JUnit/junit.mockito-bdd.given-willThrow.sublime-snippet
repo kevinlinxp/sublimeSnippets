@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-given(${1:mock}.${2:method()}).willThrow(${0});
+given(${1:mockOrSpy}.${2:method()}).willThrow(${3});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>junit.mockito-bdd.given-willThrow</tabTrigger>

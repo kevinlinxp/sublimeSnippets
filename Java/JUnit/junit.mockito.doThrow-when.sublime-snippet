@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-doThrow(${1:IllegalArgumentException}.class).when(${2:mockOrSpy}).${3:method}(${0});
+doThrow(${1:IllegalArgumentException}.class).when(${2:mockOrSpy}).${3:method}(${4});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>junit.mockito.doThrow-when</tabTrigger>

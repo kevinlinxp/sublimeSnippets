@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-verify(${1:mock}, times(${2:2})).${3:method}(${0});
+verify(${1:mockOrSpy}, times(${2:2})).${3:method}(${4});
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>junit.mockito.verify-times</tabTrigger>
