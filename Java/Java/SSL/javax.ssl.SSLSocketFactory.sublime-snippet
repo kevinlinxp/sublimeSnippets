@@ -1,0 +1,38 @@
+<snippet>
+  <content><![CDATA[
+private SSLSocketFactory sslSocketFactory() throws Exception {
+  String keyStoreFile = env.getProperty(MQ_SSL_KEY_STORE);
+  String keyStoreType = env.getProperty(MQ_SSL_KEY_STORE_TYPE, "JKS");
+  String keyStorePass = env.getProperty(MQ_SSL_KEY_STORE_PSSWD);
+  String trustStoreFile = env.getProperty(MQ_SSL_TRUST_STORE); // optional
+  String trustStoreType = env.getProperty(MQ_SSL_TRUST_STORE_TYPE, "JKS");
+  String trustStorePass = env.getProperty(MQ_SSL_TRUST_STORE_PSSWD);
+
+  final char[] keyPassphrase = keyStorePass.toCharArray();
+  final KeyStore ks = KeyStore.getInstance(keyStoreType);
+  ks.load(new FileInputStream(keyStoreFile), keyPassphrase);
+  final KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
+  kmf.init(ks, keyPassphrase);
+
+  TrustManager[] trustManagers = null;
+  if (StringUtils.isNotBlank(trustStoreFile)) {
+    // Truststore contains CA certificate. Load it into Java Trust Store
+    final char[] trustPassphrase = trustStorePass.toCharArray();
+    final KeyStore tks = KeyStore.getInstance(trustStoreType);
+    tks.load(new FileInputStream(trustStoreFile), trustPassphrase);
+    final TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
+    tmf.init(tks);
+    trustManagers = tmf.getTrustManagers();
+  }
+
+  // load SSLContext with keystore and truststore
+  final SSLContext c = SSLContext.getInstance("TLSv1.2");
+  c.init(kmf.getKeyManagers(), trustManagers, new SecureRandom());
+  return c.getSocketFactory();
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>javax.ssl.SSLSocketFactory</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
