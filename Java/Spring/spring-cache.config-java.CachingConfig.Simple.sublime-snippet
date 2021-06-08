@@ -13,10 +13,11 @@ public class CachingConfig {
         ));
         return cacheManager;
     }
+
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-core.cache.config-java.CachingConfig.Simple</tabTrigger>
+  <tabTrigger>spring-cache.config-java.CachingConfig.Simple</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

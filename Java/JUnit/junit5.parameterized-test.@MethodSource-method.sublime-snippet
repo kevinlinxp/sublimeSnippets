@@ -9,7 +9,7 @@ private static Stream<Arguments> paramsForTest() {
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>junit5.parameterised-test.@MethodSource-method</tabTrigger>
+  <tabTrigger>junit5.parameterized-test.@MethodSource-method</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>
