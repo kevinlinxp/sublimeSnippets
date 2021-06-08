@@ -23,7 +23,7 @@ public void refreshFullNameForUserAccount()
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-core.cache.@annotations.sample</tabTrigger>
+  <tabTrigger>spring-cache.use-annotations</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>
