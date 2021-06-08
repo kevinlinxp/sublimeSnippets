@@ -8,7 +8,7 @@ public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderCon
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-context.config-java.property.PropertySourcesPlaceholderConfigurer-ignoreUnresolvable.sublime-snippet</tabTrigger>
+  <tabTrigger>spring-context.config-java.property.PropertySourcesPlaceholderConfigurer-ignoreUnresolvable</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>
