@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-ArgumentCaptor<${1:Clazz}> ${2:${1/(\w+)(\w*)/\l$1$Captor/g}} = ArgumentCaptor.forClass(${1}.class);
+ArgumentCaptor<${1:Clazz}> ${2:${1/(\w+)(\w*)/\l$1$2Captor/g}} = ArgumentCaptor.forClass(${1}.class);
 
 verify(mockOrSpy).method(${2}.capture());
 
