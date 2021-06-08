@@ -28,7 +28,7 @@ interface UserRepository extends Repository<User, Long> {
 
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-lang.sample.enable-package-non-nullability-runtime-check-for-repositories-in-package-info.java</tabTrigger>
+  <tabTrigger>spring-core.lang.enable-package-non-nullability-runtime-check-for-repositories-in-package-info.java</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>
