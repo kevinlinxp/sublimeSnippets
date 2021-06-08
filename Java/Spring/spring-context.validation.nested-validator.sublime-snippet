@@ -37,7 +37,7 @@ public class CustomerValidator implements Validator {
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-validation.sample.nested-validator</tabTrigger>
+  <tabTrigger>spring-context.validation.nested-validator</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.plain</scope>
 </snippet>

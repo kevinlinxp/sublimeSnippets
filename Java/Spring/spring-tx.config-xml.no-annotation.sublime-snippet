@@ -95,10 +95,9 @@ FooService#updateFoo(Foo) - read-write
     <!-- other <bean/> definitions here -->
 
 </beans>
-
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring-tx.sample.config-xml.no-annotation</tabTrigger>
+  <tabTrigger>spring-tx.config-xml.no-annotation</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>source.java, text.xml, text.plain</scope>
 </snippet>

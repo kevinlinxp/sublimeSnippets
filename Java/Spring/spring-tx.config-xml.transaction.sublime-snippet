@@ -28,11 +28,9 @@ ${1:<!--
   'transactionManager'.
 -->}
 <tx:annotation-driven transaction-manager="${2}"/>
-
-
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring.config-xml.transaction</tabTrigger>
+  <tabTrigger>spring-tx.config-xml.transaction</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.xml, text.plain</scope>
 </snippet>

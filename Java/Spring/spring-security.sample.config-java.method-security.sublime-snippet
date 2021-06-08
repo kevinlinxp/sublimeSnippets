@@ -42,7 +42,6 @@ public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
     return expressionHandler;
   }
 }
-
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>spring-security.sample.config-java.method-security</tabTrigger>

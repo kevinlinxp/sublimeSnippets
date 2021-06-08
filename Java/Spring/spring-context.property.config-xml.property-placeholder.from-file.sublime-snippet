@@ -9,7 +9,7 @@ jdbc.username=sa
 jdbc.password=}
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>spring.config-xml.property-placeholder-location</tabTrigger>
+  <tabTrigger>spring-context.property.config-xml.property-placeholder.from-file</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.xml, text.plain</scope>
 </snippet>
