@@ -25,7 +25,6 @@ interface UserRepository extends Repository<User, Long> {
   // Will throw an IllegalArgumentException in case the emailAddress handed to the method is null.
   Optional<User> findOptionalByEmailAddress(EmailAddress emailAddress);
 }
-
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>spring-core.lang.enable-package-non-nullability-runtime-check-for-repositories-in-package-info.java</tabTrigger>
