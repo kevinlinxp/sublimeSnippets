@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+# Retrieve the value of a key with dots, e.g. 'ca.crt'
+kubectl get configmap myconfig -o jsonpath='{.data.ca\.crt}'
+
+# Get ExternalIPs of all nodes
+kubectl get nodes -o jsonpath='{.items[*].status.addresses[?(@.type=="ExternalIP")].address}'
+
+# Check which nodes are ready
+JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}' \
+ && kubectl get nodes -o jsonpath="\$JSONPATH" | grep "Ready=True"
+
+# List all containerIDs of initContainer of all pods
+# Helpful when cleaning up stopped containers, while avoiding removal of initContainers.
+kubectl get pods --all-namespaces -o jsonpath='{range .items[*].status.initContainerStatuses[*]}{.containerID}{"\n"}{end}' | cut -d/ -f3
+
+# Produce ENV for all pods, assuming you have a default container for the pods, default namespace and the `env` command is supported.
+# Helpful when running any supported command across all pods, not just `env`
+for pod in \$(kubectl get po --output=jsonpath={.items..metadata.name}); do echo \$pod && kubectl exec -it \$pod env; done
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>kubectl.get.output-jsonpath</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

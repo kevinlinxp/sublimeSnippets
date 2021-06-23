@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+kubectl get services --sort-by=.metadata.name                             # List Services Sorted by Name
+kubectl get pods --sort-by='.status.containerStatuses[0].restartCount'    # List pods Sorted by Restart Count
+kubectl get pv --sort-by=.spec.capacity.storage                           # List PersistentVolumes sorted by capacity
+kubectl get events --sort-by=.metadata.creationTimestamp                  # List Events sorted by timestamp
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>kubectl.get.sort-by</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

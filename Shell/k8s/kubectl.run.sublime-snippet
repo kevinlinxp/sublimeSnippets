@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+kubectl run -i --tty busybox --image=busybox -- sh                     # Run pod as interactive shell
+kubectl run nginx --image=nginx -n mynamespace                         # Run pod nginx in a specific namespace
+kubectl run nginx --image=nginx --dry-run=client -o yaml > pod.yaml    # Run pod nginx and write its spec into a file called pod.yaml
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>kubectl.run</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

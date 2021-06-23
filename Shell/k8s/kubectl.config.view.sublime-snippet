@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+kubectl config view                                                             # Show Merged kubeconfig settings.
+kubectl config view -o jsonpath='{.users[?(@.name == "e2e")].user.password}'    # get the password for the e2e user
+kubectl config view -o jsonpath='{.users[].name}'                               # display the first user
+kubectl config view -o jsonpath='{.users[*].name}'                              # get a list of users
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>kubectl.config.view</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

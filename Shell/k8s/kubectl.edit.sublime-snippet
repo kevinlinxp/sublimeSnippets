@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[
+kubectl edit svc/docker-registry                       # Edit the service named docker-registry
+KUBE_EDITOR="nano" kubectl edit svc/docker-registry    # Use an alternative editor
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>kubectl.edit</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

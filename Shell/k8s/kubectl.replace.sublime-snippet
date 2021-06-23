@@ -1,0 +1,16 @@
+<snippet>
+  <content><![CDATA[
+# Replace a pod based on the JSON passed into std
+cat pod.json | kubectl replace -f -
+
+# Force replace, delete and then re-create the resource. Will cause a service outage
+kubectl replace --force -f ./pod.json
+
+# Update a single-container pod's image version (tag) to v4
+kubectl get pod mypod -o yaml | sed 's/\(image: myimage\):.*\$/\1:v4/' | kubectl replace -f -
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>kubectl.replace</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

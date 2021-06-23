@@ -1,0 +1,16 @@
+<snippet>
+  <content><![CDATA[
+kubectl config get-contexts                                   # display list of contexts
+kubectl config current-context                                # display the current-context
+kubectl config use-context my-cluster-name                    # set the default context to my-cluster-name
+
+kubectl config set-context --current --namespace=ggckad-s2    # permanently save the namespace for all subsequent kubectl commands in that context.
+
+kubectl config set-context gce --user=cluster-admin --namespace=foo \
+  && kubectl config use-context gce                           # set a context utilizing a specific username and namespace.
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>kubectl.config.context</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

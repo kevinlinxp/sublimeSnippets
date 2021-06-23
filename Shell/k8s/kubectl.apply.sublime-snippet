@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+kubectl apply -f ./my-manifest.yaml          # create resource(s)
+kubectl apply -f ./my1.yaml -f ./my2.yaml    # create from multiple files
+kubectl apply -f ./dir                       # create resource(s) in all manifest files in dir
+kubectl apply -f https://git.io/vPieo        # create resource(s) from url
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>kubectl.apply</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

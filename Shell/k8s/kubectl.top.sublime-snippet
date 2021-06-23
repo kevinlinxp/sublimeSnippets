@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+kubectl top pod POD_NAME --containers     # Show metrics for a given pod and its containers
+kubectl top pod POD_NAME --sort-by=cpu    # Show metrics for a given pod and sort it by 'cpu' or 'memory'
+
+kubectl top node my-node                  # Show metrics for a given node
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>kubectl.top</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

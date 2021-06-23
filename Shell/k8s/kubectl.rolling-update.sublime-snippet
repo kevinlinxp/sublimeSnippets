@@ -1,0 +1,14 @@
+<snippet>
+  <content><![CDATA[
+kubectl set image deployment/frontend www=image:v2          # Rolling update "www" containers of "frontend" deployment, updating the image
+kubectl rollout history deployment/frontend                 # Check the history of deployments including the revision
+kubectl rollout undo deployment/frontend                    # Rollback to the previous deployment
+kubectl rollout undo deployment/frontend --to-revision=2    # Rollback to a specific revision
+kubectl rollout status -w deployment/frontend               # Watch rolling update status of "frontend" deployment until completion
+kubectl rollout restart deployment/frontend                 # Rolling restart of the "frontend" deployment
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>kubectl.rolling-update</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

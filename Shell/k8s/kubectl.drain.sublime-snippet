@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+kubectl drain my-node    # Drain my-node in preparation for maintenance
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>kubectl.drain</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

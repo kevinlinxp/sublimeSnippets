@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+kubectl exec my-pod -- ls /                     # Run command in existing pod (1 container case)
+kubectl exec --stdin --tty my-pod -- /bin/sh    # Interactive shell access to a running pod (1 container case)
+kubectl exec my-pod -c my-container -- ls /     # Run command in existing pod (multi-container case)
+
+kubectl exec deploy/my-deployment -- ls         # run command in first Pod and first container in Deployment (single- or multi-container cases)
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>kubectl.exec</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
