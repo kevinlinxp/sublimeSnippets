@@ -5,7 +5,7 @@
   <artifactId>maven-failsafe-plugin</artifactId>
   <version>2.22.2</version>
   <configuration>
-    <classesDirectory>${project.build.outputDirectory}</classesDirectory>
+    <classesDirectory>\${project.build.outputDirectory}</classesDirectory>
   </configuration>
   <executions>
     <execution>
