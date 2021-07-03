@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-failsafe-plugin</artifactId>
+  <version>2.22.2</version>
+  <configuration>
+    <classesDirectory>${project.build.outputDirectory}</classesDirectory>
+  </configuration>
+  <executions>
+    <execution>
+      <id>default-integration-test</id>
+      <goals>
+        <goal>integration-test</goal>
+        <goal>verify</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mvn.pom.build-plugins-plugin.maven-failsafe-plugin</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, text.xml</scope>
+</snippet>
