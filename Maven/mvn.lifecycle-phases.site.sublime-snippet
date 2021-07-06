@@ -1,0 +1,22 @@
+<snippet>
+  <content><![CDATA[
+<phases>
+  <phase>pre-site</phase>
+  <phase>site</phase>
+  <phase>post-site</phase>
+  <phase>site-deploy</phase>
+</phases>
+<default-phases>
+  <site>
+    org.apache.maven.plugins:maven-site-plugin:3.3:site
+  </site>
+  <site-deploy>
+    org.apache.maven.plugins:maven-site-plugin:3.3:deploy
+  </site-deploy>
+</default-phases>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mvn.lifecycle-phases.site</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, text.xml</scope>
+</snippet>
