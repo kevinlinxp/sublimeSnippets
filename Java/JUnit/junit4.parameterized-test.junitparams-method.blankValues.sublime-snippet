@@ -2,6 +2,7 @@
   <content><![CDATA[
 private Object[] ${1:params_blankValues}() {
   return new Object[]{
+      new Object[]{null},
       new Object[]{""},
       new Object[]{" "},
       new Object[]{"    "},
