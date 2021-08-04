@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+ALTER TABLE ${1:table_name}
+    ADD DEFAULT ${2:''} for ${3:column_name}
+GO
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mssql.sql.alter-table.add-default</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>
