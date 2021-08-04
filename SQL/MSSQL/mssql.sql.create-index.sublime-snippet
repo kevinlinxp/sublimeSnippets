@@ -1,0 +1,16 @@
+<snippet>
+  <content><![CDATA[
+SET ANSI_PADDING ON
+GO
+
+CREATE NONCLUSTERED INDEX [${1}_index1] ON [${1:table_name}]
+(
+	[${2:column_name}] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mssql.sql.create-index</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>
