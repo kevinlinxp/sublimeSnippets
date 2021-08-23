@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
 @ParameterizedTest
-@MethodSource("paramsForTest")
+@MethodSource
 void ${1:methodTested}_when${2:Condition}_should${3:Work}(int p1, String p2, long p3) {
   // Arrange
   ${0}
@@ -9,6 +9,14 @@ void ${1:methodTested}_when${2:Condition}_should${3:Work}(int p1, String p2, lon
   // Act
 
   // Assert
+}
+
+private static Stream<Arguments> ${1}_when${2}_should${3}() {
+    return Stream.of(
+            Arguments.of(11, "12", 13L),
+            Arguments.of(21, "22", 23L),
+            Arguments.of(31, null, null)
+    );
 }
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

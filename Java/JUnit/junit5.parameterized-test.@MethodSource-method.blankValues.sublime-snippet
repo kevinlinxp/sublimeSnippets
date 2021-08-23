@@ -1,0 +1,16 @@
+<snippet>
+  <content><![CDATA[
+private static Stream<Arguments> ${1:params_blankValues} {
+  return Stream.of(
+      Arguments.of(null),
+      Arguments.of(""),
+      Arguments.of(" "),
+      Arguments.of("    "),
+  );
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>junit5.parameterized-test.@MethodSource-method.blankValues</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
