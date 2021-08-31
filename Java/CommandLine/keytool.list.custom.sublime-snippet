@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+JDK="${1:/path/to/jdk}"
+KEY_TOOL="\$JDK/bin/keytool"
+
+cd \$JDK
+
+\$KEY_TOOL \
+-list \
+-keystore ${2:my-keystore.jks|pkcs12} \
+-storepass changeit
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>keytool.list.custom</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

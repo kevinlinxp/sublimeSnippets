@@ -1,0 +1,24 @@
+<snippet>
+  <content><![CDATA[
+JDK="${1:/path/to/jdk}"
+KEY_TOOL="\$JDK/bin/keytool"
+
+CERT_FILE="${2:/path/to/cert_file.pem}"
+ALIAS="${3:org_product_sha2_ssl}"
+
+cd \$JDK
+
+\$KEY_TOOL \
+-importcert \
+-keystore ${4:my-truststore.jks|pkcs12} \
+-storepass changeit \
+-alias \$ALIAS \
+-file "\$CERT_FILE" \
+-trustcacerts
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>keytool.importcert.custom-truststore</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
