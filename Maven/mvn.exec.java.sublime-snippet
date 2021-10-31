@@ -1,9 +1,0 @@
-<snippet>
-  <content><![CDATA[
-mvn exec:java -Dexec.mainClass="${1:au.com.rds.activiti.deployer.Supporter}" -Dexec.args="${2:-m migration/bia-data.csv}" -X
-]]></content>
-  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>mvn.exec.java</tabTrigger>
-  <!-- Optional: Set a scope to limit where the snippet will trigger -->
-  <scope>text.plain, source.shell</scope>
-</snippet>
