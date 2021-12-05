@@ -6,6 +6,8 @@ mvn -Dtest=TestSquare,TestCi*le test
 
 mvn -Dtest=TestCircle#testOne+testTwo test
 
+mvn -Dtest=TestClass#testMethods* test
+
 mvn -Dtest=TestsOutterClass\\\$StaticInnerTestClass test
 
 mvn "-Dtest=???Test, !Unstable*, pkg/**/Ci*leTest.java, *Test#test*One+testTwo?????, #fast*+slowTest" test
