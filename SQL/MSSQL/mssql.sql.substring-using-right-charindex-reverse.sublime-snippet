@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+RIGHT(${1:column_name}, CHARINDEX(':', REVERSE(${1})) - 1)
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mssql.sql.substring-using-right-charindex-reverse</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.sql, text.plain</scope>
+</snippet>
