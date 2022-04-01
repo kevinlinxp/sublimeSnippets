@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+npx create-react-app ${1:project-name} --template typescript
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>react.init-wity-typescript</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

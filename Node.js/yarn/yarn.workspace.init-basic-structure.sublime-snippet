@@ -1,0 +1,148 @@
+<snippet>
+  <content><![CDATA[
+# init react
+npx create-react-app ${1:project-name} --template typescript
+cd ${1}
+
+# Material UI v5.x
+yarn add @mui/material @emotion/react @emotion/styled
+yarn add @mui/icons-material
+yarn add @mui/lab
+
+# eslint and prettier
+
+## Tip 1: TypeScript linting support is achieved with @typescript-eslint/eslint-plugin which depends on @typescript-eslint/parser.
+
+## Tip 2: Airbnb style is used as opposed to Standard and Google styles due to we still love semi-colons and Google Style does not support react.
+
+## Tip 3: Prettier support is achieved with eslint-config-prettier, eslint-plugin-prettier, prettier and .prettierrc.json. The standalone prettier IDE plugin are not needed. The ESLint IDE plugin would suffice.
+
+## The elements order in eslintrc.extensions is important. Latter ones take precedence.
+
+## The command line below groups related packages.
+yarn add --dev \
+eslint \
+\
+@typescript-eslint/eslint-plugin \
+@typescript-eslint/parser \
+\
+eslint-plugin-promise \
+\
+eslint-config-airbnb \
+eslint-plugin-import \
+eslint-import-resolver-typescript \
+eslint-plugin-react \
+eslint-plugin-react-hooks \
+eslint-plugin-jsx-a11y \
+\
+eslint-config-prettier \
+eslint-plugin-prettier
+
+# .eslintrc.json
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:promise/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "react/jsx-props-no-spreading": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
+    "react/destructuring-assignment": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "no-underscore-dangle": "off",
+    "no-plusplus": "off",
+    "class-methods-use-this": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-this-alias": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "no-use-before-define": "off",
+    "max-classes-per-file": "off",
+    "no-useless-constructor": "off",
+    "func-names": "off",
+    "no-restricted-syntax": "off",
+    "no-return-assign": "off",
+    "prefer-const": "off",
+    "no-shadow": "off",
+    "no-constant-condition": "off",
+    "no-unused-expressions": "off",
+    "no-inner-declarations": "off",
+    "no-bitwise": "off",
+    "no-nested-ternary": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-unused-expressions": "off",
+    "@typescript-eslint/consistent-type-assertions": "off",
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "@typescript-eslint/class-name-casing": "off",
+    "react/prop-types": "off",
+    "import/no-cycle": "off",
+    "no-buffer-constructor": "off",
+    "no-param-reassign": "off",
+    "import/no-extraneous-dependencies": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "import/extensions": [
+      "error",
+      {
+        "ts": "never",
+        "tsx": "never",
+        "json": "always"
+      }
+    ],
+    "react/jsx-closing-bracket-location": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  },
+  "ignorePatterns": ["dist", "node_modules", "examples", "scripts"]
+}
+
+
+# .prettier.json
+{
+  "printWidth": 100,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "jsxBracketSameLine": true,
+  "endOfLine": "auto"
+}
+
+
+# Environments config support
+yarn add --dev env-cmd
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>yarn.workspace.init-basic-structure</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
