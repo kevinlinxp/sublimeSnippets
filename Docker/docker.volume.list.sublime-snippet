@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+docker volume <list|ls> [OPTIONS]
+
+Options:
+  -f, --filter filter   Provide filter values (e.g. 'dangling=true')
+      --format string   Pretty-print volumes using a Go template
+  -q, --quiet           Only display volume names
+
+docker volume list
+docker volume ls
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>docker.volume.list</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

@@ -1,0 +1,14 @@
+<snippet>
+  <content><![CDATA[
+docker volume inspect [OPTIONS] VOLUME [VOLUME...]
+
+Options:
+  -f, --format string   Format the output using the given Go template
+
+docker volume inspect hello-world
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>docker.volume.inspect</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

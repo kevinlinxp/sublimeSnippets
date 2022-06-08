@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+docker volume <remove|rm> [OPTIONS] VOLUME [VOLUME...]
+
+Options:
+  -f, --force   Force the removal of one or more volumes
+
+docker volume remove hello-world
+docker volume rm hello-world
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>docker.volume.remove</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

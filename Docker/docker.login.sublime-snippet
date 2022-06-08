@@ -1,0 +1,22 @@
+<snippet>
+  <content><![CDATA[
+docker login [OPTIONS] [SERVER]
+
+Options:
+  -h, --help              Help for login
+  -p, --password string   password
+      --password-stdin    Take the password from stdin
+  -u, --username string   username
+
+docker login \
+--username <...> \
+--password <...> \
+localhost:8080
+
+docker login https://hub.docker.com
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>docker.login</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>

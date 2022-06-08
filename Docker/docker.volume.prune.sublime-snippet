@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+docker volume prune [OPTIONS]
+
+Options:
+      --filter filter   Provide filter values (e.g. 'label=<label>')
+  -f, --force           Do not prompt for confirmation
+
+docker volume prune
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>docker.volume.prune</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
