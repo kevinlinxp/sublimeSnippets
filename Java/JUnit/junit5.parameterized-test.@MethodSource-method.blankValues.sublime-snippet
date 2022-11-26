@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[
-private static Stream<Arguments> ${1:params_blankValues} {
+private static Stream<Arguments> ${1:params_blankValues}() {
   return Stream.of(
       Arguments.of(null),
       Arguments.of(""),
