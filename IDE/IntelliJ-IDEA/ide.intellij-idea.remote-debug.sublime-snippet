@@ -1,0 +1,39 @@
+<snippet>
+  <content><![CDATA[
+IntelliJ IDEA Run Configuration
+```
++ Remote JVM Debug
+  - Configuration
+    - Debugger mode: Attach to remote JVM
+    - Transport: Socket
+    - Host: localhost
+    - Port: 8000
+```
+> Ensure the remove JVM has the command line arguments showing in the "Command line arguments for remote JVM box"
+
+
+IntelliJ IDEA ./run configuration file
+```xml  	
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Debug Local Cargo" type="Remote">
+    <module name="cap.sales.prcng.instl.fxquotn" />
+    <option name="USE_SOCKET_TRANSPORT" value="true" />
+    <option name="SERVER_MODE" value="false" />
+    <option name="SHMEM_ADDRESS" />
+    <option name="HOST" value="localhost" />
+    <option name="PORT" value="8000" />
+    <option name="AUTO_RESTART" value="false" />
+    <RunnerSettings RunnerId="Debug">
+      <option name="DEBUG_PORT" value="8000" />
+      <option name="LOCAL" value="false" />
+    </RunnerSettings>
+    <method v="2" />
+  </configuration>
+</component>
+```
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>ide.intellij-idea.remote-debug</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html.markdown, text.plain</scope>
+</snippet>
