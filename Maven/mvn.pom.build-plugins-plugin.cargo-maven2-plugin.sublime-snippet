@@ -1,0 +1,49 @@
+<snippet>
+  <content><![CDATA[
+<plugin>
+    <groupId>org.codehaus.cargo</groupId>
+    <artifactId>cargo-maven2-plugin</artifactId>
+    <version>\${cargo.plugin.version}</version>
+    <configuration>
+        <configuration>
+            <properties>
+                <cargo.start.jvmargs>
+                    -Xdebug
+                    -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000
+                    -Xnoagent
+                </cargo.start.jvmargs>
+            </properties>
+        </configuration>
+        <container>
+            <containerId>tomcat9x</containerId>
+            <timeout>9999999</timeout>
+            <zipUrlInstaller>
+                <downloadDir>\${project.build.directory}/cargo/downloads</downloadDir>
+                <url>
+                    https://artifactory.srv.westpac.com.au/artifactory/wdp-001_generic/au/com/westpacgroup/wdp/custom-tooling/wdp-tomcat/wdp-tomcat-latest.zip
+                </url>
+            </zipUrlInstaller>
+            <systemProperties>
+                <gateway.host>gw.dev1.api.srv.westpac.com.au</gateway.host>
+                <wdp.env.default>\${project.basedir}/env/default</wdp.env.default>
+                <wdp.env.local>\${project.basedir}/env/local</wdp.env.local>
+                <wdp.secrets.default>\${project.basedir}/secrets/local</wdp.secrets.default>
+                <wdp.secrets.local>\${project.basedir}/secrets/local</wdp.secrets.local>
+                <swimlanes.supported>false</swimlanes.supported>
+            </systemProperties>
+        </container>
+        <deployables>
+            <deployable>
+                <properties>
+                    <context>/</context>
+                </properties>
+            </deployable>
+        </deployables>
+    </configuration>
+</plugin>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mvn.pom.build-plugins-plugin.aspectj-maven-plugin</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain, text.xml</scope>
+</snippet>
