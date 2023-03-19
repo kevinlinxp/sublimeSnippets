@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1804 -OutFile ubuntu-1804.appx -UseBasicParsing
+
+Add-AppxPackage .\ubuntu-1804.appx
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>powershell.Install-Ubuntu-to-WSL.Invoke-WebRequest.Add-AppxPackage</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.plain</scope>
+</snippet>
