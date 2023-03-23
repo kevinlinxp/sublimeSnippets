@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+# Install
+npm install --save-dev @babel/core @babel/cli
+
+# Use
+npx babel --version
+./node_module/.bin/babel --version
+
+npx babel src -d dist
+./node_module/.bin/babel src -d dist
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>babel-cli.example</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
