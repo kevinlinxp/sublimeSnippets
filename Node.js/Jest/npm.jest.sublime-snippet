@@ -1,5 +1,10 @@
 <snippet>
   <content><![CDATA[
+npm install jest@24.8.0 --save-dev
+
+npx jest --init
+node node_modules/jest-cli/bin/jest.js --init
+
 node node_modules/jest-cli/bin/jest.js -- "./app/some-folder/some-component.test.js"
 node node_modules/jest-cli/bin/jest.js --runTestsByPath app/some-folder/some-component.test.js
 
