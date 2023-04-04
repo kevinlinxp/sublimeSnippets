@@ -53,8 +53,8 @@ module.exports = function (config) {
     },
 
     junitReporter: {
-      outputDir: 'test-reports/unit', // results will be saved as $outputDir/$browserName.xml
-      outputFile: undefined, // if included, results will be saved as $outputDir/$browserName/$outputFile
+      outputDir: 'test-reports/unit', // results will be saved as $outputDir/\$browserName.xml
+      outputFile: undefined, // if included, results will be saved as $outputDir/\$browserName/$outputFile
       suite: 'rds-schemaform-common', // suite will become the package name attribute in xml testsuite element
       useBrowserName: true, // add browser name to report and classes names
       nameFormatter: undefined, // function (browser, result) to customize the name attribute in xml testcase element

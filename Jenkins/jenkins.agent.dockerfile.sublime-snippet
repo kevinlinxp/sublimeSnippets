@@ -4,8 +4,8 @@ agent {
   dockerfile {
     dir 'jenkins/build-agents'
     filename 'Dockerfile'
-    registryUrl "https://${dockerRegistry}"
-    registryCredentialsId "${dockerRegistryCredentialId}"
+    registryUrl "https://\${dockerRegistry}"
+    registryCredentialsId "\${dockerRegistryCredentialId}"
     reuseNode true
   }
 }

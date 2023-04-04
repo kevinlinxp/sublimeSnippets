@@ -4,7 +4,7 @@ sh "git add -A${0}"
 sh "git commit -m 'Your commit message'"
 sh "git log -1"
 sshagent(credentials: [gitWriteCreds]) {
-  sh "git push origin HEAD:${env.BRANCH_NAME}"
+  sh "git push origin HEAD:\${env.BRANCH_NAME}"
   echo "..."
 }
 ]]></content>
