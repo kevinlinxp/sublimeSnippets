@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+@Autowired
+private StandardEnvironment env;
+
+//...
+
+private void printProperties() {
+    System.out.println("==== Properties =====");
+    for (PropertySource<?> propertySource : env.getPropertySources()) {
+        System.out.println("== Properties from source: " + propertySource.getName() + " ==");
+        if (propertySource instanceof EnumerablePropertySource) {
+            EnumerablePropertySource enumerablePropertySource = (EnumerablePropertySource) propertySource;
+            for (String propertyName : enumerablePropertySource.getPropertyNames()) {
+                System.out.println(propertyName + ": " + env.getProperty(propertyName));
+            }
+        }
+    }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>spring-context.property.print-all-properties</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.java, text.plain</scope>
+</snippet>
