@@ -1,0 +1,56 @@
+<snippet>
+  <content><![CDATA[
+> When you want your Windows and WSL work seamlessly on the same git repository without CRLF issue:
+
+1. Set the core.autocrlf configuration to false in your Git global configuration by running the following command in your terminal:
+```
+git config --global core.autocrlf false
+```
+
+Explanation:
+- git `core.autocrlf` options:
+  - true: Git automatically converts line endings to CRLF on Windows and LF on Unix-like systems
+  - false: Git does not perform any line ending conversions.
+  - input: Git does not perform any line ending conversions when checking out files. This is useful when you want to preserve the original line endings of a file, regardless of the platform you're working on.
+
+
+2. Set the core.eol configuration to lf in your Git global configuration by running the following command in your terminal:
+```
+git config --global core.eol lf
+```
+
+Explaination:
+The core.eol option controls the line endings used in text files when they are checked out from the repository.
+- lf: use LF line endings on all platforms, including Windows
+- crlf: use CRLF line endings on Windows and LF line endings on Unix-like systems.
+
+
+3. Configure your text editor to use LF line endings. This will ensure that any new files you create will use LF line endings.
+
+For example, if you're using Visual Studio Code, you can add the following line to your user settings:
+```
+"files.eol": "\n"
+```
+
+
+4. If you have existing files in your repository with CRLF line endings, you can convert them to LF line endings by running the following command in your terminal:
+```
+git config --global core.autocrlf input
+```
+
+
+5. Then, run the following command to rewrite the Git history with LF line endings:
+```
+git rm --cached -r .
+git reset --hard
+```
+This will remove all files from the index and rewrite the Git history with LF line endings.
+
+
+By following these steps, you should be able to work seamlessly on the same Git repository on both Windows and WSL Ubuntu without any CRLF issues.
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>git.crlf.all-os-compatible</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html.markdown, text.plain, source.dosbatch, source.shell</scope>
+</snippet>
