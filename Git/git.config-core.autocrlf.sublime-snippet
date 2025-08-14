@@ -33,7 +33,7 @@ The `core.autocrlf` Git setting has three options:
 
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>git.config.crlf</tabTrigger>
+  <tabTrigger>git.config-core.autocrlf</tabTrigger>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <scope>text.html.markdown, text.plain, source.dosbatch, source.shell</scope>
 </snippet>
