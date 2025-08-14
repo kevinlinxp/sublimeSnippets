@@ -30,7 +30,6 @@ The `core.autocrlf` Git setting has three options:
 | true   | CRLF     | LF     | Windows                 |
 | input  | LF       | LF     | Linux/macOS             |
 | false  | as-is    | as-is  | Manual control          |
-
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>git.config-core.autocrlf</tabTrigger>
