@@ -1,0 +1,27 @@
+<snippet>
+  <content><![CDATA[
+# Ubuntu 20.04 and other versions of Debian Linux ship with Python 3 pre-installed. To make sure that our versions are up-to-date, update your local package index. Then upgrade the packages installed on your system to ensure you have the latest versions:
+sudo apt update
+sudo apt -y upgrade
+
+# Install pip to manage software packages for Python
+sudo apt install -y python3-pip
+
+# Install a few more packages and development tools
+sudo apt install -y build-essential libssl-dev libffi-dev python3-dev
+
+# Setting up virtual environment
+sudo apt install -y python3-venv
+
+mkdir environments
+cd environments
+python3 -m venv my_env
+source my_env/bin/activate
+
+# Note: Within the virtual environment, you can use the command python instead of python3, and pip instead of pip3 if you would prefer. If you use Python 3 on your machine outside of an environment, you will need to use the python3 and pip3 commands exclusively.
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>python.envs.ubuntu-setup-with-venvs</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.shell, text.plain</scope>
+</snippet>
