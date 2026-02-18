@@ -1,0 +1,38 @@
+<snippet>
+  <content><![CDATA[
+```sh
+git config --global core.autocrlf true
+git config --global core.autocrlf input
+git config --global core.autocrlf false
+```
+
+The `core.autocrlf` Git setting has three options:
+
+1. **true**  
+   - On checkout: Converts LF to CRLF (Windows line endings) in your working directory.  
+   - On commit: Converts CRLF back to LF before storing in the repository.  
+   - **Recommended for Windows users.**
+
+2. **input**  
+   - On checkout: Does not change line endings (keeps LF).  
+   - On commit: Converts CRLF to LF before storing in the repository.  
+   - **Recommended for Linux/macOS users.**
+
+3. **false**  
+   - No automatic conversion.  
+   - Git leaves line endings unchanged on both checkout and commit.  
+   - **Use if you want to manage line endings manually.**
+
+**Summary Table:**
+
+| Option | Checkout | Commit | Use Case                |
+|--------|----------|--------|-------------------------|
+| true   | CRLF     | LF     | Windows                 |
+| input  | LF       | LF     | Linux/macOS             |
+| false  | as-is    | as-is  | Manual control          |
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>git.config-core.autocrlf</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html.markdown, text.plain, source.dosbatch, source.shell</scope>
+</snippet>

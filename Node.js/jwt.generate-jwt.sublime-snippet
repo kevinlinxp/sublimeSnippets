@@ -1,0 +1,28 @@
+<snippet>
+  <content><![CDATA[
+const jwt = require('jsonwebtoken');
+
+const secretKey = 'mySecretKey';
+
+const payload = {
+    "user_name": "DummyUser",
+    "scope": [
+      "read",
+      "write"
+    ],
+    "sessionId": "073E7975E874C8DFF5EA18329B6501F2",
+    "exp": 253375344550316,
+    "authorities": ["CanAccessSettlementTracker"],
+    "jti": "4e49f2bc-7932-4759-958a-b51d8f63aed0",
+    "client_id": "dummy"
+}
+
+const accessToken = jwt.sign(payload, secretKey);
+
+console.log(accessToken);
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>jwt.generate-jwt</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js, text.plain</scope>
+</snippet>
